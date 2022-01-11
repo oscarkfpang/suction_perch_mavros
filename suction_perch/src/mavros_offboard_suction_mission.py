@@ -4,6 +4,7 @@ from __future__ import division
 import rospy
 import math
 import numpy as np
+import time
 from geometry_msgs.msg import PoseStamped, Quaternion
 from mavros_msgs.msg import ParamValue
 from mavros_msgs.msg import Altitude, ExtendedState, HomePosition, ParamValue, State, \
@@ -17,7 +18,9 @@ from six.moves import xrange
 from std_msgs.msg import Header
 from threading import Thread
 from tf.transformations import quaternion_from_euler
-
+from multiprocessing import Value
+from ctypes import c_int
+from collections import deque
 
 class MavrosOffboardSuctionMission():
     """
@@ -31,8 +34,8 @@ class MavrosOffboardSuctionMission():
 
     def __init__(self, radius=0.2, ):
         self.radius = radius
-        self.mission_cnt = 0
-        self.mission_pos = ((0, 0, 0) , (0, 0, 5.8), (1, 0, 5.8) ) #, (1, 1.5, 5.8), (0, 1.5, 5.8), (0, 0, 5))
+        self.mission_cnt = Value(c_int, 0)
+        self.mission_pos = ((0, 0, 0) , (0, 0, 6), (3, 10, 5.8), (8, 15, 5.8), (2, -3, 5.8), (0, 0, 10))
         # ROS services
         service_timeout = 30
         rospy.loginfo("waiting for ROS services")
@@ -167,13 +170,13 @@ class MavrosOffboardSuctionMission():
     #
     def send_pos(self):
         rate = rospy.Rate(10)  # Hz
-        self.pos.header = Header()
-        self.pos.header.frame_id = "base_footprint"
-        self.pos.pose.position.x = self.mission_pos[self.mission_cnt][0]
-        self.pos.pose.position.y = self.mission_pos[self.mission_cnt][1]
-        self.pos.pose.position.z = self.mission_pos[self.mission_cnt][2]
-
+        
         while not rospy.is_shutdown():
+            self.pos.header = Header()
+            self.pos.header.frame_id = "mission_pos"
+            self.pos.pose.position.x = self.mission_pos[self.mission_cnt.value][0]
+            self.pos.pose.position.y = self.mission_pos[self.mission_cnt.value][1]
+            self.pos.pose.position.z = self.mission_pos[self.mission_cnt.value][2]
             self.pos.header.stamp = rospy.Time.now()
             self.pos_setpoint_pub.publish(self.pos)
             try:  # prevent garbage in console output when thread is killed
@@ -274,6 +277,25 @@ class MavrosOffboardSuctionMission():
         if not assertTrue:
             rospy.loginfo(fail_msg)
 
+
+
+    def setArm(self):
+        rospy.wait_for_service('/mavros/cmd/arming')
+        try:
+            armService = rospy.ServiceProxy('/mavros/cmd/arming', CommandBool)
+            armService(True)
+        except rospy.ServiceException as e:
+            rospy.loginfo( "Service arm call failed: %s"%e)
+
+    def setDisarm(self):
+        rospy.wait_for_service('/mavros/cmd/arming')
+        try:
+            armService = rospy.ServiceProxy('/mavros/cmd/arming', CommandBool)
+            armService(False)
+        except rospy.ServiceException as e:
+            rospy.loginfo("Service arm call failed: %s"%e)
+
+
     def is_at_position(self, offset):
         """offset: meters"""
         rospy.logdebug(
@@ -281,9 +303,9 @@ class MavrosOffboardSuctionMission():
                 self.local_position.pose.position.x, self.local_position.pose.
                 position.y, self.local_position.pose.position.z))
 
-        desired = np.array((self.mission_pos[self.mission_cnt][0], 
-                            self.mission_pos[self.mission_cnt][1], 
-                            self.mission_pos[self.mission_cnt][2]))
+        desired = np.array((self.mission_pos[self.mission_cnt.value][0], 
+                            self.mission_pos[self.mission_cnt.value][1], 
+                            self.mission_pos[self.mission_cnt.value][2]))
         pos = np.array((self.local_position.pose.position.x,
                         self.local_position.pose.position.y,
                         self.local_position.pose.position.z))
@@ -292,9 +314,9 @@ class MavrosOffboardSuctionMission():
     def reach_position(self, timeout):
         """timeout(int): seconds"""
         # set a position setpoint
-        x = self.mission_pos[self.mission_cnt][0]
-        y = self.mission_pos[self.mission_cnt][1]
-        z = self.mission_pos[self.mission_cnt][2]
+        x = self.mission_pos[self.mission_cnt.value][0] 
+        y = self.mission_pos[self.mission_cnt.value][1]
+        z = self.mission_pos[self.mission_cnt.value][2]
         rospy.loginfo(
             "attempting to reach position | x: {0}, y: {1}, z: {2} | current position x: {3:.2f}, y: {4:.2f}, z: {5:.2f}".
             format(x, y, z, self.local_position.pose.position.x,
@@ -334,25 +356,50 @@ class MavrosOffboardSuctionMission():
     def run_mission(self):
         # make sure the simulation is ready to start the mission
         self.wait_for_mission_topics(60)
-        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
-                                   10, -1)
+        #self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
+        #                           10, -1)
+        self.mission_cnt.value = 0  # ground position
         self.set_mode("OFFBOARD", 5)
-        if self.set_arm(True, 5) and self.takeoff(10):
-            self.mission_cnt += 1
-        else:
-            return -1
+        self.set_arm(True, 5)
+        self.mission_cnt.value = 1  # take off position
+        #if self.set_arm(True, 5) and self.takeoff(10):
+        #    self.mission_cnt += 1
+        #else:
+        #    return -1
         
-        while self.mission_cnt < len(self.mission_pos):
-            if self.reach_position(20):
-                self.mission_cnt += 1
+        while self.mission_cnt.value < len(self.mission_pos):
+        #    rospy.loginfo("time = {0}".format(rospy.get_time() ))
+            if self.reach_position(50):
+                self.mission_cnt.value += 1
             else:
                 break
-                      
+        self.mission_cnt.value = 1
+        self.reach_position(20) 
+        self.mission_cnt.value = 0
+        self.reach_position(20)             
         rospy.loginfo("Mission completed... wait for 3 sec before landing.")          
         rospy.sleep(3)
-        self.set_arm(False, 5)
+        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
+                                   10, -1)
+        self.setDisarm()
+        #self.set_arm(False, 5)
         self.set_mode("STABILIZED", 5)
         return
+
+
+    def test(self):
+        rate = rospy.Rate(1)
+        self.mission_cnt.value = 0
+        
+        while self.mission_cnt.value < len(self.mission_pos):
+            
+            rospy.loginfo("mission_cnt = {0}".format(self.mission_cnt.value))
+            rate.sleep()
+            self.mission_cnt.value += 1
+            if self.mission_cnt.value >= len(self.mission_pos):
+                self.mission_cnt.value = 0
+            
+                
 
     #
     # Test method
@@ -370,7 +417,7 @@ class MavrosOffboardSuctionMission():
         #rcl_except = ParamValue(1<<2, 0.0)
         #self.set_param("COM_RCL_EXCEPT", rcl_except, 5)
         self.set_mode("OFFBOARD", 5)
-        self.set_arm(True, 5)
+        #self.set_arm(True, 5)
 
         rospy.loginfo("run mission")
         positions = ((0, 0, 0) , (0, 0, 0.1) ) #, (1, 0, 1.8), (1, 1.5, 1.8), (0, 1.5, 1.8), (0, 0, 0))
@@ -448,7 +495,7 @@ if __name__ == '__main__':
     rospy.init_node('suction_mission_node')
     suction_mission = MavrosOffboardSuctionMission()
     suction_mission.run_mission()
-    #rospy.spin()
+    rospy.spin()
     '''
     try:
         rate = rospy.Rate(100)
