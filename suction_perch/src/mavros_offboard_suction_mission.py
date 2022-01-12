@@ -5,10 +5,10 @@ import rospy
 import math
 import numpy as np
 import time
-from geometry_msgs.msg import PoseStamped, Quaternion
+from geometry_msgs.msg import PoseStamped, Quaternion, Point, Vector3
 from mavros_msgs.msg import ParamValue
 from mavros_msgs.msg import Altitude, ExtendedState, HomePosition, ParamValue, State, \
-                            WaypointList
+                            WaypointList, PositionTarget
 from mavros_msgs.srv import CommandBool, ParamGet, ParamSet, SetMode, SetModeRequest, WaypointClear, \
                             WaypointPush, CommandTOL
 from sensor_msgs.msg import NavSatFix, Imu
@@ -70,9 +70,12 @@ class MavrosOffboardSuctionMission():
         self.state = State()
         
         self.pos = PoseStamped()
+        self.pos_target = PositionTarget()
 
         self.pos_setpoint_pub = rospy.Publisher(
             'mavros/setpoint_position/local', PoseStamped, queue_size=1)
+        self.pos_target_setpoint_pub = rospy.Publisher(
+            'mavros/setpoint_raw/local', PositionTarget, queue_size=1)
 
         self.sub_topics_ready = {
             key: False
@@ -97,7 +100,7 @@ class MavrosOffboardSuctionMission():
                                               self.local_position_callback)
 
         # send setpoints in seperate thread to better prevent failsafe
-        self.pos_thread = Thread(target=self.send_pos, args=())
+        self.pos_thread = Thread(target=self.send_pos_target, args=())
         self.pos_thread.daemon = True
         self.pos_thread.start()
 
@@ -183,6 +186,30 @@ class MavrosOffboardSuctionMission():
                 rate.sleep()
             except rospy.ROSInterruptException:
                 pass
+
+    def send_pos_target(self):
+        rate = rospy.Rate(10)  # Hz
+        
+        while not rospy.is_shutdown():
+            self.pos_target.header = Header()
+            self.pos_target.header.frame_id = "mission_pos_target"
+            self.pos_target.header.stamp = rospy.Time.now()
+            self.pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
+                                        PositionTarget.FORCE + PositionTarget.IGNORE_YAW + PositionTarget.IGNORE_YAW_RATE
+            self.pos_target.coordinate_frame = PositionTarget.FRAME_LOCAL_NED
+            self.pos_target.position.x = self.mission_pos[self.mission_cnt.value][0]
+            self.pos_target.position.y = self.mission_pos[self.mission_cnt.value][1]
+            self.pos_target.position.z = self.mission_pos[self.mission_cnt.value][2]
+            self.pos_target.velocity.x = 2.0
+            self.pos_target.velocity.y = 2.0
+            self.pos_target.velocity.z = 3.0
+            
+            self.pos_target_setpoint_pub.publish(self.pos_target)
+            try:  # prevent garbage in console output when thread is killed
+                rate.sleep()
+            except rospy.ROSInterruptException:
+                pass
+
 
     def set_arm(self, arm, timeout):
         """arm: True to arm or False to disarm, timeout(int): seconds"""
