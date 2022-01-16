@@ -41,12 +41,15 @@ class MavrosOffboardSuctionMission():
         self.vy = vy
         self.vz = vz
         self.takeoff_alt = takeoff_alt
+        self.throttle_down_sec = 2 # sec
 
         self.mission_cnt = Value(c_int, 0)
         self.mission_pos = mission_pos
         self.pump_on = Value(c_bool, False)
-        self.is_perched = Value(c_bool, False)
-        self.publish_att_raw = Value(c_bool, False)
+        self.is_perched = Value(c_bool, False)       
+        self.publish_att_raw = Value(c_bool, False)   # ON: publish attitude_setpoint/raw for pitch up during vertical landing
+        self.publish_thr_down = Value(c_bool, False)  # ON: toggle throttle down for vertical landing
+        self.vtol = Value(c_bool, False)
         
         # ROS services
         service_timeout = 30
@@ -121,7 +124,7 @@ class MavrosOffboardSuctionMission():
                                               Bool,
                                               self.perched_callback)
 
-        # send mission pos setpoints in seperate thread to better prevent failsail
+        # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
         self.pos_thread = Thread(target=self.send_mission_pos, args=())
         self.pos_thread.daemon = True
@@ -187,7 +190,6 @@ class MavrosOffboardSuctionMission():
 
     def local_position_callback(self, data):
         self.local_position = data
-
         if not self.sub_topics_ready['local_pos']:
             self.sub_topics_ready['local_pos'] = True           
     
@@ -245,6 +247,8 @@ class MavrosOffboardSuctionMission():
         pos_target.velocity.x = 0
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
+
+        # send directional velocity command to the drone
         if self.mission_pos[self.mission_cnt.value][0] > 0:
             pos_target.velocity.x = 0.5
         if self.mission_pos[self.mission_cnt.value][1] > 0:
@@ -258,9 +262,13 @@ class MavrosOffboardSuctionMission():
         att_target = AttitudeTarget()
         # change these values by experiment
         roll = 0.0
-        pitch = -0.2 # tested in jmavsim for -ve value = pitch up (flip backward)
         yaw = 0.0
-        throttle = 0.5
+        if not self.publish_thr_down.value:
+            pitch = -0.2 # tested in jmavsim for -ve value = pitch up (flip backward)
+            throttle = 0.5
+        else:
+            throttle = 0.0
+            pitch = 0.0
             
         att_target.header = Header()
         att_target.header.frame_id = "attitude_target"
@@ -526,8 +534,13 @@ class MavrosOffboardSuctionMission():
                     rospy.loginfo("publish 0 vel setpoint for 3 sec for stabilisation")
                     rospy.sleep(3)
                     # begin land on wall
-                    if not self.land_on_wall(2):
+                    if not self.land_on_wall(10):
                         mission_fail = True
+                    else:
+                        # disarm the drone 
+                        self.set_arm(False, 5)
+                        if self.vtol.value:
+                            break
                     ## move on to the next waypoint for testing
                     #self.mission_cnt.value += 1
                 else:
@@ -535,12 +548,17 @@ class MavrosOffboardSuctionMission():
                     # attitude setpoint
             if mission_fail:
                 break        
-            
+        
+        if self.vtol.value:
+            rospy.loginfo("Mission completed with vertical landing!")          
+            return
+    
         self.land()
         self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
                                    10, -1)
         self.set_arm(False, 5)
-        rospy.loginfo("Mission completed... wait for 3 sec.")          
+        rospy.loginfo("Mission completed normally")          
+        return
 
     def run_mission(self):
         # make sure the simulation is ready to start the mission
@@ -601,13 +619,15 @@ class MavrosOffboardSuctionMission():
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
         vertical_landing = False
+        pitch_up = False
         for i in xrange(timeout * loop_freq):
             try:
+                # check landing gear param. set bool to True if landing gears contact the wall
                 res = self.get_param_srv('SUCTION_IS_LAND')
                 if res.success and res.value.integer > 0:
                     rospy.loginfo(
                         "SUCTION_IS_LAND received {0}. drone is landed vertically to the wall! ".format(res.value.integer))
-                    vertical_landing = True
+                    pitch_up = True
                     break
             except rospy.ServiceException as e:
                 rospy.logerr(e)
@@ -615,12 +635,28 @@ class MavrosOffboardSuctionMission():
                 rate.sleep()
             except rospy.ROSException as e:
                 pass
-                
+
+        if not pitch_up:
+            self.assertTrue(vertical_landing, (
+                "took too long to land vertically | timeout(seconds): {0}".format(timeout)))
+            self.publish_att_raw.value = False     
+            return False
+
+        # throttle down at high pitch angle vertical landing phase
+        self.publish_thr_down.value = True
+        # hold for timeout / 4 with throttle down (0.0)
+        for i in xrange(self.throttle_down_sec * loop_freq):
+            try:
+                rate.sleep()
+                rospy.loginfo("Set Throttle = 0 during vetical landing")
+            except rospy.ROSException as e:
+                pass
+
         # turn off att_raw_setpoint publishing 
-        self.publish_att_raw.value = False
-        
-        self.assertTrue(vertical_landing, (
-            "took too long to land vertically | timeout(seconds): {0}".format(timeout)))
+        ## self.publish_att_raw.value = False      # no need as we keep publishing 0 att_raw
+        vertical_landing = True
+        self.vtol.value = True
+
         return vertical_landing
                         
     def perch_wall(self, timeout=60):
