@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 from __future__ import division
 
 import rospy
@@ -6,6 +6,7 @@ import math
 import numpy as np
 import time
 import sys
+import signal
 import argparse
 from std_msgs.msg import Header, Empty, Bool
 from geometry_msgs.msg import PoseStamped, Quaternion, Point, Vector3
@@ -35,14 +36,19 @@ class MavrosOffboardSuctionMission():
     """
 
     def __init__(self, radius=0.1, vx=0.2, vy=0.2, vz=0.8, takeoff_alt=1.0, 
-                 mission_pos=((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0))):
+                 mission_pos=((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0)),
+                 goto_pos_time=30, perch_time=60, land_on_wall_time=20):
         self.radius = radius # consider using a smaller radius in real flight
         self.vx = vx
         self.vy = vy
         self.vz = vz
         self.takeoff_alt = takeoff_alt
         self.throttle_down_sec = 2 # sec
+        self.goto_pos_time = goto_pos_time
+        self.perch_time = perch_time
+        self.land_on_wall_time = land_on_wall_time
 
+        self.terminate = Value(c_bool, False)
         self.mission_cnt = Value(c_int, 0)
         self.mission_pos = mission_pos
         self.pump_on = Value(c_bool, False)
@@ -326,6 +332,10 @@ class MavrosOffboardSuctionMission():
             except rospy.ROSInterruptException:
                 pass
 
+            if self.terminate.value:
+                # stop publishing setpoint under OFFBOARD mode and break out the loop
+                break
+
 
     def set_arm(self, arm, timeout):
         """arm: True to arm or False to disarm, timeout(int): seconds"""
@@ -501,9 +511,7 @@ class MavrosOffboardSuctionMission():
             try:
                 rate.sleep()
             except rospy.ROSException as e:
-                #self.fail(e)
-                # TODO: add hold mode upon failure
-                pass
+                self.fail()
 
         self.assertTrue(reached, (
             "took too long to get to position | current position x: {0:.2f}, y: {1:.2f}, z: {2:.2f} | timeout(seconds): {3}".
@@ -523,18 +531,18 @@ class MavrosOffboardSuctionMission():
 
         while self.mission_cnt.value < len(self.mission_pos):
             if self.mission_pos[self.mission_cnt.value][3] == 0: # normal pos setpoint
-                if self.goto_position(30):
+                if self.goto_position(self.goto_pos_time):
                     self.mission_cnt.value += 1
                 else:
                     mission_fail = True
             elif self.mission_pos[self.mission_cnt.value][3] == 1: # velocity setpoint
-                if self.perch_wall(60):
+                if self.perch_wall(self.perch_time):
                     self.mission_cnt.value += 1
                     # upon successful perching by suction cup, publish 0 vel setpoint for 3 sec for stabilisation
                     rospy.loginfo("publish 0 vel setpoint for 3 sec for stabilisation")
                     rospy.sleep(3)
                     # begin land on wall
-                    if not self.land_on_wall(20):
+                    if not self.land_on_wall(self.land_on_wall_time):
                         mission_fail = True
                     else:
                         # disarm the drone 
@@ -690,7 +698,7 @@ class MavrosOffboardSuctionMission():
             try:
                 rate.sleep()
             except rospy.ROSException as e:
-                pass
+                self.fail()
         
         if not suction:
             # turn off suction pump if fail
@@ -702,6 +710,17 @@ class MavrosOffboardSuctionMission():
         return suction
 
 
+    def fail(self):
+        self.terminate.value = True
+        self.pos_thread.join()
+        # turn off the pump
+        if self.pump_on.value:
+            rospy.loginfo("Turn OFF suction pump")
+            self.pub_pump.publish(Empty())
+            self.pump_on.value = False
+        rospy.loginfo("Setpoint Publishing Thread terminates!")
+        rospy.loginfo("======= STOP OFFBOARD ======= ")
+        sys.exit(0)
         
     #
     # Test method
@@ -779,6 +798,13 @@ class MavrosOffboardSuctionMission():
                     'MAV_LANDED_STATE'][self.extended_state.landed_state].name,
                    index, timeout)))
 
+# to shut down the ROS Service gracefully after pressing Ctrl-C
+def sigint_handler(signum, data):
+    rospy.loginfo('Ctrl-C is pressed.')
+    rospy.signal_shutdown('Wait for 5 sec and shutting down ROS node...')  
+    rospy.sleep(5)
+    sys.exit(0)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Mission Script for Suction Perch Drone")
@@ -791,17 +817,25 @@ if __name__ == '__main__':
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
 
     rospy.init_node('suction_mission_node')
-    
+    #signal.signal(signal.SIGINT, sigint_handler)
+    #signal.signal(signal.SIGTERM, sigint_handler)
 
+    # mission waypoints for perching test
     mission_pos_vel = ((0, 0, 0, 0) , (0, 0, 5, 0), (1.5, 0, 5, 0), (1, 0, 0, 1), (0, 0, 0, 1),   (5, 5, 5, 0), (0, 0, 5, 0))
+    # mission waypoints for flying a square box
     mission_pos_sq = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (-1, -1, 1.5, 0), (-1, 1, 1.5, 0), (1, 1, 1.5, 0), (1, -1, 1.5, 0), (0, 0, 1.5, 0)) 
+    # mission waypoints for velocity setpoint test
     mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
+
+    global suction_mission
 
     if args.sq_test:
         suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_sq)
         suction_mission.run_mission()
     elif args.vel_test:
-        suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_vel)
+        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
+                                                       mission_pos=mission_pos_vel_test, 
+                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30)
         suction_mission.run_mission_perch()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_sq)
