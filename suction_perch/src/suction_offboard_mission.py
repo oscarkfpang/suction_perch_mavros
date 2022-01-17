@@ -534,7 +534,7 @@ class MavrosOffboardSuctionMission():
                     rospy.loginfo("publish 0 vel setpoint for 3 sec for stabilisation")
                     rospy.sleep(3)
                     # begin land on wall
-                    if not self.land_on_wall(10):
+                    if not self.land_on_wall(20):
                         mission_fail = True
                     else:
                         # disarm the drone 
@@ -620,7 +620,9 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         vertical_landing = False
         pitch_up = False
-        for i in xrange(timeout * loop_freq):
+        for i in xrange(timeout * loop_freq, 0, -1):
+            rospy.loginfo(
+                        "waiting for SUCTION_IS_LAND. Time left {0} sec".format(i))
             try:
                 # check landing gear param. set bool to True if landing gears contact the wall
                 res = self.get_param_srv('SUCTION_IS_LAND')
@@ -672,7 +674,9 @@ class MavrosOffboardSuctionMission():
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
         suction = False
-        for i in xrange(timeout * loop_freq):
+        for i in xrange(timeout * loop_freq, 0, -1):
+            rospy.loginfo(
+                        "waiting for SUCTION_IS_PERCH. Time left {0} sec".format(i))
             try:
                 res = self.get_param_srv('SUCTION_IS_PERCH')
                 if res.success and res.value.integer > 0:
@@ -791,6 +795,7 @@ if __name__ == '__main__':
 
     mission_pos_vel = ((0, 0, 0, 0) , (0, 0, 5, 0), (1.5, 0, 5, 0), (1, 0, 0, 1), (0, 0, 0, 1),   (5, 5, 5, 0), (0, 0, 5, 0))
     mission_pos_sq = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (-1, -1, 1.5, 0), (-1, 1, 1.5, 0), (1, 1, 1.5, 0), (1, -1, 1.5, 0), (0, 0, 1.5, 0)) 
+    mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
 
     if args.sq_test:
         suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_sq)
