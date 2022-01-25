@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 from __future__ import division
 
 import rospy
@@ -126,7 +126,10 @@ class MavrosOffboardSuctionMission():
                                                self.imu_data_callback)
         self.state_sub = rospy.Subscriber('mavros/state', State,
                                           self.state_callback)
-        self.local_pos_sub = rospy.Subscriber('mavros/local_position/pose',
+        #self.local_pos_sub = rospy.Subscriber('mavros/local_position/pose',
+        #                                      PoseStamped,
+        #                                      self.local_position_callback)
+        self.local_pos_sub = rospy.Subscriber('mavros/vision_pose/pose',
                                               PoseStamped,
                                               self.local_position_callback)
         self.perched_sub = rospy.Subscriber('is_perched',
@@ -870,9 +873,9 @@ if __name__ == '__main__':
     #signal.signal(signal.SIGTERM, sigint_handler)
 
     # mission waypoints for perching test
-    mission_pos_vel = ((0, 0, 0, 0) , (0, 0, 5, 0), (1.5, 0, 5, 0), (1, 0, 0, 1), (0, 0, 0, 1),   (5, 5, 5, 0), (0, 0, 5, 0))
+    mission_pos_vel = ((0, 0, 0, 0) , (0, 0.1, 1.5, 0), (1, 0.1, 1.5, 0), (1, 0, 0, 1), (0, 0, 0, 1), (1, 0.1, 1.5, 0), (0, 0, 1.5, 0))
     # mission waypoints for flying a square box
-    mission_pos_sq = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (-1, -1, 1.5, 0), (-1, 1, 1.5, 0), (1, 1, 1.5, 0), (1, -1, 1.5, 0), (0, 0, 1.5, 0))
+    mission_pos_sq = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (-1, -1, 1.5, 0), (-1, 1, 1.5, 0), (1, 1, 1.5, 0), (1, -1, 1.5, 0), (0, 0, 1.5, 0)) 
     # mission waypoints for velocity setpoint test
     mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
 
@@ -883,12 +886,12 @@ if __name__ == '__main__':
         suction_mission.run_mission_square()
     elif args.vel_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
-                                                       mission_pos=mission_pos_vel_test,
+                                                       mission_pos=mission_pos_vel,
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_perch()
     elif args.rearm_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
-                                                       mission_pos=mission_pos_vel_test,
+                                                       mission_pos=mission_pos_vel,
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_perch()
         suction_mission.run_mission_rearm()
