@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from __future__ import division
 
 import rospy
@@ -47,7 +47,7 @@ class MavrosOffboardSuctionMission():
         self.perch_time = perch_time
         self.land_on_wall_time = land_on_wall_time
         self.throttle_low = 0.5
-        self.throttle_down_time = 5
+        self.throttle_down_time = 10
         self.throttle_down_start_time = -1   # > 0 for real time
 
         self.terminate = Value(c_bool, False)
@@ -58,6 +58,7 @@ class MavrosOffboardSuctionMission():
         self.publish_att_raw = Value(c_bool, False)   # ON: publish attitude_setpoint/raw for pitch up during vertical landing
         self.publish_thr_down = Value(c_bool, False)  # ON: toggle throttle down for vertical landing
         self.vtol = Value(c_bool, False)
+        self.debug_mode = Value(c_bool, True)
 
         # ROS services
         service_timeout = 30
@@ -268,16 +269,20 @@ class MavrosOffboardSuctionMission():
 
     def make_att_target(self):
         att_target = AttitudeTarget()
+        att_target.header = Header()
+        att_target.header.stamp = rospy.Time.now()
         # change these values by experiment
         roll = 0.0
         yaw = 0.0
         if not self.publish_thr_down.value:
             pitch = -0.2 # tested in jmavsim for -ve value = pitch up (flip backward)
             throttle = self.throttle_low
+            att_target.header.frame_id = "set_low_throttle"
         else:
             # gradually throttling down
             pitch = 0.0
             if self.throttle_down_start_time > 0:
+                att_target.header.frame_id = "lowering_throttle_to_zero"
                 dt = rospy.get_time() - self.throttle_down_start_time
                 if dt <= self.throttle_down_time:
                     throttle = (self.throttle_down_time - dt) / self.throttle_down_time * self.throttle_low
@@ -286,9 +291,6 @@ class MavrosOffboardSuctionMission():
             else:
                 throttle = 0.0
 
-        att_target.header = Header()
-        att_target.header.frame_id = "attitude_target"
-        att_target.header.stamp = rospy.Time.now()
         att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
         vector3 = Vector3(x=roll , y=pitch , z=yaw)
         att_target.thrust = throttle
@@ -623,6 +625,7 @@ class MavrosOffboardSuctionMission():
         return
 
     def is_high_attitude(self):
+        rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y > 0.35 and self.imu_data.orientation.y < 0.7
 
     #TODO: publish attitude_raw setpoint for perching and landing on the wall
@@ -638,14 +641,20 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         vertical_landing = False
         pitch_up = False
+        
+        if self.debug_mode.value:
+            pitch_up = True
 
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
                         "** High Attitude Movement. Count-down to end: {0}".format(i))
             try:
+                if pitch_up:
+                    break
+                    
                 if self.is_high_attitude():
                     pitch_up = True
-                    break
+                    #break
             except rospy.ServiceException as e:
                 rospy.logerr(e)
             try:
