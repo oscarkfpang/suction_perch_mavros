@@ -559,11 +559,22 @@ class MavrosOffboardSuctionMission():
                     ## move on to the next waypoint for testing
                     #self.mission_cnt.value += 1
                 else:
+                    # drone fails to perch to the wall. RTL
+                    rospy.loginfo("Perching to wall unsuccessful! RTL now.")
+                    # turn off suction pump if fail
+                    if self.pump_on.value:
+                        self.pub_pump.publish(Empty())
+                        self.pump_on.value = False
+                    self.mission_cnt.value = len(self.mission_pos)-1
+                    self.goto_position(self.goto_pos_time)
                     mission_fail = True
                     # attitude setpoint
             if self.vtol.value:
                 break
             if mission_fail:
+                self.land()
+                self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
+                                     10, -1)
                 break
 
         if self.vtol.value:
