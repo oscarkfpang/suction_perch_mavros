@@ -593,11 +593,12 @@ class MavrosOffboardSuctionMission():
         return
 
     def run_mission(self):
-        self.run_mission_perch()
-        rospy.loginfo("Sleep for 30 sec before rearm.....")
-        rospy.sleep(30)
-        rospy.loginfo("Rearm now!")
-        self.run_mission_rearm()
+        perch = self.run_mission_perch()
+        if perch:
+            rospy.loginfo("Sleep for 30 sec before rearm.....")
+            rospy.sleep(30)
+            rospy.loginfo("Rearm now!")
+            self.run_mission_rearm()
 
 
     def run_mission_rearm(self):
@@ -609,7 +610,8 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("Keep for 20 sec and set throttle to zero again.")
         rospy.sleep(20)
         self.publish_thr_down.value = True
-        rospy.sleep(10)
+        self.throttle_down_start_time = rospy.get_time()
+        rospy.sleep(20)
         rospy.loginfo("Disarm again")
         self.set_arm(False, 5)        
         rospy.loginfo("End rearm mission")        
@@ -653,7 +655,7 @@ class MavrosOffboardSuctionMission():
 
     def is_high_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y > 0.35 and self.imu_data.orientation.y < 0.7
+        return self.imu_data.orientation.y > 0.30 and self.imu_data.orientation.y < 0.7
 
     #TODO: publish attitude_raw setpoint for perching and landing on the wall
     def land_on_wall(self, timeout=10, throttle_timeout=5):
@@ -904,8 +906,7 @@ if __name__ == '__main__':
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_vel,
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
-        suction_mission.run_mission_perch()
-        suction_mission.run_mission_rearm()
+        suction_mission.run_mission()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_sq)
         suction_mission.run_mission_by_hand()
