@@ -586,11 +586,11 @@ class MavrosOffboardSuctionMission():
             # disarm the drone
             self.set_arm(False, 5)
             rospy.loginfo("Mission completed with vertical landing!")
-            return
+            return True
 
         self.set_arm(False, 5)
         rospy.loginfo("Mission completed normally")
-        return
+        return True
 
     def run_mission(self):
         perch = self.run_mission_perch()
@@ -677,13 +677,10 @@ class MavrosOffboardSuctionMission():
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
                         "** High Attitude Movement. Count-down to end: {0}".format(i))
-            try:
-                if pitch_up:
-                    break
-                    
+            try:                    
                 if self.is_high_attitude():
                     pitch_up = True
-                    #break
+                    break
                 rate.sleep()
             except rospy.ROSException as e:
                 pass
@@ -905,7 +902,7 @@ if __name__ == '__main__':
     elif args.rearm_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_vel,
-                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
+                                                       goto_pos_time=60, perch_time=50, land_on_wall_time=40, throttle_down_time=10)
         suction_mission.run_mission()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_sq)
