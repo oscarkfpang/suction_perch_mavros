@@ -1,0 +1,12 @@
+<launch>
+
+	<node pkg="joy" type="joy_node" name="joy" required="True">
+		<param name="autorepeat_rate" value="20" /> <!-- Minimal update rate, Hz -->
+	</node>
+
+
+	<!-- Launches the joystick controller -->
+	<node name="joy_teleop" pkg="joystick_welder" type="joy_teleop.py" output="screen" required="true">
+		<rosparam command="load" file="$(find joystick_welder)/launch/f710_joy.yaml" />
+	</node>
+</launch>

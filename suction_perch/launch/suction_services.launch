@@ -1,0 +1,12 @@
+<launch>
+
+	<!-- node pkg="joy" type="joy_node" name="joy" required="True">
+		<param name="autorepeat_rate" value="20" /> 
+	</node --> 
+
+	<!-- Launches the drone services -->
+	<node name="suction_service" pkg="suction_perch" type="suction_services.py" output="screen" required="true" />
+	
+	<!-- Launches the pressure sensor -->
+	<node name="pressure_sensor" pkg="suction_perch" type="pressure_sensor.py" output="screen" required="true" />
+</launch>
