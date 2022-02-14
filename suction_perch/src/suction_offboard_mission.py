@@ -346,7 +346,7 @@ class MavrosOffboardSuctionMission():
                     rospy.loginfo("Successfully ARM the drone in seconds: {0} of {1}".format(
                     i / loop_freq, timeout))
                 else:
-                    rospy.loginfo("Successfully D the drone in seconds: {0} of {1}".format(
+                    rospy.loginfo("Successfully DISARM the drone in seconds: {0} of {1}".format(
                     i / loop_freq, timeout))
                 break
             else:
@@ -546,10 +546,10 @@ class MavrosOffboardSuctionMission():
                         self.land()
                         self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
                                                     10, -1)
-                        rospy.loginfo("Landed on vertical surface successfully! Disarm now.")
+                        rospy.loginfo("STATUS: Landed on vertical surface successfully! Disarm now.")
                         # disarm the drone
                         self.set_arm(False, 5)
-                        
+                        break
                         # vechile landed successfully. break out the loop and save the status
                         # i.e. mission_fail = False
                         
@@ -603,6 +603,8 @@ class MavrosOffboardSuctionMission():
         self.set_arm(False, 5)
         rospy.loginfo("Drone landed and disarm")
         '''
+        
+        
         return True
 
     def run_mission(self):
@@ -641,20 +643,23 @@ class MavrosOffboardSuctionMission():
         if not perch_successful:
             rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
             return False
+            
+        rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
         
         retakeoff_successful = self.takeoff_from_wall()
         
         if not retakeoff_successful:
             rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
             return False
-        
+
+        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
         detach_successful = self.detach_from_wall()
         
         if not detach_successful:
             rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
             return False
             
-            
+        rospy.loginfo("STATUS: Detach is successful. Finish Flying by hand!")           
         return True
         
 
@@ -870,6 +875,8 @@ class MavrosOffboardSuctionMission():
         Detach the drone from the wall. Precondition: the drone returns to normal attitude after re-takeoff
         return successful detachment or not
         '''
+        
+        rospy.loginfo("Begin detaching from wall")
         # assert suction pressure is still good and solenoid is on
         if not self.solenoid_on.value:
             rospy.logfatal("Solenoid is off! Airflow is not normal! Please check!")
@@ -880,18 +887,24 @@ class MavrosOffboardSuctionMission():
 
         # turn off solenoid and fly away from wall
         if self.solenoid_on.value:
+            rospy.loginfo("Turn off solenoid")
             self.pub_solenoid.publish(Empty())
             self.solenoid_on.value = False
+            
+        if self.pump_on.value:
+            rospy.loginfo("Turn off suction pump")
+            self.pub_pump.publish(Empty())
+            self.pump_on.value = False
 
         # check suction pressure in a loop until suction cup is detached from the wall
         # does it perch to the wall in 'timeout' seconds?
-        rospy.loginfo("========= waiting for SUCTION_IS_PERCH =========")
+        rospy.loginfo("========= waiting for SUCTION_IS_PERCH for detach =========")
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
         detach = False
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
-                        "waiting for SUCTION_IS_PERCH. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
+                        "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
             try:
                 res = self.get_param_srv('SUCTION_IS_PERCH')
                 if res.success and res.value.integer <= 0:
@@ -922,13 +935,13 @@ class MavrosOffboardSuctionMission():
 
         # check suction pressure in a loop until suction cup is attaced to the wall
         # does it perch to the wall in 'timeout' seconds?
-        rospy.loginfo("========= waiting for SUCTION_IS_PERCH =========")
+        rospy.loginfo("========= waiting for SUCTION_IS_PERCH for perching =========")
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
         suction = False
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
-                        "waiting for SUCTION_IS_PERCH. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
+                        "waiting for SUCTION_IS_PERCH to 1. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
             try:
                 res = self.get_param_srv('SUCTION_IS_PERCH')
                 if res.success and res.value.integer > 0:
@@ -1108,7 +1121,6 @@ if __name__ == '__main__':
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_by_hand()
 
-    #suction_mission.test()
     rospy.spin()
     '''
     try:
