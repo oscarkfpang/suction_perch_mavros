@@ -690,6 +690,9 @@ class MavrosOffboardSuctionMission():
         
         rospy.sleep(10)
         self.throttle_down_start_time = -1
+        self.land()
+        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
+                                     10, -1)
         rospy.loginfo("Disarm for finishing mission")
         self.set_arm(False, 5)         
         return True
