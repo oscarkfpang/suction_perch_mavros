@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 import tf
@@ -18,9 +18,10 @@ ButtonPump = 4 # for joypad Green A
 #GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
 #GPIO.setup(18, GPIO.OUT)           # set GPIO18 as an output   
 
+    
 def ReceiveJoystickMessage(data):
     if data.buttons[ButtonPump]==1:
-        rospy.loginfo("Pump Button Pressed")
+        rospy.loginfo("Pump Button Pressed and released")
         pub_pump.publish(Empty())
 
     #pub_relay.publish(data.buttons[ButtonSolenoid])
@@ -39,7 +40,6 @@ def main():
     rospy.init_node('joystick_teleop')
     rate = rospy.Rate(50) # 10hz
 
-    
     # Next load in the parameters from the launch-file
     #ButtonRelay = int (   rospy.get_param("~ButtonRelay",ButtonRelay) )
     #ButtonPump      = int (   rospy.get_param("~ButtonPump",ButtonPump) )    
@@ -47,6 +47,7 @@ def main():
     subJoystick = rospy.Subscriber('joy', Joy, ReceiveJoystickMessage)
     pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)  
     pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
+    
 
     try:
         while not rospy.is_shutdown():

@@ -656,7 +656,7 @@ class MavrosOffboardSuctionMission():
         
     def is_normal_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y < 0.15
+        return self.imu_data.orientation.y < 0.0
 
     def auto_throttling(self, start_throttle, end_throttle, start_time, period):
         '''
