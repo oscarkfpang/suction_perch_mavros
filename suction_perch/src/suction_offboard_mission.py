@@ -616,7 +616,9 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("Rearm now!")
             self.run_mission_rearm()
         '''
-            
+        self.solenoid_on.value = True
+        self.pump_on.value = True
+        
         retakeoff_successful = False
         detach_successful = False
         
@@ -778,7 +780,7 @@ class MavrosOffboardSuctionMission():
         takeoff_from_vertical = False
 
         for i in xrange(throttle_timeout * loop_freq):
-            rospy.loginfo("MSG: Auto_throttling up from 0.0. current throttle = {0}".format(self.current_throttle.value))
+            rospy.loginfo("MSG: Auto_throttling up from 0.2. current throttle = {0}".format(self.current_throttle.value))
             try:
                 # throttling up
                 self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)             
