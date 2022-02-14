@@ -52,7 +52,7 @@ class MavrosOffboardSuctionMission():
 
         self.terminate = Value(c_bool, False)
         self.mission_cnt = Value(c_int, 0)
-        self.mission_pos = mission_pos
+        self.mission_pos = mission_posc_float
         self.pump_on = Value(c_bool, False)
         self.solenoid_on = Value(c_bool, False)
         self.is_perched = Value(c_bool, False)
@@ -1043,6 +1043,9 @@ if __name__ == '__main__':
     mission_pos_sq = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (-1, -1, 1.5, 0), (-1, 1, 1.5, 0), (1, 1, 1.5, 0), (1, -1, 1.5, 0), (0, 0, 1.5, 0)) 
     # mission waypoints for velocity setpoint test
     mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
+    
+    # mission waypoints for perching test
+    mission_pos_hand = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0), (1, 0, 0, 1), (0, 0, 0, 1), (1, 0, 1.5, 0), (0, 0, 1.5, 0))
 
     global suction_mission
 
@@ -1060,8 +1063,8 @@ if __name__ == '__main__':
                                                        goto_pos_time=60, perch_time=50, land_on_wall_time=40, throttle_down_time=10)
         suction_mission.run_mission()
     elif args.hand_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
-                                                       mission_pos=mission_pos_vel,
+        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+                                                       mission_pos=mission_pos_hand,
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_by_hand()
 
