@@ -20,7 +20,7 @@ class ms4515_PI(object):
     ADDR_READ_MR    = 0x00  
     
     VACCUM_PRESSURE = -200000
-    OPEN_PRESSURE   = 50000
+    OPEN_PRESSURE   = -130000
     TRANSITION_PRESSURE = 20000
 
     def __init__(self, i2c_bus=1, i2c_address=46, output_type='B', pressure_range=30, delay=0.1, debug=False ):
@@ -122,7 +122,7 @@ class ms4515_PI(object):
                 self.collect()
                 if self.debug:
                     rospy.loginfo("pressure    = %s", self.diff_press_pa_raw)
-                    rospy.loginfo("temperature = %s", self.temp)
+                    #rospy.loginfo("temperature = %s", self.temp)
                 self.pub_pressure.publish(self.diff_press_pa_raw)
                 if (self.diff_press_pa_raw < self.VACCUM_PRESSURE):
                     if self.setSuctionPerch(True):
