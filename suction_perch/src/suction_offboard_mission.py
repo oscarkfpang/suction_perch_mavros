@@ -734,6 +734,8 @@ class MavrosOffboardSuctionMission():
                 
 
     def takeoff_from_wall(self, timeout=60, throttle_timeout=15):
+        rospy.loginfo("STATUS: Set OFFBOARD mode.")
+        self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
         self.publish_att_raw.value = True
