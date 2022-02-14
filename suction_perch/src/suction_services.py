@@ -16,8 +16,8 @@ import RPi.GPIO as GPIO            # import RPi.GPIO module
 from time import sleep             # lets us have a delay  
 
 # define GPIO pin
-PUMP = 18
-SOLENOID = 15
+PUMP = 23
+SOLENOID = 24
 
 def ReceivePumpMessage(data):
     if pump_state.value:
