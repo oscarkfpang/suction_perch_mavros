@@ -686,7 +686,12 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
             return False
             
-        rospy.loginfo("STATUS: Detach is successful. Finish Flying by hand!")           
+        rospy.loginfo("STATUS: Detach is successful. Finish Flying by hand!")      
+        
+        rospy.sleep(10)
+        self.throttle_down_start_time = -1
+        rospy.loginfo("Disarm for finishing mission")
+        self.set_arm(False, 5)         
         return True
         
 
@@ -729,6 +734,10 @@ class MavrosOffboardSuctionMission():
     def is_normal_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y < 0.1
+
+    def is_vertical_takeoff_attitude(self):
+        rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
+        return self.imu_data.orientation.y < 0.52
 
     def auto_throttling(self, start_throttle, end_throttle, start_time, period):
         '''
@@ -952,6 +961,9 @@ class MavrosOffboardSuctionMission():
                 rate.sleep()
             except rospy.ROSException as e:
                 self.fail(e)
+                
+        if detach:
+            self.publish_att_raw.value = False
         return detach
 
     def perch_wall(self, timeout=60):
