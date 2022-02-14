@@ -729,12 +729,12 @@ class MavrosOffboardSuctionMission():
                 break
                 
 
-    def takeoff_from_wall(self, timeout=10, throttle_timeout=10):
+    def takeoff_from_wall(self, timeout=10, throttle_timeout=20):
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
         self.publish_att_raw.value = True
         self.publish_thr_down.value = False
-        rospy.loginfo("STATUS: Throttle set from 0.0 to 0.5")
+        rospy.loginfo("STATUS: Throttle set from 0.0 to 0.7")
 
         #self.auto_throttling(start_throttle = 0.0, 
         #                     end_throttle = self.low_throttle_value, 
@@ -942,6 +942,7 @@ class MavrosOffboardSuctionMission():
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
                         "waiting for SUCTION_IS_PERCH to 1. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
+            # TODO: give a short period of time for detecting the continuous reception of value 1
             try:
                 res = self.get_param_srv('SUCTION_IS_PERCH')
                 if res.success and res.value.integer > 0:
