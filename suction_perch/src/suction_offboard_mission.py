@@ -332,9 +332,9 @@ class MavrosOffboardSuctionMission():
     def set_arm(self, arm, timeout):
         """arm: True to arm or False to disarm, timeout(int): seconds"""
         if arm:
-            rospy.loginfo("trying to ARM the drone)
+            rospy.loginfo("trying to ARM the drone")
         else:
-            rospy.loginfo("trying to DISARM the drone)
+            rospy.loginfo("trying to DISARM the drone")
         old_arm = self.state.armed
         loop_freq = 1  # Hz
         rate = rospy.Rate(loop_freq)
