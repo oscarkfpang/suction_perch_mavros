@@ -217,7 +217,7 @@ class MavrosOffboardSuctionMission():
             self.sub_topics_ready['is_perched'] = True
             
     def pressure_callback(self, data):
-        self.suction_pressure = float(data)
+        self.suction_pressure = data
     #
     # Helper methods
     #
