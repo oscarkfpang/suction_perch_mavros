@@ -733,7 +733,7 @@ class MavrosOffboardSuctionMission():
                 break
                 
 
-    def takeoff_from_wall(self, timeout=20, throttle_timeout=20):
+    def takeoff_from_wall(self, timeout=60, throttle_timeout=60):
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
         self.publish_att_raw.value = True
