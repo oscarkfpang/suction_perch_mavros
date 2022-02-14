@@ -608,13 +608,15 @@ class MavrosOffboardSuctionMission():
         return True
 
     def run_mission(self):
+        '''
         perch = self.run_mission_perch()
         if perch:
             rospy.loginfo("Sleep for 30 sec before rearm.....")
             rospy.sleep(30)
             rospy.loginfo("Rearm now!")
             self.run_mission_rearm()
-
+        '''
+        self.takeoff_from_wall()
 
     def run_mission_rearm(self):
         rospy.loginfo("Rearm the drone from vertical pose.")
@@ -644,6 +646,8 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
             return False
             
+        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
+        rospy.sleep(10)
         rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
         
         retakeoff_successful = self.takeoff_from_wall()
@@ -729,12 +733,12 @@ class MavrosOffboardSuctionMission():
                 break
                 
 
-    def takeoff_from_wall(self, timeout=10, throttle_timeout=20):
+    def takeoff_from_wall(self, timeout=20, throttle_timeout=20):
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
         self.publish_att_raw.value = True
         self.publish_thr_down.value = False
-        rospy.loginfo("STATUS: Throttle set from 0.0 to 0.7")
+        rospy.loginfo("STATUS: Throttle set from 0.0 to 0.5")
 
         #self.auto_throttling(start_throttle = 0.0, 
         #                     end_throttle = self.low_throttle_value, 
@@ -742,7 +746,7 @@ class MavrosOffboardSuctionMission():
         #                     period = 5)
 
         start_throttle = 0.0
-        end_throttle = 0.7 # self.low_throttle_value 
+        end_throttle = 0.5 # self.low_throttle_value 
         self.throttle_up_start_time = rospy.get_time()
 
         loop_freq = 5  # Hz
@@ -1112,7 +1116,7 @@ if __name__ == '__main__':
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_perch()
     elif args.rearm_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
+        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_vel,
                                                        goto_pos_time=60, perch_time=50, land_on_wall_time=40, throttle_down_time=10)
         suction_mission.run_mission()
@@ -1121,6 +1125,7 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_hand,
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_by_hand()
+        
 
     rospy.spin()
     '''
