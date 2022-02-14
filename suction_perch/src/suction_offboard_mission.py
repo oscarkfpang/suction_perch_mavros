@@ -427,7 +427,7 @@ class MavrosOffboardSuctionMission():
             if not can_land:
                 try:
                     #TODO: check return type of set_land_srv
-                    self.set_land_srv(altitude = self.takeofgggggw22e .f_alt)
+                    self.set_land_srv(altitude = self.takeoff_alt)
                     can_land = True
                     rospy.loginfo("land successful!")
                     break
