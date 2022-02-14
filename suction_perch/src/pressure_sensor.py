@@ -148,5 +148,5 @@ class ms4515_PI(object):
 
 if __name__=="__main__":
     rospy.init_node("Airpressure Sampling Node")
-    ms4515 = ms4515_PI()
+    ms4515 = ms4515_PI(debug = True)
     ms4515.run()
