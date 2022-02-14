@@ -616,6 +616,18 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("Rearm now!")
             self.run_mission_rearm()
         '''
+        # turn on solenoid
+        if not self.solenoid_on.value:
+            rospy.loginfo("Turn on solenoid")
+            self.pub_solenoid.publish(Empty())
+            self.solenoid_on.value = True
+        
+        # turn on pump 
+        if not self.pump_on.value:
+            rospy.loginfo("Turn on suction pump")
+            self.pub_pump.publish(Empty())
+            self.pump_on.value = True
+            
         retakeoff_successful = False
         detach_successful = False
         
@@ -753,7 +765,7 @@ class MavrosOffboardSuctionMission():
                 break
                 
 
-    def takeoff_from_wall(self, timeout=90, throttle_timeout=15):
+    def takeoff_from_wall(self, timeout=60, throttle_timeout=15):
         rospy.loginfo("STATUS: Set OFFBOARD mode.")
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
@@ -788,6 +800,7 @@ class MavrosOffboardSuctionMission():
                     rospy.loginfo(
                         "SUCTION_IS_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
                     takeoff_from_vertical = True
+                    break
                     # no need break out the loop here. Wait for the whole period
 
                 rate.sleep()
