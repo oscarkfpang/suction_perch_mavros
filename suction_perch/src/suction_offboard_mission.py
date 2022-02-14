@@ -616,17 +616,6 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("Rearm now!")
             self.run_mission_rearm()
         '''
-        # turn on solenoid
-        if not self.solenoid_on.value:
-            rospy.loginfo("Turn on solenoid")
-            self.pub_solenoid.publish(Empty())
-            self.solenoid_on.value = True
-        
-        # turn on pump 
-        if not self.pump_on.value:
-            rospy.loginfo("Turn on suction pump")
-            self.pub_pump.publish(Empty())
-            self.pump_on.value = True
             
         retakeoff_successful = False
         detach_successful = False
@@ -916,6 +905,8 @@ class MavrosOffboardSuctionMission():
         '''
         
         rospy.loginfo("Begin detaching from wall")
+        
+        '''
         # assert suction pressure is still good and solenoid is on
         if not self.solenoid_on.value:
             rospy.logfatal("Solenoid is off! Airflow is not normal! Please check!")
@@ -923,6 +914,8 @@ class MavrosOffboardSuctionMission():
         if not self.is_perched:
             rospy.logfatal("Suction pressure is lost or the drone is not perched! Please check!")
             return False
+        '''
+
 
         # turn off solenoid and fly away from wall
         if self.solenoid_on.value:
