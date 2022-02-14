@@ -616,8 +616,27 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("Rearm now!")
             self.run_mission_rearm()
         '''
-        self.takeoff_from_wall()
+        retakeoff_successful = False
+        detach_successful = False
+        
+        rospy.loginfo("STATUS: Now re-takeoff!")
+        
+        retakeoff_successful = self.takeoff_from_wall()
+        if not retakeoff_successful:
+            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
+            return False
 
+        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
+        detach_successful = self.detach_from_wall()
+        
+        if not detach_successful:
+            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
+            return False
+            
+        rospy.loginfo("STATUS: Detach is successful. Finish Flying by hand!")           
+        return True
+
+    '''
     def run_mission_rearm(self):
         rospy.loginfo("Rearm the drone from vertical pose.")
         self.set_mode("OFFBOARD", 5)
@@ -631,7 +650,8 @@ class MavrosOffboardSuctionMission():
         rospy.sleep(20)
         rospy.loginfo("Disarm again")
         self.set_arm(False, 5)        
-        rospy.loginfo("End rearm mission")        
+        rospy.loginfo("End rearm mission")  
+    '''      
 
     def run_mission_by_hand(self):
         rospy.loginfo("Hand-fly Mission Start...")
@@ -733,14 +753,14 @@ class MavrosOffboardSuctionMission():
                 break
                 
 
-    def takeoff_from_wall(self, timeout=60, throttle_timeout=15):
+    def takeoff_from_wall(self, timeout=90, throttle_timeout=15):
         rospy.loginfo("STATUS: Set OFFBOARD mode.")
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
         self.publish_att_raw.value = True
         self.publish_thr_down.value = False
-        rospy.loginfo("STATUS: Throttle set from 0.0 to 0.5")
+        rospy.loginfo("STATUS: Throttle set from 0.2 to 0.5")
 
         #self.auto_throttling(start_throttle = 0.0, 
         #                     end_throttle = self.low_throttle_value, 
@@ -764,7 +784,7 @@ class MavrosOffboardSuctionMission():
 
                 # detect SUCTION_IS_LAND param while throttling up
                 res = self.get_param_srv('SUCTION_IS_LAND')
-                if res.success and res.value.integer < 0:
+                if res.success and res.value.integer <= 0:
                     rospy.loginfo(
                         "SUCTION_IS_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
                     takeoff_from_vertical = True
