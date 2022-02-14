@@ -52,7 +52,7 @@ class MavrosOffboardSuctionMission():
 
         self.terminate = Value(c_bool, False)
         self.mission_cnt = Value(c_int, 0)
-        self.mission_pos = mission_posc_float
+        self.mission_pos = mission_pos
         self.pump_on = Value(c_bool, False)
         self.solenoid_on = Value(c_bool, False)
         self.is_perched = Value(c_bool, False)
