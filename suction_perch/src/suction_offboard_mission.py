@@ -1060,7 +1060,9 @@ if __name__ == '__main__':
                                                        goto_pos_time=60, perch_time=50, land_on_wall_time=40, throttle_down_time=10)
         suction_mission.run_mission()
     elif args.hand_test:
-        suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_sq)
+        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
+                                                       mission_pos=mission_pos_vel,
+                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_by_hand()
 
     #suction_mission.test()
