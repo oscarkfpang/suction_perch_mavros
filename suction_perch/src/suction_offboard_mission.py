@@ -8,7 +8,7 @@ import time
 import sys
 import signal
 import argparse
-from std_msgs.msg import Header, Empty, Bool, Flaot64
+from std_msgs.msg import Header, Empty, Bool, Float64
 from geometry_msgs.msg import PoseStamped, Quaternion, Point, Vector3
 from mavros_msgs.msg import ParamValue
 from mavros_msgs.msg import Altitude, ExtendedState, HomePosition, ParamValue, State, \
