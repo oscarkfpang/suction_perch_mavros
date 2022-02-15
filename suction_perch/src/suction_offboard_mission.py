@@ -648,7 +648,7 @@ class MavrosOffboardSuctionMission():
             self.mission_cnt.value += 1           
         
         rospy.loginfo("STATUS: Go to waypoint 7 (0.5, 0, 0.5, 0)")
-        self.goto_position(self.goto_pos_time): # for WP 7
+        self.goto_position(self.goto_pos_time) # for WP 7
                     
 
         self.land()
