@@ -283,17 +283,17 @@ class MavrosOffboardSuctionMission():
 
         # send directional velocity command to the drone
         if self.mission_pos[self.mission_cnt.value][0] > 0:
-            pos_target.velocity.x = 0.5
+            pos_target.velocity.x = self.vx
         elif self.mission_pos[self.mission_cnt.value][0] < 0:
-            pos_target.velocity.x = -0.5
+            pos_target.velocity.x = -1*self.vx
         if self.mission_pos[self.mission_cnt.value][1] > 0:
-            pos_target.velocity.y = 0.5
+            pos_target.velocity.y = self.vy
         elif self.mission_pos[self.mission_cnt.value][1] < 0:
-            pos_target.velocity.y = -0.5    
+            pos_target.velocity.y = -1*self.vy 
         if self.mission_pos[self.mission_cnt.value][2] > 0:
-            pos_target.velocity.z = 0.5
+            pos_target.velocity.z = self.vz
         elif self.mission_pos[self.mission_cnt.value][2] < 0:
-            pos_target.velocity.z = -0.5
+            pos_target.velocity.z = -1*self.vz
             
         pos_target.yaw = 0 # always point to the front
         return pos_target
