@@ -639,11 +639,16 @@ class MavrosOffboardSuctionMission():
         self.throttle_down_start_time = -1
         
         # suppose self.mission_cnt.value = 5 already
+        rospy.loginfo("STATUS: Go to waypoint 5")
         if self.goto_position(self.goto_pos_time): # for WP 5
             self.mission_cnt.value += 1
-            
+        
+        rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
         if self.goto_position(self.goto_pos_time): # for WP 6
-            self.mission_cnt.value += 1            
+            self.mission_cnt.value += 1           
+        
+        rospy.loginfo("STATUS: Go to waypoint 7 (0.5, 0, 0.5, 0)")
+        self.goto_position(self.goto_pos_time): # for WP 7
                     
 
         self.land()
@@ -1169,7 +1174,7 @@ if __name__ == '__main__':
     # mission waypoints for perching test
     mission_pos_hand = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0), 
                         (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (1, 0, 1.5, 0), (0, 0, 1.5, 0), (0, 0, 0, 0))
+                        (1, 0, 1.5, 0), (0.5, 0, 0.5, 0), (0, 0, 0, 0))
 
     global suction_mission
 
