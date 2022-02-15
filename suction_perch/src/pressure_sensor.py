@@ -113,7 +113,7 @@ class ms4515_PI(object):
         rospy.loginfo("Sampling air pressure")
         
         # reset px4 suction parameter to 0
-        self.setSuctionPerch(False)
+        #self.setSuctionPerch(False)
         
         try:
             while not rospy.is_shutdown():
@@ -125,16 +125,16 @@ class ms4515_PI(object):
                     #rospy.loginfo("temperature = %s", self.temp)
                 self.pub_pressure.publish(self.diff_press_pa_raw)
                 if (self.diff_press_pa_raw < self.VACCUM_PRESSURE):
-                    if self.setSuctionPerch(True):
-                        self.pub_perch.publish(True)
-                    else:
-                        self.pub_perch.publish(False)
+                    #if self.setSuctionPerch(True):
+                    self.pub_perch.publish(True)
+                    #else:
+                    #    self.pub_perch.publish(False)
                 elif (self.VACCUM_PRESSURE <= self.diff_press_pa_raw < self.OPEN_PRESSURE):
                     # TODO: transition phase... can do nothing here
                     pass
                 elif (self.diff_press_pa_raw >= self.OPEN_PRESSURE):
-                    if self.setSuctionPerch(False):
-                        self.pub_perch.publish(False)
+                    #if self.setSuctionPerch(False):
+                    self.pub_perch.publish(False)
                 self.rate.sleep()
         except rospy.ROSInterruptException:
             rospy.loginfo("MS4515 has finished!")

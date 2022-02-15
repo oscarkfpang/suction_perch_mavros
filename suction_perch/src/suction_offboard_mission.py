@@ -753,7 +753,7 @@ class MavrosOffboardSuctionMission():
 
     def is_high_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y > 0.30 and self.imu_data.orientation.y < 0.7
+        return self.imu_data.orientation.y > 0.2 and self.imu_data.orientation.y < 0.7
         
     def is_normal_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
@@ -803,17 +803,17 @@ class MavrosOffboardSuctionMission():
         #                     start_time = rospy.get_time(), 
         #                     period = 5)
 
-        start_throttle = 0.2
+        start_throttle = 0.1
         end_throttle = 0.5 # self.low_throttle_value 
         self.throttle_up_start_time = rospy.get_time()
 
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
-        period = throttle_timeout * loop_freq
+        period = throttle_timeout * loop_freq // 2
         takeoff_from_vertical = False
 
         for i in xrange(throttle_timeout * loop_freq):
-            rospy.loginfo("MSG: Auto_throttling up from 0.2. current throttle = {0}".format(self.current_throttle.value))
+            rospy.loginfo("MSG: Auto_throttling up from 0.1. current throttle = {0}".format(self.current_throttle.value))
             try:
                 # throttling up
                 self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)             
@@ -842,7 +842,7 @@ class MavrosOffboardSuctionMission():
 
         start_throttle = self.current_throttle.value
         end_throttle = 0.7
-        period = timeout * loop_freq
+        period = timeout * loop_freq // 2
         normal_attitude = False
         rospy.loginfo("Gradually throttling up to level attitude.")
         for i in xrange(timeout * loop_freq):
@@ -850,7 +850,9 @@ class MavrosOffboardSuctionMission():
                 if self.is_normal_attitude():
                     normal_attitude = True
                     break
+                
                 self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)
+                rospy.loginfo("MSG: Auto_throttling up. current throttle = {0}".format(self.current_throttle.value))
                 rate.sleep()
             except rospy.ROSException as e:
                 pass
@@ -951,6 +953,9 @@ class MavrosOffboardSuctionMission():
             return False
         '''
 
+        self.mission_cnt.value = 6
+        self.publish_att_raw.value = False
+
 
         # turn off solenoid and fly away from wall
         if self.solenoid_on.value:
@@ -983,8 +988,8 @@ class MavrosOffboardSuctionMission():
                 self.fail(e)
                 
         if detach:
-            self.publish_att_raw.value = False
-            self.mission_cnt.value = 6
+            #self.publish_att_raw.value = False
+            #self.mission_cnt.value = 6
 
             if self.pump_on.value:
                 rospy.loginfo("Turn off suction pump")
@@ -1184,17 +1189,17 @@ if __name__ == '__main__':
     elif args.vel_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_vel,
-                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
+                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=40)
         suction_mission.run_mission_perch()
     elif args.rearm_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_hand,
-                                                       goto_pos_time=60, perch_time=50, land_on_wall_time=40, throttle_down_time=10)
+                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.run_mission_full()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_hand,
-                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
+                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=40)
         suction_mission.run_mission_by_hand()
         
 
