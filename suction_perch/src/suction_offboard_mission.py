@@ -729,7 +729,7 @@ class MavrosOffboardSuctionMission():
         if self.goto_position(self.goto_pos_time): # for WP 6
             self.mission_cnt.value += 1           
         
-        rospy.loginfo("STATUS: Go to waypoint 7 (0.5, 0, 0.5, 0)")
+        rospy.loginfo("STATUS: Go to waypoint 7")
         self.goto_position(self.goto_pos_time) # for WP 7
                     
 
@@ -932,8 +932,6 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0
             return False
 
-        rospy.loginfo("STATUS: vehicle at high attitude. Transit to velocity setpoint!")
-        
 
         start_throttle = self.current_throttle.value
         end_throttle = 0.55
@@ -1472,7 +1470,7 @@ if __name__ == '__main__':
     # mission waypoints for perching test
     mission_pos_hand = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0), 
                         (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (1, 0, 1.5, 0), (-0.5, 0, 1.5, 0), (-0.5, 0, 0, 0))
+                        (-0.5, 0, 1.5, 0), (-0.5, 0, 1.0, 0))
 
     global suction_mission
 
@@ -1488,8 +1486,8 @@ if __name__ == '__main__':
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_hand,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        #suction_mission.run_mission_full()
-        suction_mission.run_mission_retakeoff()
+        suction_mission.run_mission_full()
+        #suction_mission.run_mission_retakeoff()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_hand,
