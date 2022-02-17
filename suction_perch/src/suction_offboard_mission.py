@@ -642,6 +642,49 @@ class MavrosOffboardSuctionMission():
         
         return True
 
+
+    def run_mission_retakeoff(self):
+        self.mission_cnt.value = 4
+        rospy.loginfo("Retakeoff Mission Start...")
+        retakeoff_successful = self.takeoff_from_wall()
+        
+        if not retakeoff_successful:
+            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
+            return False
+
+        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
+        detach_successful = self.detach_from_wall()
+        
+        if not detach_successful:
+            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
+            return False
+            
+        rospy.loginfo("STATUS: Detach is successful. Fly back!")      
+        #self.throttle_down_start_time = -1
+        
+        # suppose self.mission_cnt.value = 5 already
+        #rospy.loginfo("STATUS: Go to waypoint 5")
+        #if self.goto_position(self.goto_pos_time): # for WP 5
+        #    self.mission_cnt.value += 1
+        
+        rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
+        if self.goto_position(self.goto_pos_time): # for WP 6
+            self.mission_cnt.value += 1           
+        
+        rospy.loginfo("STATUS: Go to waypoint 7 (0.5, 0, 0.5, 0)")
+        self.goto_position(self.goto_pos_time) # for WP 7
+                    
+
+        self.land()
+        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
+                                     10, -1)
+        rospy.loginfo("Disarm for finishing mission!!")
+        self.set_arm(False, 5)         
+        
+        rospy.loginfo("=================== Mission Successful! =========================+")
+        return True
+        
+    
     def run_mission_full(self):
         rospy.loginfo("Full Mission Start...")
         
@@ -1440,7 +1483,8 @@ if __name__ == '__main__':
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_hand,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.run_mission_full()
+        #suction_mission.run_mission_full()
+        suction_mission.run_mission_retakeoff()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_hand,
