@@ -10,6 +10,7 @@ from smbus import SMBus
 import math
 import time
 import os
+import numpy as np
 
 class ms4515_PI(object):
     # register address
@@ -23,7 +24,7 @@ class ms4515_PI(object):
     OPEN_PRESSURE   = -130000
     TRANSITION_PRESSURE = 20000
 
-    def __init__(self, i2c_bus=1, i2c_address=46, output_type='B', pressure_range=30, delay=0.1, debug=False ):
+    def __init__(self, i2c_bus=1, i2c_address=46, output_type='B', pressure_range=30, delay=0.1, sampele_time=6 debug=False ):
         '''
         i2c_bus => run the command: i2cdetect -l
         i2c_address => run the command: i2cdetect -y 1
@@ -45,6 +46,10 @@ class ms4515_PI(object):
         self.temp = 0
 
         self.rate = rospy.Rate(int(1.0/self.delay))
+        self.sample_time = sample_time
+        self.queue_size = self.sample_time / self.delay
+        self.pressure_queue = np.zeros(self.queue_size)
+        
         self.pub_perch = rospy.Publisher('is_perched', Bool, queue_size=1)
         self.pub_pressure = rospy.Publisher('suction_pressure', Float64, queue_size=1)
         rospy.loginfo("ms4515 pressure sensor is initialised and ready")
@@ -109,6 +114,14 @@ class ms4515_PI(object):
     def get_temperature(self):
         return ((200.0 * self.dT_raw) / 2047) - 50
 
+    def is_continuous_suction(self, new_pressure):
+        # pop left and append right
+        self.pressure_queue[0:-1] = self.pressure_queue[1:]
+        self.pressure_queue[-1] = new_pressure
+        return np.all(self.pressure_queue < self.VACCUM_PRESSURE)
+        
+        return continuous
+
     def run(self):
         rospy.loginfo("Sampling air pressure")
         
@@ -124,6 +137,12 @@ class ms4515_PI(object):
                     rospy.loginfo("pressure    = %s", self.diff_press_pa_raw)
                     #rospy.loginfo("temperature = %s", self.temp)
                 self.pub_pressure.publish(self.diff_press_pa_raw)
+                if self.is_continuous_suction(self.diff_press_pa_raw):
+                    self.pub_perch.publish(True)
+                else:
+                    self.pub_perch.publish(False)
+                    
+                '''
                 if (self.diff_press_pa_raw < self.VACCUM_PRESSURE):
                     if self.setSuctionPerch(True):
                         self.pub_perch.publish(True)
@@ -135,6 +154,8 @@ class ms4515_PI(object):
                 elif (self.diff_press_pa_raw >= self.OPEN_PRESSURE):
                     if self.setSuctionPerch(False):
                         self.pub_perch.publish(False)
+                '''
+                
                 self.rate.sleep()
         except rospy.ROSInterruptException:
             rospy.loginfo("MS4515 has finished!")

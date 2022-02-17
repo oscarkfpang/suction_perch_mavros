@@ -58,6 +58,7 @@ class MavrosOffboardSuctionMission():
         self.is_perched = Value(c_bool, False)
         self.publish_att_raw = Value(c_bool, False)   # ON: publish attitude_setpoint/raw for pitch up during vertical landing
         self.publish_thr_down = Value(c_bool, False)  # ON: toggle throttle down for vertical landing
+        self.publish_thr_up = Value(c_bool, False)
         self.vtol = Value(c_bool, False)
         self.debug_mode = Value(c_bool, False)
         self.current_throttle = Value(c_float, 0.0)
@@ -156,13 +157,13 @@ class MavrosOffboardSuctionMission():
 
     def extended_state_callback(self, data):
         if self.extended_state.vtol_state != data.vtol_state:
-            rospy.loginfo("VTOL state changed from {0} to {1}".format(
+            rospy.loginfo("STATUS: VTOL state changed from {0} to {1}".format(
                 mavutil.mavlink.enums['MAV_VTOL_STATE']
                 [self.extended_state.vtol_state].name, mavutil.mavlink.enums[
                     'MAV_VTOL_STATE'][data.vtol_state].name))
 
         if self.extended_state.landed_state != data.landed_state:
-            rospy.loginfo("landed state changed from {0} to {1}".format(
+            rospy.loginfo("STATUS: landed state changed from {0} to {1}".format(
                 mavutil.mavlink.enums['MAV_LANDED_STATE']
                 [self.extended_state.landed_state].name, mavutil.mavlink.enums[
                     'MAV_LANDED_STATE'][data.landed_state].name))
@@ -182,19 +183,19 @@ class MavrosOffboardSuctionMission():
 
     def state_callback(self, data):
         if self.state.armed != data.armed:
-            rospy.loginfo("armed state changed from {0} to {1}".format(
+            rospy.loginfo("STATUS: armed state changed from {0} to {1}".format(
                 self.state.armed, data.armed))
 
         if self.state.connected != data.connected:
-            rospy.loginfo("connected changed from {0} to {1}".format(
+            rospy.loginfo("STATUS: connected changed from {0} to {1}".format(
                 self.state.connected, data.connected))
 
         if self.state.mode != data.mode:
-            rospy.loginfo("mode changed from {0} to {1}".format(
+            rospy.loginfo("STATUS: mode changed from {0} to {1}".format(
                 self.state.mode, data.mode))
 
         if self.state.system_status != data.system_status:
-            rospy.loginfo("system_status changed from {0} to {1}".format(
+            rospy.loginfo("STATUS: system_status changed from {0} to {1}".format(
                 mavutil.mavlink.enums['MAV_STATE'][
                     self.state.system_status].name, mavutil.mavlink.enums[
                         'MAV_STATE'][data.system_status].name))
@@ -282,6 +283,7 @@ class MavrosOffboardSuctionMission():
         pos_target.velocity.z = 0
 
         # send directional velocity command to the drone
+        '''
         if self.mission_pos[self.mission_cnt.value][0] > 0:
             pos_target.velocity.x = self.vx
         elif self.mission_pos[self.mission_cnt.value][0] < 0:
@@ -294,8 +296,13 @@ class MavrosOffboardSuctionMission():
             pos_target.velocity.z = self.vz
         elif self.mission_pos[self.mission_cnt.value][2] < 0:
             pos_target.velocity.z = -1*self.vz
+        '''
             
-        pos_target.yaw = 0 # always point to the front
+        pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
+        pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
+        pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
+            
+        pos_target.yaw = 0 # don't yaw, always point to the front
         return pos_target
 
     def make_att_target(self):
@@ -305,31 +312,50 @@ class MavrosOffboardSuctionMission():
         # change these values by experiment
         roll = 0.0
         yaw = 0.0
+        
+        if self.publish_thr_up.value:
+            pitch = 0.0
+            self.current_throttle.value = 0.7
+            att_target.header.frame_id = "throttle_up_from_vertical"
+            throttle = self.current_throttle.value
+            att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
+            vector3 = Vector3(x=roll , y=pitch , z=yaw)
+            att_target.thrust = throttle
+            att_target.body_rate = vector3
+            return att_target
+        
+        
         if not self.publish_thr_down.value:
-            pitch = -0.2 # tested in jmavsim for -ve value = pitch up (flip backward)
-            throttle = self.low_throttle_value
+            pitch = -0.15 # tested in jmavsim for -ve value = pitch up (flip backward)
+            self.current_throttle.value = self.low_throttle_value
             att_target.header.frame_id = "high_pitch_low_throttle"
         else:
             # gradually throttling down
-            pitch = -0.2 #0.0
+            #pitch = -0.15 #0.0
 
             '''
             TODO: move the following calculation to main mission loop and publish the shared variable
                   of the throttle value for use in this thread, for reusing the code
             '''
             if self.throttle_down_start_time >= 0:
+                # gradually throttling down
+                pitch = -0.15 #0.0
                 att_target.header.frame_id = "throttling_to_zero"
                 dt = rospy.get_time() - self.throttle_down_start_time
                 if dt <= self.throttle_down_time:
-                    throttle = (self.throttle_down_time - dt) / self.throttle_down_time * self.low_throttle_value
+                    self.current_throttle.value = (self.throttle_down_time - dt) / self.throttle_down_time * self.low_throttle_value
                 else:
                     #self.throttle_down_start_time = -1
                     att_target.header.frame_id = "zero_throttle"
-                    throttle = 0.0
+                    #throttle = 0.0
+                    self.current_throttle.value = 0.0
             else:
+                pitch = 0.0  # zero pitch rate 
                 att_target.header.frame_id = "zero_throttle"
-                throttle = 0.0
+                #throttle = 0.0
+                self.current_throttle.value = 0.0
 
+        throttle = self.current_throttle.value
         att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
         vector3 = Vector3(x=roll , y=pitch , z=yaw)
         att_target.thrust = throttle
@@ -551,13 +577,22 @@ class MavrosOffboardSuctionMission():
                     # begin land on wall
                     if self.land_on_wall(self.land_on_wall_time, self.throttle_down_time):
                         self.vtol.value = True
-                        rospy.loginfo("Vehicle attached to wall successfully!")
+                        rospy.loginfo("STATUS: Vehicle attached to wall successfully!")
                         self.land()
+                        rospy.loginfo("STATUS: Wait for 10 sec for landing to complete")
+                        rospy.sleep(10) # wait for 10 sec here for landing
+                        rospy.loginfo("STATUS: Checking landed state now....")
                         self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
                                                     10, -1)
                         rospy.loginfo("STATUS: Landed on vertical surface successfully! Disarm now.")
                         # disarm the drone
                         self.set_arm(False, 5)
+                        rospy.loginfo("STATUS: Wait for 3 sec for disarm")
+                        rospy.sleep(3)
+                        while not self.is_mav_state_standby():
+                            rospy.loginfo("STATUS: Waiting for MAV_STATE_STANDBY...")
+                            
+                        rospy.loginfo("STATUS: MAV_STATE_STANDBY now! ")
                         break
                         # vechile landed successfully. break out the loop and save the status
                         # i.e. mission_fail = False
@@ -636,12 +671,12 @@ class MavrosOffboardSuctionMission():
             return False
             
         rospy.loginfo("STATUS: Detach is successful. Fly back!")      
-        self.throttle_down_start_time = -1
+        #self.throttle_down_start_time = -1
         
         # suppose self.mission_cnt.value = 5 already
-        rospy.loginfo("STATUS: Go to waypoint 5")
-        if self.goto_position(self.goto_pos_time): # for WP 5
-            self.mission_cnt.value += 1
+        #rospy.loginfo("STATUS: Go to waypoint 5")
+        #if self.goto_position(self.goto_pos_time): # for WP 5
+        #    self.mission_cnt.value += 1
         
         rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
         if self.goto_position(self.goto_pos_time): # for WP 6
@@ -757,11 +792,18 @@ class MavrosOffboardSuctionMission():
         
     def is_normal_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y < 0.1
+        return self.imu_data.orientation.y < 0.15
 
     def is_vertical_takeoff_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y < 0.52
+        
+    def is_landed_state_on_ground(self):
+        # check whether the drone has landed 
+        return self.extended_state.landed_state == ExtendedState.LANDED_STATE_ON_GROUND
+
+    def is_mav_state_standby(self):        
+        return mavutil.mavlink.enums['MAV_STATE'][self.state.system_status].name == "MAV_STATE_STANDBY"
 
     def auto_throttling(self, start_throttle, end_throttle, start_time, period):
         '''
@@ -788,8 +830,99 @@ class MavrosOffboardSuctionMission():
                 rospy.logfatal("STATUS: Auto_throttling is interrupted!")
                 break
                 
-
+                
     def takeoff_from_wall(self, timeout=60, throttle_timeout=15):
+        rospy.loginfo("================================================================")
+        rospy.loginfo("STATUS: Set OFFBOARD mode.")
+        self.set_mode("OFFBOARD", 5)
+        rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
+        self.set_arm(True, 5)
+        self.publish_att_raw.value = True
+        #self.publish_thr_down.value = False
+        self.publish_thr_up.value = True
+        rospy.loginfo("STATUS: Throttle set from 0.2 to 0.5")
+
+        #self.auto_throttling(start_throttle = 0.0, 
+        #                     end_throttle = self.low_throttle_value, 
+        #                     start_time = rospy.get_time(), 
+        #                     period = 5)
+
+        start_throttle = 0.1
+        end_throttle = 0.5 # self.low_throttle_value 
+        self.throttle_up_start_time = rospy.get_time()
+
+        loop_freq = 5  # Hz
+        rate = rospy.Rate(loop_freq)
+        period = throttle_timeout * loop_freq //  2
+        takeoff_from_vertical = False
+
+        for i in xrange(throttle_timeout * loop_freq):
+            rospy.loginfo("STATUS: Auto_throttling up from 0.2. current throttle = {0}".format(self.current_throttle.value))
+            try:
+                # throttling up
+                self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)             
+
+                # detect SUCTION_IS_LAND param while throttling up
+                res = self.get_param_srv('SUCTION_IS_LAND')
+                if res.success and res.value.integer <= 0:
+                    rospy.loginfo(
+                        "SUCTION_IS_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
+                    takeoff_from_vertical = True
+                    break
+
+                rate.sleep()
+            except rospy.ROSException as e:
+                # TODO: handling of throttle value under failure
+                self.current_throttle.value = 0.0
+                rospy.logfatal("STATUS: Auto_throttling is interrupted!")
+                break
+
+        if not takeoff_from_vertical:
+            self.assertTrue(takeoff_from_vertical, (
+                "took too long to take off from wall | timeout(seconds): {0}".format(timeout)))
+            self.publish_att_raw.value = True
+            return False
+
+        rospy.loginfo("STATUS: vehicle at high attitude. Transit to velocity setpoint!")
+        
+
+        start_throttle = self.current_throttle.value
+        end_throttle = 0.7
+        period = timeout * loop_freq
+        normal_attitude = False
+        #rospy.loginfo("Gradually throttling up to level attitude.")
+
+        self.publish_att_raw.value = False
+        self.mission_cnt.value = 5
+        rospy.loginfo("STATUS: setpoint_vel_x = -1 ")
+        
+        while not self.is_normal_attitude():
+            rospy.loginfo("STATUS: waiting for normal attitude")
+        
+        rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
+        normal_attitude = True
+        
+        '''
+        for i in xrange(timeout * loop_freq):
+            try:                    
+                if self.is_normal_attitude():
+                    normal_attitude = True
+                    break
+                self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)
+                rate.sleep()
+            except rospy.ROSException as e:
+                pass
+
+        # TODO: assert self.current_throttle < 0.7
+        if not normal_attitude:
+            pass
+        '''
+
+        return normal_attitude
+                
+    '''
+    def takeoff_from_wall_old(self, timeout=60, throttle_timeout=15):
+        rospy.loginfo("================================================================")
         rospy.loginfo("STATUS: Set OFFBOARD mode.")
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
@@ -860,7 +993,7 @@ class MavrosOffboardSuctionMission():
             pass
 
         return normal_attitude
-
+    '''
 
     #TODO: publish attitude_raw setpoint for perching and landing on the wall
     def land_on_wall(self, timeout=10, throttle_timeout=5):
@@ -881,7 +1014,7 @@ class MavrosOffboardSuctionMission():
 
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
-                        "** High Attitude Movement. Count-down to end: {0}".format(i))
+                        "** High Attitude Movement. Count-down to end: {0}. Current throttle: {1}".format(i, self.current_throttle.value))
             try:                    
                 if self.is_high_attitude():
                     pitch_up = True
@@ -908,17 +1041,18 @@ class MavrosOffboardSuctionMission():
                 res = self.get_param_srv('SUCTION_IS_LAND')
                 if res.success and res.value.integer > 0:
                     rospy.loginfo(
-                        "SUCTION_IS_LAND received {0}. drone is landed vertically to the wall! ".format(res.value.integer))
+                        "SUCTION_IS_LAND received {0}. drone's pose is vertical! ".format(res.value.integer))
                     vertical_landing = True
-                    # no need break out the loop here. Wait for the whole throttle_timeout period
-                    #break
+                    # break and set throttle = 0 all the way
+                    self.throttle_down_start_time = -1
+                    break
                 
                 # detect if is_perched is False
                 if self.debug_mode.value and not self.is_perched.value:
                     rospy.loginfo("Perching is interrupted! Halt the throttle down process!")
                     break
                 rate.sleep()
-                rospy.loginfo("Set Throttle = 0 during vetical landing")
+                rospy.loginfo("Set Throttle = 0 during vetical landing. Current throttle = {0}".format(self.current_throttle.value))
             except rospy.ROSException as e:
                 pass
 
@@ -928,8 +1062,9 @@ class MavrosOffboardSuctionMission():
         if not vertical_landing:
             self.assertTrue(vertical_landing, (
                 "took too long to reach high attitude | timeout(seconds): {0}".format(timeout)))
-            self.publish_att_raw.value = False
             self.publish_thr_down.value = False
+            self.publish_att_raw.value = False
+
 
         return vertical_landing
     
@@ -1012,11 +1147,66 @@ class MavrosOffboardSuctionMission():
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
         suction = False
+        
+        perch_start_time = rospy.get_time() 
+        high_att_period = 10 # in sec, parameter
+        dt = 0
+        total_dt = 0 
+        
+        while dt < hight_att_period: # in 10 sec
+            rospy.loginfo(
+                        "waiting for SUCTION_IS_PERCH to 1. Current Pressure = {0} | Timer in sec: {1}".format(self.suction_pressure, dt))
+            try:
+                res = self.get_param_srv('SUCTION_IS_PERCH')
+                if res.success and res.value.integer > 0:
+                    rospy.loginfo(
+                            "SUCTION_IS_PERCH received {0}. Timer in sec: {1} ".format(res.value.integer, dt))
+                    suction = True
+                    dt = rospy.get_time() - perch_start_time      
+                else:
+                    # reset the timer when suction is loss during detection period
+                    rospy.loginfo("WARNING: Suction not ready!! Reset timer to 0")
+                    perch_start_time = rospy.get_time() 
+                    total_dt += dt
+                    dt = 0
+                    suction = False    
+                if total_dt > high_att_period * 3:
+                    rospy.logfetal("ERROR: Suction not perched for {0} sec".format(high_att_period * 3))
+                    suction = False
+                    break
+                                          
+            except rospy.ServiceException as e:
+                rospy.logerr(e)
+            try:
+                rate.sleep()
+            except rospy.ROSException as e:
+                self.fail(e)
+                    
+        '''    
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
                         "waiting for SUCTION_IS_PERCH to 1. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
             # TODO: give a short period of time for detecting the continuous reception of value 1
             try:
+                
+                
+                    res = self.get_param_srv('SUCTION_IS_PERCH')
+                    if res.success and res.value.integer > 0:
+                        ##self.suction_is_perch_param = res.integer
+                        rospy.loginfo(
+                            "SUCTION_IS_PERCH received {0}. Timer in sec: {1} ".format(res.value.integer, dt))
+                        suction = True
+                        dt = rospy.get_time() - suction_start_time
+                    else:
+                        # reset the timer when suction is loss during detection period
+                        rospy.loginfo(
+                            "WARNING: Suction not ready!! Reset timer")
+                            suction_start_time = rospy.get_time() 
+                            total_dt += dt
+                            dt = 0
+                        suction = False
+                
+                
                 res = self.get_param_srv('SUCTION_IS_PERCH')
                 if res.success and res.value.integer > 0:
                     ##self.suction_is_perch_param = res.integer
@@ -1030,7 +1220,8 @@ class MavrosOffboardSuctionMission():
                 rate.sleep()
             except rospy.ROSException as e:
                 self.fail(e)
-        
+            '''
+            
         #TODO: assert suction_is_perch param = is_pearch ROS topic
         #
         #
