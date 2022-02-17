@@ -137,10 +137,10 @@ class ms4515_PI(object):
                     rospy.loginfo("pressure    = %s", self.diff_press_pa_raw)
                     #rospy.loginfo("temperature = %s", self.temp)
                 self.pub_pressure.publish(self.diff_press_pa_raw)
-                if self.is_continuous_suction(self.diff_press_pa_raw):
-                    self.pub_perch.publish(True)
-                else:
-                    self.pub_perch.publish(False)
+                #if self.is_continuous_suction(self.diff_press_pa_raw):
+                #    self.pub_perch.publish(True)
+                #else:
+                #    self.pub_perch.publish(False)
                     
                 '''
                 if (self.diff_press_pa_raw < self.VACCUM_PRESSURE):
