@@ -891,13 +891,13 @@ class MavrosOffboardSuctionMission():
         #                     start_time = rospy.get_time(), 
         #                     period = 5)
 
-        start_throttle = 0.1
-        end_throttle = 0.5 # self.low_throttle_value 
+        start_throttle = 0.05
+        end_throttle = 0.2 # self.low_throttle_value 
         self.throttle_up_start_time = rospy.get_time()
 
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
-        period = throttle_timeout * loop_freq //  2
+        period = throttle_timeout * loop_freq 
         takeoff_from_vertical = False
 
         for i in xrange(period):
@@ -925,6 +925,7 @@ class MavrosOffboardSuctionMission():
             self.assertTrue(takeoff_from_vertical, (
                 "took too long to take off from wall | timeout(seconds): {0}".format(timeout)))
             self.publish_att_raw.value = True
+            self.current_throttle.value = 0
             return False
 
         rospy.loginfo("STATUS: vehicle at high attitude. Transit to velocity setpoint!")
