@@ -42,6 +42,7 @@ class MavrosOffboardSuctionMission():
         self.vx = vx
         self.vy = vy
         self.vz = vz
+        self.pitch_rate = -0.3
         self.takeoff_alt = takeoff_alt
         self.goto_pos_time = goto_pos_time
         self.perch_time = perch_time
@@ -326,7 +327,7 @@ class MavrosOffboardSuctionMission():
         
         
         if not self.publish_thr_down.value:
-            pitch = -0.21 # tested in jmavsim for -ve value = pitch up (flip backward)
+            pitch = self.pitch_rate # tested in jmavsim for -ve value = pitch up (flip backward)
             self.current_throttle.value = self.low_throttle_value
             att_target.header.frame_id = "high_pitch_low_throttle"
         else:
@@ -788,7 +789,7 @@ class MavrosOffboardSuctionMission():
 
     def is_high_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y > 0.23 and self.imu_data.orientation.y < 0.7
+        return self.imu_data.orientation.y > 0.2 and self.imu_data.orientation.y < 0.7
         
     def is_normal_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
