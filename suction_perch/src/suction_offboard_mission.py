@@ -326,7 +326,7 @@ class MavrosOffboardSuctionMission():
         
         
         if not self.publish_thr_down.value:
-            pitch = -0.15 # tested in jmavsim for -ve value = pitch up (flip backward)
+            pitch = -0.21 # tested in jmavsim for -ve value = pitch up (flip backward)
             self.current_throttle.value = self.low_throttle_value
             att_target.header.frame_id = "high_pitch_low_throttle"
         else:
@@ -339,7 +339,7 @@ class MavrosOffboardSuctionMission():
             '''
             if self.throttle_down_start_time >= 0:
                 # gradually throttling down
-                pitch = -0.15 #0.0
+                pitch = -0.2 #0.0
                 att_target.header.frame_id = "throttling_to_zero"
                 dt = rospy.get_time() - self.throttle_down_start_time
                 if dt <= self.throttle_down_time:
