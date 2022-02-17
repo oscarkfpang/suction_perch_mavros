@@ -891,7 +891,7 @@ class MavrosOffboardSuctionMission():
         #                     start_time = rospy.get_time(), 
         #                     period = 5)
 
-        start_throttle = 0.05
+        start_throttle = 0.1
         end_throttle = 0.2 # self.low_throttle_value 
         self.throttle_up_start_time = rospy.get_time()
 
