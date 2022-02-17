@@ -24,7 +24,7 @@ class ms4515_PI(object):
     OPEN_PRESSURE   = -130000
     TRANSITION_PRESSURE = 20000
 
-    def __init__(self, i2c_bus=1, i2c_address=46, output_type='B', pressure_range=30, delay=0.1, sampele_time=6, debug=False ):
+    def __init__(self, i2c_bus=1, i2c_address=46, output_type='B', pressure_range=30, delay=0.1, sample_time=6, debug=False ):
         '''
         i2c_bus => run the command: i2cdetect -l
         i2c_address => run the command: i2cdetect -y 1
