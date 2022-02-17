@@ -939,8 +939,8 @@ class MavrosOffboardSuctionMission():
 
         
         while not self.is_normal_attitude():
-            rospy.loginfo("STATUS: waiting for normal attitude")
-            self.current_throttle.value = start_throttle + 0.01
+            rospy.loginfo("STATUS: waiting for normal attitude. Current throttle: {0}".format(self.current_throttle.value))
+            self.current_throttle.value = start_throttle + 0.02
             rate.sleep()
             if self.current_throttle.value >= end_throttle:
                 rospy.loginfo("STATUS: End throttle value of {0} is reached. Stop throttle there".format(end_throttle))
