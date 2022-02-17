@@ -1147,6 +1147,58 @@ class MavrosOffboardSuctionMission():
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
         suction = False
+        for i in xrange(timeout * loop_freq, 0, -1):
+            rospy.loginfo(
+                        "waiting for SUCTION_IS_PERCH to 1. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
+            # TODO: give a short period of time for detecting the continuous reception of value 1
+            try:
+                res = self.get_param_srv('SUCTION_IS_PERCH')
+                if res.success and res.value.integer > 0:
+                    ##self.suction_is_perch_param = res.integer
+                    rospy.loginfo(
+                        "SUCTION_IS_PERCH received {0}. drone is perched to the wall! ".format(res.value.integer))
+                    suction = True
+                    break
+            except rospy.ServiceException as e:
+                rospy.logerr(e)
+            try:
+                rate.sleep()
+            except rospy.ROSException as e:
+                self.fail(e)
+        
+        #TODO: assert suction_is_perch param = is_pearch ROS topic
+        #
+        #
+
+        if not suction:
+            # turn off suction pump if fail
+            if self.pump_on.value:
+                self.pub_pump.publish(Empty())
+                self.pump_on.value = False
+        self.assertTrue(suction, (
+            "took too long to get suction pressure | timeout(seconds): {0}".format(timeout)))
+        return suction
+
+
+    def perch_wall_old(self, timeout=60):
+        # turn on suction motor
+        if not self.pump_on.value:
+            rospy.loginfo("Turn on suction pump")
+            self.pub_pump.publish(Empty())
+            self.pump_on.value = True
+            
+        # turn on solenoid (default is off)
+        if not self.solenoid_on.value:
+            rospy.loginfo("Turn on Solenoid")
+            self.pub_solenoid.publish(Empty())
+            self.solenoid_on.value = True
+
+        # check suction pressure in a loop until suction cup is attaced to the wall
+        # does it perch to the wall in 'timeout' seconds?
+        rospy.loginfo("========= waiting for SUCTION_IS_PERCH for perching =========")
+        loop_freq = 5  # Hz
+        rate = rospy.Rate(loop_freq)
+        suction = False
         
         perch_start_time = rospy.get_time() 
         high_att_period = 10 # in sec, parameter
