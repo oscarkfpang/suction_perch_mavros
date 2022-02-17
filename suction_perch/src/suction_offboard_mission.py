@@ -644,6 +644,9 @@ class MavrosOffboardSuctionMission():
 
 
     def run_mission_retakeoff(self):
+        self.solenoid_on.value = True
+        self.pump_on.value = True
+        
         self.mission_cnt.value = 4
         rospy.loginfo("Retakeoff Mission Start...")
         retakeoff_successful = self.takeoff_from_wall()
