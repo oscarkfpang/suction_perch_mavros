@@ -1380,7 +1380,7 @@ if __name__ == '__main__':
     elif args.rearm_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_hand,
-                                                       goto_pos_time=60, perch_time=50, land_on_wall_time=40, throttle_down_time=10)
+                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.run_mission_full()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
