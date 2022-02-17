@@ -47,7 +47,7 @@ class ms4515_PI(object):
 
         self.rate = rospy.Rate(int(1.0/self.delay))
         self.sample_time = sample_time
-        self.queue_size = self.sample_time / self.delay
+        self.queue_size = int(self.sample_time / self.delay)
         self.pressure_queue = np.zeros(self.queue_size)
         
         self.pub_perch = rospy.Publisher('is_perched', Bool, queue_size=1)
