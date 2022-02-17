@@ -316,7 +316,7 @@ class MavrosOffboardSuctionMission():
         
         if self.publish_thr_up.value:
             pitch = 0.0
-            self.current_throttle.value = 0.7
+            #self.current_throttle.value = 0.7
             att_target.header.frame_id = "throttle_up_from_vertical"
             throttle = self.current_throttle.value
             att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
@@ -857,8 +857,8 @@ class MavrosOffboardSuctionMission():
         period = throttle_timeout * loop_freq //  2
         takeoff_from_vertical = False
 
-        for i in xrange(throttle_timeout * loop_freq):
-            rospy.loginfo("STATUS: Auto_throttling up from 0.2. current throttle = {0}".format(self.current_throttle.value))
+        for i in xrange(period):
+            rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
             try:
                 # throttling up
                 self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)             
@@ -888,20 +888,26 @@ class MavrosOffboardSuctionMission():
         
 
         start_throttle = self.current_throttle.value
-        end_throttle = 0.7
-        period = timeout * loop_freq
+        end_throttle = 0.55
+        period = timeout * loop_freq // 2
         normal_attitude = False
-        #rospy.loginfo("Gradually throttling up to level attitude.")
+        rospy.loginfo("Gradually throttling up to normal attitude.")
 
-        self.publish_att_raw.value = False
-        self.mission_cnt.value = 5
-        rospy.loginfo("STATUS: setpoint_vel_x = -1 ")
         
         while not self.is_normal_attitude():
             rospy.loginfo("STATUS: waiting for normal attitude")
+            self.current_throttle.value = start_throttle + 0.01
+            rate.sleep()
+            if self.current_throttle.value >= end_throttle:
+                rospy.loginfo("STATUS: End throttle value of {0} is reached. Stop throttle there".format(end_throttle))
+                break
         
         rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
         normal_attitude = True
+        
+        self.publish_att_raw.value = False
+        self.mission_cnt.value = 5
+        rospy.loginfo("STATUS: setpoint_vel_x = -1 ")
         
         '''
         for i in xrange(timeout * loop_freq):
