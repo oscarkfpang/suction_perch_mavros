@@ -65,7 +65,7 @@ if __name__ == '__main__':
     solenoid_state = Value(c_bool, False)
     motor_state = 0
     
-    rospy.init_node('Electronic Node')
+    rospy.init_node('Electronic_Node')
     rate = rospy.Rate(20) # 10hz
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
