@@ -940,20 +940,25 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("Gradually throttling up to normal attitude.")
 
         
-        while not self.is_normal_attitude():
+        while not normal_attitude:
             rospy.loginfo("STATUS: waiting for normal attitude. Current throttle: {0}".format(self.current_throttle.value))
             self.current_throttle.value +=  0.02
+            normal_attitude = self.is_normal_attitude()
             rate.sleep()
             if self.current_throttle.value >= end_throttle:
                 rospy.loginfo("STATUS: End throttle value of {0} is reached. Stop throttle there".format(end_throttle))
+                #TODO: handle exception when throttle is too high but normal attitude is not reached, i.e. drone too heavy
                 break
         
-        rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
-        normal_attitude = True
-        
-        self.publish_att_raw.value = False
-        self.mission_cnt.value = 5
-        rospy.loginfo("STATUS: setpoint_vel_x = -1 ")
+        if normal_attitude:  
+            rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
+            self.publish_att_raw.value = False
+            self.mission_cnt.value = 5
+            rospy.loginfo("STATUS: setpoint_vel_x = -1 ")
+        else:
+            rospy.loginfo("STATUS: Drone too heavy / cannot reach the normal attitude!")
+            self.publish_att_raw.value = True
+            self.publish_thr_up.value = False
         
         '''
         for i in xrange(timeout * loop_freq):

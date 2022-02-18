@@ -6,7 +6,7 @@
 
 
 	<!-- Launches the joystick controller -->
-	<node name="joy_teleop" pkg="joystick_welder" type="joy_teleop.py" output="screen" required="true">
-		<rosparam command="load" file="$(find joystick_welder)/launch/f710_joy.yaml" />
+	<node name="joy_teleop" pkg="suction_perch" type="joy_teleop.py" output="screen" required="true">
+		<rosparam command="load" file="$(find suction_perch)/launch/f710_joy.yaml" />
 	</node>
 </launch>

@@ -126,15 +126,15 @@ class ms4515_PI(object):
         rospy.loginfo("Sampling air pressure")
         
         # reset px4 suction parameter to 0
-        self.setSuctionPerch(False)
+        #self.setSuctionPerch(False)
         
         try:
             while not rospy.is_shutdown():
                 #start_time = time.time()
                 ret = self.measure()
                 self.collect()
-                #if self.debug:
-                rospy.loginfo("pressure    = %s", self.diff_press_pa_raw)
+                if self.debug:
+                    rospy.loginfo("pressure    = %s", self.diff_press_pa_raw)
                     #rospy.loginfo("temperature = %s", self.temp)
                 self.pub_pressure.publish(self.diff_press_pa_raw)
                 #if self.is_continuous_suction(self.diff_press_pa_raw):

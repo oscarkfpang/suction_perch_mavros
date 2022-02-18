@@ -15,7 +15,7 @@ import RPi.GPIO as GPIO            # import RPi.GPIO module
 PUMP = 23
 SOLENOID = 24
 
-# for motor
+# for winch
 EN = 17
 DIR = 27
 PWM = 22
@@ -49,16 +49,16 @@ if __name__ == '__main__':
     
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
     GPIO.setup(PUMP, GPIO.OUT)           
-    GPIO.output(PUMP, 0)
+    GPIO.output(PUMP, GPIO.LOW)
     GPIO.setup(SOLENOID, GPIO.OUT)
-    GPIO.output(SOLENOID, 0)
+    GPIO.output(SOLENOID, GPIO.LOW)
     
     GPIO.setup(EN, GPIO.OUT)
-    GPIO.output(SOLENOID, 0)
+    GPIO.output(SOLENOID, GPIO.LOW)
     GPIO.setup(DIR, GPIO.OUT)
-    GPIO.output(SOLENOID, 0)
+    GPIO.output(SOLENOID, GPIO.LOW)
     GPIO.setup(PWM, GPIO.OUT)
-    GPIO.output(SOLENOID, 0)
+    GPIO.output(SOLENOID, GPIO.LOW)
     
 
     pump_state = Value(c_bool, False)
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
-    subMotor = rospy.Subscriber('motor_state', Int8, ReceiveMotorMessage)
+    subWinch = rospy.Subscriber('winch_state', Int8, ReceiveMotorMessage)
 
     try:
         while not rospy.is_shutdown():
