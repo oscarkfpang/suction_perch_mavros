@@ -742,22 +742,69 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("=================== Mission Successful! =========================+")
         return True
 
-    '''
-    def run_mission_rearm(self):
-        rospy.loginfo("Rearm the drone from vertical pose.")
-        self.set_mode("OFFBOARD", 5)
-        self.set_arm(True, 5)
-        self.publish_thr_down.value = False
-        rospy.loginfo("Throttle set to 0.5")
-        rospy.loginfo("Keep for 20 sec and set throttle to zero again.")
-        rospy.sleep(20)
-        self.publish_thr_down.value = True
-        self.throttle_down_start_time = rospy.get_time()
-        rospy.sleep(20)
-        rospy.loginfo("Disarm again")
-        self.set_arm(False, 5)        
-        rospy.loginfo("End rearm mission")  
-    '''      
+    
+    def run_mission_twostops(self):
+        '''
+            mission_pos_two_stops = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0),  # 0 1 2
+                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 3 4 5
+                            (-0.5, 0, 1.5, 0),                               # 6
+                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 7 8 9
+                            (-0.5, 0, 1.0, 0))                               # 10
+        '''
+        rospy.loginfo("Two-Stop Mission Start...")
+        
+        perch_successful = False
+        retakeoff_successful = False
+        detach_successful = False
+        perch_successful = self.run_mission_perch()
+        
+        if not perch_successful:
+            rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
+            return False
+            
+        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
+        rospy.sleep(10)
+        rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
+        
+        retakeoff_successful = self.takeoff_from_wall()
+        
+        if not retakeoff_successful:
+            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
+            return False
+
+        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
+        detach_successful = self.detach_from_wall()
+        
+        if not detach_successful:
+            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
+            return False
+            
+        rospy.loginfo("STATUS: Detach is successful. Fly back!")      
+        #self.throttle_down_start_time = -1
+        
+        # suppose self.mission_cnt.value = 5 already
+        #rospy.loginfo("STATUS: Go to waypoint 5")
+        #if self.goto_position(self.goto_pos_time): # for WP 5
+        #    self.mission_cnt.value += 1
+        
+        rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
+        if self.goto_position(self.goto_pos_time): # for WP 6
+            self.mission_cnt.value += 1           
+        
+        rospy.loginfo("STATUS: Go to waypoint 7")
+        self.goto_position(self.goto_pos_time) # for WP 7
+                    
+
+        self.land()
+        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
+                                     10, -1)
+        rospy.loginfo("Disarm for finishing mission!!")
+        self.set_arm(False, 5)         
+        
+        rospy.loginfo("=================== Mission Successful! =========================+")
+        return True
+
+         
 
     def run_mission_by_hand(self):
         rospy.loginfo("Hand-fly Mission Start...")
@@ -1461,6 +1508,7 @@ if __name__ == '__main__':
     mode_group.add_argument('-vel', '--vel-test', action='store_true', help="fly forward and change to velocity setpoint")
     mode_group.add_argument('-hand', '--hand-test', action='store_true', help="move the drone around using hand")
     mode_group.add_argument('-rearm', '--rearm-test', action='store_true', help="rearm the drone after landing to the wall")
+    mode_group.add_argument('-two', '--two-stops', action='store_true', help="perch to the wall twice)
 
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
 
@@ -1478,7 +1526,13 @@ if __name__ == '__main__':
     # mission waypoints for perching test
     mission_pos_hand = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0), 
                         (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (-0.5, 0, 1.5, 0), (-0.5, 0, 1.0, 0))
+                        (-0.5, 0, 1.5, 0), (-0.5, 0, 1.5, 0))
+                        
+    mission_pos_two_stops = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0),  # 0 1 2
+                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 3 4 5
+                            (-0.5, 0, 1.5, 0),                               # 6
+                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 7 8 9
+                            (-0.5, 0, 1.0, 0))                               # 10
 
     global suction_mission
 
@@ -1501,7 +1555,11 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_hand,
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_by_hand()
-        
+    elif args.two-stops:
+        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
+                                                       mission_pos=mission_pos_two_stops,
+                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
+        suction_mission.run_mission_twostops()   
 
     rospy.spin()
     '''
