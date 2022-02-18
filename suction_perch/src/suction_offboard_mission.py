@@ -903,12 +903,15 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         period = throttle_timeout * loop_freq 
         takeoff_from_vertical = False
+        
+        self.current_throttle.value = start_throttle
 
         for i in xrange(period):
             rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
             try:
                 # throttling up
-                self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)             
+                #self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)  
+                self.current_throttle.value += 0.01 
 
                 # detect SUCTION_IS_LAND param while throttling up
                 res = self.get_param_srv('SUCTION_IS_LAND')
@@ -1491,8 +1494,8 @@ if __name__ == '__main__':
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_hand,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.run_mission_full()
-        #suction_mission.run_mission_retakeoff()
+        #suction_mission.run_mission_full()
+        suction_mission.run_mission_retakeoff()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_hand,
