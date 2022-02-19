@@ -6,7 +6,7 @@
 import rospy
 from std_msgs.msg import String, Empty, Float64, Bool, Int8
 from multiprocessing import Value
-from ctypes import c_bool
+from ctypes import c_bool, c_int
 
 import time
 import RPi.GPIO as GPIO            # import RPi.GPIO module  
@@ -37,7 +37,7 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveMotorMessage(data):
-    motor_state = data
+    motor_state.value = data
     #rospy.loginfo("Get winch state = {0}".format(motor_state))
 
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
-    motor_state = 0
+    motor_state = Value(c_int, 0)
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(20) # 10hz
@@ -87,7 +87,7 @@ if __name__ == '__main__':
             else:
                 GPIO.output(SOLENOID, GPIO.LOW)
 
-                rospy.loginfo("Get winch state = {0}".format(motor_state))         
+            rospy.loginfo("Get winch state = {0}".format(motor_state.value ))         
             if motor_state > 0: # motor runs forward
                 GPIO.output(EN, GPIO.LOW)
                 GPIO.output(DIR, GPIO.LOW)
