@@ -42,16 +42,16 @@ def ReceiveJoystickMessage(data):
 
     if data.buttons[ButtonWinchUp]==1:
         rospy.loginfo("Winch Up Button Pressed")
-        winch_state = 1
+        winch_state = 'up'
         
     
     if data.buttons[ButtonWinchDown]==1:
         rospy.loginfo("Winch Down Button Pressed")
-        winch_state = -1
+        winch_state = 'down'
         
     if data.buttons[ButtonWinchStop]==1:
         rospy.loginfo("Winch Stop Button Pressed")
-        winch_state = 0
+        winch_state = 'stop'
         
     pub_winch.publish(winch_state)
 
@@ -70,7 +70,7 @@ def main():
     subJoystick = rospy.Subscriber('joy', Joy, ReceiveJoystickMessage)
     pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)  
     pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
-    pub_winch = rospy.Publisher('winch_state', Int8, queue_size=1)
+    pub_winch = rospy.Publisher('winch_state', String, queue_size=1)
     
 
     try:
