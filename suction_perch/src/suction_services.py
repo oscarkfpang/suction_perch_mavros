@@ -72,7 +72,6 @@ if __name__ == '__main__':
 
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
-    motor_state = Value(c_int, 0)
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(20) # 10hz
