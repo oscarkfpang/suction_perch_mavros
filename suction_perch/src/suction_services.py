@@ -16,9 +16,9 @@ PUMP = 23
 SOLENOID = 24
 
 # for winch
-EN = 17
-DIR = 27
-PWM = 22
+EN = 19
+DIR = 21
+PWM = 23
 
 def ReceivePumpMessage(data):
     if pump_state.value:
