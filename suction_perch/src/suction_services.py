@@ -54,11 +54,12 @@ if __name__ == '__main__':
     GPIO.output(SOLENOID, GPIO.LOW)
     
     GPIO.setup(EN, GPIO.OUT)
-    GPIO.output(SOLENOID, GPIO.LOW)
     GPIO.setup(DIR, GPIO.OUT)
-    GPIO.output(SOLENOID, GPIO.LOW)
     GPIO.setup(PWM, GPIO.OUT)
-    GPIO.output(SOLENOID, GPIO.LOW)
+    GPIO.output(EN, GPIO.LOW)
+    GPIO.output(DIR, GPIO.LOW)
+    GPIO.output(PWM, GPIO.LOW)
+
     
 
     pump_state = Value(c_bool, False)
