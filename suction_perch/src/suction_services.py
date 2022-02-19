@@ -37,7 +37,7 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveMotorMessage(data):
-    motor_state.value = data
+    motor_state.value = int(data)
     #rospy.loginfo("Get winch state = {0}".format(motor_state))
 
 
