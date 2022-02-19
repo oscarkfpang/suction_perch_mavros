@@ -38,7 +38,7 @@ def ReceiveSolenoidMessage(data):
 
 def ReceiveMotorMessage(data):
     motor_state = data
-    rospy.loginfo("Get winch state = {0}".format(motor_state))
+    #rospy.loginfo("Get winch state = {0}".format(motor_state))
 
 
 if __name__ == '__main__':
@@ -57,6 +57,7 @@ if __name__ == '__main__':
     GPIO.setup(EN, GPIO.OUT)
     GPIO.setup(DIR, GPIO.OUT)
     GPIO.setup(PWM, GPIO.OUT)
+
     GPIO.output(EN, GPIO.LOW)
     GPIO.output(DIR, GPIO.LOW)
     GPIO.output(PWM, GPIO.LOW)
@@ -85,7 +86,8 @@ if __name__ == '__main__':
                 GPIO.output(SOLENOID, GPIO.HIGH)
             else:
                 GPIO.output(SOLENOID, GPIO.LOW)
-                
+
+                rospy.loginfo("Get winch state = {0}".format(motor_state))         
             if motor_state > 0: # motor runs forward
                 GPIO.output(EN, GPIO.LOW)
                 GPIO.output(DIR, GPIO.LOW)
