@@ -20,6 +20,8 @@ EN = 10
 DIR = 9
 PWM = 11
 
+motor_state = 0
+
 def ReceivePumpMessage(data):
     if pump_state.value:
         pump_state.value = False
@@ -37,14 +39,15 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveMotorMessage(data):
-    if data == 'up':
-        motor_state = 'up'
-    elif data == 'down':
-        motor_state = 'down'
-    elif data == 'stop':
-        motor_state = 'stop'    
+    global motor_state
+    if data == 0:
+        motor_state = 0
+    elif data == 1:
+        motor_state = 1
+    elif data == -1:
+        motor_state = -1    
     #motor_state.value = int(data)
-    rospy.loginfo("Get winch state = {0}".format(motor_state))
+    rospy.loginfo("Current winch state = {0}".format(motor_state))
 
 
 if __name__ == '__main__':
@@ -52,7 +55,6 @@ if __name__ == '__main__':
     global subSolenoid
     global pump_state
     global solenoid_state
-    global motor_state
     
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
     GPIO.setup(PUMP, GPIO.OUT)           
@@ -68,8 +70,6 @@ if __name__ == '__main__':
     GPIO.output(DIR, GPIO.LOW)
     GPIO.output(PWM, GPIO.LOW)
 
-    motor_state = 'stop'
-
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
     
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
-    subWinch = rospy.Subscriber('winch_state', String, ReceiveMotorMessage)
+    subWinch = rospy.Subscriber('winch_state', Int8, ReceiveMotorMessage)
 
     try:
         while not rospy.is_shutdown():
@@ -93,15 +93,15 @@ if __name__ == '__main__':
                 GPIO.output(SOLENOID, GPIO.LOW)
 
             rospy.loginfo("Get winch state = {0}".format(motor_state))         
-            if motor_state == 'up' : # motor runs forward
+            if motor_state == 1 : # motor runs forward
                 GPIO.output(EN, GPIO.LOW)
                 GPIO.output(DIR, GPIO.LOW)
                 GPIO.output(PWM, GPIO.HIGH)
-            elif motor_state == 'stop': # motor stop
+            elif motor_state == 0: # motor stop
                 GPIO.output(EN, GPIO.LOW)
                 GPIO.output(DIR, GPIO.LOW)
                 GPIO.output(PWM, GPIO.LOW)
-            elif motor_state == 'down': # motor runs backward
+            elif motor_state == -1: # motor runs backward
                 GPIO.output(EN, GPIO.LOW)
                 GPIO.output(DIR, GPIO.HIGH)
                 GPIO.output(PWM, GPIO.HIGH)
