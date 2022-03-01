@@ -22,6 +22,9 @@ PWM = 11
 
 motor_state = 0
 
+SERVO_L = 18
+SERVO_R = 19
+
 def ReceivePumpMessage(data):
     if pump_state.value:
         pump_state.value = False
@@ -56,11 +59,20 @@ if __name__ == '__main__':
     global pump_state
     global solenoid_state
     
+    GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
     GPIO.setup(PUMP, GPIO.OUT)           
-    GPIO.output(PUMP, GPIO.LOW)
     GPIO.setup(SOLENOID, GPIO.OUT)
+    GPIO.setup(SERVO_L, GPIO.OUT)
+    GPIO.setup(SERVO_R, GPIO.OUT)
+    
+    GPIO.output(PUMP, GPIO.LOW)
     GPIO.output(SOLENOID, GPIO.LOW)
+    
+    l_motor_pwm = GPIO.PWM(SERVO_L, 1000)
+    r_motor_pwm = GPIO.PWM(SERVO_R, 1000)
+    l_motor_pwm.start(0)
+    r_motor_pwm.start(0)
     
     #GPIO.setup(EN, GPIO.OUT)
     #GPIO.setup(DIR, GPIO.OUT)
@@ -109,6 +121,15 @@ if __name__ == '__main__':
                 #GPIO.output(DIR, GPIO.HIGH)
                 #GPIO.output(PWM, GPIO.HIGH)
 
+            for duty in range(0,101,1):
+                l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+                r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+                rospy.sleep(0.01)
+                
+            for duty in range(100,-1,-1):
+                l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+                r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+                rospy.sleep(0.01)
             rate.sleep()
             
     except rospy.ROSInterruptException:
