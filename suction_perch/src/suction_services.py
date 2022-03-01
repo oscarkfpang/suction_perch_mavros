@@ -47,7 +47,7 @@ def ReceiveMotorMessage(data):
     elif data == -1:
         motor_state = -1    
     #motor_state.value = int(data)
-    rospy.loginfo("Current winch state = {0}".format(motor_state))
+    rospy.loginfo("Current motor state = {0}".format(motor_state))
 
 
 if __name__ == '__main__':
@@ -62,13 +62,13 @@ if __name__ == '__main__':
     GPIO.setup(SOLENOID, GPIO.OUT)
     GPIO.output(SOLENOID, GPIO.LOW)
     
-    GPIO.setup(EN, GPIO.OUT)
-    GPIO.setup(DIR, GPIO.OUT)
-    GPIO.setup(PWM, GPIO.OUT)
+    #GPIO.setup(EN, GPIO.OUT)
+    #GPIO.setup(DIR, GPIO.OUT)
+    #GPIO.setup(PWM, GPIO.OUT)
 
-    GPIO.output(EN, GPIO.LOW)
-    GPIO.output(DIR, GPIO.LOW)
-    GPIO.output(PWM, GPIO.LOW)
+    #GPIO.output(EN, GPIO.LOW)
+    #GPIO.output(DIR, GPIO.LOW)
+    #GPIO.output(PWM, GPIO.LOW)
 
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
@@ -94,17 +94,20 @@ if __name__ == '__main__':
 
             rospy.loginfo("Get winch state = {0}".format(motor_state))         
             if motor_state == 1 : # motor runs forward
-                GPIO.output(EN, GPIO.LOW)
-                GPIO.output(DIR, GPIO.LOW)
-                GPIO.output(PWM, GPIO.HIGH)
+                rospy.loginfo("motor state = 1")
+                #GPIO.output(EN, GPIO.LOW)
+                #GPIO.output(DIR, GPIO.LOW)
+                #GPIO.output(PWM, GPIO.HIGH)
             elif motor_state == 0: # motor stop
-                GPIO.output(EN, GPIO.LOW)
-                GPIO.output(DIR, GPIO.LOW)
-                GPIO.output(PWM, GPIO.LOW)
+                rospy.loginfo("motor state = 0")
+                #GPIO.output(EN, GPIO.LOW)
+                #GPIO.output(DIR, GPIO.LOW)
+                #GPIO.output(PWM, GPIO.LOW)
             elif motor_state == -1: # motor runs backward
-                GPIO.output(EN, GPIO.LOW)
-                GPIO.output(DIR, GPIO.HIGH)
-                GPIO.output(PWM, GPIO.HIGH)
+                rospy.loginfo("motor state = -1")
+                #GPIO.output(EN, GPIO.LOW)
+                #GPIO.output(DIR, GPIO.HIGH)
+                #GPIO.output(PWM, GPIO.HIGH)
 
             rate.sleep()
             
@@ -115,7 +118,7 @@ if __name__ == '__main__':
         rospy.loginfo("Node stops. Bye-bye!")
         GPIO.output(PUMP, GPIO.LOW)
         GPIO.output(SOLENOID, GPIO.LOW)  
-        GPIO.output(EN, GPIO.LOW)
-        GPIO.output(DIR, GPIO.LOW)
-        GPIO.output(PWM, GPIO.LOW)      
+        #GPIO.output(EN, GPIO.LOW)
+        #GPIO.output(DIR, GPIO.LOW)
+        #GPIO.output(PWM, GPIO.LOW)      
         GPIO.cleanup()
