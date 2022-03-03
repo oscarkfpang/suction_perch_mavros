@@ -40,7 +40,9 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveWinchMessage(data):
-    winch_state.value = data.data
+    if winch_state.value != data.data
+        winch_state.value = data.data
+        trigger.value = True
 
     #rospy.loginfo("Current motor state = " + str(winch_state.value))
 
@@ -51,6 +53,7 @@ if __name__ == '__main__':
     global pump_state
     global solenoid_state
     global winch_state
+    global trigger
     
     GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
@@ -79,6 +82,7 @@ if __name__ == '__main__':
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
     winch_state = Value(c_float, 0)
+    trigger = Value(c_bool, False)
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(20) # 10hz
@@ -101,21 +105,23 @@ if __name__ == '__main__':
 
             rospy.loginfo("Get winch state = {0}".format(winch_state.value))         
             
-            if winch_state.value > 0 : # motor runs forward
-                rospy.loginfo("winch forward")
-                GPIO.output(EN, GPIO.LOW)
-                GPIO.output(DIR, GPIO.LOW)
-                GPIO.output(PWM, GPIO.HIGH)
-            elif winch_state.value == 0: # motor stop
-                rospy.loginfo("winch stop")
-                GPIO.output(EN, GPIO.LOW)
-                GPIO.output(DIR, GPIO.LOW)
-                GPIO.output(PWM, GPIO.LOW)
-            elif winch_state.value < 0: # motor runs backward
-                rospy.loginfo("winch backward")
-                GPIO.output(EN, GPIO.LOW)
-                GPIO.output(DIR, GPIO.HIGH)
-                GPIO.output(PWM, GPIO.HIGH)
+            if trigger.value:
+                if winch_state.value > 0 : # motor runs forward
+                    rospy.loginfo("winch forward")
+                    GPIO.output(EN, GPIO.LOW)
+                    GPIO.output(DIR, GPIO.LOW)
+                    GPIO.output(PWM, GPIO.HIGH)
+                elif winch_state.value == 0: # motor stop
+                    rospy.loginfo("winch stop")
+                    GPIO.output(EN, GPIO.LOW)
+                    GPIO.output(DIR, GPIO.LOW)
+                    GPIO.output(PWM, GPIO.LOW)
+                elif winch_state.value < 0: # motor runs backward
+                    rospy.loginfo("winch backward")
+                    GPIO.output(EN, GPIO.LOW)
+                    GPIO.output(DIR, GPIO.HIGH)
+                    GPIO.output(PWM, GPIO.HIGH)
+                trigger.value = False
             
 
             for duty in range(0,101,1):
@@ -136,7 +142,8 @@ if __name__ == '__main__':
         rospy.loginfo("Node stops. Bye-bye!")
         GPIO.output(PUMP, GPIO.LOW)
         GPIO.output(SOLENOID, GPIO.LOW)  
-        #GPIO.output(EN, GPIO.LOW)
-        #GPIO.output(DIR, GPIO.LOW)
-        #GPIO.output(PWM, GPIO.LOW)      
+        GPIO.output(EN, GPIO.LOW)
+        GPIO.output(DIR, GPIO.LOW)
+        GPIO.output(PWM, GPIO.LOW)   
+        trigger.value = False   
         GPIO.cleanup()
