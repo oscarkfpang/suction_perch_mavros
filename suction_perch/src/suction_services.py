@@ -40,7 +40,7 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveWinchMessage(data):
-    if winch_state.value != data.data
+    if winch_state.value != data.data:
         winch_state.value = data.data
         trigger.value = True
 
