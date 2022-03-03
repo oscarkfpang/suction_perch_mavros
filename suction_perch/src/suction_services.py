@@ -42,7 +42,7 @@ def ReceiveSolenoidMessage(data):
 def ReceiveWinchMessage(data):
     winch_state.value = data.data
 
-    rospy.loginfo("Current motor state = " + str(winch_state.value))
+    #rospy.loginfo("Current motor state = " + str(winch_state.value))
 
 
 if __name__ == '__main__':
@@ -99,23 +99,23 @@ if __name__ == '__main__':
                 GPIO.output(SOLENOID, GPIO.LOW)
 
             rospy.loginfo("Get winch state = {0}".format(winch_state.value))         
-            '''
-            if motor_state == 1 : # motor runs forward
-                rospy.loginfo("motor state = 1")
-                #GPIO.output(EN, GPIO.LOW)
-                #GPIO.output(DIR, GPIO.LOW)
-                #GPIO.output(PWM, GPIO.HIGH)
-            elif motor_state == 0: # motor stop
-                rospy.loginfo("motor state = 0")
-                #GPIO.output(EN, GPIO.LOW)
-                #GPIO.output(DIR, GPIO.LOW)
-                #GPIO.output(PWM, GPIO.LOW)
-            elif motor_state == -1: # motor runs backward
-                rospy.loginfo("motor state = -1")
-                #GPIO.output(EN, GPIO.LOW)
-                #GPIO.output(DIR, GPIO.HIGH)
-                #GPIO.output(PWM, GPIO.HIGH)
-            '''
+            
+            if winch_state.value > 0 : # motor runs forward
+                rospy.loginfo("winch forward")
+                GPIO.output(EN, GPIO.LOW)
+                GPIO.output(DIR, GPIO.LOW)
+                GPIO.output(PWM, GPIO.HIGH)
+            elif winch_state.value == 0: # motor stop
+                rospy.loginfo("winch stop")
+                GPIO.output(EN, GPIO.LOW)
+                GPIO.output(DIR, GPIO.LOW)
+                GPIO.output(PWM, GPIO.LOW)
+            elif winch_state.value < 0: # motor runs backward
+                rospy.loginfo("winch backward")
+                GPIO.output(EN, GPIO.LOW)
+                GPIO.output(DIR, GPIO.HIGH)
+                GPIO.output(PWM, GPIO.HIGH)
+            
 
             for duty in range(0,101,1):
                 l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
