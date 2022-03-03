@@ -42,8 +42,8 @@ def ReceiveSolenoidMessage(data):
 def ReceiveWinchMessage(data):
     #winch_state.value = data 
     #motor_state.value = int(data)
-    if data > 0:
-        rospy.loginfo("Current motor state = {0}".format(data))
+    
+    rospy.loginfo("Current motor state = " + str(data))
 
 
 if __name__ == '__main__':
