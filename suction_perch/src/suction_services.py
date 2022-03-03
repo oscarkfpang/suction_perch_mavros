@@ -20,7 +20,7 @@ EN = 10
 DIR = 9
 PWM = 11
 
-motor_state = 0
+motor_state = 100
 
 SERVO_L = 18
 SERVO_R = 19
@@ -41,7 +41,7 @@ def ReceiveSolenoidMessage(data):
         solenoid_state.value = True
         rospy.loginfo("Turn Solenoid on")
 
-def ReceiveMotorMessage(data):
+def ReceiveWinchMessage(data):
     global motor_state
     if data == 0:
         motor_state = 0
@@ -50,7 +50,7 @@ def ReceiveMotorMessage(data):
     elif data == -1:
         motor_state = -1    
     #motor_state.value = int(data)
-    rospy.loginfo("Current motor state = {0}".format(motor_state))
+    rospy.loginfo("Current motor state = {0}".format(data))
 
 
 if __name__ == '__main__':
@@ -90,7 +90,7 @@ if __name__ == '__main__':
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
-    subWinch = rospy.Subscriber('winch_state', Int8, ReceiveMotorMessage)
+    subWinch = rospy.Subscriber('winch_state', Int8, ReceiveWinchMessage)
 
     try:
         while not rospy.is_shutdown():
