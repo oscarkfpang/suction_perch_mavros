@@ -12,15 +12,21 @@ ButtonPump = 4 # for joypad LT
 ButtonWinchUp = 3 # for joypad Y Yellow
 ButtonWinchDown = 0 # for joypad A Green
 ButtonWinchStop = 1 # for joypad B Red
+ButtonServo = 2 # for joypad X Blue
 
 rt_pressed = False
 lt_pressed = False
 winch_state = 0
+x_pressed = False
+servo_state = False
+
  
 def ReceiveJoystickMessage(data):
     global rt_pressed
     global lt_pressed
     global winch_state
+    global x_pressed
+    global servo_state
     
     if data.buttons[ButtonPump]==1:
         if not lt_pressed:
@@ -54,6 +60,19 @@ def ReceiveJoystickMessage(data):
         winch_state = 0.0
         
     pub_winch.publish(winch_state)
+    
+    if data.buttons[ButtonServo]==1:
+        if not x_pressed:
+            x_pressed = True
+    
+    if data.buttons[ButtonServo]==0 and x_pressed:
+        if servo_state:
+            servo_state = False
+        else:
+            servo_state = True
+        rospy.loginfo("Servo state = {0}".format(servo_state))
+        x_pressed = False
+    pub_servos.publish(servo_state)
 
 def main():
     global pub_pump
@@ -71,14 +90,13 @@ def main():
     pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)  
     pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
     pub_winch = rospy.Publisher('winch_state', Float64, queue_size=1)
-    
+    pub_servos = rospy.Publisher('servo_state', Bool, queue_size=1)
 
     try:
         while not rospy.is_shutdown():
             rate.sleep()
     except rospy.ROSInterruptException:
         rospy.loginfo("Joystick Teleop stops! Force Landing")
-        pub_landing.publish(Empty())
     finally:
         rospy.loginfo("Node stops. Bye-bye!")
 

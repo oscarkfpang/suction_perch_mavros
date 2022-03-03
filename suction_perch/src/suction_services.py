@@ -42,18 +42,55 @@ def ReceiveSolenoidMessage(data):
 def ReceiveWinchMessage(data):
     if winch_state.value != data.data:
         winch_state.value = data.data
-        trigger.value = True
+        trigger_winch.value = True
 
     #rospy.loginfo("Current motor state = " + str(winch_state.value))
 
+def ReceiveServoMessage(data):
+    if servo_state.value != data.data:
+        servo_state.value = data.data
+        trigger_servo.value = True
+        
+    rospy.loginfo("current servo state = {0}".format(servo_state.value))
+
+def winch(action):
+    if action == 'up':
+        rospy.loginfo("winch up")
+        GPIO.output(EN, GPIO.LOW)
+        GPIO.output(DIR, GPIO.LOW)
+        GPIO.output(PWM, GPIO.HIGH)
+    elif action == 'down':
+        rospy.loginfo("winch backward")
+        GPIO.output(EN, GPIO.LOW)
+        GPIO.output(DIR, GPIO.HIGH)
+        GPIO.output(PWM, GPIO.HIGH)
+    elif action == 'stop':
+        rospy.loginfo("winch stop")
+        GPIO.output(EN, GPIO.LOW)
+        GPIO.output(DIR, GPIO.LOW)
+        GPIO.output(PWM, GPIO.LOW)
+
+def servo(action):
+    if action == 'open':
+        rospy.loginfo("Opening up servo latching")
+        for duty in range(0,101,1):
+            l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+            r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+            rospy.sleep(0.01)
+    elif action == 'close':        
+        rospy.loginfo("Closing down servo latching")
+        for duty in range(100,-1,-1):
+            l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+            r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
+            rospy.sleep(0.01)
 
 if __name__ == '__main__':
-    global subPump
-    global subSolenoid
     global pump_state
     global solenoid_state
     global winch_state
-    global trigger
+    global trigger_winch
+    global servo_state
+    global trigger_servo
     
     GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
@@ -82,14 +119,17 @@ if __name__ == '__main__':
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
     winch_state = Value(c_float, 0)
-    trigger = Value(c_bool, False)
+    trigger_winch = Value(c_bool, False)
+    servo_state = Value(c_bool, False)
+    trigger_servo = Value(c_bool, False)
     
     rospy.init_node('Electronic_Node')
-    rate = rospy.Rate(20) # 10hz
+    rate = rospy.Rate(10) # 10hz
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
     subWinch = rospy.Subscriber('winch_state', Float64, ReceiveWinchMessage)
+    subServos = rospy.Subscriber('servo_state', Bool, ReceiveServoMessage)
 
     try:
         while not rospy.is_shutdown():
@@ -105,34 +145,23 @@ if __name__ == '__main__':
 
             rospy.loginfo("Get winch state = {0}".format(winch_state.value))         
             
-            if trigger.value:
+            if trigger_winch.value:
                 if winch_state.value > 0 : # motor runs forward
-                    rospy.loginfo("winch forward")
-                    GPIO.output(EN, GPIO.LOW)
-                    GPIO.output(DIR, GPIO.LOW)
-                    GPIO.output(PWM, GPIO.HIGH)
+                    winch('up')
                 elif winch_state.value == 0: # motor stop
-                    rospy.loginfo("winch stop")
-                    GPIO.output(EN, GPIO.LOW)
-                    GPIO.output(DIR, GPIO.LOW)
-                    GPIO.output(PWM, GPIO.LOW)
+                    winch('stop')
                 elif winch_state.value < 0: # motor runs backward
-                    rospy.loginfo("winch backward")
-                    GPIO.output(EN, GPIO.LOW)
-                    GPIO.output(DIR, GPIO.HIGH)
-                    GPIO.output(PWM, GPIO.HIGH)
-                trigger.value = False
+                    winch('down')
+                trigger_winch.value = False
             
+            if trigger_servo.value:
+                if servo_state.value:
+                    servo('open')
+                else:
+                    servo('close')
+                trigger_servo.value = False
 
-            for duty in range(0,101,1):
-                l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-                r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-                rospy.sleep(0.01)
-                
-            for duty in range(100,-1,-1):
-                l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-                r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-                rospy.sleep(0.01)
+
             rate.sleep()
             
     except rospy.ROSInterruptException:
@@ -145,5 +174,6 @@ if __name__ == '__main__':
         GPIO.output(EN, GPIO.LOW)
         GPIO.output(DIR, GPIO.LOW)
         GPIO.output(PWM, GPIO.LOW)   
-        trigger.value = False   
+        trigger_winch.value = False   
+        trigger_servo.value = False
         GPIO.cleanup()
