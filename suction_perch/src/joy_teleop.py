@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-from std_msgs.msg import String, Empty, Float64, Int8
+from std_msgs.msg import String, Empty, Float64, Int8, Bool
 from sensor_msgs.msg import Joy
 import time
 
