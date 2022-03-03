@@ -43,7 +43,8 @@ def ReceiveWinchMessage(data):
     #winch_state.value = data 
     #motor_state.value = int(data)
     
-    rospy.loginfo("Current motor state = " + str(data))
+    test = float(data)
+    rospy.loginfo("Current motor state = " + str(test))
 
 
 if __name__ == '__main__':
