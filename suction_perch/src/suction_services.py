@@ -84,7 +84,7 @@ if __name__ == '__main__':
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
-    subWinch = rospy.Subscriber('winch_state', Int8, ReceiveWinchMessage)
+    subWinch = rospy.Subscriber('winch_state', Float64, ReceiveWinchMessage)
 
     try:
         while not rospy.is_shutdown():
