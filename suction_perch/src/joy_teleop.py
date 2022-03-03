@@ -72,7 +72,7 @@ def ReceiveJoystickMessage(data):
             servo_state = True
         rospy.loginfo("Servo state = {0}".format(servo_state))
         x_pressed = False
-    pub_servos.publish(servo_state)
+    pub_servo.publish(servo_state)
 
 def main():
     global pub_pump
