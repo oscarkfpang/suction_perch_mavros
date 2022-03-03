@@ -20,8 +20,6 @@ EN = 10
 DIR = 9
 PWM = 11
 
-motor_state = 100
-
 SERVO_L = 18
 SERVO_R = 19
 
@@ -42,15 +40,9 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveWinchMessage(data):
-    global motor_state
-    if data == 0:
-        motor_state = 0
-    elif data == 1:
-        motor_state = 1
-    elif data == -1:
-        motor_state = -1    
+    winch_state.value = data 
     #motor_state.value = int(data)
-    rospy.loginfo("Current motor state = {0}".format(data))
+    rospy.loginfo("Current motor state = {0}".format(winch_state.value))
 
 
 if __name__ == '__main__':
@@ -58,6 +50,7 @@ if __name__ == '__main__':
     global subSolenoid
     global pump_state
     global solenoid_state
+    global winch_state
     
     GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
@@ -84,6 +77,7 @@ if __name__ == '__main__':
 
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
+    winch_state = Value(c_int, 0)
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(20) # 10hz
