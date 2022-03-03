@@ -73,16 +73,16 @@ def winch(action):
 def servo(action):
     if action == 'open':
         rospy.loginfo("Opening up servo latching")
-        for duty in range(0,101,1):
+        for duty in range(50,101,5):
             l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
             r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-            rospy.sleep(0.01)
+            rospy.sleep(0.05)
     elif action == 'close':        
         rospy.loginfo("Closing down servo latching")
-        for duty in range(100,-1,-1):
+        for duty in range(100,45,-5):
             l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
             r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-            rospy.sleep(0.01)
+            rospy.sleep(0.05)
 
 if __name__ == '__main__':
     global pump_state
@@ -102,8 +102,8 @@ if __name__ == '__main__':
     GPIO.output(PUMP, GPIO.LOW)
     GPIO.output(SOLENOID, GPIO.LOW)
     
-    l_motor_pwm = GPIO.PWM(SERVO_L, 1000)
-    r_motor_pwm = GPIO.PWM(SERVO_R, 1000)
+    l_motor_pwm = GPIO.PWM(SERVO_L, 500)
+    r_motor_pwm = GPIO.PWM(SERVO_R, 500)
     l_motor_pwm.start(0)
     r_motor_pwm.start(0)
     
