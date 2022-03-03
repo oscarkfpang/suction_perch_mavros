@@ -78,6 +78,7 @@ def main():
     global pub_pump
     global pub_solenoid
     global pub_winch
+    global pub_servo
 
     rospy.init_node('joystick_teleop')
     rate = rospy.Rate(50) # 10hz
