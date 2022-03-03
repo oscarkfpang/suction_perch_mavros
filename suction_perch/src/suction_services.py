@@ -67,13 +67,14 @@ if __name__ == '__main__':
     l_motor_pwm.start(0)
     r_motor_pwm.start(0)
     
-    #GPIO.setup(EN, GPIO.OUT)
-    #GPIO.setup(DIR, GPIO.OUT)
-    #GPIO.setup(PWM, GPIO.OUT)
+    GPIO.setup(EN, GPIO.OUT)
+    GPIO.setup(DIR, GPIO.OUT)
+    GPIO.setup(PWM, GPIO.OUT)
 
-    #GPIO.output(EN, GPIO.LOW)
-    #GPIO.output(DIR, GPIO.LOW)
-    #GPIO.output(PWM, GPIO.LOW)
+    # stop the winch at the beginning
+    GPIO.output(EN, GPIO.LOW)
+    GPIO.output(DIR, GPIO.LOW)
+    GPIO.output(PWM, GPIO.LOW)
 
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
