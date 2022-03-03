@@ -90,7 +90,7 @@ def main():
     pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)  
     pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
     pub_winch = rospy.Publisher('winch_state', Float64, queue_size=1)
-    pub_servos = rospy.Publisher('servo_state', Bool, queue_size=1)
+    pub_servo = rospy.Publisher('servo_state', Bool, queue_size=1)
 
     try:
         while not rospy.is_shutdown():
