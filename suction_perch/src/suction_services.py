@@ -98,7 +98,8 @@ if __name__ == '__main__':
             else:
                 GPIO.output(SOLENOID, GPIO.LOW)
 
-            rospy.loginfo("Get winch state = {0}".format(motor_state))         
+            rospy.loginfo("Get winch state = {0}".format(winch_state.value))         
+            '''
             if motor_state == 1 : # motor runs forward
                 rospy.loginfo("motor state = 1")
                 #GPIO.output(EN, GPIO.LOW)
@@ -114,6 +115,7 @@ if __name__ == '__main__':
                 #GPIO.output(EN, GPIO.LOW)
                 #GPIO.output(DIR, GPIO.HIGH)
                 #GPIO.output(PWM, GPIO.HIGH)
+            '''
 
             for duty in range(0,101,1):
                 l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
