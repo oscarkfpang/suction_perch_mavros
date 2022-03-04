@@ -124,7 +124,7 @@ if __name__ == '__main__':
     trigger_servo = Value(c_bool, False)
     
     rospy.init_node('Electronic_Node')
-    rate = rospy.Rate(10) # 10hz
+    rate = rospy.Rate(50) # 10hz
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
