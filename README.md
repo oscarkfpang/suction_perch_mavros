@@ -111,6 +111,15 @@ SUBSYSTEM=="pwm*", PROGRAM="/bin/sh -c '\
 
 Save the file with `ctrl + x` then `Y` then `enter`
 
+And add the user group gpio to the user (assuming the user name is ubuntu)
+
+```
+sudo groupadd gpio
+sudo usermod -a -G gpio ubuntu
+sudo grep gpio /etc/group
+sudo reboot
+```
+
 Then reboot:
 
 ```bash
