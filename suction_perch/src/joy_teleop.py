@@ -13,12 +13,15 @@ ButtonWinchUp = 3 # for joypad Y Yellow
 ButtonWinchDown = 0 # for joypad A Green
 ButtonWinchStop = 1 # for joypad B Red
 ButtonServo = 2 # for joypad X Blue
+ButtonOverride = 7
 
 rt_pressed = False
 lt_pressed = False
 winch_state = 0
 x_pressed = False
 servo_state = False
+
+override_state = False
 
  
 def ReceiveJoystickMessage(data):
@@ -27,6 +30,14 @@ def ReceiveJoystickMessage(data):
     global winch_state
     global x_pressed
     global servo_state
+    
+    if data.buttons[ButtonOverride]==1:
+        rospy.loginfo("Override Button Pressed")
+        if override_state:
+            override_state = False
+        else:
+            override_state = True
+    pub_override.publish(override_state)
     
     if data.buttons[ButtonPump]==1:
         if not lt_pressed:
@@ -60,7 +71,7 @@ def ReceiveJoystickMessage(data):
     if data.buttons[ButtonWinchStop]==1:
         rospy.loginfo("Winch Stop Button Pressed")
         winch_state = 0.0
-        #pub_winch.publish(winch_state)
+        pub_winch.publish(winch_state)
     
     if data.buttons[ButtonServo]==1:
         if not x_pressed:
@@ -80,6 +91,7 @@ def main():
     global pub_solenoid
     global pub_winch
     global pub_servo
+    global pub_override
 
     rospy.init_node('joystick_teleop')
     rate = rospy.Rate(50) # 10hz
@@ -93,6 +105,7 @@ def main():
     pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
     pub_winch = rospy.Publisher('winch_state', Float64, queue_size=1)
     pub_servo = rospy.Publisher('servo_state', Bool, queue_size=1)
+    pub_override = rospy.Publisher('override', Bool, queue_size=1)
 
     try:
         while not rospy.is_shutdown():

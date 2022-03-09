@@ -53,7 +53,11 @@ def ReceiveServoMessage(data):
         servo_state.value = data.data
         trigger_servo.value = True
         
-    rospy.loginfo("current servo state = {0}".format(servo_state.value))
+    #rospy.loginfo("current servo state = {0}".format(servo_state.value))
+
+def ReceiveOverrideMessage(data):
+    #ignore_servo_cmd.value = data.data
+    return
 
 def winch(action):
     if action == 'up':
@@ -100,6 +104,8 @@ if __name__ == '__main__':
     global servo_state
     global trigger_servo
     
+    global ignore_servo_cmd
+    
     GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
     GPIO.setup(PUMP, GPIO.OUT)           
@@ -131,6 +137,7 @@ if __name__ == '__main__':
     trigger_winch = Value(c_bool, False)
     servo_state = Value(c_bool, False)
     trigger_servo = Value(c_bool, False)
+    ignore_servo_cmd = Value(c_bool, False)
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(50) # 50hz
@@ -139,6 +146,7 @@ if __name__ == '__main__':
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
     subWinch = rospy.Subscriber('winch_state', Float64, ReceiveWinchMessage)
     subServos = rospy.Subscriber('servo_state', Bool, ReceiveServoMessage)
+    subOverride = rospy.Subscriber('override', Bool, ReceiveOverrideMessage)
 
     try:
         while not rospy.is_shutdown():
@@ -155,17 +163,23 @@ if __name__ == '__main__':
             rospy.loginfo("Get winch state = {0}".format(winch_state.value))         
             
             if trigger_winch.value:
-                if winch_state.value > 0 : # motor runs forward
+                if winch_state.value > 0 : # winch up
+                    ignore_servo_cmd.value = False
                     winch('up')
                 elif winch_state.value == 0: # motor stop
                     winch('stop')
-                elif winch_state.value < 0: # motor runs backward
+                elif winch_state.value < 0: # winch down
+                    ignore_servo_cmd.value = True
+                    rospy.loginfo('Open the latch!')
+                    servo('open')
+                    rospy.sleep(0.1)
+                    rospy.loginfo('Winch down!')
                     winch('down')
                 trigger_winch.value = False
             
-            if GPIO.input(SWITCH):
+            if not ignore_servo_cmd.value and GPIO.input(SWITCH):
                 servo('close')
-                rospy.sleep(0.08)
+                rospy.sleep(0.1)
                 winch('stop')
                 servo_state.value = False
                 
