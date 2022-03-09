@@ -23,6 +23,8 @@ PWM = 11
 SERVO_L = 18
 SERVO_R = 19
 
+SWITCH = 17
+
 def ReceivePumpMessage(data):
     if pump_state.value:
         pump_state.value = False
@@ -73,7 +75,7 @@ def winch(action):
 def servo(action):
     if action == 'open':
         rospy.loginfo("Opening up servo latching")
-        for duty in range(0, 11):
+        for duty in range(0, 10): # was 11
             l_motor_pwm.ChangeDutyCycle(duty*5+50) #provide duty cycle in the range 0-100
             r_motor_pwm.ChangeDutyCycle(100-duty*5) #provide duty cycle in the range 0-100                
         #for duty in range(50,101,5):
@@ -83,10 +85,12 @@ def servo(action):
     elif action == 'close':        
         rospy.loginfo("Closing down servo latching")
         #for duty in range(100,45,-5):
-        for duty in range(0, 11):
+        for duty in range(0, 10):
             l_motor_pwm.ChangeDutyCycle(100-duty*5) #provide duty cycle in the range 0-100
             r_motor_pwm.ChangeDutyCycle(duty*5+50) #provide duty cycle in the range 0-100  
             rospy.sleep(0.05)
+    l_motor_pwm.stop()
+    r_motor_pwm.stop()
 
 if __name__ == '__main__':
     global pump_state
@@ -102,6 +106,7 @@ if __name__ == '__main__':
     GPIO.setup(SOLENOID, GPIO.OUT)
     GPIO.setup(SERVO_L, GPIO.OUT)
     GPIO.setup(SERVO_R, GPIO.OUT)
+    GPIO.setup(SWITCH, GPIO.IN)  # SWITCH
     
     GPIO.output(PUMP, GPIO.LOW)
     GPIO.output(SOLENOID, GPIO.LOW)
@@ -128,7 +133,7 @@ if __name__ == '__main__':
     trigger_servo = Value(c_bool, False)
     
     rospy.init_node('Electronic_Node')
-    rate = rospy.Rate(50) # 10hz
+    rate = rospy.Rate(50) # 50hz
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
@@ -158,11 +163,17 @@ if __name__ == '__main__':
                     winch('down')
                 trigger_winch.value = False
             
+            if GPIO.input(SWITCH):
+                servo('close')
+                rospy.sleep(0.08)
+                winch('stop')
+                servo_state.value = False
+                
             if trigger_servo.value:
                 if servo_state.value:
                     servo('open')
-                else:
-                    servo('close')
+                #else:
+                #    servo('close')
                 trigger_servo.value = False
 
 
