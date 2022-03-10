@@ -216,6 +216,8 @@ if __name__ == '__main__':
                     contact.value = 1
                     rospy.sleep(0.05)
                     servo('close')
+                    rospy.sleep(0.05)
+                    winch('stop')
                     rospy.loginfo("Latch is closed!")     
                         
                     
