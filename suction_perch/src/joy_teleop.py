@@ -85,7 +85,7 @@ def ReceiveJoystickMessage(data):
             servo_state = False
         else:
             servo_state = True
-        #rospy.loginfo("Servo state = {0}".format(servo_state))
+        rospy.loginfo("Servo state = {0}".format(servo_state))
         x_pressed = False
 
     pub_override.publish(override_state)    
