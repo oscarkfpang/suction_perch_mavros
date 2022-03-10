@@ -102,7 +102,7 @@ def main():
     global pub_servo
     global pub_override
     global pub_winch_stop
-    global pub_winch_uo
+    global pub_winch_up
     global pub_winch_down
 
     rospy.init_node('joystick_teleop')

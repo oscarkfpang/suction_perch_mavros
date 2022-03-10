@@ -236,6 +236,7 @@ if __name__ == '__main__':
                         winch_state.value = 0 
                         override_winch_cmd.value = 0
                         
+                        
                 if override_winch_cmd.value < 0: # to open the latch and lower the sensor
                     if GPIO.input(SWITCH): # if servo is not latched, continue lowering
                         winch('down')
