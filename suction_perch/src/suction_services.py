@@ -210,7 +210,7 @@ if __name__ == '__main__':
             if override.value: ## and trigger_winch.value:
                 if winch_state.value > 0: # to lower the sensor and open the latch
                     winch('up')    
-                if GPIO.input(SWITCH): 
+                if not GPIO.input(SWITCH): 
                     rospy.loginfo("Switch is pressed! Contact!")     
                     # close the latch and save the existing latch value
                     contact.value = 1
