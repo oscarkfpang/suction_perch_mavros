@@ -211,12 +211,12 @@ if __name__ == '__main__':
                 if winch_state.value > 0: # to lower the sensor and open the latch
                     winch('up)    
                 if GPIO.input(SWITCH): 
-                   rospy.loginfo("Switch is pressed! Contact!")     
-                   # close the latch and save the existing latch value
-                   contact.value = 1
-                   rospy.sleep(0.05)
-                   servo('close')
-                   rospy.loginfo("Latch is closed!")     
+                    rospy.loginfo("Switch is pressed! Contact!")     
+                    # close the latch and save the existing latch value
+                    contact.value = 1
+                    rospy.sleep(0.05)
+                    servo('close')
+                    rospy.loginfo("Latch is closed!")     
                         
                     
 
