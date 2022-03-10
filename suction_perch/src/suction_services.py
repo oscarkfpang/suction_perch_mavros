@@ -10,6 +10,7 @@ from ctypes import c_bool, c_float
 
 import time
 import RPi.GPIO as GPIO            # import RPi.GPIO module  
+import pigpio
 
 # define GPIO pin
 PUMP = 23
@@ -24,6 +25,14 @@ SERVO_L = 18
 SERVO_R = 19
 
 SWITCH = 17
+
+L_OPEN_DC = 90
+L_CLOSE_DC = 97
+R_OPEN_DC = 62
+R_CLOSE_DC = 56
+
+FREQ = 50
+
 
 def ReceivePumpMessage(data):
     if pump_state.value:
@@ -82,21 +91,26 @@ def winch(action):
 def servo(action):
     if action == 'open':
         rospy.loginfo("Opening up servo latching")
+        '''
         for duty in range(0, 11): 
             l_motor_pwm.ChangeDutyCycle(duty*5+50) #provide duty cycle in the range 0-100
-            r_motor_pwm.ChangeDutyCycle(100-duty*5) #provide duty cycle in the range 0-100                
-        #for duty in range(50,101,5):
-        #    l_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-        #    r_motor_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
-            rospy.sleep(0.05)
+            r_motor_pwm.ChangeDutyCycle(100-duty*5) #provide duty cycle in the range 0-100
+        '''                
+        pwm.hardware_PWM(SERVO_L, FREQ, L_OPEN_DC*1000)
+        pwm.hardware_PWM(SERVO_R, FREQ, R_OPEN_DC*1000)
+
     elif action == 'close':        
         rospy.loginfo("Closing down servo latching")
-        #for duty in range(100,45,-5):
+        '''
         for duty in range(0, 11):
             l_motor_pwm.ChangeDutyCycle(100-duty*5) #provide duty cycle in the range 0-100
             r_motor_pwm.ChangeDutyCycle(duty*5+50) #provide duty cycle in the range 0-100  
             rospy.sleep(0.05)
-
+        '''
+        pwm.hardware_PWM(SERVO_L, FREQ, L_CLOSE_DC*1000)
+        pwm.hardware_PWM(SERVO_R, FREQ, R_CLOSE_DC*1000)
+        
+                
 if __name__ == '__main__':
     global pump_state
     global solenoid_state
@@ -107,6 +121,8 @@ if __name__ == '__main__':
     
     global override
     global override_cmd
+    
+    global pwm
     
     GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
@@ -119,10 +135,10 @@ if __name__ == '__main__':
     GPIO.output(PUMP, GPIO.LOW)
     GPIO.output(SOLENOID, GPIO.LOW)
     
-    l_motor_pwm = GPIO.PWM(SERVO_L, 500)
-    r_motor_pwm = GPIO.PWM(SERVO_R, 500)
-    l_motor_pwm.start(0)
-    r_motor_pwm.start(0)
+    #l_motor_pwm = GPIO.PWM(SERVO_L, 500)
+    #r_motor_pwm = GPIO.PWM(SERVO_R, 500)
+    #l_motor_pwm.start(0)
+    #r_motor_pwm.start(0)
     
     GPIO.setup(EN, GPIO.OUT)
     GPIO.setup(DIR, GPIO.OUT)
@@ -132,6 +148,12 @@ if __name__ == '__main__':
     GPIO.output(EN, GPIO.LOW)
     GPIO.output(DIR, GPIO.LOW)
     GPIO.output(PWM, GPIO.LOW)
+    
+    pwm = pigpio.pi() 
+    pwm.set_mode(SERVO_L, pigpio.OUTPUT)
+    pwm.set_mode(SERVO_R, pigpio.OUTPUT)
+    pwm.set_PWM_frequency(SERVO_L, FREQ)
+    pwm.set_PWM_frequency(SERVO_R, FREQ)
 
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
@@ -141,6 +163,7 @@ if __name__ == '__main__':
     trigger_servo = Value(c_bool, False)
     override = Value(c_bool, False)
     override_cmd = Value(c_float, 0)
+    prev_switch_state = 1
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(50) # 50hz
@@ -208,6 +231,10 @@ if __name__ == '__main__':
         
     finally:
         rospy.loginfo("Node stops. Bye-bye!")
+        pwm.set_servo_pulsewidth(SERVO_L,0)
+        pwm.set_servo_pulsewidth(SERVO_R,0)
+        pwm.stop()
+
         GPIO.output(PUMP, GPIO.LOW)
         GPIO.output(SOLENOID, GPIO.LOW)  
         GPIO.output(EN, GPIO.LOW)
