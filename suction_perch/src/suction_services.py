@@ -51,15 +51,24 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveWinchMessage(data):
-    #if override.value:
-    #    override_cmd.value = data.data
-    #    return
+    if override.value:
+        override_winch_cmd.value = data.data
+        return
 
     if winch_state.value != data.data:
         winch_state.value = data.data
         trigger_winch.value = True
 
     #rospy.loginfo("Current motor state = " + str(winch_state.value))
+
+def ReceiveWinchUpMessage(data):
+    override_winch_cmd.value = 1.0
+
+def ReceiveWinchDownMessage(data):
+    override_winch_cmd.value = -1.0
+    
+def ReceiveWinchStopMessage(data):
+    override_winch_cmd.value = 0        
 
 def ReceiveServoMessage(data):
     if servo_state.value != data.data:
@@ -120,7 +129,7 @@ if __name__ == '__main__':
     global trigger_servo
     
     global override
-    global override_cmd
+    global override_winch_cmd
     
     global pwm
     
@@ -162,7 +171,7 @@ if __name__ == '__main__':
     servo_state = Value(c_bool, False)
     trigger_servo = Value(c_bool, False)
     override = Value(c_bool, False)
-    override_cmd = Value(c_float, 0)
+    override_winch_cmd = Value(c_float, 0)
     prev_switch_state = 1
     
     contact = Value(c_bool, False)  ## initialise this to True in production
@@ -175,6 +184,10 @@ if __name__ == '__main__':
     subWinch = rospy.Subscriber('winch_state', Float64, ReceiveWinchMessage)
     subServos = rospy.Subscriber('servo_state', Bool, ReceiveServoMessage)
     subOverride = rospy.Subscriber('override', Bool, ReceiveOverrideMessage)
+    
+    subWinchCmdUp = rospy.Subscriber('winch_cmd_up', Empty, ReceiveWinchUpMessage)
+    subWinchCmdDown = rospy.Subscriber('winch_cmd_down', Empty, ReceiveWinchDownMessage)
+    subWinchCmdStop = rospy.Subscriber('winch_cmd_stop', Empty, ReceiveWinchStopMessage)
 
     try:
         while not rospy.is_shutdown():
@@ -208,18 +221,41 @@ if __name__ == '__main__':
                 trigger_servo.value = False
             
             if override.value: ## and trigger_winch.value:
-                if winch_state.value > 0: # to lower the sensor and open the latch
+                if override_winch_cmd.value > 0: # to lift the sensor and close the latch
                     winch('up')    
-                if not GPIO.input(SWITCH): 
-                    rospy.loginfo("Switch is pressed! Contact!")     
-                    # close the latch and save the existing latch value
-                    contact.value = 1
-                    rospy.sleep(0.05)
-                    servo('close')
-                    rospy.sleep(0.05)
-                    winch('stop')
-                    rospy.loginfo("Latch is closed!")     
+                    rospy.loginfo('Winch Up')
+                    if not GPIO.input(SWITCH): 
+                        rospy.loginfo('Switch is pressed! Contact!')     
+                        # close the latch and save the existing latch value
+                        contact.value = 1
+                        rospy.sleep(0.05)
+                        servo('close')
+                        rospy.sleep(0.05)
+                        winch('stop')
+                        rospy.loginfo('Latch is closed!')    
+                        winch_state.value = 0 
+                        override_winch_cmd.value = 0
                         
+                if override_winch_cmd.value < 0: # to open the latch and lower the sensor
+                    if GPIO.input(SWITCH): # if servo is not latched, continue lowering
+                        winch('down')
+                        rospy.loginfo('Winch down')
+                    else: # if servo is still latched, open the latch and drop it
+                        servo('open')
+                        rospy.sleep(0.2)
+                        rospy.loginfo('Latch is opened')
+                        winch('down')
+                        rospy.loginfo('Lowering the sensor')
+                    
+                    # TODO:
+                    # check at the time when winch down command is issued, how much time it takes for the 
+                    # switch sensor becomes OFF from ON. This may tell whether the sensor is stuck
+                    # in the payload area or not.
+                         
+                if override_winch_cmd.value == 0: # to stop the winch
+                    winch('stop')
+                    rospy.loginfo('Stop the winch')
+                
                     
 
 

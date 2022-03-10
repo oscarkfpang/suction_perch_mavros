@@ -67,14 +67,17 @@ def ReceiveJoystickMessage(data):
     if data.buttons[ButtonWinchUp]==1:
         rospy.loginfo("Winch Up Button Pressed")
         winch_state = 1.0        
+        pub_winch_up.publish(Empty())
     
     if data.buttons[ButtonWinchDown]==1:
         rospy.loginfo("Winch Down Button Pressed")
         winch_state = -1.0
+        pub_winch_down.publish(Empty())
         
     if data.buttons[ButtonWinchStop]==1:
         rospy.loginfo("Winch Stop Button Pressed")
         winch_state = 0.0
+        pub_winch_stop.publish(Empty())
     
     if data.buttons[ButtonServo]==1:
         if not x_pressed:
@@ -110,6 +113,9 @@ def main():
     pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)  
     pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
     pub_winch = rospy.Publisher('winch_state', Float64, queue_size=1)
+    pub_winch_up = rospy.Publisher('winch_cmd_up', Empty, queue_size=1)
+    pub_winch_down = rospy.Publisher('winch_cmd_down', Empty, queue_size=1)
+    pub_winch_stop = rospy.Publisher('winch_cmd_stop', Empty, queue_size=1)    
     pub_servo = rospy.Publisher('servo_state', Bool, queue_size=1)
     pub_override = rospy.Publisher('override', Bool, queue_size=1)
 
