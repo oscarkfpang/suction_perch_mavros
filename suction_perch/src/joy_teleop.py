@@ -101,6 +101,9 @@ def main():
     global pub_winch
     global pub_servo
     global pub_override
+    global pub_winch_stop
+    global pub_winch_uo
+    global pub_winch_down
 
     rospy.init_node('joystick_teleop')
     rate = rospy.Rate(50) # 10hz
