@@ -13,7 +13,7 @@ ButtonWinchUp = 3 # for joypad Y Yellow
 ButtonWinchDown = 0 # for joypad A Green
 ButtonWinchStop = 1 # for joypad B Red
 ButtonServo = 2 # for joypad X Blue
-ButtonOverride = 7
+ButtonOverride = 7 # for start button
 
 rt_pressed = False
 lt_pressed = False
@@ -21,6 +21,7 @@ winch_state = 0
 x_pressed = False
 servo_state = False
 
+s_pressed = False
 override_state = False
 
  
@@ -30,14 +31,20 @@ def ReceiveJoystickMessage(data):
     global winch_state
     global x_pressed
     global servo_state
-    
+    global s_pressed
+    global override_state
+
     if data.buttons[ButtonOverride]==1:
-        rospy.loginfo("Override Button Pressed")
+        if not s_pressed:
+            s_pressed = True
+    
+    if data.buttons[ButtonOverride]==0 and s_pressed:
+        rospy.loginfo("Override Button pressed and released")
+        s_pressed = False
         if override_state:
             override_state = False
         else:
             override_state = True
-    pub_override.publish(override_state)
     
     if data.buttons[ButtonPump]==1:
         if not lt_pressed:
@@ -59,19 +66,15 @@ def ReceiveJoystickMessage(data):
 
     if data.buttons[ButtonWinchUp]==1:
         rospy.loginfo("Winch Up Button Pressed")
-        winch_state = 1.0
-        pub_winch.publish(1.0)
-        
+        winch_state = 1.0        
     
     if data.buttons[ButtonWinchDown]==1:
         rospy.loginfo("Winch Down Button Pressed")
         winch_state = -1.0
-        pub_winch.publish(-1.0)
         
     if data.buttons[ButtonWinchStop]==1:
         rospy.loginfo("Winch Stop Button Pressed")
         winch_state = 0.0
-        pub_winch.publish(winch_state)
     
     if data.buttons[ButtonServo]==1:
         if not x_pressed:
@@ -82,8 +85,11 @@ def ReceiveJoystickMessage(data):
             servo_state = False
         else:
             servo_state = True
-        rospy.loginfo("Servo state = {0}".format(servo_state))
+        #rospy.loginfo("Servo state = {0}".format(servo_state))
         x_pressed = False
+
+    pub_override.publish(override_state)    
+    pub_winch.publish(winch_state)
     pub_servo.publish(servo_state)
 
 def main():

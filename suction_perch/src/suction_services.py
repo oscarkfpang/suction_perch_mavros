@@ -42,6 +42,10 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveWinchMessage(data):
+    if override.value:
+        override_cmd.value = data.data
+        return
+
     if winch_state.value != data.data:
         winch_state.value = data.data
         trigger_winch.value = True
@@ -56,8 +60,7 @@ def ReceiveServoMessage(data):
     #rospy.loginfo("current servo state = {0}".format(servo_state.value))
 
 def ReceiveOverrideMessage(data):
-    #ignore_servo_cmd.value = data.data
-    return
+    override.value = data.data
 
 def winch(action):
     if action == 'up':
@@ -79,7 +82,7 @@ def winch(action):
 def servo(action):
     if action == 'open':
         rospy.loginfo("Opening up servo latching")
-        for duty in range(0, 10): # was 11
+        for duty in range(0, 11): 
             l_motor_pwm.ChangeDutyCycle(duty*5+50) #provide duty cycle in the range 0-100
             r_motor_pwm.ChangeDutyCycle(100-duty*5) #provide duty cycle in the range 0-100                
         #for duty in range(50,101,5):
@@ -89,12 +92,10 @@ def servo(action):
     elif action == 'close':        
         rospy.loginfo("Closing down servo latching")
         #for duty in range(100,45,-5):
-        for duty in range(0, 10):
+        for duty in range(0, 11):
             l_motor_pwm.ChangeDutyCycle(100-duty*5) #provide duty cycle in the range 0-100
             r_motor_pwm.ChangeDutyCycle(duty*5+50) #provide duty cycle in the range 0-100  
             rospy.sleep(0.05)
-    l_motor_pwm.stop()
-    r_motor_pwm.stop()
 
 if __name__ == '__main__':
     global pump_state
@@ -104,7 +105,8 @@ if __name__ == '__main__':
     global servo_state
     global trigger_servo
     
-    global ignore_servo_cmd
+    global override
+    global override_cmd
     
     GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
@@ -112,7 +114,7 @@ if __name__ == '__main__':
     GPIO.setup(SOLENOID, GPIO.OUT)
     GPIO.setup(SERVO_L, GPIO.OUT)
     GPIO.setup(SERVO_R, GPIO.OUT)
-    GPIO.setup(SWITCH, GPIO.IN)  # SWITCH
+    GPIO.setup(SWITCH, GPIO.IN)  
     
     GPIO.output(PUMP, GPIO.LOW)
     GPIO.output(SOLENOID, GPIO.LOW)
@@ -137,7 +139,8 @@ if __name__ == '__main__':
     trigger_winch = Value(c_bool, False)
     servo_state = Value(c_bool, False)
     trigger_servo = Value(c_bool, False)
-    ignore_servo_cmd = Value(c_bool, False)
+    override = Value(c_bool, False)
+    override_cmd = Value(c_float, 0)
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(50) # 50hz
@@ -162,33 +165,40 @@ if __name__ == '__main__':
 
             rospy.loginfo("Get winch state = {0}".format(winch_state.value))         
             
-            if trigger_winch.value:
+            if not override.value and trigger_winch.value:
                 if winch_state.value > 0 : # winch up
-                    ignore_servo_cmd.value = False
+                    override.value = False
                     winch('up')
                 elif winch_state.value == 0: # motor stop
                     winch('stop')
                 elif winch_state.value < 0: # winch down
-                    ignore_servo_cmd.value = True
-                    rospy.loginfo('Open the latch!')
-                    servo('open')
-                    rospy.sleep(0.1)
-                    rospy.loginfo('Winch down!')
                     winch('down')
                 trigger_winch.value = False
-            
-            if not ignore_servo_cmd.value and GPIO.input(SWITCH):
-                servo('close')
-                rospy.sleep(0.1)
-                winch('stop')
-                servo_state.value = False
-                
-            if trigger_servo.value:
+
+            if not override.value and trigger_servo.value:
                 if servo_state.value:
                     servo('open')
-                #else:
-                #    servo('close')
+                else:
+                    servo('close')
                 trigger_servo.value = False
+            
+            if override.value:
+                if override_cmd.value > 0 : # winch up
+                    winch('up')
+                if GPIO.input(SWITCH):
+                    servo('close')
+                    rospy.sleep(0.2)
+                    winch('stop')
+                if override_cmd.value < 0: # winch down
+                    winch('down')
+                    rospy.sleep(0.1)
+                    servo('open')
+                    winch('down')
+
+                if override_cmd.value == 0:
+                    winch('stop')
+                
+
 
 
             rate.sleep()
