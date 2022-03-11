@@ -51,9 +51,9 @@ def ReceiveSolenoidMessage(data):
         rospy.loginfo("Turn Solenoid on")
 
 def ReceiveWinchMessage(data):
-    if override.value:
-        override_winch_cmd.value = data.data
-        return
+    #if override.value:
+    #    override_winch_cmd.value = data.data
+    #    return
 
     if winch_state.value != data.data:
         winch_state.value = data.data
@@ -82,17 +82,17 @@ def ReceiveOverrideMessage(data):
 
 def winch(action):
     if action == 'up':
-        rospy.loginfo("winch up")
+        #rospy.loginfo("winch up")
         GPIO.output(EN, GPIO.LOW)
         GPIO.output(DIR, GPIO.LOW)
         GPIO.output(PWM, GPIO.HIGH)
     elif action == 'down':
-        rospy.loginfo("winch backward")
+        #rospy.loginfo("winch backward")
         GPIO.output(EN, GPIO.LOW)
         GPIO.output(DIR, GPIO.HIGH)
         GPIO.output(PWM, GPIO.HIGH)
     elif action == 'stop':
-        rospy.loginfo("winch stop")
+        #rospy.loginfo("winch stop")
         GPIO.output(EN, GPIO.LOW)
         GPIO.output(DIR, GPIO.LOW)
         GPIO.output(PWM, GPIO.LOW)
@@ -223,7 +223,7 @@ if __name__ == '__main__':
             if override.value: ## and trigger_winch.value:
                 if override_winch_cmd.value > 0: # to lift the sensor and close the latch
                     winch('up')    
-                    rospy.loginfo('Winch Up')
+                    rospy.loginfo('Override Winch Up')
                     if not GPIO.input(SWITCH): 
                         rospy.loginfo('Switch is pressed! Contact!')     
                         # close the latch and save the existing latch value
@@ -233,7 +233,6 @@ if __name__ == '__main__':
                         rospy.sleep(0.05)
                         winch('stop')
                         rospy.loginfo('Latch is closed!')    
-                        winch_state.value = 0 
                         override_winch_cmd.value = 0
                         
                         
