@@ -22,7 +22,7 @@ x_pressed = False
 servo_state = False
 
 s_pressed = False
-override_state = False
+override_state = True
 
  
 def ReceiveJoystickMessage(data):
@@ -104,7 +104,8 @@ def main():
     global pub_winch_stop
     global pub_winch_up
     global pub_winch_down
-
+    
+ 
     rospy.init_node('joystick_teleop')
     rate = rospy.Rate(50) # 10hz
 

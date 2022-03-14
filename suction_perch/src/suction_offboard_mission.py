@@ -35,7 +35,7 @@ class MavrosOffboardSuctionMission():
     FIXME: add flight path assertion (needs transformation from ROS frame to NED)
     """
 
-    def __init__(self, radius=0.1, vx=0.18, vy=0.1, vz=0.8, takeoff_alt=1.0,
+    def __init__(self, radius=0.1, vx=0.15, vy=0.1, vz=0.8, takeoff_alt=1.0,
                  mission_pos=((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0)),
                  goto_pos_time=30, perch_time=60, land_on_wall_time=20, throttle_down_time=10):
         self.radius = radius # consider using a smaller radius in real flight
