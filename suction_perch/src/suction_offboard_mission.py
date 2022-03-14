@@ -118,6 +118,8 @@ class MavrosOffboardSuctionMission():
             '/mavros/setpoint_raw/attitude', AttitudeTarget, queue_size=1)
         self.pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)
         self.pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
+        
+        self.pub_override = rospy.Publisher('override', Bool, queue_size=1)
 
         # ROS subscribers
         self.alt_sub = rospy.Subscriber('mavros/altitude', Altitude,
@@ -143,11 +145,14 @@ class MavrosOffboardSuctionMission():
         self.pressure_sub = rospy.Subscriber('suction_pressure',
                                                Float64,
                                                self.pressure_callback)
+                                               
         # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
         self.pos_thread = Thread(target=self.send_mission_pos, args=())
         self.pos_thread.daemon = True
         self.pos_thread.start()
+        
+        self.pub_override.publish(True)
 
     def altitude_callback(self, data):
         self.altitude = data
@@ -257,7 +262,7 @@ class MavrosOffboardSuctionMission():
         pos.header.stamp = rospy.Time.now()
         return pos
         
-    def make_pos(self):
+    def make_pos(self, yaw=0):
         pos = PoseStamped()
         pos.header = Header()
         pos.header.frame_id = "mission_pos"
@@ -266,6 +271,12 @@ class MavrosOffboardSuctionMission():
         pos.pose.position.x = self.mission_pos[self.mission_cnt.value][0]
         pos.pose.position.y = self.mission_pos[self.mission_cnt.value][1]
         pos.pose.position.z = self.mission_pos[self.mission_cnt.value][2]
+        
+        if yaw != 0:
+            yaw_rad = math.radians(yaw)
+            quaternion = quaternion_from_euler(0, 0, yaw)
+            pos.pose.orientation = Quaternion(*quaternion)
+            
         return pos
         #else:
         #    return self.make_origin_pos()
@@ -1200,7 +1211,7 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("Turn off solenoid")
             self.pub_solenoid.publish(Empty())
             self.solenoid_on.value = False
-            
+            mission_pos_two_stops
 
         # check suction pressure in a loop until suction cup is detached from the wall
         # does it perch to the wall in 'timeout' seconds?
@@ -1524,9 +1535,9 @@ if __name__ == '__main__':
     mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
     
     # mission waypoints for perching test
-    mission_pos_hand = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0), 
+    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.5, 0), (1, 0, 1.5, 0), 
                         (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (-0.5, 0, 1.5, 0), (-0.5, 0, 1.5, 0))
+                        (-0.5, 0, 1.5, 0), (-1, 0, 1.5, 0))
                         
     mission_pos_two_stops = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0),  # 0 1 2
                             (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 3 4 5

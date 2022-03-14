@@ -144,11 +144,6 @@ if __name__ == '__main__':
     GPIO.output(PUMP, GPIO.LOW)
     GPIO.output(SOLENOID, GPIO.LOW)
     
-    #l_motor_pwm = GPIO.PWM(SERVO_L, 500)
-    #r_motor_pwm = GPIO.PWM(SERVO_R, 500)
-    #l_motor_pwm.start(0)
-    #r_motor_pwm.start(0)
-    
     GPIO.setup(EN, GPIO.OUT)
     GPIO.setup(DIR, GPIO.OUT)
     GPIO.setup(PWM, GPIO.OUT)
@@ -172,9 +167,6 @@ if __name__ == '__main__':
     trigger_servo = Value(c_bool, False)
     override = Value(c_bool, False)
     override_winch_cmd = Value(c_float, 0)
-    prev_switch_state = 1
-    
-    contact = Value(c_bool, False)  ## initialise this to True in production
     
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(50) # 50hz
@@ -227,7 +219,6 @@ if __name__ == '__main__':
                     if not GPIO.input(SWITCH): 
                         rospy.loginfo('Switch is pressed! Contact!')     
                         # close the latch and save the existing latch value
-                        contact.value = 1
                         rospy.sleep(0.05)
                         servo('close')
                         rospy.sleep(0.05)
