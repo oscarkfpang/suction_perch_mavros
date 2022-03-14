@@ -1519,7 +1519,7 @@ if __name__ == '__main__':
     mode_group.add_argument('-vel', '--vel-test', action='store_true', help="fly forward and change to velocity setpoint")
     mode_group.add_argument('-hand', '--hand-test', action='store_true', help="move the drone around using hand")
     mode_group.add_argument('-rearm', '--rearm-test', action='store_true', help="rearm the drone after landing to the wall")
-    mode_group.add_argument('-two', '--two-stops', action='store_true', help="perch to the wall twice)
+    mode_group.add_argument('-two', '--two-stops', action='store_true', help="perch to the wall twice")
 
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
 
