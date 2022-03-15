@@ -1026,9 +1026,9 @@ class MavrosOffboardSuctionMission():
         
         if normal_attitude:  
             rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
-            #self.publish_att_raw.value = False
-            #self.mission_cnt.value = 5
-            #rospy.loginfo("STATUS: setpoint_vel_x = -1 ")
+            self.publish_att_raw.value = False
+            self.mission_cnt.value = 5
+            rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
         else:
             rospy.loginfo("STATUS: Drone too heavy / cannot reach the normal attitude!")
             self.publish_att_raw.value = True
@@ -1090,6 +1090,10 @@ class MavrosOffboardSuctionMission():
                     self.throttle_down_start_time = -1
                     break
                 
+                if self.current_throttle.value < 0:
+                    self.current_throttle.value = 0
+                    rospy.loginfo("STATUS: Throttle already zero!")
+                    
                 # detect if is_perched is False
                 if self.debug_mode.value and not self.is_perched.value:
                     rospy.loginfo("Perching is interrupted! Halt the throttle down process!")
@@ -1129,11 +1133,11 @@ class MavrosOffboardSuctionMission():
             return False
         '''
 
-        self.publish_att_raw.value = False
-        self.stationary.value = True
+        #self.publish_att_raw.value = False
+        #self.stationary.value = True
         
-        self.mission_cnt.value = 5
-        rospy.loginfo("STATUS: setpoint_vel_x = -1 ")
+        #self.mission_cnt.value = 5
+        #rospy.loginfo("STATUS: change to velocity setpoint with vx = 0 ")
                 
         # turn off solenoid and fly away from wall
         if self.solenoid_on.value:
@@ -1145,18 +1149,12 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STATUS: *** Turn off suction pump ***")
             self.pub_pump.publish(Empty())
             self.pump_on.value = False
-
-        # wait for 5 sec
-        start_time = rospy.get_time() 
-        wait_period = 5 # in sec, parameter
-        dt = 0
         
-        while dt < wait_period: # in sec
-            rospy.loginfo("STATUS: waiting for 5 second")
-            self.stationary.value = True
-            dt = rospy.get_time() - start_time
+        #while dt < wait_period: # in sec
+        #rospy.loginfo("STATUS: waiting for 5 second")
+        #rospy.sleep(5)
         
-        self.stationary.value = False
+        #self.stationary.value = False
         
 
         # check suction pressure in a loop until suction cup is detached from the wall
@@ -1165,9 +1163,19 @@ class MavrosOffboardSuctionMission():
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
         detach = False
+        
+        start_time = rospy.get_time()
+        
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
                         "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
+            
+            if rospy.get_time() - start_time < 5.0:
+                rospy.loginfo("Waiting for 5 second for suction pressure back to normal")
+                self.stationary.value = True
+            else:
+                self.stationary.value = False
+                
             try:
                 res = self.get_param_srv('SUCTION_IS_PERCH')
                 if res.success and res.value.integer <= 0:
@@ -1481,11 +1489,16 @@ if __name__ == '__main__':
 
     # mission waypoints for velocity setpoint test
     mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
+
+    # mission waypoints for perching test
+    #mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.5, 0), (1, 0, 1.5, 0), 
+    #                    (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
+    #                    (-0.5, 0, 1.5, 0), (-1, 0, 1.5, 0))
     
     # mission waypoints for perching test
-    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.5, 0), (1, 0, 1.5, 0), 
+    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1, 0), (1, 0, 1, 0), 
                         (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (-0.5, 0, 1.5, 0), (-1, 0, 1.5, 0))
+                        (-0.5, 0, 1, 0), (-1, 0, 1, 0))
                         
     mission_pos_two_stops = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0),  # 0 1 2
                             (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 3 4 5
