@@ -286,7 +286,7 @@ class MavrosOffboardSuctionMission():
     def make_pos_target(self):
         pos_target = PositionTarget()
         pos_target.header = Header()
-        pos_target.header.frame_id = "mission_pos_target"
+        pos_target.header.frame_id = "mission_pos_target_zero"
         pos_target.header.stamp = rospy.Time.now()
         pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
                                PositionTarget.FORCE + PositionTarget.IGNORE_YAW_RATE + PositionTarget.IGNORE_PX + \
@@ -313,6 +313,7 @@ class MavrosOffboardSuctionMission():
         '''
         
         if not self.stationary.value:    
+            pos_target.header.frame_id = "mission_pos_target_vel"
             pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
             pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
             pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
@@ -1175,6 +1176,9 @@ class MavrosOffboardSuctionMission():
                 self.stationary.value = True
             else:
                 self.stationary.value = False
+                
+            if rospy.get_time() - start_time > 5.0:
+                rospy.loginfo("****** 5 sec is over!")
                 
             try:
                 res = self.get_param_srv('SUCTION_IS_PERCH')
