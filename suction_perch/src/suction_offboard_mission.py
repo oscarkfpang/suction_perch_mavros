@@ -719,8 +719,8 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
             return False
             
-        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
-        rospy.sleep(10)
+        rospy.loginfo("STATUS: Sleep for 20 sec before re-takeoff")        
+        rospy.sleep(20)
         rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
         
         retakeoff_successful = self.takeoff_from_wall()
@@ -1152,7 +1152,7 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         detach = False
         
-        stationary_period = 7 # sec
+        stationary_period = 5 # sec
         
         start_time = rospy.get_time()
         
@@ -1161,11 +1161,11 @@ class MavrosOffboardSuctionMission():
                         "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
             
             if rospy.get_time() - start_time <= stationary_period:
-                rospy.loginfo("Waiting for 7 sec for suction pressure back to normal")
+                rospy.loginfo("Waiting for {0} sec for suction pressure back to normal".format(stationary_period))
                 self.stationary.value = True
             else:
                 self.stationary.value = False
-                rospy.loginfo("****** 7 sec is over!")
+                rospy.loginfo("****** {0} sec is over!".format(stationary_period))
                 
                 try:
                     res = self.get_param_srv('SUCTION_IS_PERCH')
