@@ -1133,12 +1133,6 @@ class MavrosOffboardSuctionMission():
             rospy.logfatal("Suction pressure is lost or the drone is not perched! Please check!")
             return False
         '''
-
-        #self.publish_att_raw.value = False
-        #self.stationary.value = True
-        
-        #self.mission_cnt.value = 5
-        #rospy.loginfo("STATUS: change to velocity setpoint with vx = 0 ")
                 
         # turn off solenoid and fly away from wall
         if self.solenoid_on.value:
@@ -1149,14 +1143,7 @@ class MavrosOffboardSuctionMission():
         if self.pump_on.value:
             rospy.loginfo("STATUS: *** Turn off suction pump ***")
             self.pub_pump.publish(Empty())
-            self.pump_on.value = False
-        
-        #while dt < wait_period: # in sec
-        #rospy.loginfo("STATUS: waiting for 5 second")
-        #rospy.sleep(5)
-        
-        #self.stationary.value = False
-        
+            self.pump_on.value = False       
 
         # check suction pressure in a loop until suction cup is detached from the wall
         # does it perch to the wall in 'timeout' seconds?
@@ -1165,30 +1152,30 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         detach = False
         
+        stationary_period = 7 # sec
+        
         start_time = rospy.get_time()
         
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
                         "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
             
-            if rospy.get_time() - start_time < 5.0:
-                rospy.loginfo("Waiting for 5 second for suction pressure back to normal")
+            if rospy.get_time() - start_time <= stationary_period:
+                rospy.loginfo("Waiting for 7 sec for suction pressure back to normal")
                 self.stationary.value = True
             else:
                 self.stationary.value = False
+                rospy.loginfo("****** 7 sec is over!"))
                 
-            if rospy.get_time() - start_time > 5.0:
-                rospy.loginfo("****** 5 sec is over!")
-                
-            try:
-                res = self.get_param_srv('SUCTION_IS_PERCH')
-                if res.success and res.value.integer <= 0:
-                    rospy.loginfo(
-                        "SUCTION_IS_PERCH received {0}. drone detaches from the wall! ".format(res.value.integer))
-                    detach = True
-                    break
-            except rospy.ServiceException as e:
-                rospy.logerr(e)
+                try:
+                    res = self.get_param_srv('SUCTION_IS_PERCH')
+                    if res.success and res.value.integer <= 0:
+                        rospy.loginfo(
+                            "SUCTION_IS_PERCH received {0}. drone detaches from the wall! ".format(res.value.integer))
+                        detach = True
+                        break
+                except rospy.ServiceException as e:
+                    rospy.logerr(e)
             try:
                 rate.sleep()
             except rospy.ROSException as e:
@@ -1196,6 +1183,7 @@ class MavrosOffboardSuctionMission():
                 
         if detach:
             self.publish_att_raw.value = False
+            self.stationary.value = False
             self.mission_cnt.value = 6
 
             #if self.pump_on.value:
