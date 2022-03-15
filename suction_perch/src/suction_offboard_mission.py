@@ -312,10 +312,10 @@ class MavrosOffboardSuctionMission():
             pos_target.velocity.z = -1*self.vz
         '''
         
-        if not self.stationary.value:    
-            pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
-            pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
-            pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
+        ###if not self.stationary.value:    
+        pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
+        pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
+        pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
             
         pos_target.yaw = 0 # don't yaw, always point to the front
         return pos_target
@@ -1079,7 +1079,7 @@ class MavrosOffboardSuctionMission():
         # gradually reduce throttle to zero during throttle_timeout
         for i in xrange(throttle_timeout * loop_freq):
             try:
-                self.current_throttle.value -= 0.01
+                self.current_throttle.value -= 0.005
                 # detect SUCTION_IS_LAND param while throttling down
                 res = self.get_param_srv('SUCTION_IS_LAND')
                 if res.success and res.value.integer > 0:
@@ -1146,16 +1146,18 @@ class MavrosOffboardSuctionMission():
 
         # wait for 5 sec
         start_time = rospy.get_time() 
-        wait_period = 4 # in sec, parameter
+        wait_period = 3 # in sec, parameter
         dt = 0
         
+        '''
         self.publish_att_raw.value = True
-        while dt < wait_period: # in 10 sec
-            rospy.loginfo("STATUS: waiting for 5 second")
+        while dt < wait_period: # in sec
+            rospy.loginfo("STATUS: waiting for 3 second")
             self.stationary.value = True
-
+            dt = rospy.get_time() - start_time
+        '''
         self.stationary.value = False
-
+        
 
         # check suction pressure in a loop until suction cup is detached from the wall
         # does it perch to the wall in 'timeout' seconds?
