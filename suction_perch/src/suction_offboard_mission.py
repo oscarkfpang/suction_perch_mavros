@@ -1165,7 +1165,7 @@ class MavrosOffboardSuctionMission():
                 self.stationary.value = True
             else:
                 self.stationary.value = False
-                rospy.loginfo("****** 7 sec is over!"))
+                rospy.loginfo("****** 7 sec is over!")
                 
                 try:
                     res = self.get_param_srv('SUCTION_IS_PERCH')
