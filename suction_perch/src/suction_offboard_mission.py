@@ -1483,14 +1483,14 @@ if __name__ == '__main__':
     mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
 
     # mission waypoints for perching test
-    #mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.5, 0), (1, 0, 1.5, 0), 
-    #                    (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-    #                    (-0.5, 0, 1.5, 0), (-1, 0, 1.5, 0))
+    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.5, 0), (1, 0, 1.5, 0), 
+                        (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
+                        (-0.5, 0, 1.5, 0), (-1, 0, 1.5, 0))
     
     # mission waypoints for perching test
-    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1, 0), (1, 0, 1, 0), 
-                        (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (-0.5, 0, 1, 0), (-1, 0, 1, 0))
+    #mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1, 0), (1, 0, 1, 0), 
+    #                    (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
+    #                    (-0.5, 0, 1, 0), (-1, 0, 1, 0))
                         
     mission_pos_two_stops = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0),  # 0 1 2
                             (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 3 4 5
@@ -1509,7 +1509,7 @@ if __name__ == '__main__':
                                                        goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
         suction_mission.run_mission_perch()
     elif args.rearm_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
                                                        mission_pos=mission_pos_hand,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.run_mission_full()
