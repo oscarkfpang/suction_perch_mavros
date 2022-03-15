@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 from std_msgs.msg import String, Empty, Float64, Int8, Bool
@@ -91,16 +91,11 @@ def ReceiveJoystickMessage(data):
         rospy.loginfo("Servo state = {0}".format(servo_state))
         x_pressed = False
 
-    pub_override.publish(override_state)    
-    pub_winch.publish(winch_state)
-    pub_servo.publish(servo_state)
+
 
 def main():
     global pub_pump
     global pub_solenoid
-    global pub_winch
-    global pub_servo
-    global pub_override
     global pub_winch_stop
     global pub_winch_up
     global pub_winch_down
@@ -125,6 +120,9 @@ def main():
 
     try:
         while not rospy.is_shutdown():
+            pub_override.publish(override_state)    
+            pub_winch.publish(winch_state)
+            pub_servo.publish(servo_state)
             rate.sleep()
     except rospy.ROSInterruptException:
         rospy.loginfo("Joystick Teleop stops! Force Landing")
