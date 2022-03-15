@@ -895,7 +895,7 @@ class MavrosOffboardSuctionMission():
         self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
                                    10, -1)
         self.set_arm(False, 5)
-        self.set_mode("STABILIZED", 5)
+        #self.set_mode("STABILIZED", 5)
         return       
 
     def is_high_attitude(self):
