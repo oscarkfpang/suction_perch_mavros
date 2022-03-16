@@ -157,7 +157,7 @@ class MavrosOffboardSuctionMission():
         self.pos_thread.daemon = True
         self.pos_thread.start()
         
-        self.pub_override.publish(True)
+        #self.pub_override.publish(True) 
 
     def altitude_callback(self, data):
         self.altitude = data

@@ -40,7 +40,7 @@ def ReceiveJoystickMessage(data):
     
     if data.buttons[ButtonOverride]==0 and s_pressed:
         rospy.loginfo("Override Button pressed and released")
-        s_pressed = False
+        #s_pressed = False
         if override_state:
             override_state = False
         else:
@@ -52,7 +52,7 @@ def ReceiveJoystickMessage(data):
     
     if data.buttons[ButtonPump]==0 and lt_pressed:
         rospy.loginfo("Pump Button Pressed and released")
-        pub_pump.publish(Empty())
+        ##pub_pump.publish(Empty())
         lt_pressed = False
 
     if data.buttons[ButtonSolenoid]==1:
@@ -61,7 +61,7 @@ def ReceiveJoystickMessage(data):
     
     if data.buttons[ButtonSolenoid]==0 and rt_pressed:
         rospy.loginfo("Solenoid Button Pressed")
-        pub_solenoid.publish(Empty())
+        ##pub_solenoid.publish(Empty())
         rt_pressed = False
 
     if data.buttons[ButtonWinchUp]==1:
