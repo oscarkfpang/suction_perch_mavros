@@ -119,6 +119,20 @@ def servo(action):
         pwm.hardware_PWM(SERVO_L, FREQ, L_CLOSE_DC*1000)
         pwm.hardware_PWM(SERVO_R, FREQ, R_CLOSE_DC*1000)
         
+def winch_op_state_machine(float state):
+    op = False
+    if state < 0 and winch_op.value  == 0: # 0: drone -> 1: lowering sensor box
+        winch_op.value = state
+        op = True
+    elif state == 0 and winch_op.value < 0: # -1: lowering sensor box -> 0: stop box
+        winch_op.value = 0
+        op = True
+    elif state > 0 and winch_op.value == 0: # 0: stop box -> 1: lifting sensor box
+        winch_op.value = 1
+        op = True
+    else:
+        op = False
+    return op
                 
 if __name__ == '__main__':
     global pump_state
@@ -132,6 +146,8 @@ if __name__ == '__main__':
     global override_winch_cmd
     
     global pwm
+    global pub_winch_op
+    global winch_op
     
     GPIO.setwarnings(False)	
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
@@ -168,6 +184,8 @@ if __name__ == '__main__':
     override = Value(c_bool, False)
     override_winch_cmd = Value(c_float, 0)
     
+    winch_op = Value(c_float, 0)
+    
     rospy.init_node('Electronic_Node')
     rate = rospy.Rate(50) # 50hz
 
@@ -180,6 +198,8 @@ if __name__ == '__main__':
     subWinchCmdUp = rospy.Subscriber('winch_cmd_up', Empty, ReceiveWinchUpMessage)
     subWinchCmdDown = rospy.Subscriber('winch_cmd_down', Empty, ReceiveWinchDownMessage)
     subWinchCmdStop = rospy.Subscriber('winch_cmd_stop', Empty, ReceiveWinchStopMessage)
+    
+    pub_winch_op = rospy.Publisher('winch_op', Bool, queue_size=1)
 
     try:
         while not rospy.is_shutdown():
@@ -247,7 +267,7 @@ if __name__ == '__main__':
                     winch('stop')
                     rospy.loginfo('Stop the winch')
                 
-                    
+                #if winch_op_state_machine(override_winch_cmd.value)
 
 
             rate.sleep()

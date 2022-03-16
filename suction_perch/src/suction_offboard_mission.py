@@ -722,9 +722,14 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
             return False
             
-        rospy.loginfo("STATUS: Sleep for 20 sec before re-takeoff")        
-        rospy.sleep(20)
-        
+        rospy.loginfo("STATUS: Sleep for 30 sec before re-takeoff")        
+        rospy.sleep(10)
+
+        rospy.loginfo("STATUS: 20 sec left")        
+        rospy.sleep(10)        
+
+        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
+        rospy.sleep(10)
         #self.deploy_winch(5)
         
         rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
