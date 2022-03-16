@@ -119,7 +119,7 @@ def servo(action):
         pwm.hardware_PWM(SERVO_L, FREQ, L_CLOSE_DC*1000)
         pwm.hardware_PWM(SERVO_R, FREQ, R_CLOSE_DC*1000)
         
-def winch_op_state_machine(float state):
+def winch_op_state_machine(state):
     op = False
     if state < 0 and winch_op.value  == 0: # 0: drone -> 1: lowering sensor box
         winch_op.value = state
