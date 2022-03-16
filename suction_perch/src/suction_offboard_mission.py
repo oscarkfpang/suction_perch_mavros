@@ -949,7 +949,7 @@ class MavrosOffboardSuctionMission():
         
     def is_normal_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y < 0 #0.15
+        return self.imu_data.orientation.y < 0.07 #0.15
 
     def is_vertical_takeoff_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
@@ -1205,7 +1205,7 @@ class MavrosOffboardSuctionMission():
                         "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
             
             if rospy.get_time() - start_time <= stationary_period:
-                rospy.loginfo("Waiting for {0} sec for suction pressure back to normal".format(stationary_period))
+                rospy.loginfo("Waiting for {0} sec for suction pressure back to normal. Current Throttle = {1}".format(stationary_period, self.current_throttle.value))
                 self.stationary.value = True
             else:
                 self.stationary.value = False
