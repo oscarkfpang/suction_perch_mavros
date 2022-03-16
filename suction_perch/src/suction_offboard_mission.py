@@ -725,7 +725,7 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Sleep for 20 sec before re-takeoff")        
         rospy.sleep(20)
         
-        self.deploy_winch(5)
+        #self.deploy_winch(5)
         
         rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
         
@@ -917,10 +917,10 @@ class MavrosOffboardSuctionMission():
                 if dt <= time:
                     winch_state = -1.0
                     pub_winch_down.publish(Empty())
-                elif time < dt <= time + 3
+                elif time < dt <= time + 3:
                     winch_state = 0.0
                     pub_winch_stop.publish(Empty())
-                elif dt > time + 3
+                elif dt > time + 3:
                     winch_state = 1.0
                     pub_winch_up.publish(Empty())
                     
