@@ -722,13 +722,16 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
             return False
             
-        rospy.loginfo("STATUS: Sleep for 30 sec before re-takeoff")        
+        rospy.loginfo("STATUS: Sleep for 40 sec before re-takeoff")        
         rospy.sleep(10)
 
-        rospy.loginfo("STATUS: 20 sec left")        
-        rospy.sleep(10)        
+        rospy.loginfo("STATUS: 30 sec left")        
+        rospy.sleep(10)   
 
-        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
+        rospy.loginfo("STATUS: 20 sec left")        
+        rospy.sleep(10)     
+
+        rospy.loginfo("STATUS: 10 sec before re-takeoff")        
         rospy.sleep(10)
         #self.deploy_winch(5)
         
@@ -946,7 +949,7 @@ class MavrosOffboardSuctionMission():
         
     def is_normal_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y < 0.15
+        return self.imu_data.orientation.y < 0 #0.15
 
     def is_vertical_takeoff_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
