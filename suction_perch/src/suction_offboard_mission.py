@@ -66,6 +66,7 @@ class MavrosOffboardSuctionMission():
         self.suction_pressure = 0.0
         
         self.stationary = Value(c_bool, False)
+        self.pull_off = Value(c_bool, False)
 
         # ROS services
         service_timeout = 30
@@ -315,6 +316,12 @@ class MavrosOffboardSuctionMission():
             pos_target.velocity.z = -1*self.vz
         '''
         
+        if self.stationary.value:
+            pos_target.header.frame_id = "mission_pos_target_vel_stationary"
+            pos_target.velocity.x = -0.05 # for all -1, 0 and 1
+            pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
+            pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
+            
         if not self.stationary.value:    
             pos_target.header.frame_id = "mission_pos_target_vel"
             pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
@@ -1196,7 +1203,7 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         detach = False
         
-        stationary_period = 5 # sec
+        stationary_period = 6 # sec
         
         start_time = rospy.get_time()
         
