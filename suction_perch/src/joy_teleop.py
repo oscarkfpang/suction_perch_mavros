@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import rospy
 from std_msgs.msg import String, Empty, Float64, Int8, Bool
@@ -116,7 +116,7 @@ def main():
     pub_winch_down = rospy.Publisher('winch_cmd_down', Empty, queue_size=1)
     pub_winch_stop = rospy.Publisher('winch_cmd_stop', Empty, queue_size=1)    
     pub_servo = rospy.Publisher('servo_state', Bool, queue_size=1)
-    pub_override = rospy.Publisher('override', Bool, queue_size=1)
+    pub_override = rospy.Publisher('winch_override', Bool, queue_size=1)
 
     try:
         while not rospy.is_shutdown():

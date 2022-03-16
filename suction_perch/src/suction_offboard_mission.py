@@ -121,7 +121,10 @@ class MavrosOffboardSuctionMission():
         self.pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)
         self.pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
         
-        self.pub_override = rospy.Publisher('override', Bool, queue_size=1)
+        self.pub_override = rospy.Publisher('winch_override', Bool, queue_size=1)
+        self.pub_winch_up = rospy.Publisher('winch_cmd_up', Empty, queue_size=1)
+        self.pub_winch_down = rospy.Publisher('winch_cmd_down', Empty, queue_size=1)
+        self.pub_winch_stop = rospy.Publisher('winch_cmd_stop', Empty, queue_size=1)  
 
         # ROS subscribers
         self.alt_sub = rospy.Subscriber('mavros/altitude', Altitude,
@@ -721,6 +724,9 @@ class MavrosOffboardSuctionMission():
             
         rospy.loginfo("STATUS: Sleep for 20 sec before re-takeoff")        
         rospy.sleep(20)
+        
+        self.deploy_winch(5)
+        
         rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
         
         retakeoff_successful = self.takeoff_from_wall()
@@ -737,12 +743,6 @@ class MavrosOffboardSuctionMission():
             return False
             
         rospy.loginfo("STATUS: Detach is successful. Fly back!")      
-        #self.throttle_down_start_time = -1
-        
-        # suppose self.mission_cnt.value = 5 already
-        #rospy.loginfo("STATUS: Go to waypoint 5")
-        #if self.goto_position(self.goto_pos_time): # for WP 5
-        #    self.mission_cnt.value += 1
         
         rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
         if self.goto_position(self.goto_pos_time): # for WP 6
@@ -898,6 +898,42 @@ class MavrosOffboardSuctionMission():
         self.set_arm(False, 5)
         #self.set_mode("STABILIZED", 5)
         return       
+
+    def deploy_winch(self, time=5):
+        start_time = rospy.get_time() 
+        dt = 0
+        period = time * 2 + 5
+        winch_state = -1.0
+        
+        while dt <= period:
+            if winch_state < 0:
+                rospy.loginfo("STATUS: Lowering sensor box now!")
+            elif winch_state == 0:
+                rospy.loginfo("STATUS: Stop winch")
+            elif winch_state > 0: 
+                rospy.loginfo("STATUS: Lifting up sensor box now!")
+                
+            try:
+                if dt <= time:
+                    winch_state = -1.0
+                    pub_winch_down.publish(Empty())
+                elif time < dt <= time + 3
+                    winch_state = 0.0
+                    pub_winch_stop.publish(Empty())
+                elif dt > time + 3
+                    winch_state = 1.0
+                    pub_winch_up.publish(Empty())
+                    
+                rospy.sleep(0.1)
+                dt = rospy.get_time() - start_time
+            except rospy.ROSException as e:
+                rospy.logfatal("STATUS: Problem in winching! Stop winch now")
+                break    
+        
+        winch_state = 0.0
+        pub_winch_stop.publish(Empty())
+        
+    
 
     def is_high_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))

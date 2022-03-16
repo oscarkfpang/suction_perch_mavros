@@ -175,7 +175,7 @@ if __name__ == '__main__':
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
     subWinch = rospy.Subscriber('winch_state', Float64, ReceiveWinchMessage)
     subServos = rospy.Subscriber('servo_state', Bool, ReceiveServoMessage)
-    subOverride = rospy.Subscriber('override', Bool, ReceiveOverrideMessage)
+    subOverride = rospy.Subscriber('winch_override', Bool, ReceiveOverrideMessage)
     
     subWinchCmdUp = rospy.Subscriber('winch_cmd_up', Empty, ReceiveWinchUpMessage)
     subWinchCmdDown = rospy.Subscriber('winch_cmd_down', Empty, ReceiveWinchDownMessage)
