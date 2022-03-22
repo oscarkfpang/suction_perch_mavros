@@ -295,7 +295,7 @@ class MavrosOffboardSuctionMission():
                 
         att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE
         quaternion = quaternion_from_euler(0, 0, 0)        
-        att_target.thrust = 0.6#self.current_throttle.value
+        att_target.thrust = 0.7 #self.current_throttle.value
         att_target.orientation = Quaternion(*quaternion)
         return att_target
 
