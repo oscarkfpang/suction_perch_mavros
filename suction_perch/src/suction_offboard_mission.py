@@ -47,7 +47,7 @@ class MavrosOffboardSuctionMission():
         self.goto_pos_time = goto_pos_time
         self.perch_time = perch_time
         self.land_on_wall_time = land_on_wall_time
-        self.low_throttle_value = 0.7 # 0.7 for sensor box paylod. 0.5 for no payload
+        self.low_throttle_value = 0.5 # 0.7 for sensor box paylod. 0.5 for no payload
         self.throttle_down_time = throttle_down_time
         self.throttle_down_start_time = -1   # > 0 for real time
 
@@ -295,7 +295,7 @@ class MavrosOffboardSuctionMission():
                 
         att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE
         quaternion = quaternion_from_euler(0, 0, 0)        
-        att_target.thrust = self.current_throttle.value
+        att_target.thrust = 0.6#self.current_throttle.value
         att_target.orientation = Quaternion(*quaternion)
         return att_target
 
@@ -367,7 +367,7 @@ class MavrosOffboardSuctionMission():
         
         if not self.publish_thr_down.value:
             pitch = self.pitch_rate # tested in jmavsim for -ve value = pitch up (flip backward)
-            #self.current_throttle.value = self.low_throttle_value
+            self.current_throttle.value = self.low_throttle_value
             att_target.header.frame_id = "high_pitch_low_throttle"
         else:
             # gradually throttling down
