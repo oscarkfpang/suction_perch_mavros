@@ -1,0 +1,580 @@
+ubuntu@ubuntu:~/catkin_ws/src/suction_perch_mavros$ rosrun suction_perch suction_offboard_mission.py -rearm
+[INFO] [1647370022.537720]: waiting for ROS services
+[INFO] [1647370022.583946]: ROS services are up
+[INFO] [1647370022.665113]: STATUS: connected changed from False to True
+[INFO] [1647370022.677520]: STATUS: mode changed from  to POSCTL
+[INFO] [1647370022.679193]: Full Mission Start...
+[INFO] [1647370022.697675]: STATUS: system_status changed from MAV_STATE_UNINIT to MAV_STATE_STANDBY
+[INFO] [1647370022.716001]: waiting for subscribed topics to be ready
+[INFO] [1647370022.730670]: All topics?= False
+[INFO] [1647370022.738347]: All topics?= False
+[INFO] [1647370022.743058]: All topics?= True
+[INFO] [1647370022.746924]: All topics?= True
+[INFO] [1647370022.751384]: All topics?= [False, False, True, True]
+[INFO] [1647370022.856574]: STATUS: landed state changed from MAV_LANDED_STATE_UNDEFINED to MAV_LANDED_STATE_ON_GROUND
+[INFO] [1647370023.731995]: All topics?= [True, True, True, True]
+[INFO] [1647370023.736533]: Mavros topics ready | seconds: 1.0 of 60
+[INFO] [1647370023.740131]: setting FCU mode: OFFBOARD
+[INFO] [1647370024.158296]: STATUS: mode changed from POSCTL to OFFBOARD
+[INFO] [1647370024.744926]: set mode success | seconds: 1.0 of 5
+[INFO] [1647370024.749083]: trying to ARM the drone
+[INFO] [1647370025.172854]: STATUS: armed state changed from False to True
+[INFO] [1647370025.187974]: STATUS: system_status changed from MAV_STATE_STANDBY to MAV_STATE_ACTIVE
+[INFO] [1647370025.756688]: Successfully ARM the drone in seconds: 1.0 of 5
+[INFO] [1647370025.762186]: attempting to reach position | x: -1, y: 0, z: 1.5 | current position x: -0.83, y: -0.23, z: 0.23
+[INFO] [1647370025.771340]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.833, y: -0.230, z: 0.232 | offset:1.300
+[INFO] [1647370025.968944]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.833, y: -0.230, z: 0.232 | offset:1.300
+[INFO] [1647370026.169073]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.833, y: -0.230, z: 0.232 | offset:1.300
+[INFO] [1647370026.369044]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.833, y: -0.230, z: 0.232 | offset:1.300
+[INFO] [1647370026.569116]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.833, y: -0.230, z: 0.232 | offset:1.299
+[INFO] [1647370026.658477]: STATUS: landed state changed from MAV_LANDED_STATE_ON_GROUND to MAV_LANDED_STATE_IN_AIR
+[INFO] [1647370026.769001]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.833, y: -0.230, z: 0.232 | offset:1.299
+[INFO] [1647370026.968949]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.834, y: -0.230, z: 0.233 | offset:1.298
+[INFO] [1647370027.168727]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.834, y: -0.230, z: 0.234 | offset:1.297
+[INFO] [1647370027.368823]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.835, y: -0.229, z: 0.237 | offset:1.294
+[INFO] [1647370027.568855]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.837, y: -0.227, z: 0.249 | offset:1.282
+[INFO] [1647370027.768887]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.854, y: -0.223, z: 0.277 | offset:1.251
+[INFO] [1647370027.968818]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.888, y: -0.218, z: 0.332 | offset:1.194
+[INFO] [1647370028.168917]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.935, y: -0.210, z: 0.403 | offset:1.119
+[INFO] [1647370028.368864]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.981, y: -0.198, z: 0.470 | offset:1.049
+[INFO] [1647370028.568859]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.022, y: -0.189, z: 0.518 | offset:1.001
+[INFO] [1647370028.769159]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.055, y: -0.179, z: 0.559 | offset:0.959
+[INFO] [1647370028.969164]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.079, y: -0.167, z: 0.604 | offset:0.915
+[INFO] [1647370029.169072]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.095, y: -0.157, z: 0.649 | offset:0.871
+[INFO] [1647370029.369279]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.103, y: -0.148, z: 0.692 | offset:0.828
+[INFO] [1647370029.569017]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.103, y: -0.140, z: 0.737 | offset:0.783
+[INFO] [1647370029.769139]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.092, y: -0.131, z: 0.782 | offset:0.736
+[INFO] [1647370029.969091]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.077, y: -0.119, z: 0.829 | offset:0.686
+[INFO] [1647370030.169386]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.060, y: -0.106, z: 0.876 | offset:0.636
+[INFO] [1647370030.369157]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.040, y: -0.092, z: 0.922 | offset:0.587
+[INFO] [1647370030.569111]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -1.017, y: -0.079, z: 0.966 | offset:0.540
+[INFO] [1647370030.769048]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.995, y: -0.066, z: 1.007 | offset:0.497
+[INFO] [1647370030.968863]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.978, y: -0.054, z: 1.047 | offset:0.457
+[INFO] [1647370031.168888]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.964, y: -0.046, z: 1.083 | offset:0.421
+[INFO] [1647370031.368822]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.952, y: -0.039, z: 1.118 | offset:0.387
+[INFO] [1647370031.568957]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.941, y: -0.034, z: 1.150 | offset:0.356
+[INFO] [1647370031.768827]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.934, y: -0.030, z: 1.180 | offset:0.328
+[INFO] [1647370031.968841]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.930, y: -0.026, z: 1.207 | offset:0.303
+[INFO] [1647370032.168896]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.926, y: -0.022, z: 1.231 | offset:0.280
+[INFO] [1647370032.368846]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.925, y: -0.018, z: 1.253 | offset:0.259
+[INFO] [1647370032.568810]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.925, y: -0.015, z: 1.273 | offset:0.239
+[INFO] [1647370032.768866]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.927, y: -0.013, z: 1.293 | offset:0.220
+[INFO] [1647370032.968821]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.931, y: -0.011, z: 1.311 | offset:0.202
+[INFO] [1647370033.168867]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.935, y: -0.009, z: 1.327 | offset:0.185
+[INFO] [1647370033.368859]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.941, y: -0.007, z: 1.341 | offset:0.170
+[INFO] [1647370033.568864]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.946, y: -0.006, z: 1.354 | offset:0.155
+[INFO] [1647370033.768911]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.950, y: -0.005, z: 1.365 | offset:0.144
+[INFO] [1647370033.968640]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.957, y: -0.004, z: 1.390 | offset:0.118
+[INFO] [1647370034.168916]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.962, y: -0.003, z: 1.417 | offset:0.092
+[INFO] [1647370034.176174]: position reached | seconds: 8.4 of 60
+[INFO] [1647370034.182063]: attempting to reach position | x: 1, y: 0, z: 1.5 | current position x: -0.96, y: -0.00, z: 1.42
+[INFO] [1647370034.187118]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.962, y: -0.003, z: 1.419 | offset:1.964
+[INFO] [1647370034.387745]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.967, y: -0.002, z: 1.439 | offset:1.968
+[INFO] [1647370034.587650]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.956, y: -0.000, z: 1.459 | offset:1.957
+[INFO] [1647370034.787624]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.889, y: 0.002, z: 1.477 | offset:1.889
+[INFO] [1647370034.987616]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.761, y: 0.004, z: 1.483 | offset:1.761
+[INFO] [1647370035.187602]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.612, y: 0.006, z: 1.482 | offset:1.612
+[INFO] [1647370035.387740]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.456, y: 0.009, z: 1.482 | offset:1.456
+[INFO] [1647370035.587473]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.281, y: 0.012, z: 1.482 | offset:1.281
+[INFO] [1647370035.787676]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: -0.089, y: 0.014, z: 1.481 | offset:1.089
+[INFO] [1647370035.987852]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: 0.105, y: 0.016, z: 1.482 | offset:0.895
+[INFO] [1647370036.187851]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: 0.301, y: 0.017, z: 1.481 | offset:0.699
+[INFO] [1647370036.388057]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: 0.492, y: 0.019, z: 1.481 | offset:0.509
+[INFO] [1647370036.587629]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: 0.665, y: 0.017, z: 1.482 | offset:0.336
+[INFO] [1647370036.787658]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: 0.809, y: 0.012, z: 1.486 | offset:0.192
+[INFO] [1647370036.987630]: attempting to reach position | x: 1.0, y: 0.0, z: 1.5 | current position x: 0.925, y: 0.005, z: 1.490 | offset:0.076
+[INFO] [1647370036.993656]: position reached | seconds: 2.8 of 60
+[INFO] [1647370036.997927]: Turn on suction pump
+[INFO] [1647370037.002848]: Turn on Solenoid
+[INFO] [1647370037.008915]: ========= waiting for SUCTION_IS_PERCH for perching =========
+[INFO] [1647370037.018274]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -44175.0387454 | Time left 400 sec
+[INFO] [1647370037.218608]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 399 sec
+[INFO] [1647370037.418633]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 398 sec
+[INFO] [1647370037.618614]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 397 sec
+[INFO] [1647370037.818832]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 396 sec
+[INFO] [1647370038.018780]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 395 sec
+[INFO] [1647370038.218860]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 394 sec
+[INFO] [1647370038.418729]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 393 sec
+[INFO] [1647370038.618673]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 392 sec
+[INFO] [1647370038.818623]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 391 sec
+[INFO] [1647370039.018719]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 390 sec
+[INFO] [1647370039.218628]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 389 sec
+[INFO] [1647370039.418640]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 388 sec
+[INFO] [1647370039.618770]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 387 sec
+[INFO] [1647370039.818789]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 386 sec
+[INFO] [1647370040.018667]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 385 sec
+[INFO] [1647370040.218631]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 384 sec
+[INFO] [1647370040.418629]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -226458.447275 | Time left 383 sec
+[INFO] [1647370040.618659]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -44203.0952959 | Time left 382 sec
+[INFO] [1647370040.818629]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 381 sec
+[INFO] [1647370041.018624]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 380 sec
+[INFO] [1647370041.218620]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 379 sec
+[INFO] [1647370041.418598]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 378 sec
+[INFO] [1647370041.618750]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 377 sec
+[INFO] [1647370041.818996]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 376 sec
+[INFO] [1647370042.018668]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 375 sec
+[INFO] [1647370042.218717]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 374 sec
+[INFO] [1647370042.418687]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 373 sec
+[INFO] [1647370042.618748]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 372 sec
+[INFO] [1647370042.818712]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 371 sec
+[INFO] [1647370043.018660]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -44203.0952959 | Time left 370 sec
+[INFO] [1647370043.218647]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 369 sec
+[INFO] [1647370043.418629]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 368 sec
+[INFO] [1647370043.618620]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 367 sec
+[INFO] [1647370043.818792]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 366 sec
+[INFO] [1647370044.018615]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 365 sec
+[INFO] [1647370044.218679]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 364 sec
+[INFO] [1647370044.418720]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -44175.0387454 | Time left 363 sec
+[INFO] [1647370044.618676]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 362 sec
+[INFO] [1647370044.818702]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 361 sec
+[INFO] [1647370045.018604]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 360 sec
+[INFO] [1647370045.218608]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 359 sec
+[INFO] [1647370045.418627]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -44203.0952959 | Time left 358 sec
+[INFO] [1647370045.618660]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 357 sec
+[INFO] [1647370045.818730]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51357.5156707 | Time left 356 sec
+[INFO] [1647370046.018682]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 355 sec
+[INFO] [1647370046.218612]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -44175.0387454 | Time left 354 sec
+[INFO] [1647370046.418607]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 353 sec
+[INFO] [1647370046.618959]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 352 sec
+[INFO] [1647370046.818691]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 351 sec
+[INFO] [1647370047.018970]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 350 sec
+[INFO] [1647370047.218584]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 349 sec
+[INFO] [1647370047.418626]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 348 sec
+[INFO] [1647370047.618780]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 347 sec
+[INFO] [1647370047.818693]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 346 sec
+[INFO] [1647370048.018610]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 345 sec
+[INFO] [1647370048.218644]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 344 sec
+[INFO] [1647370048.418668]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 343 sec
+[INFO] [1647370048.618682]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 342 sec
+[INFO] [1647370048.818701]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 341 sec
+[INFO] [1647370049.018672]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 340 sec
+[INFO] [1647370049.218824]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 339 sec
+[INFO] [1647370049.418751]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 338 sec
+[INFO] [1647370049.618664]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 337 sec
+[INFO] [1647370049.818658]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -223765.018428 | Time left 336 sec
+[INFO] [1647370050.018609]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 335 sec
+[INFO] [1647370050.218758]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 334 sec
+[INFO] [1647370050.418706]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 333 sec
+[INFO] [1647370050.618697]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 332 sec
+[INFO] [1647370050.818709]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 331 sec
+[INFO] [1647370051.018650]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 330 sec
+[INFO] [1647370051.218598]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 329 sec
+[INFO] [1647370051.418723]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 328 sec
+[INFO] [1647370051.618746]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 327 sec
+[INFO] [1647370051.818617]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 326 sec
+[INFO] [1647370052.018606]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 325 sec
+[INFO] [1647370052.218892]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 324 sec
+[INFO] [1647370052.418966]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 323 sec
+[INFO] [1647370052.618898]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 322 sec
+[INFO] [1647370052.818953]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 321 sec
+[INFO] [1647370053.018890]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 320 sec
+[INFO] [1647370053.218956]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 319 sec
+[INFO] [1647370053.418717]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 318 sec
+[INFO] [1647370053.618609]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 317 sec
+[INFO] [1647370053.818744]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 316 sec
+[INFO] [1647370054.018707]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 315 sec
+[INFO] [1647370054.218612]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 314 sec
+[INFO] [1647370054.419022]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 313 sec
+[INFO] [1647370054.618706]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 312 sec
+[INFO] [1647370054.818646]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 311 sec
+[INFO] [1647370055.018599]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -226458.447275 | Time left 310 sec
+[INFO] [1647370055.218636]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 309 sec
+[INFO] [1647370055.418628]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 308 sec
+[INFO] [1647370055.618639]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 307 sec
+[INFO] [1647370055.818716]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 306 sec
+[INFO] [1647370056.018664]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 305 sec
+[INFO] [1647370056.218723]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 304 sec
+[INFO] [1647370056.418683]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 303 sec
+[INFO] [1647370056.618684]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 302 sec
+[INFO] [1647370056.818599]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 301 sec
+[INFO] [1647370057.018720]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 300 sec
+[INFO] [1647370057.218662]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 299 sec
+[INFO] [1647370057.418672]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 298 sec
+[INFO] [1647370057.618737]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 297 sec
+[INFO] [1647370057.818679]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 296 sec
+[INFO] [1647370058.018679]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 295 sec
+[INFO] [1647370058.218671]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 294 sec
+[INFO] [1647370058.418820]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 293 sec
+[INFO] [1647370058.618852]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 292 sec
+[INFO] [1647370058.818888]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 291 sec
+[INFO] [1647370059.018778]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 290 sec
+[INFO] [1647370059.218701]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -58568.0491465 | Time left 289 sec
+[INFO] [1647370059.418717]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 288 sec
+[INFO] [1647370059.618686]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 287 sec
+[INFO] [1647370059.818608]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 286 sec
+[INFO] [1647370060.018658]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 285 sec
+[INFO] [1647370060.218666]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 284 sec
+[INFO] [1647370060.418428]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 283 sec
+[INFO] [1647370060.618686]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 282 sec
+[INFO] [1647370060.818784]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 281 sec
+[INFO] [1647370061.018600]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 280 sec
+[INFO] [1647370061.218697]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 279 sec
+[INFO] [1647370061.418655]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 278 sec
+[INFO] [1647370061.618688]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 277 sec
+[INFO] [1647370061.818692]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 276 sec
+[INFO] [1647370062.018742]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 275 sec
+[INFO] [1647370062.218543]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 274 sec
+[INFO] [1647370062.418690]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 273 sec
+[INFO] [1647370062.618566]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 272 sec
+[INFO] [1647370062.818677]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 271 sec
+[INFO] [1647370063.018696]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 270 sec
+[INFO] [1647370063.218744]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 269 sec
+[INFO] [1647370063.418602]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 268 sec
+[INFO] [1647370063.618704]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 267 sec
+[INFO] [1647370063.818655]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 266 sec
+[INFO] [1647370064.018718]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -54976.8106838 | Time left 265 sec
+[INFO] [1647370064.218670]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 264 sec
+[INFO] [1647370064.418654]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 263 sec
+[INFO] [1647370064.618655]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 262 sec
+[INFO] [1647370064.818716]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51329.4591202 | Time left 261 sec
+[INFO] [1647370065.018644]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -65694.4129708 | Time left 260 sec
+[INFO] [1647370065.218706]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -29866.1979959 | Time left 259 sec
+[INFO] [1647370065.418757]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 258 sec
+[INFO] [1647370065.618630]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 257 sec
+[INFO] [1647370065.818684]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 256 sec
+[INFO] [1647370066.018672]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 255 sec
+[INFO] [1647370066.218602]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 254 sec
+[INFO] [1647370066.418603]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -51385.5722212 | Time left 253 sec
+[INFO] [1647370066.618641]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -44427.5476999 | Time left 252 sec
+[INFO] [1647370066.818607]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -94592.6599748 | Time left 251 sec
+[INFO] [1647370067.018613]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -130701.440455 | Time left 250 sec
+[INFO] [1647370067.218766]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -130701.440455 | Time left 249 sec
+[INFO] [1647370067.418625]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -123715.359383 | Time left 248 sec
+[INFO] [1647370067.618709]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -181203.231335 | Time left 247 sec
+[INFO] [1647370067.818701]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -226458.447275 | Time left 246 sec
+[INFO] [1647370068.018696]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 245 sec
+[INFO] [1647370068.218707]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 244 sec
+[INFO] [1647370068.418589]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 243 sec
+[INFO] [1647370068.618768]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 242 sec
+[INFO] [1647370068.818600]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 241 sec
+[INFO] [1647370069.018886]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -228029.614102 | Time left 240 sec
+[INFO] [1647370069.218999]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -228029.614102 | Time left 239 sec
+[INFO] [1647370069.418845]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -228029.614102 | Time left 238 sec
+[INFO] [1647370069.618852]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -228029.614102 | Time left 237 sec
+[INFO] [1647370069.818851]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -228029.614102 | Time left 236 sec
+[INFO] [1647370070.018962]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -228029.614102 | Time left 235 sec
+[INFO] [1647370070.218777]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 234 sec
+[INFO] [1647370070.418631]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 233 sec
+[INFO] [1647370070.618761]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 232 sec
+[INFO] [1647370070.818756]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 231 sec
+[INFO] [1647370071.018756]: waiting for SUCTION_IS_PERCH to 1. Current Pressure = data: -224438.375639 | Time left 230 sec
+[INFO] [1647370071.029703]: SUCTION_IS_PERCH received 1. drone is perched to the wall! 
+[INFO] [1647370071.035608]: publish 0 vel setpoint for 3 sec for stabilisation
+[INFO] [1647370074.042604]: ========= waiting for SUCTION_IS_LAND =========
+[INFO] [1647370074.046522]: High Attitude Movement is about to start... 
+[INFO] [1647370074.051826]: ** High Attitude Movement. Count-down to end: 300. Current throttle: 0.0
+[INFO] [1647370074.057264]: IMU data.y = -0.060880574765
+[INFO] [1647370074.252565]: ** High Attitude Movement. Count-down to end: 299. Current throttle: 0.5
+[INFO] [1647370074.256965]: IMU data.y = -0.0485139202319
+[INFO] [1647370074.452275]: ** High Attitude Movement. Count-down to end: 298. Current throttle: 0.5
+[INFO] [1647370074.457840]: IMU data.y = 0.0204593127332
+[INFO] [1647370074.652261]: ** High Attitude Movement. Count-down to end: 297. Current throttle: 0.5
+[INFO] [1647370074.656906]: IMU data.y = 0.13820979483
+[INFO] [1647370074.852066]: ** High Attitude Movement. Count-down to end: 296. Current throttle: 0.5
+[INFO] [1647370074.856471]: IMU data.y = 0.263833729368
+[INFO] [1647370074.860594]: Throttle down from high attitude is about to start... 
+[INFO] [1647370075.052831]: Set Throttle = 0 during vetical landing. Current throttle = 0.495000004768
+[INFO] [1647370075.252499]: Set Throttle = 0 during vetical landing. Current throttle = 0.490000009537
+[INFO] [1647370075.452779]: Set Throttle = 0 during vetical landing. Current throttle = 0.485000014305
+[INFO] [1647370075.652302]: Set Throttle = 0 during vetical landing. Current throttle = 0.480000019073
+[INFO] [1647370075.852499]: Set Throttle = 0 during vetical landing. Current throttle = 0.475000023842
+[INFO] [1647370076.052524]: Set Throttle = 0 during vetical landing. Current throttle = 0.47000002861
+[INFO] [1647370076.252305]: Set Throttle = 0 during vetical landing. Current throttle = 0.465000033379
+[INFO] [1647370076.452303]: Set Throttle = 0 during vetical landing. Current throttle = 0.460000038147
+[INFO] [1647370076.652525]: Set Throttle = 0 during vetical landing. Current throttle = 0.455000042915
+[INFO] [1647370076.852295]: Set Throttle = 0 during vetical landing. Current throttle = 0.450000047684
+[INFO] [1647370077.052445]: Set Throttle = 0 during vetical landing. Current throttle = 0.445000052452
+[INFO] [1647370077.252198]: Set Throttle = 0 during vetical landing. Current throttle = 0.44000005722
+[INFO] [1647370077.452575]: Set Throttle = 0 during vetical landing. Current throttle = 0.435000061989
+[INFO] [1647370077.652706]: Set Throttle = 0 during vetical landing. Current throttle = 0.430000066757
+[INFO] [1647370077.852549]: Set Throttle = 0 during vetical landing. Current throttle = 0.425000071526
+[INFO] [1647370078.052331]: Set Throttle = 0 during vetical landing. Current throttle = 0.420000076294
+[INFO] [1647370078.252131]: Set Throttle = 0 during vetical landing. Current throttle = 0.415000081062
+[INFO] [1647370078.452163]: Set Throttle = 0 during vetical landing. Current throttle = 0.410000085831
+[INFO] [1647370078.652399]: Set Throttle = 0 during vetical landing. Current throttle = 0.405000090599
+[INFO] [1647370078.852252]: Set Throttle = 0 during vetical landing. Current throttle = 0.400000095367
+[INFO] [1647370079.052261]: Set Throttle = 0 during vetical landing. Current throttle = 0.395000100136
+[INFO] [1647370079.252201]: Set Throttle = 0 during vetical landing. Current throttle = 0.390000104904
+[INFO] [1647370079.452333]: Set Throttle = 0 during vetical landing. Current throttle = 0.385000109673
+[INFO] [1647370079.652573]: Set Throttle = 0 during vetical landing. Current throttle = 0.380000114441
+[INFO] [1647370079.852189]: Set Throttle = 0 during vetical landing. Current throttle = 0.375000119209
+[INFO] [1647370080.052202]: Set Throttle = 0 during vetical landing. Current throttle = 0.370000123978
+[INFO] [1647370080.252108]: Set Throttle = 0 during vetical landing. Current throttle = 0.365000128746
+[INFO] [1647370080.452278]: Set Throttle = 0 during vetical landing. Current throttle = 0.360000133514
+[INFO] [1647370080.652274]: Set Throttle = 0 during vetical landing. Current throttle = 0.355000138283
+[INFO] [1647370080.852402]: Set Throttle = 0 during vetical landing. Current throttle = 0.350000143051
+[INFO] [1647370081.052708]: Set Throttle = 0 during vetical landing. Current throttle = 0.34500014782
+[INFO] [1647370081.252524]: Set Throttle = 0 during vetical landing. Current throttle = 0.340000152588
+[INFO] [1647370081.452407]: Set Throttle = 0 during vetical landing. Current throttle = 0.335000157356
+[INFO] [1647370081.652550]: Set Throttle = 0 during vetical landing. Current throttle = 0.330000162125
+[INFO] [1647370081.852199]: Set Throttle = 0 during vetical landing. Current throttle = 0.325000166893
+[INFO] [1647370082.052194]: Set Throttle = 0 during vetical landing. Current throttle = 0.320000171661
+[INFO] [1647370082.252288]: Set Throttle = 0 during vetical landing. Current throttle = 0.31500017643
+[INFO] [1647370082.452189]: Set Throttle = 0 during vetical landing. Current throttle = 0.310000181198
+[INFO] [1647370082.652186]: Set Throttle = 0 during vetical landing. Current throttle = 0.305000185966
+[INFO] [1647370082.852138]: Set Throttle = 0 during vetical landing. Current throttle = 0.300000190735
+[INFO] [1647370083.052332]: Set Throttle = 0 during vetical landing. Current throttle = 0.295000195503
+[INFO] [1647370083.252139]: Set Throttle = 0 during vetical landing. Current throttle = 0.290000200272
+[INFO] [1647370083.452206]: Set Throttle = 0 during vetical landing. Current throttle = 0.28500020504
+[INFO] [1647370083.652215]: Set Throttle = 0 during vetical landing. Current throttle = 0.280000209808
+[INFO] [1647370083.852249]: Set Throttle = 0 during vetical landing. Current throttle = 0.275000214577
+[INFO] [1647370084.052258]: Set Throttle = 0 during vetical landing. Current throttle = 0.270000219345
+[INFO] [1647370084.252163]: Set Throttle = 0 during vetical landing. Current throttle = 0.265000224113
+[INFO] [1647370084.452109]: Set Throttle = 0 during vetical landing. Current throttle = 0.260000228882
+[INFO] [1647370084.652457]: Set Throttle = 0 during vetical landing. Current throttle = 0.25500023365
+[INFO] [1647370084.852200]: Set Throttle = 0 during vetical landing. Current throttle = 0.250000238419
+[INFO] [1647370085.052202]: Set Throttle = 0 during vetical landing. Current throttle = 0.245000243187
+[INFO] [1647370085.252188]: Set Throttle = 0 during vetical landing. Current throttle = 0.240000247955
+[INFO] [1647370085.452217]: Set Throttle = 0 during vetical landing. Current throttle = 0.235000252724
+[INFO] [1647370085.652282]: Set Throttle = 0 during vetical landing. Current throttle = 0.230000257492
+[INFO] [1647370085.852185]: Set Throttle = 0 during vetical landing. Current throttle = 0.22500026226
+[INFO] [1647370086.052185]: Set Throttle = 0 during vetical landing. Current throttle = 0.220000267029
+[INFO] [1647370086.252172]: Set Throttle = 0 during vetical landing. Current throttle = 0.215000271797
+[INFO] [1647370086.452290]: Set Throttle = 0 during vetical landing. Current throttle = 0.210000276566
+[INFO] [1647370086.652088]: Set Throttle = 0 during vetical landing. Current throttle = 0.205000281334
+[INFO] [1647370086.852591]: Set Throttle = 0 during vetical landing. Current throttle = 0.200000286102
+[INFO] [1647370087.052283]: Set Throttle = 0 during vetical landing. Current throttle = 0.195000290871
+[INFO] [1647370087.252650]: Set Throttle = 0 during vetical landing. Current throttle = 0.190000295639
+[INFO] [1647370087.452047]: Set Throttle = 0 during vetical landing. Current throttle = 0.185000300407
+[INFO] [1647370087.652246]: Set Throttle = 0 during vetical landing. Current throttle = 0.180000305176
+[INFO] [1647370087.852280]: Set Throttle = 0 during vetical landing. Current throttle = 0.175000309944
+[INFO] [1647370088.052371]: Set Throttle = 0 during vetical landing. Current throttle = 0.170000314713
+[INFO] [1647370088.252196]: Set Throttle = 0 during vetical landing. Current throttle = 0.165000319481
+[INFO] [1647370088.452198]: Set Throttle = 0 during vetical landing. Current throttle = 0.160000324249
+[INFO] [1647370088.462929]: SUCTION_IS_LAND received 1. drone's pose is vertical! 
+[INFO] [1647370088.466666]: STATUS: Vehicle attached to wall successfully!
+[INFO] [1647370088.493215]: land successful!
+[INFO] [1647370088.497596]: STATUS: Wait for 10 sec for landing to complete
+[INFO] [1647370088.653077]: STATUS: landed state changed from MAV_LANDED_STATE_IN_AIR to MAV_LANDED_STATE_LANDING
+[INFO] [1647370089.158661]: STATUS: mode changed from OFFBOARD to AUTO.LAND
+[INFO] [1647370094.254454]: STATUS: landed state changed from MAV_LANDED_STATE_LANDING to MAV_LANDED_STATE_ON_GROUND
+[INFO] [1647370098.156676]: STATUS: armed state changed from True to False
+[INFO] [1647370098.161975]: STATUS: system_status changed from MAV_STATE_ACTIVE to MAV_STATE_STANDBY
+[INFO] [1647370098.506855]: STATUS: Checking landed state now....
+[INFO] [1647370098.510750]: waiting for landed state | state: MAV_LANDED_STATE_ON_GROUND, index: -1
+[INFO] [1647370098.515098]: landed state confirmed | seconds: 0.0 of 10
+[INFO] [1647370098.518711]: STATUS: Landed on vertical surface successfully! Disarm now.
+[INFO] [1647370098.523297]: trying to DISARM the drone
+[INFO] [1647370098.527139]: Successfully DISARM the drone in seconds: 0.0 of 5
+[INFO] [1647370098.530925]: STATUS: Wait for 3 sec for disarm
+[INFO] [1647370101.539264]: STATUS: MAV_STATE_STANDBY now! 
+[INFO] [1647370101.543941]: STATUS: current mission_cnt value = 5
+[INFO] [1647370101.548378]: STATUS: Sleep for 20 sec before re-takeoff
+[INFO] [1647370121.575201]: STATUS: Perching is successful. Now re-takeoff!
+[INFO] [1647370121.580760]: ================================================================
+[INFO] [1647370121.585533]: STATUS: Set OFFBOARD mode.
+[INFO] [1647370121.589398]: setting FCU mode: OFFBOARD
+[INFO] [1647370122.157788]: STATUS: mode changed from AUTO.LAND to OFFBOARD
+[INFO] [1647370122.596344]: set mode success | seconds: 1.0 of 5
+[INFO] [1647370122.600621]: STATUS: Rearm the drone in vertical pose.
+[INFO] [1647370122.604953]: trying to ARM the drone
+[INFO] [1647370123.156490]: STATUS: armed state changed from False to True
+[INFO] [1647370123.160486]: STATUS: system_status changed from MAV_STATE_STANDBY to MAV_STATE_ACTIVE
+[INFO] [1647370123.610442]: Successfully ARM the drone in seconds: 1.0 of 5
+[INFO] [1647370123.615313]: STATUS: Throttle set from 0.2 to 0.5
+[INFO] [1647370123.619163]: STATUS: Auto_throttling up from 0.1. current throttle = 0.10000000149
+[INFO] [1647370123.819688]: STATUS: Auto_throttling up from 0.1. current throttle = 0.109999999404
+[INFO] [1647370123.856332]: STATUS: landed state changed from MAV_LANDED_STATE_ON_GROUND to MAV_LANDED_STATE_IN_AIR
+[INFO] [1647370124.019673]: STATUS: Auto_throttling up from 0.1. current throttle = 0.119999997318
+[INFO] [1647370124.219772]: STATUS: Auto_throttling up from 0.1. current throttle = 0.129999995232
+[INFO] [1647370124.419718]: STATUS: Auto_throttling up from 0.1. current throttle = 0.140000000596
+[INFO] [1647370124.619644]: STATUS: Auto_throttling up from 0.1. current throttle = 0.15000000596
+[INFO] [1647370124.819641]: STATUS: Auto_throttling up from 0.1. current throttle = 0.160000011325
+[INFO] [1647370125.019655]: STATUS: Auto_throttling up from 0.1. current throttle = 0.170000016689
+[INFO] [1647370125.219897]: STATUS: Auto_throttling up from 0.1. current throttle = 0.180000022054
+[INFO] [1647370125.419718]: STATUS: Auto_throttling up from 0.1. current throttle = 0.190000027418
+[INFO] [1647370125.619677]: STATUS: Auto_throttling up from 0.1. current throttle = 0.200000032783
+[INFO] [1647370125.819663]: STATUS: Auto_throttling up from 0.1. current throttle = 0.210000038147
+[INFO] [1647370126.019682]: STATUS: Auto_throttling up from 0.1. current throttle = 0.220000043511
+[INFO] [1647370126.219675]: STATUS: Auto_throttling up from 0.1. current throttle = 0.230000048876
+[INFO] [1647370126.419640]: STATUS: Auto_throttling up from 0.1. current throttle = 0.24000005424
+[INFO] [1647370126.619661]: STATUS: Auto_throttling up from 0.1. current throttle = 0.250000059605
+[INFO] [1647370126.819701]: STATUS: Auto_throttling up from 0.1. current throttle = 0.260000050068
+[INFO] [1647370127.019652]: STATUS: Auto_throttling up from 0.1. current throttle = 0.270000040531
+[INFO] [1647370127.219656]: STATUS: Auto_throttling up from 0.1. current throttle = 0.280000030994
+[INFO] [1647370127.419659]: STATUS: Auto_throttling up from 0.1. current throttle = 0.290000021458
+[INFO] [1647370127.619690]: STATUS: Auto_throttling up from 0.1. current throttle = 0.300000011921
+[INFO] [1647370127.819687]: STATUS: Auto_throttling up from 0.1. current throttle = 0.310000002384
+[INFO] [1647370128.020336]: STATUS: Auto_throttling up from 0.1. current throttle = 0.319999992847
+[INFO] [1647370128.219722]: STATUS: Auto_throttling up from 0.1. current throttle = 0.329999983311
+[INFO] [1647370128.419621]: STATUS: Auto_throttling up from 0.1. current throttle = 0.339999973774
+[INFO] [1647370128.429515]: SUCTION_IS_LAND received 0. drone takes off vertically from the wall! 
+[INFO] [1647370128.434849]: Gradually throttling up to normal attitude.
+[INFO] [1647370128.438655]: STATUS: waiting for normal attitude. Current throttle: 0.349999964237
+[INFO] [1647370128.443454]: IMU data.y = 0.522433873821
+[INFO] [1647370128.619594]: STATUS: waiting for normal attitude. Current throttle: 0.369999974966
+[INFO] [1647370128.623709]: IMU data.y = 0.515350147625
+[INFO] [1647370128.819633]: STATUS: waiting for normal attitude. Current throttle: 0.389999985695
+[INFO] [1647370128.823876]: IMU data.y = 0.50201121798
+[INFO] [1647370129.019651]: STATUS: waiting for normal attitude. Current throttle: 0.409999996424
+[INFO] [1647370129.023759]: IMU data.y = 0.484628593249
+[INFO] [1647370129.219637]: STATUS: waiting for normal attitude. Current throttle: 0.430000007153
+[INFO] [1647370129.223816]: IMU data.y = 0.466670558668
+[INFO] [1647370129.419607]: STATUS: waiting for normal attitude. Current throttle: 0.450000017881
+[INFO] [1647370129.423804]: IMU data.y = 0.448501937359
+[INFO] [1647370129.619603]: STATUS: waiting for normal attitude. Current throttle: 0.47000002861
+[INFO] [1647370129.623870]: IMU data.y = 0.432197028618
+[INFO] [1647370129.819620]: STATUS: waiting for normal attitude. Current throttle: 0.490000039339
+[INFO] [1647370129.824209]: IMU data.y = 0.419809585152
+[INFO] [1647370130.019628]: STATUS: waiting for normal attitude. Current throttle: 0.510000050068
+[INFO] [1647370130.024167]: IMU data.y = 0.405795968756
+[INFO] [1647370130.219721]: STATUS: waiting for normal attitude. Current throttle: 0.530000030994
+[INFO] [1647370130.223932]: IMU data.y = 0.39075238875
+[INFO] [1647370130.419661]: STATUS: waiting for normal attitude. Current throttle: 0.550000011921
+[INFO] [1647370130.423860]: IMU data.y = 0.375550357667
+[INFO] [1647370130.619641]: STATUS: waiting for normal attitude. Current throttle: 0.569999992847
+[INFO] [1647370130.623857]: IMU data.y = 0.357999124468
+[INFO] [1647370130.819611]: STATUS: waiting for normal attitude. Current throttle: 0.589999973774
+[INFO] [1647370130.823856]: IMU data.y = 0.337742021448
+[INFO] [1647370131.019630]: STATUS: waiting for normal attitude. Current throttle: 0.6099999547
+[INFO] [1647370131.023789]: IMU data.y = 0.315508526261
+[INFO] [1647370131.219663]: STATUS: waiting for normal attitude. Current throttle: 0.629999935627
+[INFO] [1647370131.224180]: IMU data.y = 0.28945773832
+[INFO] [1647370131.419750]: STATUS: waiting for normal attitude. Current throttle: 0.649999916553
+[INFO] [1647370131.424019]: IMU data.y = 0.262147507716
+[INFO] [1647370131.619687]: STATUS: waiting for normal attitude. Current throttle: 0.66999989748
+[INFO] [1647370131.623841]: IMU data.y = 0.234694683786
+[INFO] [1647370131.819544]: STATUS: waiting for normal attitude. Current throttle: 0.689999878407
+[INFO] [1647370131.824184]: IMU data.y = 0.205241612573
+[INFO] [1647370132.019696]: STATUS: waiting for normal attitude. Current throttle: 0.709999859333
+[INFO] [1647370132.023925]: IMU data.y = 0.174025053998
+[INFO] [1647370132.219644]: STATUS: waiting for normal attitude. Current throttle: 0.72999984026
+[INFO] [1647370132.223803]: IMU data.y = 0.139898287143
+[INFO] [1647370132.419613]: STATUS: normal attitude is reached! ready to detach from wall!
+[INFO] [1647370132.423801]: STATUS: change to velocity setpoint_vel_x = -1 for detach 
+[INFO] [1647370132.428187]: STATUS: Re-takeoff is successful. Now detach from wall!
+[INFO] [1647370132.434170]: Begin detaching from wall
+[INFO] [1647370132.438854]: STATUS: *** Turn off solenoid ***
+[INFO] [1647370132.444288]: STATUS: *** Turn off suction pump ***
+[INFO] [1647370132.451287]: ========= waiting for SUCTION_IS_PERCH for detach =========
+[INFO] [1647370132.457242]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 100 sec
+[INFO] [1647370132.461107]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370132.657649]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 99 sec
+[INFO] [1647370132.661966]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370132.857655]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 98 sec
+[INFO] [1647370132.861703]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370133.057650]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 97 sec
+[INFO] [1647370133.061881]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370133.257620]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 96 sec
+[INFO] [1647370133.261625]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370133.457647]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 95 sec
+[INFO] [1647370133.462016]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370133.657644]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 94 sec
+[INFO] [1647370133.661624]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370133.857665]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 93 sec
+[INFO] [1647370133.861737]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370134.057652]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 92 sec
+[INFO] [1647370134.061532]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370134.257668]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 91 sec
+[INFO] [1647370134.261663]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370134.457659]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 90 sec
+[INFO] [1647370134.461453]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370134.657558]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 89 sec
+[INFO] [1647370134.661288]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370134.857643]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 88 sec
+[INFO] [1647370134.861941]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370135.057638]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 87 sec
+[INFO] [1647370135.061512]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370135.257626]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 86 sec
+[INFO] [1647370135.261693]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370135.457839]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -228029.614102 | Time left 85 sec
+[INFO] [1647370135.464549]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370135.657650]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -228029.614102 | Time left 84 sec
+[INFO] [1647370135.661543]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370135.857651]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 83 sec
+[INFO] [1647370135.861493]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370136.057667]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -228029.614102 | Time left 82 sec
+[INFO] [1647370136.062019]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370136.257669]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -217255.898714 | Time left 81 sec
+[INFO] [1647370136.261797]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370136.457666]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -217255.898714 | Time left 80 sec
+[INFO] [1647370136.461590]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370136.657654]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224438.375639 | Time left 79 sec
+[INFO] [1647370136.661817]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370136.857633]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -217087.559411 | Time left 78 sec
+[INFO] [1647370136.861542]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370137.057653]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -173992.69786 | Time left 77 sec
+[INFO] [1647370137.061346]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370137.257632]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -188441.821362 | Time left 76 sec
+[INFO] [1647370137.261878]: Waiting for 5 sec for suction pressure back to normal
+[INFO] [1647370137.457649]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -83818.9445869 | Time left 75 sec
+[INFO] [1647370137.461707]: ****** 5 sec is over!
+[INFO] [1647370137.657661]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -44175.0387454 | Time left 74 sec
+[INFO] [1647370137.661420]: ****** 5 sec is over!
+[INFO] [1647370137.857642]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -44175.0387454 | Time left 73 sec
+[INFO] [1647370137.861520]: ****** 5 sec is over!
+[INFO] [1647370138.057671]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -44876.4525077 | Time left 72 sec
+[INFO] [1647370138.061531]: ****** 5 sec is over!
+[INFO] [1647370138.258690]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -223849.188079 | Time left 71 sec
+[INFO] [1647370138.263275]: ****** 5 sec is over!
+[INFO] [1647370138.457703]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224298.092887 | Time left 70 sec
+[INFO] [1647370138.462111]: ****** 5 sec is over!
+[INFO] [1647370138.657672]: waiting for SUCTION_IS_PERCH to 0. Current Pressure = data: -224129.753584 | Time left 69 sec
+[INFO] [1647370138.662055]: ****** 5 sec is over!
+[INFO] [1647370138.674081]: SUCTION_IS_PERCH received 0. drone detaches from the wall! 
+[INFO] [1647370138.680759]: STATUS: Detach is successful. Fly back!
+[INFO] [1647370138.685788]: STATUS: Go to waypoint 6 (1, 0, 1.5, 0)
+[INFO] [1647370138.689681]: attempting to reach position | x: -0.5, y: 0, z: 1.5 | current position x: 1.13, y: 0.00, z: 0.85
+[INFO] [1647370138.696505]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.129, y: 0.003, z: 0.846 | offset:1.755
+[INFO] [1647370138.896938]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.129, y: -0.015, z: 0.857 | offset:1.752
+[INFO] [1647370139.097175]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.126, y: -0.033, z: 0.902 | offset:1.733
+[INFO] [1647370139.296874]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.134, y: -0.039, z: 0.957 | offset:1.722
+[INFO] [1647370139.496831]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.142, y: -0.036, z: 0.996 | offset:1.718
+[INFO] [1647370139.696817]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.141, y: -0.023, z: 1.011 | offset:1.713
+[INFO] [1647370139.896922]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.103, y: -0.010, z: 1.027 | offset:1.672
+[INFO] [1647370140.096979]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 1.023, y: -0.003, z: 1.049 | offset:1.588
+[INFO] [1647370140.296725]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 0.862, y: -0.009, z: 1.064 | offset:1.430
+[INFO] [1647370140.497232]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 0.662, y: -0.022, z: 1.088 | offset:1.233
+[INFO] [1647370140.696940]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 0.469, y: -0.042, z: 1.122 | offset:1.041
+[INFO] [1647370140.896936]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 0.274, y: -0.062, z: 1.154 | offset:0.850
+[INFO] [1647370141.096865]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: 0.036, y: -0.077, z: 1.188 | offset:0.625
+[INFO] [1647370141.297185]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.176, y: -0.091, z: 1.223 | offset:0.436
+[INFO] [1647370141.497553]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.351, y: -0.105, z: 1.253 | offset:0.307
+[INFO] [1647370141.696833]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.499, y: -0.116, z: 1.277 | offset:0.251
+[INFO] [1647370141.896885]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.625, y: -0.123, z: 1.299 | offset:0.267
+[INFO] [1647370142.096924]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.718, y: -0.126, z: 1.318 | offset:0.310
+[INFO] [1647370142.296871]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.779, y: -0.128, z: 1.333 | offset:0.350
+[INFO] [1647370142.496933]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.820, y: -0.127, z: 1.344 | offset:0.378
+[INFO] [1647370142.696952]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.847, y: -0.123, z: 1.355 | offset:0.396
+[INFO] [1647370142.896989]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.856, y: -0.115, z: 1.366 | offset:0.397
+[INFO] [1647370143.096701]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.849, y: -0.104, z: 1.378 | offset:0.384
+[INFO] [1647370143.297060]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.833, y: -0.092, z: 1.388 | offset:0.363
+[INFO] [1647370143.496941]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.811, y: -0.080, z: 1.397 | offset:0.337
+[INFO] [1647370143.696914]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.783, y: -0.069, z: 1.406 | offset:0.306
+[INFO] [1647370143.897074]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.753, y: -0.059, z: 1.416 | offset:0.273
+[INFO] [1647370144.096922]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.724, y: -0.052, z: 1.426 | offset:0.242
+[INFO] [1647370144.296929]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.697, y: -0.046, z: 1.435 | offset:0.213
+[INFO] [1647370144.497053]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.673, y: -0.040, z: 1.443 | offset:0.186
+[INFO] [1647370144.697348]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.651, y: -0.038, z: 1.449 | offset:0.164
+[INFO] [1647370144.897359]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.632, y: -0.036, z: 1.453 | offset:0.144
+[INFO] [1647370145.096772]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.615, y: -0.035, z: 1.454 | offset:0.129
+[INFO] [1647370145.297078]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.602, y: -0.034, z: 1.455 | offset:0.117
+[INFO] [1647370145.496924]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.591, y: -0.034, z: 1.457 | offset:0.106
+[INFO] [1647370145.697091]: attempting to reach position | x: -0.5, y: 0.0, z: 1.5 | current position x: -0.583, y: -0.034, z: 1.460 | offset:0.098
+[INFO] [1647370145.703959]: position reached | seconds: 7.0 of 60
+[INFO] [1647370145.709908]: STATUS: Go to waypoint 7
+[INFO] [1647370145.716098]: attempting to reach position | x: -1, y: 0, z: 1.5 | current position x: -0.58, y: -0.03, z: 1.46
+[INFO] [1647370145.723259]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.581, y: -0.034, z: 1.461 | offset:0.422
+[INFO] [1647370145.922760]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.575, y: -0.033, z: 1.463 | offset:0.428
+[INFO] [1647370146.122450]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.580, y: -0.033, z: 1.464 | offset:0.423
+[INFO] [1647370146.322624]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.615, y: -0.034, z: 1.464 | offset:0.388
+[INFO] [1647370146.522614]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.680, y: -0.035, z: 1.466 | offset:0.324
+[INFO] [1647370146.722606]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.748, y: -0.034, z: 1.469 | offset:0.256
+[INFO] [1647370146.922495]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.814, y: -0.032, z: 1.473 | offset:0.191
+[INFO] [1647370147.122612]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.882, y: -0.029, z: 1.474 | offset:0.124
+[INFO] [1647370147.322630]: attempting to reach position | x: -1.0, y: 0.0, z: 1.5 | current position x: -0.948, y: -0.024, z: 1.475 | offset:0.062
+[INFO] [1647370147.326622]: position reached | seconds: 1.6 of 60
+[INFO] [1647370147.345043]: land successful!
+[INFO] [1647370147.349191]: waiting for landed state | state: MAV_LANDED_STATE_ON_GROUND, index: -1
+[INFO] [1647370147.448088]: STATUS: landed state changed from MAV_LANDED_STATE_IN_AIR to MAV_LANDED_STATE_LANDING
+[INFO] [1647370148.158014]: STATUS: mode changed from OFFBOARD to AUTO.LAND
+[INFO] [1647370152.450599]: STATUS: landed state changed from MAV_LANDED_STATE_LANDING to MAV_LANDED_STATE_ON_GROUND
+[INFO] [1647370152.556806]: landed state confirmed | seconds: 5.2 of 10
+[INFO] [1647370152.562220]: Disarm for finishing mission!!
+[INFO] [1647370152.567569]: trying to DISARM the drone
+[INFO] [1647370153.155766]: STATUS: armed state changed from True to False
+[INFO] [1647370153.160753]: STATUS: system_status changed from MAV_STATE_ACTIVE to MAV_STATE_STANDBY
+[INFO] [1647370153.577963]: Successfully DISARM the drone in seconds: 1.0 of 5
+[INFO] [1647370153.582755]: =================== Mission Successful! =========================+
+[INFO] [1647370156.156707]: STATUS: system_status changed from MAV_STATE_STANDBY to MAV_STATE_FLIGHT_TERMINATION
+

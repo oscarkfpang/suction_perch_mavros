@@ -1,0 +1,1725 @@
+[INFO] [1646942029.545870]: winch up
+[INFO] [1646942029.550127]: Winch Up
+[INFO] [1646942029.562243]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.566156]: winch up
+[INFO] [1646942029.569781]: Winch Up
+[INFO] [1646942029.582205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.585711]: winch up
+[INFO] [1646942029.589303]: Winch Up
+[INFO] [1646942029.602260]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.605903]: winch up
+[INFO] [1646942029.609558]: Winch Up
+[INFO] [1646942029.622201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.625720]: winch up
+[INFO] [1646942029.629466]: Winch Up
+[INFO] [1646942029.642193]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.645985]: winch up
+[INFO] [1646942029.650262]: Winch Up
+[INFO] [1646942029.662209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.665910]: winch up
+[INFO] [1646942029.669618]: Winch Up
+[INFO] [1646942029.682200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.685930]: winch up
+[INFO] [1646942029.689367]: Winch Up
+[INFO] [1646942029.702264]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.705867]: winch up
+[INFO] [1646942029.709545]: Winch Up
+[INFO] [1646942029.722229]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.725758]: winch up
+[INFO] [1646942029.729226]: Winch Up
+[INFO] [1646942029.742200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.745697]: winch up
+[INFO] [1646942029.749871]: Winch Up
+[INFO] [1646942029.762207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.765879]: winch up
+[INFO] [1646942029.769332]: Winch Up
+[INFO] [1646942029.782225]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.785732]: winch up
+[INFO] [1646942029.789242]: Winch Up
+[INFO] [1646942029.802266]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.805891]: winch up
+[INFO] [1646942029.809341]: Winch Up
+[INFO] [1646942029.822216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.825705]: winch up
+[INFO] [1646942029.829210]: Winch Up
+[INFO] [1646942029.842191]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.845760]: winch up
+[INFO] [1646942029.849933]: Winch Up
+[INFO] [1646942029.862207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.865732]: winch up
+[INFO] [1646942029.869212]: Winch Up
+[INFO] [1646942029.882191]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.885716]: winch up
+[INFO] [1646942029.889176]: Winch Up
+[INFO] [1646942029.902271]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.906182]: winch up
+[INFO] [1646942029.909842]: Winch Up
+[INFO] [1646942029.922209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.925776]: winch up
+[INFO] [1646942029.929290]: Winch Up
+[INFO] [1646942029.942197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.945742]: winch up
+[INFO] [1646942029.950134]: Winch Up
+[INFO] [1646942029.962192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.966234]: winch up
+[INFO] [1646942029.971944]: Winch Up
+[INFO] [1646942029.982457]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942029.987933]: winch up
+[INFO] [1646942029.993415]: Winch Up
+[INFO] [1646942030.002549]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.008213]: winch up
+[INFO] [1646942030.013701]: Winch Up
+[INFO] [1646942030.022452]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.027998]: winch up
+[INFO] [1646942030.033474]: Winch Up
+[INFO] [1646942030.042430]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.047983]: winch up
+[INFO] [1646942030.053738]: Winch Up
+[INFO] [1646942030.062437]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.067539]: winch up
+[INFO] [1646942030.070998]: Winch Up
+[INFO] [1646942030.082183]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.085695]: winch up
+[INFO] [1646942030.089184]: Winch Up
+[INFO] [1646942030.102262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.105791]: winch up
+[INFO] [1646942030.109298]: Winch Up
+[INFO] [1646942030.122208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.125752]: winch up
+[INFO] [1646942030.129280]: Winch Up
+[INFO] [1646942030.142209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.145710]: winch up
+[INFO] [1646942030.149370]: Winch Up
+[INFO] [1646942030.162196]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.165755]: winch up
+[INFO] [1646942030.169399]: Winch Up
+[INFO] [1646942030.182202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.185719]: winch up
+[INFO] [1646942030.189453]: Winch Up
+[INFO] [1646942030.202265]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.205870]: winch up
+[INFO] [1646942030.209551]: Winch Up
+[INFO] [1646942030.222363]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.225925]: winch up
+[INFO] [1646942030.229681]: Winch Up
+[INFO] [1646942030.242210]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.246007]: winch up
+[INFO] [1646942030.249620]: Winch Up
+[INFO] [1646942030.262214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.265712]: winch up
+[INFO] [1646942030.269181]: Winch Up
+[INFO] [1646942030.282221]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.285727]: winch up
+[INFO] [1646942030.289215]: Winch Up
+[INFO] [1646942030.302275]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.305791]: winch up
+[INFO] [1646942030.309235]: Winch Up
+[INFO] [1646942030.322202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.325726]: winch up
+[INFO] [1646942030.329178]: Winch Up
+[INFO] [1646942030.342211]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.345694]: winch up
+[INFO] [1646942030.349203]: Winch Up
+[INFO] [1646942030.362201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.365777]: winch up
+[INFO] [1646942030.369230]: Winch Up
+[INFO] [1646942030.382199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.385674]: winch up
+[INFO] [1646942030.389132]: Winch Up
+[INFO] [1646942030.402261]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.406068]: winch up
+[INFO] [1646942030.409661]: Winch Up
+[INFO] [1646942030.422281]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.425724]: winch up
+[INFO] [1646942030.429176]: Winch Up
+[INFO] [1646942030.442207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.445718]: winch up
+[INFO] [1646942030.449237]: Winch Up
+[INFO] [1646942030.462208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.465768]: winch up
+[INFO] [1646942030.469267]: Winch Up
+[INFO] [1646942030.482206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.485735]: winch up
+[INFO] [1646942030.489182]: Winch Up
+[INFO] [1646942030.502262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.505860]: winch up
+[INFO] [1646942030.509326]: Winch Up
+[INFO] [1646942030.522213]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.525728]: winch up
+[INFO] [1646942030.529195]: Winch Up
+[INFO] [1646942030.542192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.545700]: winch up
+[INFO] [1646942030.549195]: Winch Up
+[INFO] [1646942030.562209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.565857]: winch up
+[INFO] [1646942030.569352]: Winch Up
+[INFO] [1646942030.582206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.585679]: winch up
+[INFO] [1646942030.589193]: Winch Up
+[INFO] [1646942030.602257]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.605914]: winch up
+[INFO] [1646942030.609382]: Winch Up
+[INFO] [1646942030.622201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.625763]: winch up
+[INFO] [1646942030.629231]: Winch Up
+[INFO] [1646942030.642202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.645740]: winch up
+[INFO] [1646942030.649175]: Winch Up
+[INFO] [1646942030.662216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.665736]: winch up
+[INFO] [1646942030.669241]: Winch Up
+[INFO] [1646942030.682206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.685709]: winch up
+[INFO] [1646942030.689237]: Winch Up
+[INFO] [1646942030.702254]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.705880]: winch up
+[INFO] [1646942030.709337]: Winch Up
+[INFO] [1646942030.722234]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.725721]: winch up
+[INFO] [1646942030.729336]: Winch Up
+[INFO] [1646942030.742209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.745703]: winch up
+[INFO] [1646942030.749274]: Winch Up
+[INFO] [1646942030.762201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.765748]: winch up
+[INFO] [1646942030.769249]: Winch Up
+[INFO] [1646942030.782221]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.785759]: winch up
+[INFO] [1646942030.789254]: Winch Up
+[INFO] [1646942030.802257]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.805841]: winch up
+[INFO] [1646942030.809282]: Winch Up
+[INFO] [1646942030.822210]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.825676]: winch up
+[INFO] [1646942030.829182]: Winch Up
+[INFO] [1646942030.842208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.845695]: winch up
+[INFO] [1646942030.849141]: Winch Up
+[INFO] [1646942030.862208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.865778]: winch up
+[INFO] [1646942030.869256]: Winch Up
+[INFO] [1646942030.882218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.885784]: winch up
+[INFO] [1646942030.889276]: Winch Up
+[INFO] [1646942030.902416]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.906201]: winch up
+[INFO] [1646942030.909660]: Winch Up
+[INFO] [1646942030.922197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.925709]: winch up
+[INFO] [1646942030.929413]: Winch Up
+[INFO] [1646942030.942219]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.945683]: winch up
+[INFO] [1646942030.949285]: Winch Up
+[INFO] [1646942030.962231]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.965797]: winch up
+[INFO] [1646942030.969662]: Winch Up
+[INFO] [1646942030.982203]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942030.986008]: winch up
+[INFO] [1646942030.989689]: Winch Up
+[INFO] [1646942031.002590]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.006313]: winch up
+[INFO] [1646942031.009798]: Winch Up
+[INFO] [1646942031.022218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.025773]: winch up
+[INFO] [1646942031.029317]: Winch Up
+[INFO] [1646942031.042192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.047831]: winch up
+[INFO] [1646942031.051380]: Winch Up
+[INFO] [1646942031.062205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.065704]: winch up
+[INFO] [1646942031.069253]: Winch Up
+[INFO] [1646942031.082227]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.085734]: winch up
+[INFO] [1646942031.089207]: Winch Up
+[INFO] [1646942031.102259]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.106103]: winch up
+[INFO] [1646942031.109540]: Winch Up
+[INFO] [1646942031.122202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.125689]: winch up
+[INFO] [1646942031.129137]: Winch Up
+[INFO] [1646942031.142216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.145662]: winch up
+[INFO] [1646942031.149182]: Winch Up
+[INFO] [1646942031.162268]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.165868]: winch up
+[INFO] [1646942031.169371]: Winch Up
+[INFO] [1646942031.182208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.185714]: winch up
+[INFO] [1646942031.189197]: Winch Up
+[INFO] [1646942031.202277]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.206059]: winch up
+[INFO] [1646942031.209488]: Winch Up
+[INFO] [1646942031.222205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.225696]: winch up
+[INFO] [1646942031.229144]: Winch Up
+[INFO] [1646942031.242216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.245730]: winch up
+[INFO] [1646942031.249173]: Winch Up
+[INFO] [1646942031.262523]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.266181]: winch up
+[INFO] [1646942031.269727]: Winch Up
+[INFO] [1646942031.282233]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.285765]: winch up
+[INFO] [1646942031.289244]: Winch Up
+[INFO] [1646942031.302234]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.305994]: winch up
+[INFO] [1646942031.309473]: Winch Up
+[INFO] [1646942031.322232]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.325779]: winch up
+[INFO] [1646942031.329285]: Winch Up
+[INFO] [1646942031.342223]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.345751]: winch up
+[INFO] [1646942031.349308]: Winch Up
+[INFO] [1646942031.362252]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.366010]: winch up
+[INFO] [1646942031.369494]: Winch Up
+[INFO] [1646942031.382214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.385877]: winch up
+[INFO] [1646942031.389348]: Winch Up
+[INFO] [1646942031.402200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.406215]: winch up
+[INFO] [1646942031.409938]: Winch Up
+[INFO] [1646942031.422219]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.425711]: winch up
+[INFO] [1646942031.429228]: Winch Up
+[INFO] [1646942031.442194]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.445704]: winch up
+[INFO] [1646942031.449171]: Winch Up
+[INFO] [1646942031.462266]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.465759]: winch up
+[INFO] [1646942031.469271]: Winch Up
+[INFO] [1646942031.482216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.485746]: winch up
+[INFO] [1646942031.489215]: Winch Up
+[INFO] [1646942031.502188]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.505957]: winch up
+[INFO] [1646942031.509408]: Winch Up
+[INFO] [1646942031.522255]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.525871]: winch up
+[INFO] [1646942031.529328]: Winch Up
+[INFO] [1646942031.542210]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.545719]: winch up
+[INFO] [1646942031.549178]: Winch Up
+[INFO] [1646942031.562262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.565803]: winch up
+[INFO] [1646942031.569283]: Winch Up
+[INFO] [1646942031.582219]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.585749]: winch up
+[INFO] [1646942031.589648]: Winch Up
+[INFO] [1646942031.602203]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.606371]: winch up
+[INFO] [1646942031.609979]: Winch Up
+[INFO] [1646942031.622212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.625757]: winch up
+[INFO] [1646942031.629240]: Winch Up
+[INFO] [1646942031.642214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.645701]: winch up
+[INFO] [1646942031.649187]: Winch Up
+[INFO] [1646942031.662252]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.665784]: winch up
+[INFO] [1646942031.669379]: Winch Up
+[INFO] [1646942031.682212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.685739]: winch up
+[INFO] [1646942031.689257]: Winch Up
+[INFO] [1646942031.702203]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.706706]: winch up
+[INFO] [1646942031.710220]: Winch Up
+[INFO] [1646942031.722198]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.725695]: winch up
+[INFO] [1646942031.729210]: Winch Up
+[INFO] [1646942031.742221]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.745712]: winch up
+[INFO] [1646942031.749461]: Winch Up
+[INFO] [1646942031.762260]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.765788]: winch up
+[INFO] [1646942031.769334]: Winch Up
+[INFO] [1646942031.782220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.786044]: winch up
+[INFO] [1646942031.789751]: Winch Up
+[INFO] [1646942031.802193]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.806665]: winch up
+[INFO] [1646942031.810185]: Winch Up
+[INFO] [1646942031.822196]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.825721]: winch up
+[INFO] [1646942031.829190]: Winch Up
+[INFO] [1646942031.842215]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.845698]: winch up
+[INFO] [1646942031.849217]: Winch Up
+[INFO] [1646942031.862254]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.865854]: winch up
+[INFO] [1646942031.869433]: Winch Up
+[INFO] [1646942031.882205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.885695]: winch up
+[INFO] [1646942031.889153]: Winch Up
+[INFO] [1646942031.902217]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.906336]: winch up
+[INFO] [1646942031.909955]: Winch Up
+[INFO] [1646942031.922221]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.925736]: winch up
+[INFO] [1646942031.929201]: Winch Up
+[INFO] [1646942031.942199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.945745]: winch up
+[INFO] [1646942031.949244]: Winch Up
+[INFO] [1646942031.962261]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.965770]: winch up
+[INFO] [1646942031.969243]: Winch Up
+[INFO] [1646942031.982211]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942031.985726]: winch up
+[INFO] [1646942031.989221]: Winch Up
+[INFO] [1646942032.002202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.006376]: winch up
+[INFO] [1646942032.009938]: Winch Up
+[INFO] [1646942032.022231]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.025783]: winch up
+[INFO] [1646942032.029239]: Winch Up
+[INFO] [1646942032.042209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.045796]: winch up
+[INFO] [1646942032.049337]: Winch Up
+[INFO] [1646942032.062272]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.065865]: winch up
+[INFO] [1646942032.069315]: Winch Up
+[INFO] [1646942032.082201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.085747]: winch up
+[INFO] [1646942032.089209]: Winch Up
+[INFO] [1646942032.102200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.106315]: winch up
+[INFO] [1646942032.109877]: Winch Up
+[INFO] [1646942032.122202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.125730]: winch up
+[INFO] [1646942032.129203]: Winch Up
+[INFO] [1646942032.142206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.145685]: winch up
+[INFO] [1646942032.149151]: Winch Up
+[INFO] [1646942032.162263]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.165789]: winch up
+[INFO] [1646942032.169270]: Winch Up
+[INFO] [1646942032.182199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.185701]: winch up
+[INFO] [1646942032.189167]: Winch Up
+[INFO] [1646942032.202195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.205994]: winch up
+[INFO] [1646942032.210050]: Winch Up
+[INFO] [1646942032.222210]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.225720]: winch up
+[INFO] [1646942032.229229]: Winch Up
+[INFO] [1646942032.242209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.245679]: winch up
+[INFO] [1646942032.249185]: Winch Up
+[INFO] [1646942032.262259]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.265858]: winch up
+[INFO] [1646942032.269337]: Winch Up
+[INFO] [1646942032.282226]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.285686]: winch up
+[INFO] [1646942032.289173]: Winch Up
+[INFO] [1646942032.302198]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.305803]: winch up
+[INFO] [1646942032.310012]: Winch Up
+[INFO] [1646942032.322230]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.326032]: winch up
+[INFO] [1646942032.329699]: Winch Up
+[INFO] [1646942032.342206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.345920]: winch up
+[INFO] [1646942032.349603]: Winch Up
+[INFO] [1646942032.362263]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.366103]: winch up
+[INFO] [1646942032.369754]: Winch Up
+[INFO] [1646942032.382224]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.385987]: winch up
+[INFO] [1646942032.389629]: Winch Up
+[INFO] [1646942032.402197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.406112]: winch up
+[INFO] [1646942032.410133]: Winch Up
+[INFO] [1646942032.422220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.425945]: winch up
+[INFO] [1646942032.429604]: Winch Up
+[INFO] [1646942032.442208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.445934]: winch up
+[INFO] [1646942032.449568]: Winch Up
+[INFO] [1646942032.462270]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.466049]: winch up
+[INFO] [1646942032.469705]: Winch Up
+[INFO] [1646942032.482289]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.486043]: winch up
+[INFO] [1646942032.489686]: Winch Up
+[INFO] [1646942032.502223]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.506021]: winch up
+[INFO] [1646942032.509886]: Winch Up
+[INFO] [1646942032.522222]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.526072]: winch up
+[INFO] [1646942032.529753]: Winch Up
+[INFO] [1646942032.542208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.545950]: winch up
+[INFO] [1646942032.549599]: Winch Up
+[INFO] [1646942032.562272]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.565860]: winch up
+[INFO] [1646942032.569687]: Winch Up
+[INFO] [1646942032.582209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.585956]: winch up
+[INFO] [1646942032.589634]: Winch Up
+[INFO] [1646942032.602198]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.605844]: winch up
+[INFO] [1646942032.609798]: Winch Up
+[INFO] [1646942032.622209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.625709]: winch up
+[INFO] [1646942032.629178]: Winch Up
+[INFO] [1646942032.642212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.645747]: winch up
+[INFO] [1646942032.649302]: Winch Up
+[INFO] [1646942032.662266]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.665800]: winch up
+[INFO] [1646942032.669274]: Winch Up
+[INFO] [1646942032.682208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.685713]: winch up
+[INFO] [1646942032.689161]: Winch Up
+[INFO] [1646942032.702194]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.705675]: winch up
+[INFO] [1646942032.709446]: Winch Up
+[INFO] [1646942032.722230]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.725748]: winch up
+[INFO] [1646942032.729215]: Winch Up
+[INFO] [1646942032.742198]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.745671]: winch up
+[INFO] [1646942032.749164]: Winch Up
+[INFO] [1646942032.762256]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.765848]: winch up
+[INFO] [1646942032.769267]: Winch Up
+[INFO] [1646942032.782216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.785721]: winch up
+[INFO] [1646942032.789185]: Winch Up
+[INFO] [1646942032.802202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.805860]: winch up
+[INFO] [1646942032.809588]: Winch Up
+[INFO] [1646942032.822212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.825738]: winch up
+[INFO] [1646942032.829286]: Winch Up
+[INFO] [1646942032.842199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.845703]: winch up
+[INFO] [1646942032.849242]: Winch Up
+[INFO] [1646942032.862262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.865792]: winch up
+[INFO] [1646942032.869261]: Winch Up
+[INFO] [1646942032.882216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.885706]: winch up
+[INFO] [1646942032.889180]: Winch Up
+[INFO] [1646942032.902198]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.905690]: winch up
+[INFO] [1646942032.910203]: Winch Up
+[INFO] [1646942032.922199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.925754]: winch up
+[INFO] [1646942032.929274]: Winch Up
+[INFO] [1646942032.942204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.945721]: winch up
+[INFO] [1646942032.949313]: Winch Up
+[INFO] [1646942032.962300]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.965918]: winch up
+[INFO] [1646942032.969413]: Winch Up
+[INFO] [1646942032.982224]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942032.985796]: winch up
+[INFO] [1646942032.989275]: Winch Up
+[INFO] [1646942033.002197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.005702]: winch up
+[INFO] [1646942033.010000]: Winch Up
+[INFO] [1646942033.022262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.025934]: winch up
+[INFO] [1646942033.029410]: Winch Up
+[INFO] [1646942033.042197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.045698]: winch up
+[INFO] [1646942033.049196]: Winch Up
+[INFO] [1646942033.062265]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.065870]: winch up
+[INFO] [1646942033.069331]: Winch Up
+[INFO] [1646942033.082214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.085705]: winch up
+[INFO] [1646942033.089370]: Winch Up
+[INFO] [1646942033.102182]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.105650]: winch up
+[INFO] [1646942033.109950]: Winch Up
+[INFO] [1646942033.122229]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.126042]: winch up
+[INFO] [1646942033.129737]: Winch Up
+[INFO] [1646942033.142210]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.145991]: winch up
+[INFO] [1646942033.149712]: Winch Up
+[INFO] [1646942033.162251]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.166091]: winch up
+[INFO] [1646942033.169797]: Winch Up
+[INFO] [1646942033.182220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.185692]: winch up
+[INFO] [1646942033.189427]: Winch Up
+[INFO] [1646942033.202221]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.205979]: winch up
+[INFO] [1646942033.210146]: Winch Up
+[INFO] [1646942033.222225]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.225890]: winch up
+[INFO] [1646942033.229326]: Winch Up
+[INFO] [1646942033.242226]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.245781]: winch up
+[INFO] [1646942033.249358]: Winch Up
+[INFO] [1646942033.262271]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.265855]: winch up
+[INFO] [1646942033.269328]: Winch Up
+[INFO] [1646942033.282205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.285691]: winch up
+[INFO] [1646942033.289156]: Winch Up
+[INFO] [1646942033.302200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.305799]: winch up
+[INFO] [1646942033.310010]: Winch Up
+[INFO] [1646942033.322214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.325913]: winch up
+[INFO] [1646942033.329397]: Winch Up
+[INFO] [1646942033.342207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.345740]: winch up
+[INFO] [1646942033.349227]: Winch Up
+[INFO] [1646942033.362270]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.365881]: winch up
+[INFO] [1646942033.369330]: Winch Up
+[INFO] [1646942033.382216]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.385779]: winch up
+[INFO] [1646942033.389248]: Winch Up
+[INFO] [1646942033.402207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.405787]: winch up
+[INFO] [1646942033.409546]: Winch Up
+[INFO] [1646942033.422209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.425781]: winch up
+[INFO] [1646942033.429265]: Winch Up
+[INFO] [1646942033.442231]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.445848]: winch up
+[INFO] [1646942033.449311]: Winch Up
+[INFO] [1646942033.462277]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.465916]: winch up
+[INFO] [1646942033.469346]: Winch Up
+[INFO] [1646942033.482223]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.485702]: winch up
+[INFO] [1646942033.489185]: Winch Up
+[INFO] [1646942033.502192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.505661]: winch up
+[INFO] [1646942033.509241]: Winch Up
+[INFO] [1646942033.522221]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.525799]: winch up
+[INFO] [1646942033.529318]: Winch Up
+[INFO] [1646942033.542214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.545771]: winch up
+[INFO] [1646942033.549336]: Winch Up
+[INFO] [1646942033.562274]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.565920]: winch up
+[INFO] [1646942033.569378]: Winch Up
+[INFO] [1646942033.582232]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.585716]: winch up
+[INFO] [1646942033.589171]: Winch Up
+[INFO] [1646942033.602207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.605677]: winch up
+[INFO] [1646942033.609333]: Winch Up
+[INFO] [1646942033.622206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.625764]: winch up
+[INFO] [1646942033.629249]: Winch Up
+[INFO] [1646942033.642211]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.645706]: winch up
+[INFO] [1646942033.649141]: Winch Up
+[INFO] [1646942033.662268]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.665782]: winch up
+[INFO] [1646942033.669305]: Winch Up
+[INFO] [1646942033.682215]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.685765]: winch up
+[INFO] [1646942033.689292]: Winch Up
+[INFO] [1646942033.702199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.705664]: winch up
+[INFO] [1646942033.709293]: Winch Up
+[INFO] [1646942033.722204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.725734]: winch up
+[INFO] [1646942033.729291]: Winch Up
+[INFO] [1646942033.742200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.745730]: winch up
+[INFO] [1646942033.749229]: Winch Up
+[INFO] [1646942033.762296]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.765897]: winch up
+[INFO] [1646942033.769345]: Winch Up
+[INFO] [1646942033.782217]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.785750]: winch up
+[INFO] [1646942033.789238]: Winch Up
+[INFO] [1646942033.802208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.805733]: winch up
+[INFO] [1646942033.809304]: Winch Up
+[INFO] [1646942033.822205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.825684]: winch up
+[INFO] [1646942033.829114]: Winch Up
+[INFO] [1646942033.842226]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.846026]: winch up
+[INFO] [1646942033.849733]: Winch Up
+[INFO] [1646942033.862273]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.866111]: winch up
+[INFO] [1646942033.869768]: Winch Up
+[INFO] [1646942033.882240]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.885999]: winch up
+[INFO] [1646942033.889710]: Winch Up
+[INFO] [1646942033.902204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.906025]: winch up
+[INFO] [1646942033.909585]: Winch Up
+[INFO] [1646942033.922199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.925748]: winch up
+[INFO] [1646942033.929326]: Winch Up
+[INFO] [1646942033.942197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.945670]: winch up
+[INFO] [1646942033.949166]: Winch Up
+[INFO] [1646942033.962272]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.965874]: winch up
+[INFO] [1646942033.969303]: Winch Up
+[INFO] [1646942033.982220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942033.985764]: winch up
+[INFO] [1646942033.989277]: Winch Up
+[INFO] [1646942034.002193]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.005659]: winch up
+[INFO] [1646942034.009172]: Winch Up
+[INFO] [1646942034.022246]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.025948]: winch up
+[INFO] [1646942034.029441]: Winch Up
+[INFO] [1646942034.042214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.045691]: winch up
+[INFO] [1646942034.049203]: Winch Up
+[INFO] [1646942034.062271]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.065881]: winch up
+[INFO] [1646942034.069355]: Winch Up
+[INFO] [1646942034.082220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.085799]: winch up
+[INFO] [1646942034.089293]: Winch Up
+[INFO] [1646942034.102187]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.105633]: winch up
+[INFO] [1646942034.109156]: Winch Up
+[INFO] [1646942034.122178]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.125743]: winch up
+[INFO] [1646942034.129314]: Winch Up
+[INFO] [1646942034.142191]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.145662]: winch up
+[INFO] [1646942034.149132]: Winch Up
+[INFO] [1646942034.162267]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.165847]: winch up
+[INFO] [1646942034.169295]: Winch Up
+[INFO] [1646942034.182221]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.185729]: winch up
+[INFO] [1646942034.189198]: Winch Up
+[INFO] [1646942034.202190]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.205689]: winch up
+[INFO] [1646942034.209232]: Winch Up
+[INFO] [1646942034.222208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.226135]: winch up
+[INFO] [1646942034.229924]: Winch Up
+[INFO] [1646942034.242196]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.245925]: winch up
+[INFO] [1646942034.249594]: Winch Up
+[INFO] [1646942034.262350]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.266178]: winch up
+[INFO] [1646942034.269617]: Winch Up
+[INFO] [1646942034.282224]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.285709]: winch up
+[INFO] [1646942034.289217]: Winch Up
+[INFO] [1646942034.302193]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.305647]: winch up
+[INFO] [1646942034.309103]: Winch Up
+[INFO] [1646942034.322207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.325721]: winch up
+[INFO] [1646942034.329256]: Winch Up
+[INFO] [1646942034.342205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.345672]: winch up
+[INFO] [1646942034.349315]: Winch Up
+[INFO] [1646942034.362643]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.366262]: winch up
+[INFO] [1646942034.369762]: Winch Up
+[INFO] [1646942034.382212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.385714]: winch up
+[INFO] [1646942034.389213]: Winch Up
+[INFO] [1646942034.402204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.405654]: winch up
+[INFO] [1646942034.409282]: Winch Up
+[INFO] [1646942034.422203]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.425757]: winch up
+[INFO] [1646942034.429301]: Winch Up
+[INFO] [1646942034.442194]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.445739]: winch up
+[INFO] [1646942034.449214]: Winch Up
+[INFO] [1646942034.462679]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.466674]: winch up
+[INFO] [1646942034.470410]: Winch Up
+[INFO] [1646942034.482192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.485882]: winch up
+[INFO] [1646942034.489570]: Winch Up
+[INFO] [1646942034.502206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.506025]: winch up
+[INFO] [1646942034.509516]: Winch Up
+[INFO] [1646942034.522237]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.526148]: winch up
+[INFO] [1646942034.529938]: Winch Up
+[INFO] [1646942034.542195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.545925]: winch up
+[INFO] [1646942034.549625]: Winch Up
+[INFO] [1646942034.562350]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.566420]: winch up
+[INFO] [1646942034.570129]: Winch Up
+[INFO] [1646942034.582218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.586071]: winch up
+[INFO] [1646942034.589867]: Winch Up
+[INFO] [1646942034.602206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.605976]: winch up
+[INFO] [1646942034.609492]: Winch Up
+[INFO] [1646942034.622218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.625950]: winch up
+[INFO] [1646942034.629646]: Winch Up
+[INFO] [1646942034.642193]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.645940]: winch up
+[INFO] [1646942034.649619]: Winch Up
+[INFO] [1646942034.662285]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.666230]: winch up
+[INFO] [1646942034.669926]: Winch Up
+[INFO] [1646942034.682203]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.685804]: winch up
+[INFO] [1646942034.689333]: Winch Up
+[INFO] [1646942034.702227]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.705731]: winch up
+[INFO] [1646942034.709218]: Winch Up
+[INFO] [1646942034.722262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.725862]: winch up
+[INFO] [1646942034.729412]: Winch Up
+[INFO] [1646942034.742214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.745740]: winch up
+[INFO] [1646942034.749211]: Winch Up
+[INFO] [1646942034.762264]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.765999]: winch up
+[INFO] [1646942034.769470]: Winch Up
+[INFO] [1646942034.782219]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.785690]: winch up
+[INFO] [1646942034.789214]: Winch Up
+[INFO] [1646942034.802219]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.805660]: winch up
+[INFO] [1646942034.809212]: Winch Up
+[INFO] [1646942034.822262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.825749]: winch up
+[INFO] [1646942034.829271]: Winch Up
+[INFO] [1646942034.842217]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.845729]: winch up
+[INFO] [1646942034.849189]: Winch Up
+[INFO] [1646942034.862215]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.866123]: winch up
+[INFO] [1646942034.869562]: Winch Up
+[INFO] [1646942034.882236]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.885780]: winch up
+[INFO] [1646942034.889253]: Winch Up
+[INFO] [1646942034.902189]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.905685]: winch up
+[INFO] [1646942034.909132]: Winch Up
+[INFO] [1646942034.922240]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.925758]: winch up
+[INFO] [1646942034.929416]: Winch Up
+[INFO] [1646942034.942195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.945726]: winch up
+[INFO] [1646942034.949232]: Winch Up
+[INFO] [1646942034.962233]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.965982]: winch up
+[INFO] [1646942034.969471]: Winch Up
+[INFO] [1646942034.982209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942034.985692]: winch up
+[INFO] [1646942034.989215]: Winch Up
+[INFO] [1646942035.002195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.005711]: winch up
+[INFO] [1646942035.009154]: Winch Up
+[INFO] [1646942035.022260]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.025843]: winch up
+[INFO] [1646942035.029467]: Winch Up
+[INFO] [1646942035.042214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.045685]: winch up
+[INFO] [1646942035.049224]: Winch Up
+[INFO] [1646942035.062225]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.066830]: winch up
+[INFO] [1646942035.072304]: Winch Up
+[INFO] [1646942035.082478]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.088179]: winch up
+[INFO] [1646942035.093688]: Winch Up
+[INFO] [1646942035.102433]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.108080]: winch up
+[INFO] [1646942035.113769]: Winch Up
+[INFO] [1646942035.122451]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.128276]: winch up
+[INFO] [1646942035.133761]: Winch Up
+[INFO] [1646942035.142431]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.148339]: winch up
+[INFO] [1646942035.153960]: Winch Up
+[INFO] [1646942035.162443]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.168495]: winch up
+[INFO] [1646942035.174127]: Winch Up
+[INFO] [1646942035.182317]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.187030]: winch up
+[INFO] [1646942035.191626]: Winch Up
+[INFO] [1646942035.202347]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.207011]: winch up
+[INFO] [1646942035.211705]: Winch Up
+[INFO] [1646942035.222340]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.227122]: winch up
+[INFO] [1646942035.232300]: Winch Up
+[INFO] [1646942035.242355]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.247084]: winch up
+[INFO] [1646942035.251714]: Winch Up
+[INFO] [1646942035.262347]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.268107]: winch up
+[INFO] [1646942035.273102]: Winch Up
+[INFO] [1646942035.282345]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.287345]: winch up
+[INFO] [1646942035.292199]: Winch Up
+[INFO] [1646942035.302325]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.307237]: winch up
+[INFO] [1646942035.312208]: Winch Up
+[INFO] [1646942035.322331]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.327042]: winch up
+[INFO] [1646942035.332191]: Winch Up
+[INFO] [1646942035.342321]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.347292]: winch up
+[INFO] [1646942035.352171]: Winch Up
+[INFO] [1646942035.362334]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.368299]: winch up
+[INFO] [1646942035.373182]: Winch Up
+[INFO] [1646942035.382371]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.387402]: winch up
+[INFO] [1646942035.392353]: Winch Up
+[INFO] [1646942035.402322]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.407214]: winch up
+[INFO] [1646942035.412150]: Winch Up
+[INFO] [1646942035.422317]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.427104]: winch up
+[INFO] [1646942035.431702]: Winch Up
+[INFO] [1646942035.442348]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.447010]: winch up
+[INFO] [1646942035.451643]: Winch Up
+[INFO] [1646942035.462338]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.467970]: winch up
+[INFO] [1646942035.472739]: Winch Up
+[INFO] [1646942035.482384]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.487067]: winch up
+[INFO] [1646942035.491699]: Winch Up
+[INFO] [1646942035.502341]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.506920]: winch up
+[INFO] [1646942035.511706]: Winch Up
+[INFO] [1646942035.522378]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.527162]: winch up
+[INFO] [1646942035.531873]: Winch Up
+[INFO] [1646942035.542345]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.546970]: winch up
+[INFO] [1646942035.551585]: Winch Up
+[INFO] [1646942035.562367]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.567885]: winch up
+[INFO] [1646942035.572628]: Winch Up
+[INFO] [1646942035.582422]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.587082]: winch up
+[INFO] [1646942035.591699]: Winch Up
+[INFO] [1646942035.602338]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.606977]: winch up
+[INFO] [1646942035.611678]: Winch Up
+[INFO] [1646942035.622422]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.627111]: winch up
+[INFO] [1646942035.631856]: Winch Up
+[INFO] [1646942035.642361]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.647366]: winch up
+[INFO] [1646942035.652302]: Winch Up
+[INFO] [1646942035.662366]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.668044]: winch up
+[INFO] [1646942035.672795]: Winch Up
+[INFO] [1646942035.682351]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.687008]: winch up
+[INFO] [1646942035.691595]: Winch Up
+[INFO] [1646942035.702328]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.706983]: winch up
+[INFO] [1646942035.711621]: Winch Up
+[INFO] [1646942035.722362]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.727048]: winch up
+[INFO] [1646942035.731760]: Winch Up
+[INFO] [1646942035.742386]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.746999]: winch up
+[INFO] [1646942035.751577]: Winch Up
+[INFO] [1646942035.762353]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.767447]: winch up
+[INFO] [1646942035.772597]: Winch Up
+[INFO] [1646942035.782513]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.787542]: winch up
+[INFO] [1646942035.792461]: Winch Up
+[INFO] [1646942035.802318]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.807223]: winch up
+[INFO] [1646942035.812195]: Winch Up
+[INFO] [1646942035.822453]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.827401]: winch up
+[INFO] [1646942035.832332]: Winch Up
+[INFO] [1646942035.842351]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.847422]: winch up
+[INFO] [1646942035.852123]: Winch Up
+[INFO] [1646942035.862415]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.867848]: winch up
+[INFO] [1646942035.872937]: Winch Up
+[INFO] [1646942035.882336]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.887470]: winch up
+[INFO] [1646942035.892381]: Winch Up
+[INFO] [1646942035.902323]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.907237]: winch up
+[INFO] [1646942035.912106]: Winch Up
+[INFO] [1646942035.922438]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.927621]: winch up
+[INFO] [1646942035.932602]: Winch Up
+[INFO] [1646942035.942335]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.947260]: winch up
+[INFO] [1646942035.952362]: Winch Up
+[INFO] [1646942035.962365]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.967243]: winch up
+[INFO] [1646942035.972564]: Winch Up
+[INFO] [1646942035.982334]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942035.987248]: winch up
+[INFO] [1646942035.992149]: Winch Up
+[INFO] [1646942036.002323]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.007328]: winch up
+[INFO] [1646942036.012260]: Winch Up
+[INFO] [1646942036.022424]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.027457]: winch up
+[INFO] [1646942036.032377]: Winch Up
+[INFO] [1646942036.042354]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.048637]: winch up
+[INFO] [1646942036.053429]: Winch Up
+[INFO] [1646942036.062340]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.067091]: winch up
+[INFO] [1646942036.072181]: Winch Up
+[INFO] [1646942036.082366]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.087145]: winch up
+[INFO] [1646942036.091746]: Winch Up
+[INFO] [1646942036.102345]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.107036]: winch up
+[INFO] [1646942036.111642]: Winch Up
+[INFO] [1646942036.122407]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.127105]: winch up
+[INFO] [1646942036.131719]: Winch Up
+[INFO] [1646942036.142326]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.147075]: winch up
+[INFO] [1646942036.152181]: Winch Up
+[INFO] [1646942036.162347]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.167498]: winch up
+[INFO] [1646942036.172793]: Winch Up
+[INFO] [1646942036.182359]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.187345]: winch up
+[INFO] [1646942036.192245]: Winch Up
+[INFO] [1646942036.202320]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.207246]: winch up
+[INFO] [1646942036.212146]: Winch Up
+[INFO] [1646942036.222425]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.227411]: winch up
+[INFO] [1646942036.232395]: Winch Up
+[INFO] [1646942036.242327]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.247223]: winch up
+[INFO] [1646942036.252077]: Winch Up
+[INFO] [1646942036.262313]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.267337]: winch up
+[INFO] [1646942036.271511]: Winch Up
+[INFO] [1646942036.282207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.286352]: winch up
+[INFO] [1646942036.290052]: Winch Up
+[INFO] [1646942036.302197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.305910]: winch up
+[INFO] [1646942036.309587]: Winch Up
+[INFO] [1646942036.322262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.326021]: winch up
+[INFO] [1646942036.329653]: Winch Up
+[INFO] [1646942036.342223]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.345965]: winch up
+[INFO] [1646942036.349385]: Winch Up
+[INFO] [1646942036.362222]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.366217]: winch up
+[INFO] [1646942036.370519]: Winch Up
+[INFO] [1646942036.382199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.386063]: winch up
+[INFO] [1646942036.389800]: Winch Up
+[INFO] [1646942036.402205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.405935]: winch up
+[INFO] [1646942036.409586]: Winch Up
+[INFO] [1646942036.422261]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.426088]: winch up
+[INFO] [1646942036.429747]: Winch Up
+[INFO] [1646942036.442202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.445971]: winch up
+[INFO] [1646942036.449592]: Winch Up
+[INFO] [1646942036.462218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.466029]: winch up
+[INFO] [1646942036.470320]: Winch Up
+[INFO] [1646942036.482256]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.485918]: winch up
+[INFO] [1646942036.489357]: Winch Up
+[INFO] [1646942036.502203]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.505630]: winch up
+[INFO] [1646942036.509083]: Winch Up
+[INFO] [1646942036.522260]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.525957]: winch up
+[INFO] [1646942036.529433]: Winch Up
+[INFO] [1646942036.542189]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.545668]: winch up
+[INFO] [1646942036.549128]: Winch Up
+[INFO] [1646942036.562244]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.565889]: winch up
+[INFO] [1646942036.570008]: Winch Up
+[INFO] [1646942036.582275]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.586031]: winch up
+[INFO] [1646942036.589687]: Winch Up
+[INFO] [1646942036.602192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.605690]: winch up
+[INFO] [1646942036.609123]: Winch Up
+[INFO] [1646942036.622264]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.625785]: winch up
+[INFO] [1646942036.629257]: Winch Up
+[INFO] [1646942036.642217]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.645738]: winch up
+[INFO] [1646942036.649160]: Winch Up
+[INFO] [1646942036.662239]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.665959]: winch up
+[INFO] [1646942036.669584]: Winch Up
+[INFO] [1646942036.682204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.686005]: winch up
+[INFO] [1646942036.689732]: Winch Up
+[INFO] [1646942036.702195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.705961]: winch up
+[INFO] [1646942036.709613]: Winch Up
+[INFO] [1646942036.722264]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.726082]: winch up
+[INFO] [1646942036.729741]: Winch Up
+[INFO] [1646942036.742194]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.745976]: winch up
+[INFO] [1646942036.749617]: Winch Up
+[INFO] [1646942036.762192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.766001]: winch up
+[INFO] [1646942036.769737]: Winch Up
+[INFO] [1646942036.782188]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.785988]: winch up
+[INFO] [1646942036.789665]: Winch Up
+[INFO] [1646942036.802196]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.805985]: winch up
+[INFO] [1646942036.809615]: Winch Up
+[INFO] [1646942036.822261]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.826037]: winch up
+[INFO] [1646942036.829749]: Winch Up
+[INFO] [1646942036.842212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.845718]: winch up
+[INFO] [1646942036.849264]: Winch Up
+[INFO] [1646942036.862195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.865686]: winch up
+[INFO] [1646942036.869442]: Winch Up
+[INFO] [1646942036.882202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.886066]: winch up
+[INFO] [1646942036.889764]: Winch Up
+[INFO] [1646942036.902193]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.905956]: winch up
+[INFO] [1646942036.909645]: Winch Up
+[INFO] [1646942036.922353]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.926151]: winch up
+[INFO] [1646942036.929904]: Winch Up
+[INFO] [1646942036.942202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.945954]: winch up
+[INFO] [1646942036.949594]: Winch Up
+[INFO] [1646942036.962191]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.965694]: winch up
+[INFO] [1646942036.969368]: Winch Up
+[INFO] [1646942036.982208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942036.985972]: winch up
+[INFO] [1646942036.989654]: Winch Up
+[INFO] [1646942037.002225]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.005974]: winch up
+[INFO] [1646942037.009626]: Winch Up
+[INFO] [1646942037.022256]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.026087]: winch up
+[INFO] [1646942037.029861]: Winch Up
+[INFO] [1646942037.042220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.045969]: winch up
+[INFO] [1646942037.049647]: Winch Up
+[INFO] [1646942037.062212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.066006]: winch up
+[INFO] [1646942037.069511]: Winch Up
+[INFO] [1646942037.082204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.085988]: winch up
+[INFO] [1646942037.089700]: Winch Up
+[INFO] [1646942037.102206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.105927]: winch up
+[INFO] [1646942037.109577]: Winch Up
+[INFO] [1646942037.122259]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.126041]: winch up
+[INFO] [1646942037.129470]: Winch Up
+[INFO] [1646942037.142225]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.145981]: winch up
+[INFO] [1646942037.149650]: Winch Up
+[INFO] [1646942037.162218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.166039]: winch up
+[INFO] [1646942037.169533]: Winch Up
+[INFO] [1646942037.182223]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.186030]: winch up
+[INFO] [1646942037.189750]: Winch Up
+[INFO] [1646942037.202210]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.205980]: winch up
+[INFO] [1646942037.209608]: Winch Up
+[INFO] [1646942037.222264]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.226069]: winch up
+[INFO] [1646942037.229732]: Winch Up
+[INFO] [1646942037.242212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.245953]: winch up
+[INFO] [1646942037.249609]: Winch Up
+[INFO] [1646942037.262215]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.265965]: winch up
+[INFO] [1646942037.269624]: Winch Up
+[INFO] [1646942037.282235]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.286046]: winch up
+[INFO] [1646942037.289747]: Winch Up
+[INFO] [1646942037.302202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.305955]: winch up
+[INFO] [1646942037.309608]: Winch Up
+[INFO] [1646942037.322265]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.326027]: winch up
+[INFO] [1646942037.329687]: Winch Up
+[INFO] [1646942037.342263]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.346089]: winch up
+[INFO] [1646942037.349792]: Winch Up
+[INFO] [1646942037.362207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.365954]: winch up
+[INFO] [1646942037.369686]: Winch Up
+[INFO] [1646942037.382228]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.386144]: winch up
+[INFO] [1646942037.389678]: Winch Up
+[INFO] [1646942037.402202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.405677]: winch up
+[INFO] [1646942037.409130]: Winch Up
+[INFO] [1646942037.422385]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.426169]: winch up
+[INFO] [1646942037.429699]: Winch Up
+[INFO] [1646942037.442220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.445961]: winch up
+[INFO] [1646942037.449558]: Winch Up
+[INFO] [1646942037.462205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.465779]: winch up
+[INFO] [1646942037.469339]: Winch Up
+[INFO] [1646942037.482206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.485771]: winch up
+[INFO] [1646942037.489288]: Winch Up
+[INFO] [1646942037.502196]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.505646]: winch up
+[INFO] [1646942037.509125]: Winch Up
+[INFO] [1646942037.522552]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.526316]: winch up
+[INFO] [1646942037.529929]: Winch Up
+[INFO] [1646942037.542214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.545710]: winch up
+[INFO] [1646942037.549155]: Winch Up
+[INFO] [1646942037.562205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.565757]: winch up
+[INFO] [1646942037.569363]: Winch Up
+[INFO] [1646942037.582212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.585884]: winch up
+[INFO] [1646942037.589373]: Winch Up
+[INFO] [1646942037.602208]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.605684]: winch up
+[INFO] [1646942037.609135]: Winch Up
+[INFO] [1646942037.622741]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.626278]: winch up
+[INFO] [1646942037.629714]: Winch Up
+[INFO] [1646942037.642220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.645699]: winch up
+[INFO] [1646942037.649171]: Winch Up
+[INFO] [1646942037.662212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.665694]: winch up
+[INFO] [1646942037.669207]: Winch Up
+[INFO] [1646942037.682220]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.685718]: winch up
+[INFO] [1646942037.689172]: Winch Up
+[INFO] [1646942037.702206]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.705687]: winch up
+[INFO] [1646942037.709184]: Winch Up
+[INFO] [1646942037.722282]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.726275]: winch up
+[INFO] [1646942037.729927]: Winch Up
+[INFO] [1646942037.742223]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.745720]: winch up
+[INFO] [1646942037.749207]: Winch Up
+[INFO] [1646942037.762201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.765712]: winch up
+[INFO] [1646942037.769529]: Winch Up
+[INFO] [1646942037.782209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.785745]: winch up
+[INFO] [1646942037.789487]: Winch Up
+[INFO] [1646942037.802192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.805945]: winch up
+[INFO] [1646942037.809361]: Winch Up
+[INFO] [1646942037.822258]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.826190]: winch up
+[INFO] [1646942037.829899]: Winch Up
+[INFO] [1646942037.842231]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.845989]: winch up
+[INFO] [1646942037.849474]: Winch Up
+[INFO] [1646942037.862201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.866013]: winch up
+[INFO] [1646942037.869805]: Winch Up
+[INFO] [1646942037.882218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.885754]: winch up
+[INFO] [1646942037.889616]: Winch Up
+[INFO] [1646942037.902211]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.905934]: winch up
+[INFO] [1646942037.909578]: Winch Up
+[INFO] [1646942037.922233]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.926203]: winch up
+[INFO] [1646942037.929864]: Winch Up
+[INFO] [1646942037.942219]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.945993]: winch up
+[INFO] [1646942037.949630]: Winch Up
+[INFO] [1646942037.962194]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.965948]: winch up
+[INFO] [1646942037.969652]: Winch Up
+[INFO] [1646942037.982239]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942037.986060]: winch up
+[INFO] [1646942037.989517]: Winch Up
+[INFO] [1646942038.002201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.005971]: winch up
+[INFO] [1646942038.009675]: Winch Up
+[INFO] [1646942038.022202]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.026249]: winch up
+[INFO] [1646942038.029866]: Winch Up
+[INFO] [1646942038.042214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.045738]: winch up
+[INFO] [1646942038.049185]: Winch Up
+[INFO] [1646942038.062205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.065755]: winch up
+[INFO] [1646942038.069306]: Winch Up
+[INFO] [1646942038.082274]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.085891]: winch up
+[INFO] [1646942038.089544]: Winch Up
+[INFO] [1646942038.102214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.105670]: winch up
+[INFO] [1646942038.109229]: Winch Up
+[INFO] [1646942038.122212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.125949]: winch up
+[INFO] [1646942038.129418]: Winch Up
+[INFO] [1646942038.142238]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.145766]: winch up
+[INFO] [1646942038.149231]: Winch Up
+[INFO] [1646942038.162237]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.165775]: winch up
+[INFO] [1646942038.169317]: Winch Up
+[INFO] [1646942038.182261]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.185865]: winch up
+[INFO] [1646942038.189400]: Winch Up
+[INFO] [1646942038.202214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.205720]: winch up
+[INFO] [1646942038.209197]: Winch Up
+[INFO] [1646942038.222218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.226405]: winch up
+[INFO] [1646942038.229951]: Winch Up
+[INFO] [1646942038.242232]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.246004]: winch up
+[INFO] [1646942038.249676]: Winch Up
+[INFO] [1646942038.262205]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.265989]: winch up
+[INFO] [1646942038.269749]: Winch Up
+[INFO] [1646942038.282244]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.286047]: winch up
+[INFO] [1646942038.289668]: Winch Up
+[INFO] [1646942038.302197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.305693]: winch up
+[INFO] [1646942038.309151]: Winch Up
+[INFO] [1646942038.322217]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.326452]: winch up
+[INFO] [1646942038.330022]: Winch Up
+[INFO] [1646942038.342212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.345796]: winch up
+[INFO] [1646942038.349302]: Winch Up
+[INFO] [1646942038.362197]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.365767]: winch up
+[INFO] [1646942038.369506]: Winch Up
+[INFO] [1646942038.382260]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.385793]: winch up
+[INFO] [1646942038.389315]: Winch Up
+[INFO] [1646942038.402191]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.405644]: winch up
+[INFO] [1646942038.409102]: Winch Up
+[INFO] [1646942038.422204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.426570]: winch up
+[INFO] [1646942038.430050]: Winch Up
+[INFO] [1646942038.442214]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.445674]: winch up
+[INFO] [1646942038.449124]: Winch Up
+[INFO] [1646942038.462195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.465673]: winch up
+[INFO] [1646942038.469155]: Winch Up
+[INFO] [1646942038.482256]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.485761]: winch up
+[INFO] [1646942038.489311]: Winch Up
+[INFO] [1646942038.502194]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.505638]: winch up
+[INFO] [1646942038.509312]: Winch Up
+[INFO] [1646942038.522200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.526512]: winch up
+[INFO] [1646942038.530038]: Winch Up
+[INFO] [1646942038.542207]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.545681]: winch up
+[INFO] [1646942038.549167]: Winch Up
+[INFO] [1646942038.562192]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.565933]: winch up
+[INFO] [1646942038.569405]: Winch Up
+[INFO] [1646942038.582247]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.585966]: winch up
+[INFO] [1646942038.589387]: Winch Up
+[INFO] [1646942038.602198]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.605709]: winch up
+[INFO] [1646942038.609357]: Winch Up
+[INFO] [1646942038.622199]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.626428]: winch up
+[INFO] [1646942038.630226]: Winch Up
+[INFO] [1646942038.642204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.645784]: winch up
+[INFO] [1646942038.649219]: Winch Up
+[INFO] [1646942038.662232]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.665711]: winch up
+[INFO] [1646942038.669158]: Winch Up
+[INFO] [1646942038.682262]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.685935]: winch up
+[INFO] [1646942038.689403]: Winch Up
+[INFO] [1646942038.702226]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.705676]: winch up
+[INFO] [1646942038.709138]: Winch Up
+[INFO] [1646942038.722201]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.726398]: winch up
+[INFO] [1646942038.730200]: Winch Up
+[INFO] [1646942038.742217]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.745755]: winch up
+[INFO] [1646942038.749266]: Winch Up
+[INFO] [1646942038.762200]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.765660]: winch up
+[INFO] [1646942038.769164]: Winch Up
+[INFO] [1646942038.782260]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.785934]: winch up
+[INFO] [1646942038.789402]: Winch Up
+[INFO] [1646942038.802191]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.805705]: winch up
+[INFO] [1646942038.809122]: Winch Up
+[INFO] [1646942038.822211]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.825907]: winch up
+[INFO] [1646942038.829681]: Winch Up
+[INFO] [1646942038.842212]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.845752]: winch up
+[INFO] [1646942038.849256]: Winch Up
+[INFO] [1646942038.862204]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.865681]: winch up
+[INFO] [1646942038.869154]: Winch Up
+[INFO] [1646942038.882267]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.885851]: winch up
+[INFO] [1646942038.889285]: Winch Up
+[INFO] [1646942038.902233]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.905689]: winch up
+[INFO] [1646942038.909090]: Winch Up
+[INFO] [1646942038.922209]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.925940]: winch up
+[INFO] [1646942038.929947]: Winch Up
+[INFO] [1646942038.942223]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.945695]: winch up
+[INFO] [1646942038.949237]: Winch Up
+[INFO] [1646942038.962226]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.965694]: winch up
+[INFO] [1646942038.969187]: Winch Up
+[INFO] [1646942038.982268]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942038.986083]: winch up
+[INFO] [1646942038.989764]: Winch Up
+[INFO] [1646942039.002195]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.005960]: winch up
+[INFO] [1646942039.009610]: Winch Up
+[INFO] [1646942039.022218]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.026043]: winch up
+[INFO] [1646942039.030270]: Winch Up
+[INFO] [1646942039.033974]: Switch is pressed! Contact!
+[INFO] [1646942039.087902]: Closing down servo latching
+[INFO] [1646942039.142289]: winch stop
+[INFO] [1646942039.146137]: Latch is closed!
+[INFO] [1646942039.149885]: winch stop
+[INFO] [1646942039.153581]: Stop the winch
+[INFO] [1646942039.157556]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942039.161416]: winch stop
+[INFO] [1646942039.165048]: Stop the winch
+[INFO] [1646942039.177676]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.181275]: winch up
+[INFO] [1646942039.184949]: Winch Up
+[INFO] [1646942039.188437]: Switch is pressed! Contact!
+[INFO] [1646942039.242177]: Closing down servo latching
+[INFO] [1646942039.296238]: winch stop
+[INFO] [1646942039.299813]: Latch is closed!
+[INFO] [1646942039.303387]: winch stop
+[INFO] [1646942039.306939]: Stop the winch
+[INFO] [1646942039.310653]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942039.314211]: winch stop
+[INFO] [1646942039.317671]: Stop the winch
+[INFO] [1646942039.330777]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.334394]: winch up
+[INFO] [1646942039.338021]: Winch Up
+[INFO] [1646942039.341560]: Switch is pressed! Contact!
+[INFO] [1646942039.395229]: Closing down servo latching
+[INFO] [1646942039.449311]: winch stop
+[INFO] [1646942039.453130]: Latch is closed!
+[INFO] [1646942039.456646]: winch stop
+[INFO] [1646942039.460244]: Stop the winch
+[INFO] [1646942039.463944]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942039.467411]: winch stop
+[INFO] [1646942039.470909]: Stop the winch
+[INFO] [1646942039.484105]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.487698]: winch up
+[INFO] [1646942039.491219]: Winch Up
+[INFO] [1646942039.494711]: Switch is pressed! Contact!
+[INFO] [1646942039.548288]: Closing down servo latching
+[INFO] [1646942039.602321]: winch stop
+[INFO] [1646942039.605887]: Latch is closed!
+[INFO] [1646942039.609380]: winch stop
+[INFO] [1646942039.612874]: Stop the winch
+[INFO] [1646942039.616679]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942039.620366]: winch stop
+[INFO] [1646942039.623847]: Stop the winch
+[INFO] [1646942039.636714]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.640361]: winch up
+[INFO] [1646942039.643872]: Winch Up
+[INFO] [1646942039.647411]: Switch is pressed! Contact!
+[INFO] [1646942039.701000]: Closing down servo latching
+[INFO] [1646942039.755044]: winch stop
+[INFO] [1646942039.758692]: Latch is closed!
+[INFO] [1646942039.762275]: winch stop
+[INFO] [1646942039.765804]: Stop the winch
+[INFO] [1646942039.769478]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942039.773040]: winch stop
+[INFO] [1646942039.776610]: Stop the winch
+[INFO] [1646942039.789577]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.793304]: winch up
+[INFO] [1646942039.796788]: Winch Up
+[INFO] [1646942039.800264]: Switch is pressed! Contact!
+[INFO] [1646942039.853909]: Closing down servo latching
+[INFO] [1646942039.907963]: winch stop
+[INFO] [1646942039.911555]: Latch is closed!
+[INFO] [1646942039.915106]: winch stop
+[INFO] [1646942039.918656]: Stop the winch
+[INFO] [1646942039.922595]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942039.926222]: winch stop
+[INFO] [1646942039.930594]: Stop the winch
+[INFO] [1646942039.942720]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942039.946406]: winch up
+[INFO] [1646942039.950171]: Winch Up
+[INFO] [1646942039.953864]: Switch is pressed! Contact!
+[INFO] [1646942040.007706]: Closing down servo latching
+[INFO] [1646942040.062079]: winch stop
+[INFO] [1646942040.065876]: Latch is closed!
+[INFO] [1646942040.069573]: winch stop
+[INFO] [1646942040.073324]: Stop the winch
+[INFO] [1646942040.077365]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942040.081264]: winch up
+[INFO] [1646942040.084913]: Winch Up
+[INFO] [1646942040.088416]: Switch is pressed! Contact!
+[INFO] [1646942040.142061]: Closing down servo latching
+[INFO] [1646942040.196055]: winch stop
+[INFO] [1646942040.199686]: Latch is closed!
+[INFO] [1646942040.203197]: winch stop
+[INFO] [1646942040.206687]: Stop the winch
+[INFO] [1646942040.210363]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942040.213976]: winch stop
+[INFO] [1646942040.217449]: Stop the winch
+[INFO] [1646942040.230513]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942040.234097]: winch up
+[INFO] [1646942040.237617]: Winch Up
+[INFO] [1646942040.241323]: Switch is pressed! Contact!
+[INFO] [1646942040.295038]: Closing down servo latching
+[INFO] [1646942040.349353]: winch stop
+[INFO] [1646942040.352907]: Latch is closed!
+[INFO] [1646942040.356451]: winch stop
+[INFO] [1646942040.360031]: Stop the winch
+[INFO] [1646942040.363800]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942040.367314]: winch stop
+[INFO] [1646942040.370799]: Stop the winch
+[INFO] [1646942040.383961]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942040.387683]: winch up
+[INFO] [1646942040.391194]: Winch Up
+[INFO] [1646942040.394843]: Switch is pressed! Contact!
+[INFO] [1646942040.448465]: Closing down servo latching
+[INFO] [1646942040.502506]: winch stop
+[INFO] [1646942040.506092]: Latch is closed!
+[INFO] [1646942040.509552]: winch stop
+[INFO] [1646942040.513073]: Stop the winch
+[INFO] [1646942040.517010]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942040.520585]: winch stop
+[INFO] [1646942040.524138]: Stop the winch
+[INFO] [1646942040.537168]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942040.540783]: winch up
+[INFO] [1646942040.544304]: Winch Up
+[INFO] [1646942040.547791]: Switch is pressed! Contact!
+[INFO] [1646942040.601411]: Closing down servo latching
+[INFO] [1646942040.655513]: winch stop
+[INFO] [1646942040.659083]: Latch is closed!
+[INFO] [1646942040.662746]: winch stop
+[INFO] [1646942040.666246]: Stop the winch
+[INFO] [1646942040.669997]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942040.673445]: winch stop
+[INFO] [1646942040.677071]: Stop the winch
+[INFO] [1646942040.690129]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942040.693803]: winch up
+[INFO] [1646942040.697339]: Winch Up
+[INFO] [1646942040.700801]: Switch is pressed! Contact!
+[INFO] [1646942040.754458]: Closing down servo latching
+[INFO] [1646942040.808722]: winch stop
+[INFO] [1646942040.812322]: Latch is closed!
+[INFO] [1646942040.815857]: winch stop
+[INFO] [1646942040.819423]: Stop the winch
+[INFO] [1646942040.823131]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942040.826654]: winch stop
+[INFO] [1646942040.830152]: Stop the winch
+[INFO] [1646942040.843253]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942040.846784]: winch up
+[INFO] [1646942040.850256]: Winch Up
+[INFO] [1646942040.853700]: Switch is pressed! Contact!
+[INFO] [1646942040.907266]: Closing down servo latching
+[INFO] [1646942040.961388]: winch stop
+[INFO] [1646942040.964926]: Latch is closed!
+[INFO] [1646942040.968490]: winch stop
+[INFO] [1646942040.972004]: Stop the winch
+[INFO] [1646942040.975715]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942040.979327]: winch stop
+[INFO] [1646942040.983734]: Stop the winch
+[INFO] [1646942040.995800]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942040.999594]: winch up
+[INFO] [1646942041.003301]: Winch Up
+[INFO] [1646942041.007010]: Switch is pressed! Contact!
+[INFO] [1646942041.060805]: Closing down servo latching
+[INFO] [1646942041.117962]: winch stop
+[INFO] [1646942041.121524]: Latch is closed!
+[INFO] [1646942041.125039]: winch stop
+[INFO] [1646942041.128479]: Stop the winch
+[INFO] [1646942041.133215]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942041.137112]: winch up
+[INFO] [1646942041.140899]: Winch Up
+[INFO] [1646942041.144647]: Switch is pressed! Contact!
+[INFO] [1646942041.198500]: Closing down servo latching
+[INFO] [1646942041.252596]: winch stop
+[INFO] [1646942041.256176]: Latch is closed!
+[INFO] [1646942041.259796]: winch stop
+[INFO] [1646942041.263356]: Stop the winch
+[INFO] [1646942041.267034]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942041.272202]: winch stop
+[INFO] [1646942041.277959]: Stop the winch
+[INFO] [1646942041.287415]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942041.293079]: winch up
+[INFO] [1646942041.298966]: Winch Up
+[INFO] [1646942041.304445]: Switch is pressed! Contact!
+[INFO] [1646942041.360119]: Closing down servo latching
+[INFO] [1646942041.416545]: winch stop
+[INFO] [1646942041.422305]: Latch is closed!
+[INFO] [1646942041.428224]: winch stop
+[INFO] [1646942041.434988]: Stop the winch
+[INFO] [1646942041.441105]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942041.446835]: winch up
+[INFO] [1646942041.452382]: Winch Up
+[INFO] [1646942041.457992]: Switch is pressed! Contact!
+[INFO] [1646942041.513688]: Closing down servo latching
+[INFO] [1646942041.569600]: winch stop
+[INFO] [1646942041.576173]: Latch is closed!
+[INFO] [1646942041.582741]: winch stop
+[INFO] [1646942041.589285]: Stop the winch
+[INFO] [1646942041.596255]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942041.602683]: winch up
+[INFO] [1646942041.608914]: Winch Up
+[INFO] [1646942041.615175]: Switch is pressed! Contact!
+[INFO] [1646942041.671710]: Closing down servo latching
+[INFO] [1646942041.727633]: winch stop
+[INFO] [1646942041.732763]: Latch is closed!
+[INFO] [1646942041.738452]: winch stop
+[INFO] [1646942041.743672]: Stop the winch
+[INFO] [1646942041.749016]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942041.754089]: winch stop
+[INFO] [1646942041.759153]: Stop the winch
+[INFO] [1646942041.769120]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942041.774748]: winch stop
+[INFO] [1646942041.780411]: Stop the winch
+[INFO] [1646942041.789252]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942041.794903]: winch up
+[INFO] [1646942041.800620]: Winch Up
+[INFO] [1646942041.806518]: Switch is pressed! Contact!
+[INFO] [1646942041.862540]: Closing down servo latching
+[INFO] [1646942041.919069]: winch stop
+[INFO] [1646942041.924851]: Latch is closed!
+[INFO] [1646942041.930344]: winch stop
+[INFO] [1646942041.936269]: Stop the winch
+[INFO] [1646942041.941921]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942041.947132]: winch up
+[INFO] [1646942041.952214]: Winch Up
+[INFO] [1646942041.957178]: Switch is pressed! Contact!
+[INFO] [1646942042.012507]: Closing down servo latching
+[INFO] [1646942042.068872]: winch stop
+[INFO] [1646942042.074653]: Latch is closed!
+[INFO] [1646942042.081124]: winch stop
+[INFO] [1646942042.088437]: Stop the winch
+[INFO] [1646942042.095104]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942042.101461]: winch up
+[INFO] [1646942042.107625]: Winch Up
+[INFO] [1646942042.113730]: Switch is pressed! Contact!
+[INFO] [1646942042.170263]: Closing down servo latching
+[INFO] [1646942042.226797]: winch stop
+[INFO] [1646942042.231981]: Latch is closed!
+[INFO] [1646942042.237975]: winch stop
+[INFO] [1646942042.243368]: Stop the winch
+[INFO] [1646942042.248696]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942042.253784]: winch stop
+[INFO] [1646942042.258876]: Stop the winch
+[INFO] [1646942042.268804]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942042.273936]: winch stop
+[INFO] [1646942042.279012]: Stop the winch
+[INFO] [1646942042.288893]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942042.294113]: winch up
+[INFO] [1646942042.299242]: Winch Up
+[INFO] [1646942042.304234]: Switch is pressed! Contact!
+[INFO] [1646942042.359392]: Closing down servo latching
+[INFO] [1646942042.415289]: winch stop
+[INFO] [1646942042.420975]: Latch is closed!
+[INFO] [1646942042.427336]: winch stop
+[INFO] [1646942042.432924]: Stop the winch
+[INFO] [1646942042.439986]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942042.445737]: winch up
+[INFO] [1646942042.451601]: Winch Up
+[INFO] [1646942042.457128]: Switch is pressed! Contact!
+[INFO] [1646942042.513112]: Closing down servo latching
+[INFO] [1646942042.569163]: winch stop
+[INFO] [1646942042.574381]: Latch is closed!
+[INFO] [1646942042.580675]: winch stop
+[INFO] [1646942042.587537]: Stop the winch
+[INFO] [1646942042.595283]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942042.601755]: winch up
+[INFO] [1646942042.608317]: Winch Up
+[INFO] [1646942042.614852]: Switch is pressed! Contact!
+[INFO] [1646942042.671550]: Closing down servo latching
+[INFO] [1646942042.728532]: winch stop
+[INFO] [1646942042.733944]: Latch is closed!
+[INFO] [1646942042.739810]: winch stop
+[INFO] [1646942042.745059]: Stop the winch
+[INFO] [1646942042.750457]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942042.755766]: winch stop
+[INFO] [1646942042.760837]: Stop the winch
+[INFO] [1646942042.770545]: Get winch state = 0.0, winch_cmd = 0.0
+[INFO] [1646942042.775912]: winch stop
+[INFO] [1646942042.780970]: Stop the winch
+[INFO] [1646942042.790631]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942042.796067]: winch up
+[INFO] [1646942042.801309]: Winch Up
+[INFO] [1646942042.806700]: Switch is pressed! Contact!
+[INFO] [1646942042.862057]: Closing down servo latching
+[INFO] [1646942042.918151]: winch stop
+[INFO] [1646942042.923856]: Latch is closed!
+[INFO] [1646942042.930090]: winch stop
+[INFO] [1646942042.935726]: Stop the winch
+[INFO] [1646942042.942656]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942042.948332]: winch up
+[INFO] [1646942042.953935]: Winch Up
+[INFO] [1646942042.959437]: Switch is pressed! Contact!
+[INFO] [1646942043.015094]: Closing down servo latching
+[INFO] [1646942043.071469]: winch stop
+[INFO] [1646942043.077181]: Latch is closed!
+[INFO] [1646942043.083754]: winch stop
+[INFO] [1646942043.090647]: Stop the winch
+[INFO] [1646942043.097870]: Get winch state = 0.0, winch_cmd = 1.0
+[INFO] [1646942043.104333]: winch up
+[INFO] [1646942043.110686]: Winch Up
+[INFO] [1646942043.116788]: Switch is pressed! Contact!
+^C[INFO] [1646942043.173402]: Closing down servo latching
+[INFO] [1646942043.230203]: winch stop
+[INFO] [1646942043.235326]: Latch is closed!
+[INFO] [1646942043.240962]: winch stop
+[INFO] [1646942043.246899]: Stop the winch
+[suction_service-1] killing on exit
+[INFO] [1646942043.253058]: Get winch state = 0.0, winch_cmd = 1.0
+^C[suction_service-1] escalating to SIGTERM
+

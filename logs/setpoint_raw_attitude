@@ -1,0 +1,9997 @@
+ x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 395
+  stamp: 
+    secs: 1647369171
+    nsecs: 117389917
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+^Cubuntu@ubuntu:~$ rostopic echo /mavros/setpoint_raw/local
+header: 
+  seq: 1
+  stamp: 
+    secs: 1647370037
+    nsecs:  72731971
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 2
+  stamp: 
+    secs: 1647370037
+    nsecs: 172652006
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 3
+  stamp: 
+    secs: 1647370037
+    nsecs: 272567987
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 4
+  stamp: 
+    secs: 1647370037
+    nsecs: 372596025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 5
+  stamp: 
+    secs: 1647370037
+    nsecs: 472590923
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 6
+  stamp: 
+    secs: 1647370037
+    nsecs: 572585105
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 7
+  stamp: 
+    secs: 1647370037
+    nsecs: 672605037
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 8
+  stamp: 
+    secs: 1647370037
+    nsecs: 772627115
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 9
+  stamp: 
+    secs: 1647370037
+    nsecs: 872631072
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 10
+  stamp: 
+    secs: 1647370037
+    nsecs: 972527027
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 11
+  stamp: 
+    secs: 1647370038
+    nsecs:  72554111
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 12
+  stamp: 
+    secs: 1647370038
+    nsecs: 172578096
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 13
+  stamp: 
+    secs: 1647370038
+    nsecs: 272687911
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 14
+  stamp: 
+    secs: 1647370038
+    nsecs: 372555971
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 15
+  stamp: 
+    secs: 1647370038
+    nsecs: 472733020
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 16
+  stamp: 
+    secs: 1647370038
+    nsecs: 572577953
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 17
+  stamp: 
+    secs: 1647370038
+    nsecs: 672907114
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 18
+  stamp: 
+    secs: 1647370038
+    nsecs: 772624015
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 19
+  stamp: 
+    secs: 1647370038
+    nsecs: 872544050
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 20
+  stamp: 
+    secs: 1647370038
+    nsecs: 972532033
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 21
+  stamp: 
+    secs: 1647370039
+    nsecs:  72552919
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 22
+  stamp: 
+    secs: 1647370039
+    nsecs: 172588109
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 23
+  stamp: 
+    secs: 1647370039
+    nsecs: 272633075
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 24
+  stamp: 
+    secs: 1647370039
+    nsecs: 372596025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 25
+  stamp: 
+    secs: 1647370039
+    nsecs: 472589969
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 26
+  stamp: 
+    secs: 1647370039
+    nsecs: 572638034
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 27
+  stamp: 
+    secs: 1647370039
+    nsecs: 672635078
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 28
+  stamp: 
+    secs: 1647370039
+    nsecs: 772593021
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 29
+  stamp: 
+    secs: 1647370039
+    nsecs: 872605085
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 30
+  stamp: 
+    secs: 1647370039
+    nsecs: 972567081
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 31
+  stamp: 
+    secs: 1647370040
+    nsecs:  72546958
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 32
+  stamp: 
+    secs: 1647370040
+    nsecs: 172588109
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 33
+  stamp: 
+    secs: 1647370040
+    nsecs: 272535085
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 34
+  stamp: 
+    secs: 1647370040
+    nsecs: 372622013
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 35
+  stamp: 
+    secs: 1647370040
+    nsecs: 472596883
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 36
+  stamp: 
+    secs: 1647370040
+    nsecs: 572556018
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 37
+  stamp: 
+    secs: 1647370040
+    nsecs: 672630071
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 38
+  stamp: 
+    secs: 1647370040
+    nsecs: 772918939
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 39
+  stamp: 
+    secs: 1647370040
+    nsecs: 872607946
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 40
+  stamp: 
+    secs: 1647370040
+    nsecs: 972564935
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 41
+  stamp: 
+    secs: 1647370041
+    nsecs:  72628974
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 42
+  stamp: 
+    secs: 1647370041
+    nsecs: 172583103
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 43
+  stamp: 
+    secs: 1647370041
+    nsecs: 272533893
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 44
+  stamp: 
+    secs: 1647370041
+    nsecs: 372576951
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 45
+  stamp: 
+    secs: 1647370041
+    nsecs: 472738027
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 46
+  stamp: 
+    secs: 1647370041
+    nsecs: 572709083
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 47
+  stamp: 
+    secs: 1647370041
+    nsecs: 672691106
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 48
+  stamp: 
+    secs: 1647370041
+    nsecs: 772681951
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 49
+  stamp: 
+    secs: 1647370041
+    nsecs: 872700929
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 50
+  stamp: 
+    secs: 1647370041
+    nsecs: 972639083
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 51
+  stamp: 
+    secs: 1647370042
+    nsecs:  72736024
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 52
+  stamp: 
+    secs: 1647370042
+    nsecs: 172616004
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 53
+  stamp: 
+    secs: 1647370042
+    nsecs: 272568941
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 54
+  stamp: 
+    secs: 1647370042
+    nsecs: 372649908
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 55
+  stamp: 
+    secs: 1647370042
+    nsecs: 472635984
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 56
+  stamp: 
+    secs: 1647370042
+    nsecs: 572627067
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 57
+  stamp: 
+    secs: 1647370042
+    nsecs: 672585964
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 58
+  stamp: 
+    secs: 1647370042
+    nsecs: 772526025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 59
+  stamp: 
+    secs: 1647370042
+    nsecs: 872600078
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 60
+  stamp: 
+    secs: 1647370042
+    nsecs: 972605943
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 61
+  stamp: 
+    secs: 1647370043
+    nsecs:  72603940
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 62
+  stamp: 
+    secs: 1647370043
+    nsecs: 172561883
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 63
+  stamp: 
+    secs: 1647370043
+    nsecs: 272622108
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 64
+  stamp: 
+    secs: 1647370043
+    nsecs: 372646093
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 65
+  stamp: 
+    secs: 1647370043
+    nsecs: 472738027
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 66
+  stamp: 
+    secs: 1647370043
+    nsecs: 572565078
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 67
+  stamp: 
+    secs: 1647370043
+    nsecs: 672581911
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 68
+  stamp: 
+    secs: 1647370043
+    nsecs: 772546052
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 69
+  stamp: 
+    secs: 1647370043
+    nsecs: 872564077
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 70
+  stamp: 
+    secs: 1647370043
+    nsecs: 972562074
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 71
+  stamp: 
+    secs: 1647370044
+    nsecs:  72573900
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 72
+  stamp: 
+    secs: 1647370044
+    nsecs: 172543048
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 73
+  stamp: 
+    secs: 1647370044
+    nsecs: 272571086
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 74
+  stamp: 
+    secs: 1647370044
+    nsecs: 372658967
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 75
+  stamp: 
+    secs: 1647370044
+    nsecs: 472560882
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 76
+  stamp: 
+    secs: 1647370044
+    nsecs: 572685956
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 77
+  stamp: 
+    secs: 1647370044
+    nsecs: 672588109
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 78
+  stamp: 
+    secs: 1647370044
+    nsecs: 772599935
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 79
+  stamp: 
+    secs: 1647370044
+    nsecs: 872637987
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 80
+  stamp: 
+    secs: 1647370044
+    nsecs: 972625970
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 81
+  stamp: 
+    secs: 1647370045
+    nsecs:  72597026
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 82
+  stamp: 
+    secs: 1647370045
+    nsecs: 172569036
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 83
+  stamp: 
+    secs: 1647370045
+    nsecs: 272609949
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 84
+  stamp: 
+    secs: 1647370045
+    nsecs: 372607946
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 85
+  stamp: 
+    secs: 1647370045
+    nsecs: 472546100
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 86
+  stamp: 
+    secs: 1647370045
+    nsecs: 572591066
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 87
+  stamp: 
+    secs: 1647370045
+    nsecs: 672574996
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 88
+  stamp: 
+    secs: 1647370045
+    nsecs: 772548913
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 89
+  stamp: 
+    secs: 1647370045
+    nsecs: 872586011
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 90
+  stamp: 
+    secs: 1647370045
+    nsecs: 972569942
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 91
+  stamp: 
+    secs: 1647370046
+    nsecs:  72628974
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 92
+  stamp: 
+    secs: 1647370046
+    nsecs: 172636032
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 93
+  stamp: 
+    secs: 1647370046
+    nsecs: 272548913
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 94
+  stamp: 
+    secs: 1647370046
+    nsecs: 372554063
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 95
+  stamp: 
+    secs: 1647370046
+    nsecs: 472562074
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 96
+  stamp: 
+    secs: 1647370046
+    nsecs: 572556018
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 97
+  stamp: 
+    secs: 1647370046
+    nsecs: 672552108
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 98
+  stamp: 
+    secs: 1647370046
+    nsecs: 772576093
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 99
+  stamp: 
+    secs: 1647370046
+    nsecs: 872622013
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 100
+  stamp: 
+    secs: 1647370046
+    nsecs: 972831964
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 101
+  stamp: 
+    secs: 1647370047
+    nsecs:  72668075
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 102
+  stamp: 
+    secs: 1647370047
+    nsecs: 172624111
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 103
+  stamp: 
+    secs: 1647370047
+    nsecs: 272622108
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 104
+  stamp: 
+    secs: 1647370047
+    nsecs: 372620105
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 105
+  stamp: 
+    secs: 1647370047
+    nsecs: 472575902
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 106
+  stamp: 
+    secs: 1647370047
+    nsecs: 572572946
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 107
+  stamp: 
+    secs: 1647370047
+    nsecs: 672600030
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 108
+  stamp: 
+    secs: 1647370047
+    nsecs: 772552967
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 109
+  stamp: 
+    secs: 1647370047
+    nsecs: 872560024
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 110
+  stamp: 
+    secs: 1647370047
+    nsecs: 972543954
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 111
+  stamp: 
+    secs: 1647370048
+    nsecs:  72498083
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 112
+  stamp: 
+    secs: 1647370048
+    nsecs: 172585010
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 113
+  stamp: 
+    secs: 1647370048
+    nsecs: 272620916
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 114
+  stamp: 
+    secs: 1647370048
+    nsecs: 372543096
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 115
+  stamp: 
+    secs: 1647370048
+    nsecs: 472527980
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 116
+  stamp: 
+    secs: 1647370048
+    nsecs: 572547912
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 117
+  stamp: 
+    secs: 1647370048
+    nsecs: 672591924
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 118
+  stamp: 
+    secs: 1647370048
+    nsecs: 772846937
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 119
+  stamp: 
+    secs: 1647370048
+    nsecs: 872611045
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 120
+  stamp: 
+    secs: 1647370048
+    nsecs: 972557067
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 121
+  stamp: 
+    secs: 1647370049
+    nsecs:  72947025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 122
+  stamp: 
+    secs: 1647370049
+    nsecs: 172614097
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 123
+  stamp: 
+    secs: 1647370049
+    nsecs: 272537946
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 124
+  stamp: 
+    secs: 1647370049
+    nsecs: 372580051
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 125
+  stamp: 
+    secs: 1647370049
+    nsecs: 472628116
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 126
+  stamp: 
+    secs: 1647370049
+    nsecs: 572593927
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 127
+  stamp: 
+    secs: 1647370049
+    nsecs: 672591924
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 128
+  stamp: 
+    secs: 1647370049
+    nsecs: 772598981
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 129
+  stamp: 
+    secs: 1647370049
+    nsecs: 872625112
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 130
+  stamp: 
+    secs: 1647370049
+    nsecs: 972578048
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 131
+  stamp: 
+    secs: 1647370050
+    nsecs:  72520017
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 132
+  stamp: 
+    secs: 1647370050
+    nsecs: 172609090
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 133
+  stamp: 
+    secs: 1647370050
+    nsecs: 272530078
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 134
+  stamp: 
+    secs: 1647370050
+    nsecs: 372519016
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 135
+  stamp: 
+    secs: 1647370050
+    nsecs: 472693920
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 136
+  stamp: 
+    secs: 1647370050
+    nsecs: 572607994
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 137
+  stamp: 
+    secs: 1647370050
+    nsecs: 672560930
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 138
+  stamp: 
+    secs: 1647370050
+    nsecs: 772578001
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 139
+  stamp: 
+    secs: 1647370050
+    nsecs: 872590065
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 140
+  stamp: 
+    secs: 1647370050
+    nsecs: 972592115
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 141
+  stamp: 
+    secs: 1647370051
+    nsecs:  72592020
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 142
+  stamp: 
+    secs: 1647370051
+    nsecs: 172590970
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 143
+  stamp: 
+    secs: 1647370051
+    nsecs: 272563934
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 144
+  stamp: 
+    secs: 1647370051
+    nsecs: 372719049
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 145
+  stamp: 
+    secs: 1647370051
+    nsecs: 472677946
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 146
+  stamp: 
+    secs: 1647370051
+    nsecs: 572984933
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 147
+  stamp: 
+    secs: 1647370051
+    nsecs: 672790050
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 148
+  stamp: 
+    secs: 1647370051
+    nsecs: 772521972
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 149
+  stamp: 
+    secs: 1647370051
+    nsecs: 872490882
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 150
+  stamp: 
+    secs: 1647370051
+    nsecs: 972745895
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 151
+  stamp: 
+    secs: 1647370052
+    nsecs:  73139905
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 152
+  stamp: 
+    secs: 1647370052
+    nsecs: 172761917
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 153
+  stamp: 
+    secs: 1647370052
+    nsecs: 272738933
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 154
+  stamp: 
+    secs: 1647370052
+    nsecs: 372714042
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 155
+  stamp: 
+    secs: 1647370052
+    nsecs: 473134040
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 156
+  stamp: 
+    secs: 1647370052
+    nsecs: 572949886
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 157
+  stamp: 
+    secs: 1647370052
+    nsecs: 672669887
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 158
+  stamp: 
+    secs: 1647370052
+    nsecs: 773040056
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 159
+  stamp: 
+    secs: 1647370052
+    nsecs: 872663021
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 160
+  stamp: 
+    secs: 1647370052
+    nsecs: 972685098
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 161
+  stamp: 
+    secs: 1647370053
+    nsecs:  72751045
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 162
+  stamp: 
+    secs: 1647370053
+    nsecs: 172745943
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 163
+  stamp: 
+    secs: 1647370053
+    nsecs: 272629976
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 164
+  stamp: 
+    secs: 1647370053
+    nsecs: 372555017
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 165
+  stamp: 
+    secs: 1647370053
+    nsecs: 472594976
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 166
+  stamp: 
+    secs: 1647370053
+    nsecs: 572575092
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 167
+  stamp: 
+    secs: 1647370053
+    nsecs: 672703027
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 168
+  stamp: 
+    secs: 1647370053
+    nsecs: 772527933
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 169
+  stamp: 
+    secs: 1647370053
+    nsecs: 872602939
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 170
+  stamp: 
+    secs: 1647370053
+    nsecs: 972592115
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 171
+  stamp: 
+    secs: 1647370054
+    nsecs:  72683095
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 172
+  stamp: 
+    secs: 1647370054
+    nsecs: 172630071
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 173
+  stamp: 
+    secs: 1647370054
+    nsecs: 272665977
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 174
+  stamp: 
+    secs: 1647370054
+    nsecs: 372587919
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 175
+  stamp: 
+    secs: 1647370054
+    nsecs: 472572088
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 176
+  stamp: 
+    secs: 1647370054
+    nsecs: 572542905
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 177
+  stamp: 
+    secs: 1647370054
+    nsecs: 672934055
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 178
+  stamp: 
+    secs: 1647370054
+    nsecs: 772639036
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 179
+  stamp: 
+    secs: 1647370054
+    nsecs: 872575044
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 180
+  stamp: 
+    secs: 1647370054
+    nsecs: 972596883
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 181
+  stamp: 
+    secs: 1647370055
+    nsecs:  72580099
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 182
+  stamp: 
+    secs: 1647370055
+    nsecs: 172569036
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 183
+  stamp: 
+    secs: 1647370055
+    nsecs: 272705078
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 184
+  stamp: 
+    secs: 1647370055
+    nsecs: 372642040
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 185
+  stamp: 
+    secs: 1647370055
+    nsecs: 472579956
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 186
+  stamp: 
+    secs: 1647370055
+    nsecs: 572561979
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 187
+  stamp: 
+    secs: 1647370055
+    nsecs: 672590970
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 188
+  stamp: 
+    secs: 1647370055
+    nsecs: 773029088
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 189
+  stamp: 
+    secs: 1647370055
+    nsecs: 872602939
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 190
+  stamp: 
+    secs: 1647370055
+    nsecs: 972594022
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 191
+  stamp: 
+    secs: 1647370056
+    nsecs:  72568893
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 192
+  stamp: 
+    secs: 1647370056
+    nsecs: 172503948
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 193
+  stamp: 
+    secs: 1647370056
+    nsecs: 272561073
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 194
+  stamp: 
+    secs: 1647370056
+    nsecs: 372667074
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 195
+  stamp: 
+    secs: 1647370056
+    nsecs: 472647905
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 196
+  stamp: 
+    secs: 1647370056
+    nsecs: 572562932
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 197
+  stamp: 
+    secs: 1647370056
+    nsecs: 672581911
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 198
+  stamp: 
+    secs: 1647370056
+    nsecs: 772531986
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 199
+  stamp: 
+    secs: 1647370056
+    nsecs: 872565984
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 200
+  stamp: 
+    secs: 1647370056
+    nsecs: 972541093
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 201
+  stamp: 
+    secs: 1647370057
+    nsecs:  72649955
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 202
+  stamp: 
+    secs: 1647370057
+    nsecs: 172600984
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 203
+  stamp: 
+    secs: 1647370057
+    nsecs: 272543907
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 204
+  stamp: 
+    secs: 1647370057
+    nsecs: 372567892
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 205
+  stamp: 
+    secs: 1647370057
+    nsecs: 472536087
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 206
+  stamp: 
+    secs: 1647370057
+    nsecs: 572567939
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 207
+  stamp: 
+    secs: 1647370057
+    nsecs: 672552108
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 208
+  stamp: 
+    secs: 1647370057
+    nsecs: 772612094
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 209
+  stamp: 
+    secs: 1647370057
+    nsecs: 872618913
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 210
+  stamp: 
+    secs: 1647370057
+    nsecs: 972661018
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 211
+  stamp: 
+    secs: 1647370058
+    nsecs:  72649955
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 212
+  stamp: 
+    secs: 1647370058
+    nsecs: 172583103
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 213
+  stamp: 
+    secs: 1647370058
+    nsecs: 272696018
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 214
+  stamp: 
+    secs: 1647370058
+    nsecs: 372720003
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 215
+  stamp: 
+    secs: 1647370058
+    nsecs: 472659111
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 216
+  stamp: 
+    secs: 1647370058
+    nsecs: 572721004
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 217
+  stamp: 
+    secs: 1647370058
+    nsecs: 672688007
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 218
+  stamp: 
+    secs: 1647370058
+    nsecs: 772715091
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 219
+  stamp: 
+    secs: 1647370058
+    nsecs: 872618913
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 220
+  stamp: 
+    secs: 1647370058
+    nsecs: 972556114
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 221
+  stamp: 
+    secs: 1647370059
+    nsecs:  72540044
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 222
+  stamp: 
+    secs: 1647370059
+    nsecs: 172610998
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 223
+  stamp: 
+    secs: 1647370059
+    nsecs: 272583007
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 224
+  stamp: 
+    secs: 1647370059
+    nsecs: 372672080
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 225
+  stamp: 
+    secs: 1647370059
+    nsecs: 472624063
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 226
+  stamp: 
+    secs: 1647370059
+    nsecs: 572957038
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 227
+  stamp: 
+    secs: 1647370059
+    nsecs: 672593116
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 228
+  stamp: 
+    secs: 1647370059
+    nsecs: 772593021
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 229
+  stamp: 
+    secs: 1647370059
+    nsecs: 872567892
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 230
+  stamp: 
+    secs: 1647370059
+    nsecs: 972632884
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 231
+  stamp: 
+    secs: 1647370060
+    nsecs:  72616100
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 232
+  stamp: 
+    secs: 1647370060
+    nsecs: 172612905
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 233
+  stamp: 
+    secs: 1647370060
+    nsecs: 272614002
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 234
+  stamp: 
+    secs: 1647370060
+    nsecs: 372611999
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 235
+  stamp: 
+    secs: 1647370060
+    nsecs: 472556114
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 236
+  stamp: 
+    secs: 1647370060
+    nsecs: 572572946
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 237
+  stamp: 
+    secs: 1647370060
+    nsecs: 672576904
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 238
+  stamp: 
+    secs: 1647370060
+    nsecs: 772599935
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 239
+  stamp: 
+    secs: 1647370060
+    nsecs: 872571945
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 240
+  stamp: 
+    secs: 1647370060
+    nsecs: 972564935
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 241
+  stamp: 
+    secs: 1647370061
+    nsecs:  72601079
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 242
+  stamp: 
+    secs: 1647370061
+    nsecs: 172631025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 243
+  stamp: 
+    secs: 1647370061
+    nsecs: 272670984
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 244
+  stamp: 
+    secs: 1647370061
+    nsecs: 372551918
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 245
+  stamp: 
+    secs: 1647370061
+    nsecs: 472537994
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 246
+  stamp: 
+    secs: 1647370061
+    nsecs: 572581052
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 247
+  stamp: 
+    secs: 1647370061
+    nsecs: 672537088
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 248
+  stamp: 
+    secs: 1647370061
+    nsecs: 772552013
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 249
+  stamp: 
+    secs: 1647370061
+    nsecs: 872807025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 250
+  stamp: 
+    secs: 1647370061
+    nsecs: 972788095
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 251
+  stamp: 
+    secs: 1647370062
+    nsecs:  72756052
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 252
+  stamp: 
+    secs: 1647370062
+    nsecs: 172576904
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 253
+  stamp: 
+    secs: 1647370062
+    nsecs: 272569894
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 254
+  stamp: 
+    secs: 1647370062
+    nsecs: 372580051
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 255
+  stamp: 
+    secs: 1647370062
+    nsecs: 472666025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 256
+  stamp: 
+    secs: 1647370062
+    nsecs: 572838068
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 257
+  stamp: 
+    secs: 1647370062
+    nsecs: 672830104
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 258
+  stamp: 
+    secs: 1647370062
+    nsecs: 772614002
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 259
+  stamp: 
+    secs: 1647370062
+    nsecs: 872579097
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 260
+  stamp: 
+    secs: 1647370062
+    nsecs: 972552061
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 261
+  stamp: 
+    secs: 1647370063
+    nsecs:  72746038
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 262
+  stamp: 
+    secs: 1647370063
+    nsecs: 172584056
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 263
+  stamp: 
+    secs: 1647370063
+    nsecs: 272614955
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 264
+  stamp: 
+    secs: 1647370063
+    nsecs: 372545957
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 265
+  stamp: 
+    secs: 1647370063
+    nsecs: 472599029
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 266
+  stamp: 
+    secs: 1647370063
+    nsecs: 572567939
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 267
+  stamp: 
+    secs: 1647370063
+    nsecs: 672575950
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 268
+  stamp: 
+    secs: 1647370063
+    nsecs: 772552013
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 269
+  stamp: 
+    secs: 1647370063
+    nsecs: 872685909
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 270
+  stamp: 
+    secs: 1647370063
+    nsecs: 972645998
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 271
+  stamp: 
+    secs: 1647370064
+    nsecs:  72613000
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 272
+  stamp: 
+    secs: 1647370064
+    nsecs: 172626972
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 273
+  stamp: 
+    secs: 1647370064
+    nsecs: 272561073
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 274
+  stamp: 
+    secs: 1647370064
+    nsecs: 372610092
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 275
+  stamp: 
+    secs: 1647370064
+    nsecs: 472600936
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 276
+  stamp: 
+    secs: 1647370064
+    nsecs: 572601079
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 277
+  stamp: 
+    secs: 1647370064
+    nsecs: 672576904
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 278
+  stamp: 
+    secs: 1647370064
+    nsecs: 772563934
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 279
+  stamp: 
+    secs: 1647370064
+    nsecs: 872551918
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 280
+  stamp: 
+    secs: 1647370064
+    nsecs: 972805976
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 281
+  stamp: 
+    secs: 1647370065
+    nsecs:  72586059
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 282
+  stamp: 
+    secs: 1647370065
+    nsecs: 172533035
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 283
+  stamp: 
+    secs: 1647370065
+    nsecs: 272564888
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 284
+  stamp: 
+    secs: 1647370065
+    nsecs: 372591972
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 285
+  stamp: 
+    secs: 1647370065
+    nsecs: 472574949
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 286
+  stamp: 
+    secs: 1647370065
+    nsecs: 572654008
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 287
+  stamp: 
+    secs: 1647370065
+    nsecs: 672622919
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 288
+  stamp: 
+    secs: 1647370065
+    nsecs: 772677898
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 289
+  stamp: 
+    secs: 1647370065
+    nsecs: 872627019
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 290
+  stamp: 
+    secs: 1647370065
+    nsecs: 972644090
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 291
+  stamp: 
+    secs: 1647370066
+    nsecs:  72592973
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 292
+  stamp: 
+    secs: 1647370066
+    nsecs: 172534942
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 293
+  stamp: 
+    secs: 1647370066
+    nsecs: 272620916
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 294
+  stamp: 
+    secs: 1647370066
+    nsecs: 372756958
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 295
+  stamp: 
+    secs: 1647370066
+    nsecs: 472577095
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 296
+  stamp: 
+    secs: 1647370066
+    nsecs: 572582960
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 297
+  stamp: 
+    secs: 1647370066
+    nsecs: 672595024
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 298
+  stamp: 
+    secs: 1647370066
+    nsecs: 772614002
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 299
+  stamp: 
+    secs: 1647370066
+    nsecs: 872623920
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 300
+  stamp: 
+    secs: 1647370066
+    nsecs: 972605943
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 301
+  stamp: 
+    secs: 1647370067
+    nsecs:  72572946
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 302
+  stamp: 
+    secs: 1647370067
+    nsecs: 172612905
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 303
+  stamp: 
+    secs: 1647370067
+    nsecs: 272617101
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 304
+  stamp: 
+    secs: 1647370067
+    nsecs: 372777938
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 305
+  stamp: 
+    secs: 1647370067
+    nsecs: 472584962
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 306
+  stamp: 
+    secs: 1647370067
+    nsecs: 572813987
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 307
+  stamp: 
+    secs: 1647370067
+    nsecs: 672549962
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 308
+  stamp: 
+    secs: 1647370067
+    nsecs: 772595882
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 309
+  stamp: 
+    secs: 1647370067
+    nsecs: 872581005
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 310
+  stamp: 
+    secs: 1647370067
+    nsecs: 972584962
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 311
+  stamp: 
+    secs: 1647370068
+    nsecs:  72618007
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 312
+  stamp: 
+    secs: 1647370068
+    nsecs: 172738075
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 313
+  stamp: 
+    secs: 1647370068
+    nsecs: 272669076
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 314
+  stamp: 
+    secs: 1647370068
+    nsecs: 372930049
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 315
+  stamp: 
+    secs: 1647370068
+    nsecs: 472700119
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 316
+  stamp: 
+    secs: 1647370068
+    nsecs: 572576045
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 317
+  stamp: 
+    secs: 1647370068
+    nsecs: 672597885
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 318
+  stamp: 
+    secs: 1647370068
+    nsecs: 772623062
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 319
+  stamp: 
+    secs: 1647370068
+    nsecs: 872559070
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 320
+  stamp: 
+    secs: 1647370068
+    nsecs: 972662925
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 321
+  stamp: 
+    secs: 1647370069
+    nsecs:  72709083
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 322
+  stamp: 
+    secs: 1647370069
+    nsecs: 172735929
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 323
+  stamp: 
+    secs: 1647370069
+    nsecs: 272712945
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 324
+  stamp: 
+    secs: 1647370069
+    nsecs: 372730970
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 325
+  stamp: 
+    secs: 1647370069
+    nsecs: 472800970
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 326
+  stamp: 
+    secs: 1647370069
+    nsecs: 572738885
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 327
+  stamp: 
+    secs: 1647370069
+    nsecs: 672812938
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 328
+  stamp: 
+    secs: 1647370069
+    nsecs: 772726058
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 329
+  stamp: 
+    secs: 1647370069
+    nsecs: 872735023
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 330
+  stamp: 
+    secs: 1647370069
+    nsecs: 972688913
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 331
+  stamp: 
+    secs: 1647370070
+    nsecs:  72674036
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 332
+  stamp: 
+    secs: 1647370070
+    nsecs: 172589063
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 333
+  stamp: 
+    secs: 1647370070
+    nsecs: 272615909
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 334
+  stamp: 
+    secs: 1647370070
+    nsecs: 372589111
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 335
+  stamp: 
+    secs: 1647370070
+    nsecs: 472604990
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 336
+  stamp: 
+    secs: 1647370070
+    nsecs: 572846889
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 337
+  stamp: 
+    secs: 1647370070
+    nsecs: 672574996
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 338
+  stamp: 
+    secs: 1647370070
+    nsecs: 772555112
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 339
+  stamp: 
+    secs: 1647370070
+    nsecs: 872596025
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 340
+  stamp: 
+    secs: 1647370070
+    nsecs: 972553014
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 341
+  stamp: 
+    secs: 1647370071
+    nsecs:  72601079
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 342
+  stamp: 
+    secs: 1647370071
+    nsecs: 172589063
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 343
+  stamp: 
+    secs: 1647370071
+    nsecs: 272627115
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 344
+  stamp: 
+    secs: 1647370071
+    nsecs: 372564077
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 345
+  stamp: 
+    secs: 1647370071
+    nsecs: 472615957
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 346
+  stamp: 
+    secs: 1647370071
+    nsecs: 572623014
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 347
+  stamp: 
+    secs: 1647370071
+    nsecs: 672554969
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 348
+  stamp: 
+    secs: 1647370071
+    nsecs: 772531032
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 349
+  stamp: 
+    secs: 1647370071
+    nsecs: 872545003
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 350
+  stamp: 
+    secs: 1647370071
+    nsecs: 972620964
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 351
+  stamp: 
+    secs: 1647370072
+    nsecs:  72616100
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 352
+  stamp: 
+    secs: 1647370072
+    nsecs: 172607898
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 353
+  stamp: 
+    secs: 1647370072
+    nsecs: 272591114
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 354
+  stamp: 
+    secs: 1647370072
+    nsecs: 372581005
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 355
+  stamp: 
+    secs: 1647370072
+    nsecs: 472625017
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 356
+  stamp: 
+    secs: 1647370072
+    nsecs: 572563886
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 357
+  stamp: 
+    secs: 1647370072
+    nsecs: 672595977
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 358
+  stamp: 
+    secs: 1647370072
+    nsecs: 772619962
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 359
+  stamp: 
+    secs: 1647370072
+    nsecs: 872690916
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 360
+  stamp: 
+    secs: 1647370072
+    nsecs: 972681999
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 361
+  stamp: 
+    secs: 1647370073
+    nsecs:  72560071
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 362
+  stamp: 
+    secs: 1647370073
+    nsecs: 172543048
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 363
+  stamp: 
+    secs: 1647370073
+    nsecs: 272768020
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 364
+  stamp: 
+    secs: 1647370073
+    nsecs: 372653007
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 365
+  stamp: 
+    secs: 1647370073
+    nsecs: 472546100
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 366
+  stamp: 
+    secs: 1647370073
+    nsecs: 572531938
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 367
+  stamp: 
+    secs: 1647370073
+    nsecs: 672697067
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 368
+  stamp: 
+    secs: 1647370073
+    nsecs: 772644042
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 369
+  stamp: 
+    secs: 1647370073
+    nsecs: 872535943
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 370
+  stamp: 
+    secs: 1647370073
+    nsecs: 972583055
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 371
+  stamp: 
+    secs: 1647370132
+    nsecs: 472578048
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 372
+  stamp: 
+    secs: 1647370132
+    nsecs: 572621107
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 373
+  stamp: 
+    secs: 1647370132
+    nsecs: 672656059
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 374
+  stamp: 
+    secs: 1647370132
+    nsecs: 772629976
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 375
+  stamp: 
+    secs: 1647370132
+    nsecs: 872637987
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 376
+  stamp: 
+    secs: 1647370132
+    nsecs: 972640991
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 377
+  stamp: 
+    secs: 1647370133
+    nsecs:  72549104
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 378
+  stamp: 
+    secs: 1647370133
+    nsecs: 172717094
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 379
+  stamp: 
+    secs: 1647370133
+    nsecs: 272646903
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 380
+  stamp: 
+    secs: 1647370133
+    nsecs: 372519969
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 381
+  stamp: 
+    secs: 1647370133
+    nsecs: 472610950
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 382
+  stamp: 
+    secs: 1647370133
+    nsecs: 572735071
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 383
+  stamp: 
+    secs: 1647370133
+    nsecs: 672576904
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 384
+  stamp: 
+    secs: 1647370133
+    nsecs: 772588014
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 385
+  stamp: 
+    secs: 1647370133
+    nsecs: 872558116
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 386
+  stamp: 
+    secs: 1647370133
+    nsecs: 972609043
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 387
+  stamp: 
+    secs: 1647370134
+    nsecs:  72880029
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 388
+  stamp: 
+    secs: 1647370134
+    nsecs: 172619104
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 389
+  stamp: 
+    secs: 1647370134
+    nsecs: 272603034
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 390
+  stamp: 
+    secs: 1647370134
+    nsecs: 372648000
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 391
+  stamp: 
+    secs: 1647370134
+    nsecs: 472601890
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 392
+  stamp: 
+    secs: 1647370134
+    nsecs: 572627067
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 393
+  stamp: 
+    secs: 1647370134
+    nsecs: 672553062
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 394
+  stamp: 
+    secs: 1647370134
+    nsecs: 772612094
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 395
+  stamp: 
+    secs: 1647370134
+    nsecs: 872634887
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 396
+  stamp: 
+    secs: 1647370134
+    nsecs: 972584962
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 397
+  stamp: 
+    secs: 1647370135
+    nsecs:  72516918
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 398
+  stamp: 
+    secs: 1647370135
+    nsecs: 172563076
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 399
+  stamp: 
+    secs: 1647370135
+    nsecs: 272536039
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 400
+  stamp: 
+    secs: 1647370135
+    nsecs: 372714042
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 401
+  stamp: 
+    secs: 1647370135
+    nsecs: 472611904
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 402
+  stamp: 
+    secs: 1647370135
+    nsecs: 572544097
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 403
+  stamp: 
+    secs: 1647370135
+    nsecs: 672605037
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 404
+  stamp: 
+    secs: 1647370135
+    nsecs: 772532939
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 405
+  stamp: 
+    secs: 1647370135
+    nsecs: 872550010
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 406
+  stamp: 
+    secs: 1647370135
+    nsecs: 972570896
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 407
+  stamp: 
+    secs: 1647370136
+    nsecs:  72603940
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 408
+  stamp: 
+    secs: 1647370136
+    nsecs: 172640085
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 409
+  stamp: 
+    secs: 1647370136
+    nsecs: 272607088
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 410
+  stamp: 
+    secs: 1647370136
+    nsecs: 372611999
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 411
+  stamp: 
+    secs: 1647370136
+    nsecs: 472606897
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 412
+  stamp: 
+    secs: 1647370136
+    nsecs: 572592020
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 413
+  stamp: 
+    secs: 1647370136
+    nsecs: 672620058
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 414
+  stamp: 
+    secs: 1647370136
+    nsecs: 772594928
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 415
+  stamp: 
+    secs: 1647370136
+    nsecs: 872611999
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 416
+  stamp: 
+    secs: 1647370136
+    nsecs: 972599983
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 417
+  stamp: 
+    secs: 1647370137
+    nsecs:  72612047
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 418
+  stamp: 
+    secs: 1647370137
+    nsecs: 172629117
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 419
+  stamp: 
+    secs: 1647370137
+    nsecs: 272573947
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 420
+  stamp: 
+    secs: 1647370137
+    nsecs: 372637033
+  frame_id: "mission_pos_target_zero"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 421
+  stamp: 
+    secs: 1647370137
+    nsecs: 472923040
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 422
+  stamp: 
+    secs: 1647370137
+    nsecs: 572571992
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 423
+  stamp: 
+    secs: 1647370137
+    nsecs: 672617912
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 424
+  stamp: 
+    secs: 1647370137
+    nsecs: 772623062
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 425
+  stamp: 
+    secs: 1647370137
+    nsecs: 872805118
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 426
+  stamp: 
+    secs: 1647370137
+    nsecs: 972584962
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 427
+  stamp: 
+    secs: 1647370138
+    nsecs:  72771072
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 428
+  stamp: 
+    secs: 1647370138
+    nsecs: 172602891
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 429
+  stamp: 
+    secs: 1647370138
+    nsecs: 273082017
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 430
+  stamp: 
+    secs: 1647370138
+    nsecs: 372595071
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 431
+  stamp: 
+    secs: 1647370138
+    nsecs: 472629070
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 432
+  stamp: 
+    secs: 1647370138
+    nsecs: 572542905
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---
+header: 
+  seq: 433
+  stamp: 
+    secs: 1647370138
+    nsecs: 672698020
+  frame_id: "mission_pos_target_vel"
+coordinate_frame: 1
+type_mask: 3015
+position: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+velocity: 
+  x: -0.1
+  y: 0.0
+  z: 0.0
+acceleration_or_force: 
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+

@@ -287,6 +287,16 @@ class MavrosOffboardSuctionMission():
         #else:
         #    return self.make_origin_pos()
 
+    def make_stationary_pos(self, x=1.2):
+        pos = PoseStamped()
+        pos.header = Header()
+        pos.header.frame_id = "stationary_pose_for_detach"
+        pos.header.stamp = rospy.Time.now()
+        pos.pose.position.x = x
+        pos.pose.position.y = 0
+        pos.pose.position.z = 0
+        return pos
+
     def make_pos_target(self):
         pos_target = PositionTarget()
         pos_target.header = Header()
@@ -319,8 +329,8 @@ class MavrosOffboardSuctionMission():
         if self.stationary.value:
             pos_target.header.frame_id = "mission_pos_target_vel_stationary"
             pos_target.velocity.x = -0.05 # for all -1, 0 and 1
-            pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
-            pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
+            pos_target.velocity.y = 0
+            pos_target.velocity.z = 0
             
         if not self.stationary.value:    
             pos_target.header.frame_id = "mission_pos_target_vel"
@@ -378,7 +388,7 @@ class MavrosOffboardSuctionMission():
                     att_target.header.frame_id = "zero_throttle"
                     #throttle = 0.0
                     self.current_throttle.value = 0.0
-                 '''
+                '''
             else:
                 pitch = 0.0  # zero pitch rate 
                 att_target.header.frame_id = "zero_throttle"
