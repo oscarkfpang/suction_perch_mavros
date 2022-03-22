@@ -1067,7 +1067,7 @@ class MavrosOffboardSuctionMission():
         
         while not normal_attitude:
             rospy.loginfo("STATUS: waiting for normal attitude. Current throttle: {0}".format(self.current_throttle.value))
-            self.current_throttle.value +=  0.02
+            self.current_throttle.value +=  0.01 ##0.02
             normal_attitude = self.is_normal_attitude()
             rate.sleep()
             
@@ -1212,7 +1212,7 @@ class MavrosOffboardSuctionMission():
                         "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
             
             if rospy.get_time() - start_time <= stationary_period:
-                rospy.loginfo("Waiting for {0} sec for suction pressure back to normal. Current Throttle = {1}".format(stationary_period, self.current_throttle.value))
+                rospy.loginfo("Waiting for {0} sec for suction pressure back to normal. Current Throttle = {1} | Current IMU-Y = {2}".format(stationary_period, self.current_throttle.value, self.imu_data.orientation.y))
                 self.stationary.value = True
             else:
                 self.stationary.value = False
@@ -1534,9 +1534,9 @@ if __name__ == '__main__':
     mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
 
     # mission waypoints for perching test
-    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.6, 0), (0.8, 0, 1.6, 0), 
+    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.5, 0), (1.2, 0, 1.5, 0), 
                         (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (-0.8, 0, 1.6, 0), (-1, 0, 1.6, 0))
+                        (-0.8, 0, 1.5, 0), (-1, 0, 1.5, 0))
     
     # mission waypoints for perching test
     #mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1, 0), (1, 0, 1, 0), 
