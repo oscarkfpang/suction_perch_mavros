@@ -47,7 +47,7 @@ class MavrosOffboardSuctionMission():
         self.goto_pos_time = goto_pos_time
         self.perch_time = perch_time
         self.land_on_wall_time = land_on_wall_time
-        self.low_throttle_value = 0.5
+        self.low_throttle_value = 0.7 # 0.7 for sensor box paylod. 0.5 for no payload
         self.throttle_down_time = throttle_down_time
         self.throttle_down_start_time = -1   # > 0 for real time
 
@@ -287,15 +287,17 @@ class MavrosOffboardSuctionMission():
         #else:
         #    return self.make_origin_pos()
 
-    def make_stationary_pos(self, x=1.2):
-        pos = PoseStamped()
-        pos.header = Header()
-        pos.header.frame_id = "stationary_pose_for_detach"
-        pos.header.stamp = rospy.Time.now()
-        pos.pose.position.x = x
-        pos.pose.position.y = 0
-        pos.pose.position.z = 0
-        return pos
+    def make_stationary_att_target(self):
+        att_target = AttitudeTarget()
+        att_target.header = Header()
+        att_target.header.stamp = rospy.Time.now()
+        att_target.header.frame_id = "stationary_att_target_with_thrust"
+                
+        att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE
+        quaternion = quaternion_from_euler(0, 0, 0)        
+        att_target.thrust = self.current_throttle.value
+        att_target.orientation = Quaternion(*quaternion)
+        return att_target
 
     def make_pos_target(self):
         pos_target = PositionTarget()
@@ -326,17 +328,17 @@ class MavrosOffboardSuctionMission():
             pos_target.velocity.z = -1*self.vz
         '''
         
-        if self.stationary.value:
-            pos_target.header.frame_id = "mission_pos_target_vel_stationary"
-            pos_target.velocity.x = -0.05 # for all -1, 0 and 1
-            pos_target.velocity.y = 0
-            pos_target.velocity.z = 0
+        #if self.stationary.value:
+        #    pos_target.header.frame_id = "mission_pos_target_vel_stationary"
+        #    pos_target.velocity.x = -0.05 # for all -1, 0 and 1
+        #    pos_target.velocity.y = 0
+        #    pos_target.velocity.z = 0
             
-        if not self.stationary.value:    
-            pos_target.header.frame_id = "mission_pos_target_vel"
-            pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
-            pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
-            pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
+        #if not self.stationary.value:    
+        pos_target.header.frame_id = "mission_pos_target_vel"
+        pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
+        pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
+        pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
             
         pos_target.yaw = 0 # don't yaw, always point to the front
         return pos_target
@@ -360,10 +362,12 @@ class MavrosOffboardSuctionMission():
             att_target.body_rate = vector3
             return att_target
         
+        if self.stationary.value:
+            return self.make_stationary_att_target()
         
         if not self.publish_thr_down.value:
             pitch = self.pitch_rate # tested in jmavsim for -ve value = pitch up (flip backward)
-            self.current_throttle.value = self.low_throttle_value
+            #self.current_throttle.value = self.low_throttle_value
             att_target.header.frame_id = "high_pitch_low_throttle"
         else:
             # gradually throttling down
@@ -1076,8 +1080,8 @@ class MavrosOffboardSuctionMission():
 
         
         while not normal_attitude:
-            rospy.loginfo("STATUS: waiting for normal attitude. Current throttle: {0}".format(self.current_throttle.value))
-            self.current_throttle.value +=  0.02
+            rospy.loginfo("STATUS: waiting for normal attitude. Current throttle: {0} | IMU-Y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
+            self.current_throttle.value +=  0.01
             normal_attitude = self.is_normal_attitude()
             rate.sleep()
             
@@ -1088,13 +1092,17 @@ class MavrosOffboardSuctionMission():
         
         if normal_attitude:  
             rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
-            self.publish_att_raw.value = False
+            rospy.loginfo("STATUS: publish stationary_att_throttle for stabilization during detach")
+            #self.publish_att_raw.value = False
             self.mission_cnt.value = 5
-            rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
+            #rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
+            self.publish_att_raw.value = True
+            self.publish_thr_up.value = False
         else:
             rospy.loginfo("STATUS: Drone too heavy / cannot reach the normal attitude!")
             self.publish_att_raw.value = True
             self.publish_thr_up.value = False
+            self.current_throttle.value = 0
 
         return normal_attitude
                 
@@ -1135,9 +1143,10 @@ class MavrosOffboardSuctionMission():
 
         # throttle down at high pitch angle vertical landing phase
         rospy.loginfo(
-            "Throttle down from high attitude is about to start... ")
+            "Throttle down from high attitude is about to start... Throttling down from {0}".format(self.low_throttle_value))
         self.publish_thr_down.value = True
         self.throttle_down_start_time = rospy.get_time()
+        self.current_throttle.value = self.low_throttle_value
         # gradually reduce throttle to zero during throttle_timeout
         for i in xrange(throttle_timeout * loop_freq):
             try:
@@ -1214,6 +1223,8 @@ class MavrosOffboardSuctionMission():
         detach = False
         
         stationary_period = 6 # sec
+        self.publish_att_raw.value = True
+        self.stationary.value = True
         
         start_time = rospy.get_time()
         
@@ -1223,9 +1234,9 @@ class MavrosOffboardSuctionMission():
             
             if rospy.get_time() - start_time <= stationary_period:
                 rospy.loginfo("Waiting for {0} sec for suction pressure back to normal. Current Throttle = {1}".format(stationary_period, self.current_throttle.value))
-                self.stationary.value = True
+                #self.stationary.value = True
             else:
-                self.stationary.value = False
+                ## self.stationary.value = False
                 rospy.loginfo("****** {0} sec is over!".format(stationary_period))
                 
                 try:
@@ -1241,7 +1252,11 @@ class MavrosOffboardSuctionMission():
                 rate.sleep()
             except rospy.ROSException as e:
                 self.fail(e)
-                
+
+        #self.publish_att_raw.value = False
+        #self.mission_cnt.value = 5
+        #rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
+                            
         if detach:
             self.publish_att_raw.value = False
             self.stationary.value = False
@@ -1251,7 +1266,11 @@ class MavrosOffboardSuctionMission():
             #    rospy.loginfo("Turn off suction pump")
             #    self.pub_pump.publish(Empty())
             #    self.pump_on.value = False
+        else:
+            self.stationary.value = True
+            self.current_throttle.value = 0.0
             
+               
         return detach
 
     def perch_wall(self, timeout=60):
