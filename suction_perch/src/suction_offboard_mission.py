@@ -295,7 +295,7 @@ class MavrosOffboardSuctionMission():
                 
         att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE
         quaternion = quaternion_from_euler(0, 0, 0)        
-        att_target.thrust = 0.7 #self.current_throttle.value
+        att_target.thrust = 0.73 #self.current_throttle.value
         att_target.orientation = Quaternion(*quaternion)
         return att_target
 
@@ -743,17 +743,17 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
             return False
             
-        rospy.loginfo("STATUS: Sleep for 30 sec before re-takeoff")        
+        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
         rospy.sleep(10)
 
         #rospy.loginfo("STATUS: 30 sec left")        
         #rospy.sleep(10)   
 
-        rospy.loginfo("STATUS: 20 sec left")        
-        rospy.sleep(10)     
+        #rospy.loginfo("STATUS: 20 sec left")        
+        #rospy.sleep(10)     
 
-        rospy.loginfo("STATUS: 10 sec before re-takeoff")        
-        rospy.sleep(10)
+        #rospy.loginfo("STATUS: 10 sec before re-takeoff")        
+        #rospy.sleep(10)
         #self.deploy_winch(5)
         
         rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
