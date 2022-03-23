@@ -47,7 +47,7 @@ class MavrosOffboardSuctionMission():
         self.goto_pos_time = goto_pos_time
         self.perch_time = perch_time
         self.land_on_wall_time = land_on_wall_time
-        self.low_throttle_value = 0.5 # 0.7 for sensor box paylod. 0.5 for no payload
+        self.low_throttle_value = 0.6 # 0.7 for sensor box paylod. 0.5 for no payload
         self.throttle_down_time = throttle_down_time
         self.throttle_down_start_time = -1   # > 0 for real time
 
