@@ -1236,8 +1236,13 @@ class MavrosOffboardSuctionMission():
                 rospy.loginfo("Waiting for {0} sec for suction pressure back to normal. Current Throttle = {1}".format(stationary_period, self.current_throttle.value))
                 #self.stationary.value = True
             else:
-                ## self.stationary.value = False
                 rospy.loginfo("****** {0} sec is over!".format(stationary_period))
+                self.stationary.value = False
+                
+                # turn off raw setpoint and use vel setpoint for pulling out the drone
+                self.publish_att_raw.value = False
+                rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
+
                 
                 try:
                     res = self.get_param_srv('SUCTION_IS_PERCH')
@@ -1252,10 +1257,6 @@ class MavrosOffboardSuctionMission():
                 rate.sleep()
             except rospy.ROSException as e:
                 self.fail(e)
-
-        #self.publish_att_raw.value = False
-        #self.mission_cnt.value = 5
-        #rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
                             
         if detach:
             self.publish_att_raw.value = False
@@ -1267,6 +1268,7 @@ class MavrosOffboardSuctionMission():
             #    self.pub_pump.publish(Empty())
             #    self.pump_on.value = False
         else:
+            self.publish_att_raw.value = True
             self.stationary.value = True
             self.current_throttle.value = 0.0
             
