@@ -1241,9 +1241,14 @@ class MavrosOffboardSuctionMission():
                 
                 # turn off raw setpoint and use vel setpoint for pulling out the drone
                 self.publish_att_raw.value = False
-                rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
-
+                #rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
                 
+                ########################################
+                rospy.loginfo("TEST: try to detach from wall by itself and go to next POS SP")
+                detach = True
+                break
+                ###########################3
+                '''
                 try:
                     res = self.get_param_srv('SUCTION_IS_PERCH')
                     if res.success and res.value.integer <= 0:
@@ -1253,6 +1258,7 @@ class MavrosOffboardSuctionMission():
                         break
                 except rospy.ServiceException as e:
                     rospy.logerr(e)
+                '''
             try:
                 rate.sleep()
             except rospy.ROSException as e:
