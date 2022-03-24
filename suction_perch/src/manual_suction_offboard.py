@@ -43,6 +43,7 @@ class MavrosOffboardSuctionMission():
         self.vy = vy
         self.vz = vz
         self.pitch_rate = -0.3
+        self.holding_throttle = 0.85
         self.takeoff_alt = takeoff_alt
         self.goto_pos_time = goto_pos_time
         self.perch_time = perch_time
@@ -50,6 +51,7 @@ class MavrosOffboardSuctionMission():
         self.low_throttle_value = 0.6 # 0.7 for sensor box paylod. 0.5 for no payload
         self.throttle_down_time = throttle_down_time
         self.throttle_down_start_time = -1   # > 0 for real time
+        self.min_distance_from_wall = 0.15
 
         self.terminate = Value(c_bool, False)
         self.mission_cnt = Value(c_int, 0)
@@ -64,6 +66,9 @@ class MavrosOffboardSuctionMission():
         self.debug_mode = Value(c_bool, False)
         self.current_throttle = Value(c_float, 0.0)
         self.suction_pressure = 0.0
+        self.winch_done = Value(c_bool, False)
+        self.tfmini_range = Value(c_float, 0.0)
+        
         
         self.stationary = Value(c_bool, False)
         self.pull_off = Value(c_bool, False)
@@ -122,10 +127,6 @@ class MavrosOffboardSuctionMission():
         self.pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)
         self.pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
         
-        self.pub_override = rospy.Publisher('winch_override', Bool, queue_size=1)
-        self.pub_winch_up = rospy.Publisher('winch_cmd_up', Empty, queue_size=1)
-        self.pub_winch_down = rospy.Publisher('winch_cmd_down', Empty, queue_size=1)
-        self.pub_winch_stop = rospy.Publisher('winch_cmd_stop', Empty, queue_size=1)  
 
         # ROS subscribers
         self.alt_sub = rospy.Subscriber('mavros/altitude', Altitude,
@@ -151,6 +152,13 @@ class MavrosOffboardSuctionMission():
         self.pressure_sub = rospy.Subscriber('suction_pressure',
                                                Float64,
                                                self.pressure_callback)
+        self.winch_done_sub = rospy.Subscriber('winch_done',
+                                               Bool,
+                                               self.winch_state_callback)
+        self.tfmini_sub = rospy.Subscriber('/mavros/distance_sensor/tfmini_pub',
+                                               Float64,
+                                               self.tfmini_callback)
+        
                                                
         # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
@@ -158,7 +166,6 @@ class MavrosOffboardSuctionMission():
         self.pos_thread.daemon = True
         self.pos_thread.start()
         
-        #self.pub_override.publish(True) 
 
     def altitude_callback(self, data):
         self.altitude = data
@@ -230,7 +237,15 @@ class MavrosOffboardSuctionMission():
             self.sub_topics_ready['is_perched'] = True
             
     def pressure_callback(self, data):
-        self.suction_pressure = data
+        self.suction_pressure = data.data
+    
+    def winch_state_callback(self, data):
+        self.winch_done.value = data.data
+
+    def tfmini_callback(self, data):
+        self.tfmini_range.value = data.range
+        if self.tfmini_range.value < 0.05:
+            self.tfmini_range.value = 0
     #
     # Helper methods
     #
@@ -239,53 +254,41 @@ class MavrosOffboardSuctionMission():
     def send_mission_pos(self):
         rate = rospy.Rate(10)
         while not rospy.is_shutdown():
-            if self.mission_cnt.value >= len(self.mission_pos):
-                # handle exception when mission_cnt out of index range of mission_pos.
-                self.pos_setpoint_pub.publish(self.make_origin_pos()) # publish a zero setpoint
+            # by default publish zero velocity setpoint as flying is done by manual
+            if not self.publish_att_raw.value:
+                # publish velocity setpoint for slowly closing / retracting from the wall
+                self.pos_target_setpoint_pub.publish(self.make_pos_target()) 
             else:
-                if self.mission_pos[self.mission_cnt.value][3] == 0: # normal pos setpoint
-                    self.pos_setpoint_pub.publish(self.make_pos())
-                elif self.mission_pos[self.mission_cnt.value][3] == 1: # velocity setpoint
-                    if not self.publish_att_raw.value:
-                        # publish velocity setpoint for slowly closing / retracting from the wall
-                        self.pos_target_setpoint_pub.publish(self.make_pos_target()) 
-                    else:
-                        # publish attitude setpoint for high attitude movement
-                        self.att_raw_setpoint_pub.publish(self.make_att_target())    
+                # publish attitude setpoint for high attitude movement and takeoff from wall
+                self.att_raw_setpoint_pub.publish(self.make_att_target())              
+               
             try:  # prevent garbage in console output when thread is killed
                 rate.sleep()
             except rospy.ROSInterruptException:
+                rospy.loginfo("ERROR: Thread interrupted!")
                 pass
-                
-    def make_origin_pos(self):
-        # set position setpoint to 1m above origin
-        pos = PoseStamped()
-        pos.header = Header()
-        pos.header.frame_id = "mission_pos_origin"
-        pos.pose.position.x = 0
-        pos.pose.position.y = 0
-        pos.pose.position.z = 1
-        pos.header.stamp = rospy.Time.now()
-        return pos
-        
-    def make_pos(self, yaw=0):
-        pos = PoseStamped()
-        pos.header = Header()
-        pos.header.frame_id = "mission_pos"
-        pos.header.stamp = rospy.Time.now()
-        #if self.mission_cnt.value < len(self.mission_pos):
-        pos.pose.position.x = self.mission_pos[self.mission_cnt.value][0]
-        pos.pose.position.y = self.mission_pos[self.mission_cnt.value][1]
-        pos.pose.position.z = self.mission_pos[self.mission_cnt.value][2]
-        
-        if yaw != 0:
-            yaw_rad = math.radians(yaw)
-            quaternion = quaternion_from_euler(0, 0, yaw)
-            pos.pose.orientation = Quaternion(*quaternion)
-            
-        return pos
-        #else:
-        #    return self.make_origin_pos()
+
+
+    def make_pos_target(self):
+        '''
+        Create velocity setpoint for approaching the drone slowly to the wall under VICON
+        Return: PositionTarget() with vx, vy and vz
+        '''
+        pos_target = PositionTarget()
+        pos_target.header = Header()        
+        pos_target.header.frame_id = "sttionary velocity setpoint"
+        pos_target.header.stamp = rospy.Time.now()
+        pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
+                               PositionTarget.FORCE + PositionTarget.IGNORE_YAW_RATE + PositionTarget.IGNORE_PX + \
+                               PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ
+        pos_target.coordinate_frame = PositionTarget.FRAME_LOCAL_NED
+        pos_target.velocity.x = 0
+        pos_target.velocity.y = 0
+        pos_target.velocity.z = 0
+ 
+        pos_target.yaw = 0 # don't yaw, always point to the front
+        return pos_target
+
 
     def make_stationary_att_target(self):
         att_target = AttitudeTarget()
@@ -298,51 +301,7 @@ class MavrosOffboardSuctionMission():
         att_target.thrust = 0.73 #self.current_throttle.value
         att_target.orientation = Quaternion(*quaternion)
         return att_target
-
-    def make_pos_target(self):
-        pos_target = PositionTarget()
-        pos_target.header = Header()
-        pos_target.header.frame_id = "mission_pos_target_zero"
-        pos_target.header.stamp = rospy.Time.now()
-        pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
-                               PositionTarget.FORCE + PositionTarget.IGNORE_YAW_RATE + PositionTarget.IGNORE_PX + \
-                               PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ
-        pos_target.coordinate_frame = PositionTarget.FRAME_LOCAL_NED
-        pos_target.velocity.x = 0
-        pos_target.velocity.y = 0
-        pos_target.velocity.z = 0
-
-        # send directional velocity command to the drone
-        '''
-        if self.mission_pos[self.mission_cnt.value][0] > 0:
-            pos_target.velocity.x = self.vx
-        elif self.mission_pos[self.mission_cnt.value][0] < 0:
-            pos_target.velocity.x = -1*self.vx
-        if self.mission_pos[self.mission_cnt.value][1] > 0:
-            pos_target.velocity.y = self.vy
-        elif self.mission_pos[self.mission_cnt.value][1] < 0:
-            pos_target.velocity.y = -1*self.vy 
-        if self.mission_pos[self.mission_cnt.value][2] > 0:
-            pos_target.velocity.z = self.vz
-        elif self.mission_pos[self.mission_cnt.value][2] < 0:
-            pos_target.velocity.z = -1*self.vz
-        '''
         
-        #if self.stationary.value:
-        #    pos_target.header.frame_id = "mission_pos_target_vel_stationary"
-        #    pos_target.velocity.x = -0.05 # for all -1, 0 and 1
-        #    pos_target.velocity.y = 0
-        #    pos_target.velocity.z = 0
-            
-        #if not self.stationary.value:    
-        pos_target.header.frame_id = "mission_pos_target_vel"
-        pos_target.velocity.x = self.vx * self.mission_pos[self.mission_cnt.value][0] # for all -1, 0 and 1
-        pos_target.velocity.y = self.vy * self.mission_pos[self.mission_cnt.value][1] # for all -1, 0 and 1
-        pos_target.velocity.z = self.vz * self.mission_pos[self.mission_cnt.value][2] # for all -1, 0 and 1
-            
-        pos_target.yaw = 0 # don't yaw, always point to the front
-        return pos_target
-
     def make_att_target(self):
         att_target = AttitudeTarget()
         att_target.header = Header()
@@ -350,10 +309,12 @@ class MavrosOffboardSuctionMission():
         # change these values by experiment
         roll = 0.0
         yaw = 0.0
+        pitch = 0.0       
         
+        # Throttling up for take off from wall
+        # throttle value updated from mission loop
         if self.publish_thr_up.value:
             pitch = 0.0
-            #self.current_throttle.value = 0.7
             att_target.header.frame_id = "throttle_up_from_vertical"
             throttle = self.current_throttle.value
             att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
@@ -362,37 +323,22 @@ class MavrosOffboardSuctionMission():
             att_target.body_rate = vector3
             return att_target
         
+        # Waiting for suction pressure returning to normal for detach
+        # Compensate throttle for reduced lift due to wall friction
         if self.stationary.value:
             return self.make_stationary_att_target()
         
+        # 
         if not self.publish_thr_down.value:
             pitch = self.pitch_rate # tested in jmavsim for -ve value = pitch up (flip backward)
             self.current_throttle.value = self.low_throttle_value
             att_target.header.frame_id = "high_pitch_low_throttle"
         else:
-            # gradually throttling down
-            #pitch = -0.15 #0.0
-
-            '''
-            TODO: move the following calculation to main mission loop and publish the shared variable
-                  of the throttle value for use in this thread, for reusing the code
-            '''
             if self.throttle_down_start_time > 0:
                 # gradually throttling down
                 pitch = -0.2 #0.0
                 att_target.header.frame_id = "throttling_to_zero"
                 
-                # update the self.throttle_down_start_time in main loop using step-down value
-                '''
-                dt = rospy.get_time() - self.throttle_down_start_time
-                if dt <= self.throttle_down_time:
-                    self.current_throttle.value = (self.throttle_down_time - dt) / self.throttle_down_time * self.low_throttle_value
-                else:
-                    #self.throttle_down_start_time = -1
-                    att_target.header.frame_id = "zero_throttle"
-                    #throttle = 0.0
-                    self.current_throttle.value = 0.0
-                '''
             else:
                 pitch = 0.0  # zero pitch rate 
                 att_target.header.frame_id = "zero_throttle"
@@ -596,6 +542,81 @@ class MavrosOffboardSuctionMission():
                    self.local_position.pose.position.z, timeout)))
         return reached
 
+    def run_mission_manual(self):
+        loop_freq = 5  # Hz
+        rate = rospy.Rate(loop_freq)
+        
+        # start publishing of velocity setpoint for running of offboard flight mode 
+        self.publish_att_raw.value = False
+        
+        # wait for OFFBOARD mode
+        if not self.wait_for_offboard_cmd()
+            return False
+        
+        # check suction pressure and wall perching
+        if not self.perch_wall(self.perch_time):
+            return False
+            
+        # begin landing on wall
+        if not self.land_on_wall(self.land_on_wall_time, self.throttle_down_time):
+            return False
+        else:    
+            self.vtol.value = True
+            self.land()
+            rospy.loginfo("STATUS: Wait for 10 sec for landing to complete")
+            rospy.sleep(10) # wait for 10 sec here for landing
+            rospy.loginfo("STATUS: Checking landed state now....")
+            self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND, 10, -1)
+            rospy.loginfo("STATUS: Landed on vertical surface successfully! Disarm now.")
+            # disarm the drone
+            self.set_arm(False, 5)
+            #rospy.loginfo("STATUS: Wait for 3 sec for disarm")
+            #rospy.sleep(3)
+            while not self.is_mav_state_standby():
+                rospy.loginfo("STATUS: Waiting for MAV_STATE_STANDBY...")
+                try: 
+                    rate.sleep()
+                except rospy.ROSInterruptException:
+                    rospy.loginfo("ERROR: User interrupt while waiting for MAV_STATE_STANDBY!")
+                    break
+            rospy.loginfo("STATUS: MAV_STATE_STANDBY now! ")
+            rospy.loginfo("STATUS: ============== Landed on wall. Ready to deploy sensor ================= ")
+            
+        
+        done_sensor = False
+        rate = rospy.Rate(1)
+        while not done_sensor:
+            rospy.loginfo("STATUS: You can deploy the sensor now..waiting for finish deployment.")
+            if self.winch_done.value:
+                done_sensor = True
+            try: 
+                rate.sleep()
+            except rospy.ROSInterruptException:
+                rospy.loginfo("ERROR: User interrupt while waiting for sensor deployment!")
+                break
+            
+        if not done_sensor:
+            return False    
+
+        rospy.loginfo("="*40)
+        rospy.loginfo("STATUS: Finish deployment with sensor. Start to takeoff from the wall.")
+        if not self.takeoff_from_wall():
+            return False
+        
+                if not retakeoff_successful:
+            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
+            return False
+
+        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
+        detach_successful = self.detach_from_wall()
+        
+        if not detach_successful:
+            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
+            return False
+            
+        self.publish_att_raw.value = False
+        rospy.loginfo("STATUS: Detach is successful. Fly back by Position mode manually! Program stop!")    
+
     def run_mission_perch(self):
         # make sure the simulation is ready to start the mission
         self.wait_for_mission_topics(60)
@@ -672,185 +693,8 @@ class MavrosOffboardSuctionMission():
             
         ## TODO: check if it mission is successful and return True directly
         
-        '''
-        self.land()
-        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
-                                     10, -1)
-                                     
-                                    
-        self.set_arm(False, 5)
-        rospy.loginfo("Drone landed and disarm")
-        '''
-        
-        
         return True
 
-
-    def run_mission_retakeoff(self):
-        self.solenoid_on.value = True
-        self.pump_on.value = True
-        
-        self.mission_cnt.value = 4
-        rospy.loginfo("Retakeoff Mission Start...")
-        retakeoff_successful = self.takeoff_from_wall()
-        
-        if not retakeoff_successful:
-            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
-            return False
-
-        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
-        detach_successful = self.detach_from_wall()
-        
-        if not detach_successful:
-            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
-            return False
-            
-        rospy.loginfo("STATUS: Detach is successful. Fly back!")      
-        #self.throttle_down_start_time = -1
-        
-        # suppose self.mission_cnt.value = 5 already
-        #rospy.loginfo("STATUS: Go to waypoint 5")
-        #if self.goto_position(self.goto_pos_time): # for WP 5
-        #    self.mission_cnt.value += 1
-        
-        rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
-        if self.goto_position(self.goto_pos_time): # for WP 6
-            self.mission_cnt.value += 1           
-        
-        rospy.loginfo("STATUS: Go to waypoint 7 (0.5, 0, 0.5, 0)")
-        self.goto_position(self.goto_pos_time) # for WP 7
-                    
-
-        self.land()
-        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
-                                     10, -1)
-        rospy.loginfo("Disarm for finishing mission!!")
-        self.set_arm(False, 5)         
-        
-        rospy.loginfo("=================== Mission Successful! =========================+")
-        return True
-        
-    
-    def run_mission_full(self):
-        rospy.loginfo("Full Mission Start...")
-        
-        perch_successful = False
-        retakeoff_successful = False
-        detach_successful = False
-        perch_successful = self.run_mission_perch()
-        
-        if not perch_successful:
-            rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
-            return False
-            
-        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
-        rospy.sleep(10)
-
-        #rospy.loginfo("STATUS: 30 sec left")        
-        #rospy.sleep(10)   
-
-        #rospy.loginfo("STATUS: 20 sec left")        
-        #rospy.sleep(10)     
-
-        #rospy.loginfo("STATUS: 10 sec before re-takeoff")        
-        #rospy.sleep(10)
-        #self.deploy_winch(5)
-        
-        rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
-        
-        retakeoff_successful = self.takeoff_from_wall()
-        
-        if not retakeoff_successful:
-            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
-            return False
-
-        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
-        detach_successful = self.detach_from_wall()
-        
-        if not detach_successful:
-            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
-            return False
-            
-        rospy.loginfo("STATUS: Detach is successful. Fly back!")      
-        
-        rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
-        if self.goto_position(self.goto_pos_time): # for WP 6
-            self.mission_cnt.value += 1           
-        
-        rospy.loginfo("STATUS: Go to waypoint 7")
-        self.goto_position(self.goto_pos_time) # for WP 7
-                    
-
-        self.land()
-        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
-                                     10, -1)
-        rospy.loginfo("Disarm for finishing mission!!")
-        self.set_arm(False, 5)         
-        
-        rospy.loginfo("=================== Mission Successful! =========================+")
-        return True
-
-    
-    def run_mission_twostops(self):
-        '''
-            mission_pos_two_stops = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0),  # 0 1 2
-                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 3 4 5
-                            (-0.5, 0, 1.5, 0),                               # 6
-                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 7 8 9
-                            (-0.5, 0, 1.0, 0))                               # 10
-        '''
-        rospy.loginfo("Two-Stop Mission Start...")
-        
-        perch_successful = False
-        retakeoff_successful = False
-        detach_successful = False
-        perch_successful = self.run_mission_perch()
-        
-        if not perch_successful:
-            rospy.loginfo("STAUTS: Perching is not successful! Stop here!")
-            return False
-            
-        rospy.loginfo("STATUS: Sleep for 10 sec before re-takeoff")        
-        rospy.sleep(10)
-        rospy.loginfo("STATUS: Perching is successful. Now re-takeoff!")
-        
-        retakeoff_successful = self.takeoff_from_wall()
-        
-        if not retakeoff_successful:
-            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
-            return False
-
-        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
-        detach_successful = self.detach_from_wall()
-        
-        if not detach_successful:
-            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
-            return False
-            
-        rospy.loginfo("STATUS: Detach is successful. Fly back!")      
-        #self.throttle_down_start_time = -1
-        
-        # suppose self.mission_cnt.value = 5 already
-        #rospy.loginfo("STATUS: Go to waypoint 5")
-        #if self.goto_position(self.goto_pos_time): # for WP 5
-        #    self.mission_cnt.value += 1
-        
-        rospy.loginfo("STATUS: Go to waypoint 6 (1, 0, 1.5, 0)")
-        if self.goto_position(self.goto_pos_time): # for WP 6
-            self.mission_cnt.value += 1           
-        
-        rospy.loginfo("STATUS: Go to waypoint 7")
-        self.goto_position(self.goto_pos_time) # for WP 7
-                    
-
-        self.land()
-        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
-                                     10, -1)
-        rospy.loginfo("Disarm for finishing mission!!")
-        self.set_arm(False, 5)         
-        
-        rospy.loginfo("=================== Mission Successful! =========================+")
-        return True
 
          
 
@@ -896,73 +740,6 @@ class MavrosOffboardSuctionMission():
         return True
         
 
-    def run_mission_square(self):
-        # make sure the simulation is ready to start the mission
-        self.wait_for_mission_topics(60)
-        #self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
-        #                           10, -1)
-        self.mission_cnt.value = 0  # ground position
-        self.set_mode("OFFBOARD", 5)
-        self.set_arm(True, 5)
-        self.mission_cnt.value = 1
-        # doesn't work in sim for takeoff service call
-        #if self.takeoff():
-        #    self.mission_cnt.value = 1  # take off position
-        #else:
-        #    rospy.logerr("Mission Failed!")
-        #    return -1
-        #rospy.sleep(30)
-
-        while self.mission_cnt.value < len(self.mission_pos):
-            if self.goto_position(30):
-                self.mission_cnt.value += 1
-            else:
-                break
-
-        self.land()
-        #rospy.loginfo("Mission completed... wait for 3 sec before landing.")
-        #rospy.sleep(3)
-        self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND,
-                                   10, -1)
-        self.set_arm(False, 5)
-        #self.set_mode("STABILIZED", 5)
-        return       
-
-    def deploy_winch(self, time=5):
-        start_time = rospy.get_time() 
-        dt = 0
-        period = time * 2 + 5
-        winch_state = -1.0
-        
-        while dt <= period:
-            if winch_state < 0:
-                rospy.loginfo("STATUS: Lowering sensor box now!")
-            elif winch_state == 0:
-                rospy.loginfo("STATUS: Stop winch")
-            elif winch_state > 0: 
-                rospy.loginfo("STATUS: Lifting up sensor box now!")
-                
-            try:
-                if dt <= time:
-                    winch_state = -1.0
-                    pub_winch_down.publish(Empty())
-                elif time < dt <= time + 3:
-                    winch_state = 0.0
-                    pub_winch_stop.publish(Empty())
-                elif dt > time + 3:
-                    winch_state = 1.0
-                    pub_winch_up.publish(Empty())
-                    
-                rospy.sleep(0.1)
-                dt = rospy.get_time() - start_time
-            except rospy.ROSException as e:
-                rospy.logfatal("STATUS: Problem in winching! Stop winch now")
-                break    
-        
-        winch_state = 0.0
-        pub_winch_stop.publish(Empty())
-        
-    
 
     def is_high_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
@@ -991,12 +768,12 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
         self.publish_att_raw.value = True
-        #self.publish_thr_down.value = False
         self.publish_thr_up.value = True
-        rospy.loginfo("STATUS: Throttle set from 0.2 to 0.5")
 
-        start_throttle = 0.1
-        end_throttle = 0.3 ### 0.2 for empty loading # self.low_throttle_value 
+        start_throttle = 0.05
+        end_throttle = 0.35 ### 0.2 for empty loading # self.low_throttle_value         
+        rospy.loginfo("STATUS: Throttle set from {0} to {1}".format(start_throttle, end_throttle))
+        
         self.current_throttle.value = start_throttle
         self.throttle_up_start_time = rospy.get_time()
 
@@ -1004,15 +781,14 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         period = throttle_timeout * loop_freq 
         takeoff_from_vertical = False
-        
-        self.current_throttle.value = start_throttle
 
         for i in xrange(period):
             rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
             try:
-                # throttling up
-                #self.current_throttle.value = start_throttle + i / period * (end_throttle - start_throttle)  
+                # throttling up gradually
                 self.current_throttle.value += 0.01 
+                if self.current_throttle.value >= end_throttle:
+                    self.current_throttle.value = end_throttle
 
                 # detect SUCTION_IS_LAND param while throttling up
                 res = self.get_param_srv('SUCTION_IS_LAND')
@@ -1028,10 +804,9 @@ class MavrosOffboardSuctionMission():
                 #    break
                     
                 rate.sleep()
-            except rospy.ROSException as e:
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
                 # TODO: handling of throttle value under failure
-                self.current_throttle.value = 0.0
-                rospy.logfatal("STATUS: Auto_throttling is interrupted!")
+                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
                 break
 
         if not takeoff_from_vertical:
@@ -1041,14 +816,12 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0
             return False
 
-
         start_throttle = self.current_throttle.value
-        end_throttle = 0.85 ###0.55 # 0.55 for without loading at the end
+        end_throttle = self.holding_throttle #0.85 for sensor ###0.55 # 0.55 for without loading at the end
         period = timeout * loop_freq // 2
         normal_attitude = False
         rospy.loginfo("Gradually throttling up to normal attitude.")
 
-        
         while not normal_attitude:
             rospy.loginfo("STATUS: waiting for normal attitude. Current throttle: {0} | IMU-Y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             self.current_throttle.value +=  0.01
@@ -1063,9 +836,6 @@ class MavrosOffboardSuctionMission():
         if normal_attitude:  
             rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
             rospy.loginfo("STATUS: publish stationary_att_throttle for stabilization during detach")
-            #self.publish_att_raw.value = False
-            self.mission_cnt.value = 5
-            #rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
             self.publish_att_raw.value = True
             self.publish_thr_up.value = False
         else:
@@ -1090,9 +860,6 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         vertical_landing = False
         pitch_up = False
-        
-        #if self.debug_mode.value:
-        #    pitch_up = True
 
         for i in xrange(timeout * loop_freq, 0, -1):
             rospy.loginfo(
@@ -1117,10 +884,20 @@ class MavrosOffboardSuctionMission():
         self.publish_thr_down.value = True
         self.throttle_down_start_time = rospy.get_time()
         self.current_throttle.value = self.low_throttle_value
+        
         # gradually reduce throttle to zero during throttle_timeout
         for i in xrange(throttle_timeout * loop_freq):
             try:
+                # check distance from wall by tfmini range sensor:
+                rospy.loginfo("STATUS: Current distance to wall (m): {0}".format(self.tfmini_range.value))
+                if self.tfmini_range.value < self.min_distance_from_wall:
+                    rospy.loginfo("Drone is close enough to the wall!")
+            
                 self.current_throttle.value -= 0.005
+                if self.current_throttle.value < 0:
+                    self.current_throttle.value = 0
+                    rospy.loginfo("STATUS: Throttle already zero!")
+                    
                 # detect SUCTION_IS_LAND param while throttling down
                 res = self.get_param_srv('SUCTION_IS_LAND')
                 if res.success and res.value.integer > 0:
@@ -1130,29 +907,24 @@ class MavrosOffboardSuctionMission():
                     # break and set throttle = 0 all the way
                     self.throttle_down_start_time = -1
                     break
-                
-                if self.current_throttle.value < 0:
-                    self.current_throttle.value = 0
-                    rospy.loginfo("STATUS: Throttle already zero!")
                     
-                # detect if is_perched is False
-                if self.debug_mode.value and not self.is_perched.value:
-                    rospy.loginfo("Perching is interrupted! Halt the throttle down process!")
-                    break
                 rate.sleep()
                 rospy.loginfo("Set Throttle = 0 during vetical landing. Current throttle = {0}".format(self.current_throttle.value))
             except rospy.ROSException as e:
                 pass
-
-        # turn off att_raw_setpoint publishing
-        ## self.publish_att_raw.value = False      # no need as we keep publishing 0 att_raw
+            except rospy.ROSInterruptException:
+                vertical_landing = False
+                self.current_throttle.value = 0.0
+                rospy.loginfo("ERROR: User interrupt!")
+                break
 
         if not vertical_landing:
             self.assertTrue(vertical_landing, (
                 "took too long to reach high attitude | timeout(seconds): {0}".format(timeout)))
             self.publish_thr_down.value = False
             self.publish_att_raw.value = False
-
+        else:
+            rospy.loginfo("Near vertical landing to the wall! Start AUTO.LAND now.")
 
         return vertical_landing
     
@@ -1162,28 +934,7 @@ class MavrosOffboardSuctionMission():
         return successful detachment or not
         '''
         
-        rospy.loginfo("Begin detaching from wall")
-        
-        '''
-        # assert suction pressure is still good and solenoid is on
-        if not self.solenoid_on.value:
-            rospy.logfatal("Solenoid is off! Airflow is not normal! Please check!")
-            return False
-        if not self.is_perched:
-            rospy.logfatal("Suction pressure is lost or the drone is not perched! Please check!")
-            return False
-        '''
-                
-        # turn off solenoid and fly away from wall
-        if self.solenoid_on.value:
-            rospy.loginfo("STATUS: *** Turn off solenoid ***")
-            self.pub_solenoid.publish(Empty())
-            self.solenoid_on.value = False
-        
-        if self.pump_on.value:
-            rospy.loginfo("STATUS: *** Turn off suction pump ***")
-            self.pub_pump.publish(Empty())
-            self.pump_on.value = False       
+        rospy.loginfo("STATUS: Begin detaching from wall")
 
         # check suction pressure in a loop until suction cup is detached from the wall
         # does it perch to the wall in 'timeout' seconds?
@@ -1198,72 +949,38 @@ class MavrosOffboardSuctionMission():
         
         start_time = rospy.get_time()
         
-        for i in xrange(timeout * loop_freq, 0, -1):
+        while not detach:
             rospy.loginfo(
-                        "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
-            
-            if rospy.get_time() - start_time <= stationary_period:
-                rospy.loginfo("Waiting for {0} sec for suction pressure back to normal. Current Throttle = {1}".format(stationary_period, self.current_throttle.value))
-                #self.stationary.value = True
-            else:
-                rospy.loginfo("****** {0} sec is over!".format(stationary_period))
-                self.stationary.value = False
-                
-                # turn off raw setpoint and use vel setpoint for pulling out the drone
-                self.publish_att_raw.value = False
-                #rospy.loginfo("STATUS: change to velocity setpoint_vel_x = -1 for detach ")
-                
-                ########################################
-                rospy.loginfo("TEST: try to detach from wall by itself and go to next POS SP")
-                detach = True
+                        "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))            
+            try:
+                res = self.get_param_srv('SUCTION_IS_PERCH')
+                if res.success and res.value.integer <= 0:
+                    rospy.loginfo(
+                        "SUCTION_IS_PERCH received {0}. drone detaches from the wall! ".format(res.value.integer))
+                    detach = True
+                    break
+            except rospy.ServiceException as e:
+                rospy.logerr(e)
                 break
-                ###########################3
-                '''
-                try:
-                    res = self.get_param_srv('SUCTION_IS_PERCH')
-                    if res.success and res.value.integer <= 0:
-                        rospy.loginfo(
-                            "SUCTION_IS_PERCH received {0}. drone detaches from the wall! ".format(res.value.integer))
-                        detach = True
-                        break
-                except rospy.ServiceException as e:
-                    rospy.logerr(e)
-                '''
             try:
                 rate.sleep()
-            except rospy.ROSException as e:
+            except (rospy.ROSException, rospy.InterruptException) as e:
                 self.fail(e)
+                rospy.loginfo("ERROR: User Interruption / Exception occurs")
+                break
                             
         if detach:
             self.publish_att_raw.value = False
             self.stationary.value = False
-            self.mission_cnt.value = 6
-
-            #if self.pump_on.value:
-            #    rospy.loginfo("Turn off suction pump")
-            #    self.pub_pump.publish(Empty())
-            #    self.pump_on.value = False
+            rospy.loginfo("STATUS: Successfully detach from wall manually!")
         else:
             self.publish_att_raw.value = True
             self.stationary.value = True
             self.current_throttle.value = 0.0
             
-               
         return detach
 
-    def perch_wall(self, timeout=60):
-        # turn on suction motor
-        if not self.pump_on.value:
-            rospy.loginfo("Turn on suction pump")
-            self.pub_pump.publish(Empty())
-            self.pump_on.value = True
-            
-        # turn on solenoid (default is off)
-        if not self.solenoid_on.value:
-            rospy.loginfo("Turn on Solenoid")
-            self.pub_solenoid.publish(Empty())
-            self.solenoid_on.value = True
-
+    def perch_wall(self, timeout=60,):
         # check suction pressure in a loop until suction cup is attaced to the wall
         # does it perch to the wall in 'timeout' seconds?
         rospy.loginfo("========= waiting for SUCTION_IS_PERCH for perching =========")
@@ -1288,20 +1005,13 @@ class MavrosOffboardSuctionMission():
                 rate.sleep()
             except rospy.ROSException as e:
                 self.fail(e)
+            except rospy.ROSInterruptException:
+                rospy.loginfo("User interruption")
+                pass
         
-        #TODO: assert suction_is_perch param = is_pearch ROS topic
-        #
-        #
-
-        if not suction:
-            # turn off suction pump if fail
-            if self.pump_on.value:
-                self.pub_pump.publish(Empty())
-                self.pump_on.value = False
         self.assertTrue(suction, (
-            "took too long to get suction pressure | timeout(seconds): {0}".format(timeout)))
+            "took too long to get suction! | timeout(seconds): {0}".format(timeout)))
         return suction
-
 
 
     def fail(self, e=None):
@@ -1400,6 +1110,28 @@ class MavrosOffboardSuctionMission():
                     'MAV_LANDED_STATE'][self.extended_state.landed_state].name,
                    index, timeout)))
 
+    def wait_for_offboard_cmd(self):
+        loop_freq = 10  # Hz
+        rate = rospy.Rate(loop_freq)
+        offboard_mdoe = False
+        rospy.loginfo("waiting for offboard command. Current State: {0}".format(self.state.mode))
+        
+        while not offboard_mode:
+            if self.state.mode == "OFFBOARD":
+                offboard_mode = True
+
+            try:
+                rate.sleep()
+            except rospy.ROSException as e:
+                self.fail(e)
+            except rospy.ROSInterruptException:
+                rospy.loginfo("ERROR: Interruption possibly by user / external. Quit now!")
+                offboard_mode = False
+                break
+                
+        return offboard_mode
+
+
 # to shut down the ROS Service gracefully after pressing Ctrl-C
 def sigint_handler(signum, data):
     rospy.loginfo('Ctrl-C is pressed.')
@@ -1412,11 +1144,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Mission Script for Suction Perch Drone")
     parser.add_argument('-d', '--debug', action='store_true', help="debug output")
     mode_group = parser.add_mutually_exclusive_group(required=True)
-    mode_group.add_argument('-sq', '--sq-test', action='store_true', help="fly a square waypoint")
-    mode_group.add_argument('-vel', '--vel-test', action='store_true', help="fly forward and change to velocity setpoint")
     mode_group.add_argument('-hand', '--hand-test', action='store_true', help="move the drone around using hand")
-    mode_group.add_argument('-rearm', '--rearm-test', action='store_true', help="rearm the drone after landing to the wall")
-    mode_group.add_argument('-two', '--two-stops', action='store_true', help="perch to the wall twice")
+    mode_group.add_argument('-manual', '--manual-test', action='store_true', help="rearm the drone after landing to the wall")
 
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
 
@@ -1424,67 +1153,23 @@ if __name__ == '__main__':
     #signal.signal(signal.SIGINT, sigint_handler)
     #signal.signal(signal.SIGTERM, sigint_handler)
 
-    # mission waypoints for perching test
-    mission_pos_vel = ((0, 0, 0, 0) , (0, 0.1, 1.5, 0), (1, 0.1, 1.5, 0), (1, 0, 0, 1), (0, 0, 0, 1), (1, 0.1, 1.5, 0), (0, 0, 1.5, 0))
-    # mission waypoints for flying a square box
-    ##mission_pos_sq = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (-1, -1, 1.5, 0), (-1, 1, 1.5, 0), (1, 1, 1.5, 0), (1, -1, 1.5, 0), (0, 0, 1.5, 0)) 
-    mission_pos_sq = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (-1, -1, 1.5, 0), (-1, 1, 1.5, 0), (0.5, 1, 1.5, 0), (0.5, -1, 1.5, 0), (0, 0, 1.5, 0)) 
 
-    # mission waypoints for velocity setpoint test
-    mission_pos_vel_test = ((0, 0, 0, 0) , (0, 0, 2, 0), (1, 0, 2, 0), (0, 1, 0, 1), (0, 0, 0, 1), (1, 0, 2, 0), (0, 0, 2, 0))
-
-    # mission waypoints for perching test
-    mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1.6, 0), (1, 0, 1.6, 0), 
-                        (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-                        (-0.8, 0, 1.6, 0), (-1, 0, 1.6, 0))
+    mission_pos_manual = ( (0, 0, 0, 1) )
     
-    # mission waypoints for perching test
-    #mission_pos_hand = ((0, 0, 0, 0) , (-1, 0, 1, 0), (1, 0, 1, 0), 
-    #                    (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),
-    #                    (-0.5, 0, 1, 0), (-1, 0, 1, 0))
-                        
-    mission_pos_two_stops = ((0, 0, 0, 0) , (0, 0, 1.5, 0), (1, 0, 1.5, 0),  # 0 1 2
-                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 3 4 5
-                            (-0.5, 0, 1.5, 0),                               # 6
-                            (1, 0, 0, 1), (0, 0, 0, 1), (-1, 0, 0, 1),       # 7 8 9
-                            (-0.5, 0, 1.0, 0))                               # 10
-
     global suction_mission
 
-    if args.sq_test:
-        suction_mission = MavrosOffboardSuctionMission(mission_pos=mission_pos_sq)
-        suction_mission.run_mission_square()
-    elif args.vel_test:
+    if args.manual_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.1,
-                                                       mission_pos=mission_pos_vel,
-                                                       goto_pos_time=60, perch_time=30, land_on_wall_time=30, throttle_down_time=10)
-        suction_mission.run_mission_perch()
-    elif args.rearm_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
-                                                       mission_pos=mission_pos_hand,
+                                                       mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.run_mission_full()
-        #suction_mission.run_mission_retakeoff()
+        suction_mission.run_mission_manual()
     elif args.hand_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       mission_pos=mission_pos_hand,
+                                                       mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.run_mission_by_hand()
-    elif args.two-stops:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.1,
-                                                       mission_pos=mission_pos_two_stops,
-                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.run_mission_twostops()   
+        suction_mission.run_mission_manual()
+
 
     rospy.spin()
-    '''
-    try:
-        rate = rospy.Rate(100)
-        while not rospy.is_shutdown():
-            rate.sleep()
-            rospy.loginfo("running... ")
-    except rospy.ROSInterruptException:
-        rospy.loginfo("main has finished! \n")
 
-    '''
 

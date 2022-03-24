@@ -14,6 +14,7 @@ ButtonWinchDown = 0 # for joypad A Green
 ButtonWinchStop = 1 # for joypad B Red
 ButtonServo = 2 # for joypad X Blue
 ButtonOverride = 7 # for start button
+ButtonLogitech = 8 # for logitech button
 
 rt_pressed = False
 lt_pressed = False
@@ -24,6 +25,8 @@ servo_state = False
 s_pressed = False
 override_state = True
 
+winch_done = False
+logitech_pressed = False
  
 def ReceiveJoystickMessage(data):
     global rt_pressed
@@ -33,6 +36,7 @@ def ReceiveJoystickMessage(data):
     global servo_state
     global s_pressed
     global override_state
+    global logitech_pressed
 
     if data.buttons[ButtonOverride]==1:
         if not s_pressed:
@@ -91,7 +95,18 @@ def ReceiveJoystickMessage(data):
         rospy.loginfo("Servo state = {0}".format(servo_state))
         x_pressed = False
 
-
+    if data.buttons[ButtonLogitech]==1:
+        if not logitech_pressed:
+            logitech_pressed = True
+    
+    if data.buttons[ButtonLogitech]==0 and logitech_pressed:
+        rospy.loginfo("Logitech Button Pressed and released")
+        if winch_done:
+            winch_done = False
+        else:
+            winch_done = True
+        logitech_pressed = False
+    
 
 def main():
     global pub_pump
@@ -117,12 +132,14 @@ def main():
     pub_winch_stop = rospy.Publisher('winch_cmd_stop', Empty, queue_size=1)    
     pub_servo = rospy.Publisher('servo_state', Bool, queue_size=1)
     pub_override = rospy.Publisher('winch_override', Bool, queue_size=1)
-
+    pub_winch_done = rospy.Publisher('winch_done', Bool, queue_size=1)
+    
     try:
         while not rospy.is_shutdown():
             pub_override.publish(override_state)    
             pub_winch.publish(winch_state)
             pub_servo.publish(servo_state)
+            pub_winch_done.publish(winch_done)
             rate.sleep()
     except rospy.ROSInterruptException:
         rospy.loginfo("Joystick Teleop stops! Force Landing")
