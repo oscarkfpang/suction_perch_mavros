@@ -946,7 +946,7 @@ class MavrosOffboardSuctionMission():
         
         while not detach:
             rospy.loginfo(
-                        "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))            
+                        "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0}".format(self.suction_pressure))            
             try:
                 res = self.get_param_srv('SUCTION_IS_PERCH')
                 if res.success and res.value.integer <= 0:
