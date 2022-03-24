@@ -602,15 +602,10 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Finish deployment with sensor. Start to takeoff from the wall.")
         if not self.takeoff_from_wall():
             return False
-        
-                if not retakeoff_successful:
-            rospy.loginfo("STAUTS: Re-takeoff is not successful! Stop here!")
-            return False
 
         rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
-        detach_successful = self.detach_from_wall()
         
-        if not detach_successful:
+        if not self.detach_from_wall()
             rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
             return False
             
