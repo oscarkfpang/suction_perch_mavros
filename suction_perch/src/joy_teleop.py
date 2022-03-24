@@ -37,6 +37,7 @@ def ReceiveJoystickMessage(data):
     global s_pressed
     global override_state
     global logitech_pressed
+    global winch_done
 
     if data.buttons[ButtonOverride]==1:
         if not s_pressed:
