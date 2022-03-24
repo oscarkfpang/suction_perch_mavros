@@ -550,7 +550,7 @@ class MavrosOffboardSuctionMission():
         self.publish_att_raw.value = False
         
         # wait for OFFBOARD mode
-        if not self.wait_for_offboard_cmd()
+        if not self.wait_for_offboard_cmd():
             return False
         
         # check suction pressure and wall perching
