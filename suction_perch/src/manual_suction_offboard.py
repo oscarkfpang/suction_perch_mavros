@@ -1108,7 +1108,7 @@ class MavrosOffboardSuctionMission():
     def wait_for_offboard_cmd(self):
         loop_freq = 10  # Hz
         rate = rospy.Rate(loop_freq)
-        offboard_mdoe = False
+        offboard_mode = False
         rospy.loginfo("waiting for offboard command. Current State: {0}".format(self.state.mode))
         
         while not offboard_mode:
