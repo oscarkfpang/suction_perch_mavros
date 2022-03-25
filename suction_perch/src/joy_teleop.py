@@ -107,7 +107,6 @@ def ReceiveJoystickMessage(data):
         else:
             winch_done = True
         logitech_pressed = False
-    
 
 def main():
     global pub_pump

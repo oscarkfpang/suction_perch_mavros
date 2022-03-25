@@ -15,7 +15,7 @@ from mavros_msgs.msg import Altitude, ExtendedState, HomePosition, ParamValue, S
                             WaypointList, PositionTarget, AttitudeTarget
 from mavros_msgs.srv import CommandBool, ParamGet, ParamSet, SetMode, SetModeRequest, WaypointClear, \
                             WaypointPush, CommandTOL
-from sensor_msgs.msg import NavSatFix, Imu
+from sensor_msgs.msg import NavSatFix, Imu, Range
 #from mavros_test_common import MavrosTestCommon
 from pymavlink import mavutil
 from six.moves import xrange
@@ -244,7 +244,7 @@ class MavrosOffboardSuctionMission():
 
     def tfmini_callback(self, data):
         self.tfmini_range.value = data.range
-        if self.tfmini_range.value < 0.05:
+        if self.tfmini_range.value < 0:
             self.tfmini_range.value = 0
     #
     # Helper methods
