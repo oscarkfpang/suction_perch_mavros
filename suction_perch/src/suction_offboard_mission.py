@@ -1043,7 +1043,7 @@ class MavrosOffboardSuctionMission():
 
 
         start_throttle = self.current_throttle.value
-        end_throttle = 0.85 ###0.55 # 0.55 for without loading at the end
+        end_throttle = 0.55 ###0.55 # 0.55 for without loading at the end # 0.85 for loading with sensor 
         period = timeout * loop_freq // 2
         normal_attitude = False
         rospy.loginfo("Gradually throttling up to normal attitude.")

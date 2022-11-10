@@ -75,7 +75,7 @@ def ReceiveServoMessage(data):
         servo_state.value = data.data
         trigger_servo.value = True
         
-    #rospy.loginfo("current servo state = {0}".format(servo_state.value))
+    rospy.loginfo("current servo state = {0}".format(servo_state.value))
 
 def ReceiveOverrideMessage(data):
     override.value = data.data
@@ -213,7 +213,7 @@ if __name__ == '__main__':
             else:
                 GPIO.output(SOLENOID, GPIO.LOW)
 
-            rospy.loginfo("Get winch state = {0}, winch_cmd = {1}".format(winch_state.value, override_winch_cmd.value))         
+            #rospy.loginfo("Get winch state = {0}, winch_cmd = {1}".format(winch_state.value, override_winch_cmd.value))         
             
             if not override.value and trigger_winch.value:
                 if winch_state.value > 0 : # winch up
