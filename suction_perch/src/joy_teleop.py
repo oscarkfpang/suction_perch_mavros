@@ -13,11 +13,13 @@ ButtonWinchUp = 3 # for joypad Y Yellow
 ButtonWinchDown = 0 # for joypad A Green
 ButtonWinchStop = 1 # for joypad B Red
 ButtonServo = 2 # for joypad X Blue
+ButtonSmallPump = 6 # for joypad BACK button
 ButtonOverride = 7 # for start button
 ButtonLogitech = 8 # for logitech button
 
 rt_pressed = False
 lt_pressed = False
+back_pressed = False
 winch_state = 0
 x_pressed = False
 servo_state = False
@@ -31,6 +33,7 @@ logitech_pressed = False
 def ReceiveJoystickMessage(data):
     global rt_pressed
     global lt_pressed
+    global back_pressed
     global winch_state
     global x_pressed
     global servo_state
@@ -59,6 +62,17 @@ def ReceiveJoystickMessage(data):
         rospy.loginfo("Pump Button Pressed and released")
         pub_pump.publish(Empty())
         lt_pressed = False
+
+    
+    if data.buttons[ButtonSmallPump]==1:
+        if not back_pressed:
+            back_pressed = True
+    
+    if data.buttons[ButtonSmallPump]==0 and back_pressed:
+        rospy.loginfo("Small Pump Button Pressed and released")
+        pub_small_pump.publish(Empty())
+        back_pressed = False
+
 
     if data.buttons[ButtonSolenoid]==1:
         if not rt_pressed:
@@ -111,6 +125,7 @@ def ReceiveJoystickMessage(data):
 def main():
     global pub_pump
     global pub_solenoid
+    global pub_small_pump
     global pub_winch_stop
     global pub_winch_up
     global pub_winch_down
@@ -126,6 +141,7 @@ def main():
     subJoystick = rospy.Subscriber('joy', Joy, ReceiveJoystickMessage)
     pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)  
     pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
+    pub_small_pump = rospy.Publisher('small_pump_on', Empty, queue_size=1)  
     pub_winch = rospy.Publisher('winch_state', Float64, queue_size=1)
     pub_winch_up = rospy.Publisher('winch_cmd_up', Empty, queue_size=1)
     pub_winch_down = rospy.Publisher('winch_cmd_down', Empty, queue_size=1)

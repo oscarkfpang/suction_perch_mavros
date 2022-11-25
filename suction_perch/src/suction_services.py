@@ -15,6 +15,7 @@ import pigpio
 # define GPIO pin
 PUMP = 23
 SOLENOID = 24
+SMALL_PUMP = 25
 
 # for winch
 EN = 10
@@ -49,6 +50,14 @@ def ReceiveSolenoidMessage(data):
     else:
         solenoid_state.value = True
         rospy.loginfo("Turn Solenoid on")
+
+def ReceiveSmallPumpMessage(data):
+    if small_pump_state.value:
+        small_pump_state.value = False
+        rospy.loginfo("Turn small pump off")
+    else:
+        small_pump_state.value = True
+        rospy.loginfo("Turn small pump on")
 
 def ReceiveWinchMessage(data):
     #if override.value:
@@ -137,6 +146,7 @@ def winch_op_state_machine(state):
 if __name__ == '__main__':
     global pump_state
     global solenoid_state
+    global small_pump_state
     global winch_state
     global trigger_winch
     global servo_state
@@ -153,12 +163,14 @@ if __name__ == '__main__':
     GPIO.setmode(GPIO.BCM)               # choose BCM or BOARD  
     GPIO.setup(PUMP, GPIO.OUT)           
     GPIO.setup(SOLENOID, GPIO.OUT)
+    GPIO.setup(SMALL_PUMP, GPIO.OUT)
     GPIO.setup(SERVO_L, GPIO.OUT)
     GPIO.setup(SERVO_R, GPIO.OUT)
     GPIO.setup(SWITCH, GPIO.IN)  
     
     GPIO.output(PUMP, GPIO.LOW)
     GPIO.output(SOLENOID, GPIO.LOW)
+    GPIO.output(SMALL_PUMP, GPIO.LOW)
     
     GPIO.setup(EN, GPIO.OUT)
     GPIO.setup(DIR, GPIO.OUT)
@@ -177,6 +189,7 @@ if __name__ == '__main__':
 
     pump_state = Value(c_bool, False)
     solenoid_state = Value(c_bool, False)
+    small_pump_state = Value(c_bool, False)
     winch_state = Value(c_float, 0)
     trigger_winch = Value(c_bool, False)
     servo_state = Value(c_bool, False)
@@ -190,6 +203,7 @@ if __name__ == '__main__':
     rate = rospy.Rate(50) # 50hz
 
     subPump = rospy.Subscriber('pump_on', Empty, ReceivePumpMessage)
+    subSmallPump = rospy.Subscriber('small_pump_on', Empty, ReceiveSmallPumpMessage)
     subSolenoid = rospy.Subscriber('solenoid_on', Empty, ReceiveSolenoidMessage)
     subWinch = rospy.Subscriber('winch_state', Float64, ReceiveWinchMessage)
     subServos = rospy.Subscriber('servo_state', Bool, ReceiveServoMessage)
@@ -212,6 +226,11 @@ if __name__ == '__main__':
                 GPIO.output(SOLENOID, GPIO.HIGH)
             else:
                 GPIO.output(SOLENOID, GPIO.LOW)
+
+            if small_pump_state.value:
+                GPIO.output(SMALL_PUMP, GPIO.HIGH)
+            else:
+                GPIO.output(SMALL_PUMP, GPIO.LOW)
 
             #rospy.loginfo("Get winch state = {0}, winch_cmd = {1}".format(winch_state.value, override_winch_cmd.value))         
             
@@ -283,6 +302,7 @@ if __name__ == '__main__':
 
         GPIO.output(PUMP, GPIO.LOW)
         GPIO.output(SOLENOID, GPIO.LOW)  
+        GPIO.output(SMALL_PUMP, GPIO.LOW)  
         GPIO.output(EN, GPIO.LOW)
         GPIO.output(DIR, GPIO.LOW)
         GPIO.output(PWM, GPIO.LOW)   
