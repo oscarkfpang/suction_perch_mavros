@@ -1,0 +1,4 @@
+{
+    "ros.distro": "noetic",
+    "cmake.configureOnOpen": true
+}
