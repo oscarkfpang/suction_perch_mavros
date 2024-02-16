@@ -638,14 +638,14 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STATUS: Landed on vertical surface successfully! Disarm now.")
             # disarm the drone
             self.set_arm(False, 5)
-            while not self.is_mav_state_standby():
-                rospy.loginfo("STATUS: Waiting for MAV_STATE_STANDBY...")
-                try: 
-                    rate.sleep()
-                except rospy.ROSInterruptException:
-                    rospy.loginfo("ERROR: User interrupt while waiting for MAV_STATE_STANDBY!")
-                    break
-            rospy.loginfo("STATUS: MAV_STATE_STANDBY now! ")
+            #while not self.is_mav_state_standby():
+            #    rospy.loginfo("STATUS: Waiting for MAV_STATE_STANDBY...")
+            #    try: 
+            #        rate.sleep()
+            #    except rospy.ROSInterruptException:
+            #        rospy.loginfo("ERROR: User interrupt while waiting for MAV_STATE_STANDBY!")
+            #        break
+            #rospy.loginfo("STATUS: MAV_STATE_STANDBY now! ")
             rospy.loginfo("STATUS: ============== Landed on wall. Ready to deploy sensor ================= ")
             
             
