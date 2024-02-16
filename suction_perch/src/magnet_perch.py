@@ -766,7 +766,9 @@ class MavrosOffboardSuctionMission():
         self.publish_thr_down.value = True
         self.throttle_down_start_time = rospy.get_time()
         ##self.current_throttle.value = self.low_throttle_value
-        
+        loop_freq = 5  # Hz
+        rate = rospy.Rate(loop_freq)
+
         # gradually reduce throttle to zero during throttle_timeout
         for i in xrange(throttle_timeout * loop_freq):
             try:            
@@ -779,7 +781,7 @@ class MavrosOffboardSuctionMission():
                 res = self.get_param_srv('VERTICAL_LAND')
                 if res.success and res.value.integer > 0:
                     rospy.loginfo(
-                        "SUCTION_IS_LAND received {0}. drone's pose is vertical! ".format(res.value.integer))
+                        "VERTICAL_LAND received {0}. drone's pose is vertical! ".format(res.value.integer))
                     vertical_landing = True
                     # break and set throttle = 0 all the way
                     self.throttle_down_start_time = -1
