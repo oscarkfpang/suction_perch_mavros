@@ -350,11 +350,11 @@ class MavrosOffboardSuctionMission():
         att_target = AttitudeTarget()
         att_target.header = Header()
         att_target.header.stamp = rospy.Time.now()
-        att_target.header.frame_id = "stationary_att_target_with_thrust"
+        att_target.header.frame_id = "stationary_att_target_withoutthrust"
                 
-        att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE
+        att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE + AttitudeTarget.IGNORE_THRUST
         quaternion = quaternion_from_euler(0, 0, 0)        
-        att_target.thrust = 0.73 #self.current_throttle.value
+        #att_target.thrust = 0.73 #self.current_throttle.value
         att_target.orientation = Quaternion(*quaternion)
         return att_target
 
@@ -628,7 +628,8 @@ class MavrosOffboardSuctionMission():
         while not rospy.is_shutdown() and not self.user_interrupted.value:
             # by default publish zero velocity setpoint as flying is done by manual
             if self.current_state.value == self.STATIONARY_HORIZONTAL:
-                self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())              
+                #self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())      
+                self.att_raw_setpoint_pub.publish(self.make_stationary_att_target())    
             elif self.current_state.value == self.PITCH_TO_HORIZONTAL:
                 self.att_raw_setpoint_pub.publish(self.make_pitch_att_target())              
                 pass
@@ -683,9 +684,10 @@ class MavrosOffboardSuctionMission():
             
         rospy.loginfo("STATUS: Test is complete! Program stop!")    
 
-    def is_high_attitude(self):
+    def is_high_attitude(selfy, normal_pitch=0.4):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y > 0.2 and self.imu_data.orientation.y < 0.5
+        #return self.imu_data.orientation.y > 0.2 and self.imu_data.orientation.y < 0.5
+        return self.imu_data.orientation.y > normal_pitch
         
     def is_normal_attitude(self, normal_pitch=0.07):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
@@ -809,9 +811,11 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0.0
             return False 
         
+        self.current_state.value = 
+
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Pitching up to high attitude for landing!")
-        self.target_pitch_rate.value = -1* self.target_pitch_rate.value
+        self.target_pitch_rate.value = -1* self.sub_target_pitch_rate
         for i in xrange(period):
             try:
                 # check pitch angle from IMU
