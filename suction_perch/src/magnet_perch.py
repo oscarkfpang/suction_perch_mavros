@@ -703,7 +703,7 @@ class MavrosOffboardSuctionMission():
         pos_target.yaw = 0.0 # don't yaw, always point to the front
         return pos_target
 
-    def pitch_test(self, timeout=60, throttle_timeout=60):
+    def pitch_test(self, timeout=60, throttle_timeout=30):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
@@ -724,7 +724,7 @@ class MavrosOffboardSuctionMission():
         rate = rospy.Rate(loop_freq)
         period = throttle_timeout * loop_freq 
 
-        throttle_step = (end_throttle - start_throttle) / (period/2.0)
+        throttle_step = (end_throttle - start_throttle) / (period/3.0)
 
 
         takeoff_from_vertical = False
