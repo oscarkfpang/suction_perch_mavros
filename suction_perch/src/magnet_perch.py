@@ -606,7 +606,7 @@ class MavrosOffboardSuctionMission():
     # sending setpoint command for testing wall take-off in a thread
     def send_sp_by_state(self):
         rate = rospy.Rate(20)   # higher rate may be desired
-        while not rospy.is_shutdown():
+        while not rospy.is_shutdown() and not self.user_interrupted.value:
             # by default publish zero velocity setpoint as flying is done by manual
             if self.current_state.value == self.STATIONARY_HORIZONTAL:
                 self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())              
@@ -706,7 +706,7 @@ class MavrosOffboardSuctionMission():
     def pitch_test(self, timeout=60, throttle_timeout=60):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
-        self.current_state.value = self.PITCH_TO_VERTICAL
+        self.current_state.value = self.PITCH_TO_HORIZONTAL
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
