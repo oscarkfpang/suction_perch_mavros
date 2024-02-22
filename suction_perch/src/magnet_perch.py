@@ -337,12 +337,12 @@ class MavrosOffboardSuctionMission():
         pos_target.header.stamp = rospy.Time.now()
         pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
                                PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
-                               PositionTarget.IGNORE_YAW_RATE + PositionTarget.IGNORE_YAW
-        pos_target.coordinate_frame = PositionTarget.FRAME_LOCAL_NED
+                               PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
+        pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
         pos_target.velocity.x = 0
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
-        #pos_target.yaw = 0 # don't yaw, always point to the front
+        pos_target.yaw = 0 # don't yaw, always point to the front
         return pos_target
 
 
