@@ -703,7 +703,7 @@ class MavrosOffboardSuctionMission():
         pos_target.yaw = 0.0 # don't yaw, always point to the front
         return pos_target
 
-    def pitch_test(self, timeout=30, throttle_timeout=30, end_throttle=0.3):
+    def pitch_test(self, timeout=30, throttle_timeout=30, end_throttle=0.4):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
@@ -765,7 +765,7 @@ class MavrosOffboardSuctionMission():
         # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
-        self.target_pitch_rate.value = -0.035
+        self.target_pitch_rate.value = -0.05
         start_pitch = self.imu_data.orientation.y
 
         for i in xrange(period):
@@ -792,7 +792,7 @@ class MavrosOffboardSuctionMission():
         
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Pitching up to high attitude for landing!")
-        self.target_pitch_rate.value = -0.035
+        self.target_pitch_rate.value = -0.05
         for i in xrange(period):
             try:
                 # check pitch angle from IMU
