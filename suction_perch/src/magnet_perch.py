@@ -673,14 +673,14 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STATUS: Landed on vertical surface successfully! Disarm now.")
             # disarm the drone
             self.set_arm(False, 5)
-            while not self.is_mav_state_standby():
-                rospy.loginfo("STATUS: Waiting for MAV_STATE_STANDBY...")
-                try: 
-                    rate.sleep()
-                except rospy.ROSInterruptException:
-                    rospy.loginfo("ERROR: User interrupt while waiting for MAV_STATE_STANDBY!")
-                    break
-            rospy.loginfo("STATUS: MAV_STATE_STANDBY now! ")
+            #while not self.is_mav_state_standby():
+            #    rospy.loginfo("STATUS: Waiting for MAV_STATE_STANDBY...")
+            #    try: 
+            #        rate.sleep()
+            #    except rospy.ROSInterruptException:
+            #        rospy.loginfo("ERROR: User interrupt while waiting for MAV_STATE_STANDBY!")
+            #        break
+            #rospy.loginfo("STATUS: MAV_STATE_STANDBY now! ")
             rospy.loginfo("STATUS: ============== Landed on wall. Ready to deploy sensor ================= ")
             
             
@@ -820,7 +820,9 @@ class MavrosOffboardSuctionMission():
         self.publish_thr_down.value = True
         self.throttle_down_start_time = rospy.get_time()
         ##self.current_throttle.value = self.low_throttle_value
-        
+        loop_freq = 5  # Hz
+        rate = rospy.Rate(loop_freq)
+
         # gradually reduce throttle to zero during throttle_timeout
         for i in xrange(throttle_timeout * loop_freq):
             try:            
@@ -833,7 +835,7 @@ class MavrosOffboardSuctionMission():
                 res = self.get_param_srv('VERTICAL_LAND')
                 if res.success and res.value.integer > 0:
                     rospy.loginfo(
-                        "SUCTION_IS_LAND received {0}. drone's pose is vertical! ".format(res.value.integer))
+                        "VERTICAL_LAND received {0}. drone's pose is vertical! ".format(res.value.integer))
                     vertical_landing = True
                     # break and set throttle = 0 all the way
                     self.throttle_down_start_time = -1
