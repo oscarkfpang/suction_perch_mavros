@@ -22,6 +22,9 @@ from multiprocessing import Value
 from ctypes import c_float, c_int, c_bool
 from collections import deque
 
+from dynamic_reconfigure.server import Server
+from simple_parameter_server.cfg import simple_parameter
+
 class MavrosOffboardSuctionMission():
     """
     Tests flying a path in offboard control by sending position setpoints
@@ -175,6 +178,8 @@ class MavrosOffboardSuctionMission():
                                                Float64,
                                                self.tfmini_callback)
         
+        # dynamic-reconfigure callback
+        self.srv = Server(simple_parameter, self.param_callback)
                                                
         # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
@@ -182,7 +187,10 @@ class MavrosOffboardSuctionMission():
         self.pos_thread = Thread(target=self.send_sp_by_state, args=())
         self.pos_thread.daemon = True
         self.pos_thread.start()
-        
+    
+    def param_callback(self, config, level):
+        rospy.loginfo("Pitch Rate: {0}".format(config.target_pitch_rate))
+        return config
 
     def altitude_callback(self, data):
         self.altitude = data
