@@ -23,7 +23,7 @@ from ctypes import c_float, c_int, c_bool
 from collections import deque
 
 from dynamic_reconfigure.server import Server
-from simple_parameter_server.cfg import simple_parameter
+#from simple_parameter_server.cfg import simple_parameter
 
 class MavrosOffboardSuctionMission():
     """
@@ -179,7 +179,7 @@ class MavrosOffboardSuctionMission():
                                                self.tfmini_callback)
         
         # dynamic-reconfigure callback
-        self.srv = Server(simple_parameter, self.param_callback)
+        #self.srv = Server(simple_parameter, self.param_callback)
         self.target_pitch_sub = rospy.Subscriber('target_pitch_rate', 
                                                 Float64,
                                                 self.pitch_rate_callback)
@@ -191,9 +191,9 @@ class MavrosOffboardSuctionMission():
         self.pos_thread.daemon = True
         self.pos_thread.start()
     
-    def param_callback(self, config, level):
-        rospy.loginfo("Pitch Rate: {0}".format(config.target_pitch_rate))
-        return config
+    #def param_callback(self, config, level):
+    #    rospy.loginfo("Pitch Rate: {0}".format(config.target_pitch_rate))
+    #    return config
 
     def altitude_callback(self, data):
         self.altitude = data
