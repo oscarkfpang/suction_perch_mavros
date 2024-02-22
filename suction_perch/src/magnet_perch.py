@@ -666,7 +666,7 @@ class MavrosOffboardSuctionMission():
 
     def is_high_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        return self.imu_data.orientation.y > 0.2 and self.imu_data.orientation.y < 0.7
+        return self.imu_data.orientation.y > 0.2 and self.imu_data.orientation.y < 0.5
         
     def is_normal_attitude(self, normal_pitch=0.07):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
@@ -790,12 +790,12 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0.0
             return False 
         
-        self.target_pitch_rate = -0.035
+        self.target_pitch_rate.value = -0.035
         for i in xrange(period):
             try:
                 # check pitch angle from IMU
                 if self.is_high_attitude():
-                    self.target_pitch_rate = 0.0
+                    self.target_pitch_rate.value = 0.0
                     break
                     
                 rate.sleep()
@@ -835,7 +835,7 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
 
-        self.target_pitch_rate.value = 0.00
+        self.target_pitch_rate.value = 0.0
 
         start_throttle = 0.01
         end_throttle = 0.3 ### 0.2 for empty loading # self.low_throttle_value         
