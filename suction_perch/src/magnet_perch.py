@@ -740,7 +740,7 @@ class MavrosOffboardSuctionMission():
 
                 # detect SUCTION_IS_LAND param while throttling up
                 res = self.get_param_srv('SUCTION_IS_LAND')
-                if res.success and res.value.integer > 0:
+                if res.success and res.value.integer <= 0:
                     rospy.loginfo(
                         "VERTICAL_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
                     self.current_throttle.value = 0.0
