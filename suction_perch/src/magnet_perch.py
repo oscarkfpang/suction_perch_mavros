@@ -88,7 +88,7 @@ class MavrosOffboardSuctionMission():
         self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
 
         self.user_interrupted = Value(c_bool, False)
-
+        self.sub_target_pitch_rate = 0.0
         ## ========================== ##       
 
 
@@ -180,6 +180,9 @@ class MavrosOffboardSuctionMission():
         
         # dynamic-reconfigure callback
         self.srv = Server(simple_parameter, self.param_callback)
+        self.target_pitch_sub = rospy.Subscriber('target_pitch_rate', 
+                                                Float64,
+                                                self.pitch_rate_callback)
                                                
         # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
@@ -271,6 +274,14 @@ class MavrosOffboardSuctionMission():
         self.tfmini_range.value = data.range
         if self.tfmini_range.value < 0:
             self.tfmini_range.value = 0
+
+        
+    def pitch_rate_callback(self, data):
+        if data.data is not None:
+            self.sub_target_pitch_rate = data.data
+        else:
+            self.sub_target_pitch_rate = 0.0
+
     #
     # Helper methods
     #
@@ -773,7 +784,7 @@ class MavrosOffboardSuctionMission():
         # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
-        self.target_pitch_rate.value = -0.1
+        self.target_pitch_rate.value = self.sub_target_pitch_rate ##-0.1
         start_pitch = self.imu_data.orientation.y
 
         for i in xrange(period):
@@ -800,7 +811,7 @@ class MavrosOffboardSuctionMission():
         
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Pitching up to high attitude for landing!")
-        self.target_pitch_rate.value = 0.1
+        self.target_pitch_rate.value = -1* self.target_pitch_rate.value
         for i in xrange(period):
             try:
                 # check pitch angle from IMU
