@@ -70,17 +70,19 @@ class MavrosOffboardSuctionMission():
         ## for magnetic perching test ##
         self.publish_zero_sp_vel = Value(c_bool, False)
         self.publish_landing_sp_raw = Value(c_bool, False)
+        self.target_pitch_rate = Value(c_float, 0.0)
 
         self.stationary = Value(c_bool, False)
         self.pull_off = Value(c_bool, False)
         self.APPROACH = 0
-        self.LAND_VERTICAL = 1
-        self.TAKE_OFF_VERTICAL = 2
-        self.PITCH_HORIZONTAL = 3
-        self.STATIONARY = 4
-        self.DETACH = 5
+        self.STATIONARY_HORIZONTAL = 1
+        self.PITCH_TO_VERTICAL = 2
+        self.LAND_VERTICAL = 4
+        self.TAKE_OFF_VERTICAL = 5
+        self.PITCH_TO_HORIZONTAL = 6
+        self.DETACH = 7
         self.FAIL = -1
-        self.state_machine = self.APPROACH
+        self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
 
         ## ========================== ##       
 
@@ -175,7 +177,7 @@ class MavrosOffboardSuctionMission():
         # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
         #self.pos_thread = Thread(target=self.send_mission_pos, args=())
-        self.pos_thread = Thread(target=self.send_test_pos, args=())
+        self.pos_thread = Thread(target=self.send_sp_by_state, args=())
         self.pos_thread.daemon = True
         self.pos_thread.start()
         
@@ -301,6 +303,26 @@ class MavrosOffboardSuctionMission():
  
         pos_target.yaw = 0 # don't yaw, always point to the front
         return pos_target
+    
+
+    def make_stationary_pos_target(self):
+        '''
+        Create stationary setpoint_raw for hovering stationary
+        Return: PositionTarget() with vx, vy and vz = 0
+        '''
+        pos_target = PositionTarget()
+        pos_target.header = Header()        
+        pos_target.header.frame_id = "setpoint_raw/local_stationary"
+        pos_target.header.stamp = rospy.Time.now()
+        pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
+                               PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
+                               PositionTarget.IGNORE_YAW_RATE
+        pos_target.coordinate_frame = PositionTarget.FRAME_LOCAL_NED
+        pos_target.velocity.x = 0
+        pos_target.velocity.y = 0
+        pos_target.velocity.z = 0
+        pos_target.yaw = 0 # don't yaw, always point to the front
+        return pos_target
 
 
     def make_stationary_att_target(self):
@@ -313,6 +335,21 @@ class MavrosOffboardSuctionMission():
         quaternion = quaternion_from_euler(0, 0, 0)        
         att_target.thrust = 0.73 #self.current_throttle.value
         att_target.orientation = Quaternion(*quaternion)
+        return att_target
+
+    def make_pitch_att_target(self):
+        att_target = AttitudeTarget()
+        att_target.header = Header()
+        att_target.header.stamp = rospy.Time.now()
+        att_target.header.frame_id = "high_pitch"
+        #att_target.header.frame_id = "high_pitch_takeoff"
+        # change these values by experiment
+        roll_rate = 0.0
+        yaw_rate = 0.0
+        pitch_rate = self.target_pitch_rate.value      
+        att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
+        att_target.thrust = self.current_throttle.value
+        att_target.body_rate = Vector3(x=roll_rate , y=pitch_rate , z=yaw_rate)
         return att_target
         
     def make_att_target(self):
@@ -562,82 +599,21 @@ class MavrosOffboardSuctionMission():
         self.publish_att_raw.value = False
         rospy.loginfo("STATUS: Detach is successful. Fly back by Position mode manually! Program stop!")    
 
-    def make_sp_command(self, state=4):
-        att_target = AttitudeTarget()
-        att_target.header = Header()
-        att_target.header.stamp = rospy.Time.now()
-        # change these values by experiment
-        roll = 0.0
-        yaw = 0.0
-        pitch = 0.0       
-        
-        if state == self.LAND_VERTICAL:
-            pass
-        elif
-        # Throttling up for take off from wall
-        # throttle value updated from mission loop
-        if self.publish_thr_up.value:
-            pitch = 0.0
-            att_target.header.frame_id = "throttle_up_from_vertical"
-            throttle = self.current_throttle.value
-            att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
-            vector3 = Vector3(x=roll , y=pitch , z=yaw)
-            att_target.thrust = throttle
-            att_target.body_rate = vector3
-            return att_target
-        
-        # Waiting for suction pressure returning to normal for detach
-        # Compensate throttle for reduced lift due to wall friction
-        if self.stationary.value:
-            return self.make_stationary_att_target()
-        
-        # 
-        if not self.publish_thr_down.value:
-            pitch = self.pitch_rate # tested in jmavsim for -ve value = pitch up (flip backward)
-            self.current_throttle.value = self.low_throttle_value
-            att_target.header.frame_id = "high_pitch_low_throttle"
-        else:
-            if self.throttle_down_start_time > 0:
-                # gradually throttling down
-                pitch = -0.2 #0.0
-                att_target.header.frame_id = "throttling_to_zero"
-                
-            else:
-                pitch = 0.0  # zero pitch rate 
-                att_target.header.frame_id = "zero_throttle"
-                #throttle = 0.0
-                self.current_throttle.value = 0.0
-
-        throttle = self.current_throttle.value
-        att_target.type_mask = AttitudeTarget.IGNORE_ATTITUDE
-        vector3 = Vector3(x=roll , y=pitch , z=yaw)
-        att_target.thrust = throttle
-        att_target.body_rate = vector3
-        return att_target
 
 
     # sending setpoint command for testing wall take-off in a thread
-    def send_test_pos(self):
+    def send_sp_by_state(self):
         rate = rospy.Rate(20)   # higher rate may be desired
         while not rospy.is_shutdown():
             # by default publish zero velocity setpoint as flying is done by manual
-            if self.state_machine == self.TAKE_OFF_VERTICAL:
-                self.att_raw_setpoint_pub.publish(self.make_att_target())              
-                pass
-            elif self.state_machine == self.PITCH_HORIZONTAL:
-                pass
-            elif self.state_machine == self.STATIONARY:
+            if self.current_state.value == self.STATIONARY_HORIZONTAL:
+                self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())              
+            elif self.current_state.value == self.PITCH_TO_HORIZONTAL:
+                self.att_raw_setpoint_pub.publish(self.make_pitch_att_target())              
                 pass
             else:
                 pass
 
-            if not self.publish_att_raw.value:
-                # publish velocity setpoint for slowly closing / retracting from the wall
-                self.pos_target_setpoint_pub.publish(self.make_pos_target()) 
-            else:
-                # publish attitude setpoint for high attitude movement and takeoff from wall
-                self.att_raw_setpoint_pub.publish(self.make_att_target())              
-               
             try:  # prevent garbage in console output when thread is killed
                 rate.sleep()
             except rospy.ROSException:
@@ -725,18 +701,75 @@ class MavrosOffboardSuctionMission():
         pos_target.yaw = 0.0 # don't yaw, always point to the front
         return pos_target
 
-    def take_off_test(self, timeout=60, throttle_timeout=60):
+    def pitch_test(self, timeout=60, throttle_timeout=60):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
-        rospy.loginfo("STATUS: Set OFFBOARD mode.")
+        rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
+        self.current_state = self.PITCH_TO_VERTICAL
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
-        self.publish_att_raw.value = True
-        self.publish_thr_up.value = True
+
+        self.target_pitch_rate.value = 0.00
 
         start_throttle = 0.01
         end_throttle = 0.2 ### 0.2 for empty loading # self.low_throttle_value         
-        rospy.loginfo("STATUS: Throttle set from {0} to {1}".format(start_throttle, end_throttle))
+        #rospy.loginfo("STATUS: Throttle set from {0} to {1}".format(start_throttle, end_throttle))
+        
+        self.current_throttle.value = start_throttle
+        self.throttle_up_start_time = rospy.get_time()
+
+        loop_freq = 20  # Hz
+        rate = rospy.Rate(loop_freq)
+        period = throttle_timeout * loop_freq 
+
+        throttle_step = (end_throttle - start_throttle) / (period/2.0)
+
+
+        takeoff_from_vertical = False
+
+        for i in xrange(period):
+            rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            try:
+                # throttling up gradually
+                self.current_throttle.value += throttle_step
+                # clip max throttle value
+                if self.current_throttle.value >= end_throttle:
+                    self.current_throttle.value = end_throttle
+
+                # detect SUCTION_IS_LAND param while throttling up
+                res = self.get_param_srv('VERTICAL_LAND')
+                if res.success and res.value.integer <= 0:
+                    rospy.loginfo(
+                        "VERTICAL_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
+                    takeoff_from_vertical = True
+                    break
+                    
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
+                self.publish_att_raw.value = True
+                self.current_throttle.value = 0.0
+                break
+
+        if not takeoff_from_vertical:
+            self.assertTrue(takeoff_from_vertical, (
+                "took too long to take off from wall | timeout(seconds): {0}".format(timeout)))
+            self.current_throttle.value = 0.0
+            return False
+
+
+    def take_off_test(self, timeout=60, throttle_timeout=60):
+        rospy.loginfo("=================== This is a take-off from wall test ========================")
+        rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
+        self.current_state = self.PITCH_TO_VERTICAL
+        self.set_mode("OFFBOARD", 5)
+        rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
+        self.set_arm(True, 5)
+
+        start_throttle = 0.01
+        end_throttle = 0.2 ### 0.2 for empty loading # self.low_throttle_value         
+        #rospy.loginfo("STATUS: Throttle set from {0} to {1}".format(start_throttle, end_throttle))
         
         self.current_throttle.value = start_throttle
         self.throttle_up_start_time = rospy.get_time()
@@ -1262,7 +1295,7 @@ if __name__ == '__main__':
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.run_magnet_test()
+        suction_mission.take_off_test()
 
 
     rospy.spin()
