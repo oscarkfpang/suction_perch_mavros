@@ -82,7 +82,7 @@ class MavrosOffboardSuctionMission():
         self.PITCH_TO_HORIZONTAL = 6
         self.DETACH = 7
         self.FAIL = -1
-        self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
+        self.current_state = Value(c_float, self.STATIONARY_HORIZONTAL)
 
         ## ========================== ##       
 
