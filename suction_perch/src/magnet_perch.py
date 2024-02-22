@@ -628,8 +628,8 @@ class MavrosOffboardSuctionMission():
         while not rospy.is_shutdown() and not self.user_interrupted.value:
             # by default publish zero velocity setpoint as flying is done by manual
             if self.current_state.value == self.STATIONARY_HORIZONTAL:
-                #self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())      
-                self.att_raw_setpoint_pub.publish(self.make_stationary_att_target())    
+                self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())      
+                #self.att_raw_setpoint_pub.publish(self.make_stationary_att_target())    
             elif self.current_state.value == self.PITCH_TO_HORIZONTAL:
                 self.att_raw_setpoint_pub.publish(self.make_pitch_att_target())              
                 pass
@@ -684,14 +684,13 @@ class MavrosOffboardSuctionMission():
             
         rospy.loginfo("STATUS: Test is complete! Program stop!")    
 
-    def is_high_attitude(selfy, normal_pitch=0.4):
-        rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
-        #return self.imu_data.orientation.y > 0.2 and self.imu_data.orientation.y < 0.5
-        return self.imu_data.orientation.y > normal_pitch
-        
     def is_normal_attitude(self, normal_pitch=0.07):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y < normal_pitch #0.15
+
+    def is_high_attitude(self, normal_pitch=0.4):
+        rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
+        return self.imu_data.orientation.y > normal_pitch
 
     def is_vertical_takeoff_attitude(self):
         rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
@@ -813,6 +812,7 @@ class MavrosOffboardSuctionMission():
         
         self.current_state.value = self.STATIONARY_HORIZONTAL
 
+        '''
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Pitching up to high attitude for landing!")
         self.target_pitch_rate.value = -1* self.sub_target_pitch_rate
@@ -849,6 +849,7 @@ class MavrosOffboardSuctionMission():
                 self.current_throttle.value = 0.0
                 self.user_interrupted.value = True
                 break
+        '''
         rospy.loginfo("STATUS: Test end!")
 
 
