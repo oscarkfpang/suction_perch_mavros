@@ -84,6 +84,8 @@ class MavrosOffboardSuctionMission():
         self.FAIL = -1
         self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
 
+        self.user_interrupted = Value(c_bool, False)
+
         ## ========================== ##       
 
 
@@ -268,7 +270,7 @@ class MavrosOffboardSuctionMission():
     # constantly publish waypoint (position / velocity) in a thread
     def send_mission_pos(self):
         rate = rospy.Rate(10)
-        while not rospy.is_shutdown():
+        while not rospy.is_shutdown() or not self.user_interrupted.value:
             # by default publish zero velocity setpoint as flying is done by manual
             if not self.publish_att_raw.value:
                 # publish velocity setpoint for slowly closing / retracting from the wall
@@ -737,12 +739,13 @@ class MavrosOffboardSuctionMission():
                     self.current_throttle.value = end_throttle
 
                 # detect SUCTION_IS_LAND param while throttling up
-                res = self.get_param_srv('VERTICAL_LAND')
-                if res.success and res.value.integer <= 0:
+                res = self.get_param_srv('SUCTION_IS_LAND')
+                if res.success and res.value.integer > 0:
                     rospy.loginfo(
                         "VERTICAL_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
                     self.current_throttle.value = 0.0
                     takeoff_from_vertical = True
+                    self.user_interrupted.value = True
                     break
                     
                 rate.sleep()
@@ -751,12 +754,14 @@ class MavrosOffboardSuctionMission():
                 rospy.loginfo("STATUS: Auto_throttling is interrupted!")
                 self.publish_att_raw.value = True
                 self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
                 break
 
         if not takeoff_from_vertical:
             self.assertTrue(takeoff_from_vertical, (
                 "took too long to take off from wall | timeout(seconds): {0}".format(timeout)))
             self.current_throttle.value = 0.0
+            self.user_interrupted.value = True
             return False
 
 
