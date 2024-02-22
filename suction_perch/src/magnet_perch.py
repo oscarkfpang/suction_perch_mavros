@@ -811,7 +811,7 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0.0
             return False 
         
-        self.current_state.value = 
+        self.current_state.value = self.STATIONARY_HORIZONTAL
 
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Pitching up to high attitude for landing!")
