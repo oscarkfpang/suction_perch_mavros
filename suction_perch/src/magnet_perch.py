@@ -790,6 +790,8 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0.0
             return False 
         
+        rospy.loginfo("="*20)
+        rospy.loginfo("STATUS: Pitching up to high attitude for landing!")
         self.target_pitch_rate.value = -0.035
         for i in xrange(period):
             try:
