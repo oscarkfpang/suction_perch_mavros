@@ -82,7 +82,7 @@ class MavrosOffboardSuctionMission():
         self.PITCH_TO_HORIZONTAL = 6
         self.DETACH = 7
         self.FAIL = -1
-        self.current_state = Value(c_float, self.STATIONARY_HORIZONTAL)
+        self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
 
         ## ========================== ##       
 
@@ -704,7 +704,7 @@ class MavrosOffboardSuctionMission():
     def pitch_test(self, timeout=60, throttle_timeout=60):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
-        self.current_state = self.PITCH_TO_VERTICAL
+        self.current_state.value = self.PITCH_TO_VERTICAL
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
@@ -741,6 +741,7 @@ class MavrosOffboardSuctionMission():
                 if res.success and res.value.integer <= 0:
                     rospy.loginfo(
                         "VERTICAL_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
+                    self.current_throttle.value = 0.0
                     takeoff_from_vertical = True
                     break
                     
@@ -762,7 +763,7 @@ class MavrosOffboardSuctionMission():
     def take_off_test(self, timeout=60, throttle_timeout=60):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
-        self.current_state = self.PITCH_TO_VERTICAL
+        self.current_state.value = self.PITCH_TO_VERTICAL
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
