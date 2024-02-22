@@ -1301,7 +1301,7 @@ if __name__ == '__main__':
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.take_off_test()
+        suction_mission.pitch_test()
 
 
     rospy.spin()
