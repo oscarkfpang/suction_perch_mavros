@@ -765,7 +765,7 @@ class MavrosOffboardSuctionMission():
         # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
-        self.target_pitch_rate.value = -0.05
+        self.target_pitch_rate.value = -0.1
         start_pitch = self.imu_data.orientation.y
 
         for i in xrange(period):
@@ -792,7 +792,7 @@ class MavrosOffboardSuctionMission():
         
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Pitching up to high attitude for landing!")
-        self.target_pitch_rate.value = -0.05
+        self.target_pitch_rate.value = 0.1
         for i in xrange(period):
             try:
                 # check pitch angle from IMU
