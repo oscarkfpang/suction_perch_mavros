@@ -743,9 +743,7 @@ class MavrosOffboardSuctionMission():
                 if res.success and res.value.integer <= 0:
                     rospy.loginfo(
                         "VERTICAL_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
-                    self.current_throttle.value = 0.0
                     takeoff_from_vertical = True
-                    self.user_interrupted.value = True
                     break
                     
                 rate.sleep()
@@ -761,8 +759,28 @@ class MavrosOffboardSuctionMission():
             self.assertTrue(takeoff_from_vertical, (
                 "took too long to take off from wall | timeout(seconds): {0}".format(timeout)))
             self.current_throttle.value = 0.0
-            self.user_interrupted.value = True
+            #self.user_interrupted.value = True
             return False
+        
+        rospy.loginfo("STATUS: Reducing throttle to zero!")
+        for i in xrange(period):
+            rospy.loginfo("STATUS: Auto_throttling down from {0}. current throttle = {1}".format(end_throttle, self.current_throttle.value))
+            try:
+                # throttling up gradually
+                self.current_throttle.value -= throttle_step
+                # clip min throttle value
+                if self.current_throttle.value <= 0.0:
+                    self.current_throttle.value = 0.0
+                    break
+                    
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
+                self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
+                break
+        rospy.loginfo("STATUS: Test end!")
 
 
     def take_off_test(self, timeout=60, throttle_timeout=60):
