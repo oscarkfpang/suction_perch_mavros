@@ -656,9 +656,11 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Start to takeoff from the wall.")
         if not self.vertical_takeoff_test():
             return False
-            
+        
+        rospy.loginfo("STATUS: Set to Pilot's POSITION flight mode on PX4")
+        self.set_mode("POSCTL", 5)
         rospy.loginfo("="*20)
-        rospy.loginfo("STATUS: Wait for 10 sec for landing to complete")
+        rospy.loginfo("STATUS: Wait for 10 sec in POSITION flight mode. Please set string tension for landing!")
         rospy.sleep(10)
 
         rospy.loginfo("STATUS: Start to land on the wall.")
@@ -669,11 +671,11 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Test is complete! Program stop!")    
 
     def is_normal_attitude(self, normal_pitch=0.07):
-        rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
+        #rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y < normal_pitch #0.15
 
     def is_high_attitude(self, normal_pitch=0.4):
-        rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
+        #rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y > normal_pitch
 
     def is_vertical_takeoff_attitude(self):
@@ -842,7 +844,8 @@ class MavrosOffboardSuctionMission():
         pitch_to_normal = False
 
         for i in xrange(period):
-            rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            #rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             try:
                 # throttling up gradually
                 self.current_throttle.value += throttle_step
@@ -883,6 +886,7 @@ class MavrosOffboardSuctionMission():
 
         for i in xrange(period):
             try:
+                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
                 # check pitch angle from IMU
                 if self.is_normal_attitude(normal_pitch=0.01):
                     self.target_pitch_rate.value = 0.0
@@ -903,6 +907,7 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0.0
             return False 
         
+        rospy.loginfo("Current throttle value {0}".format(self.current_throttle.value))
         self.current_state.value = self.STATIONARY_HORIZONTAL
         rospy.loginfo("STATUS: Change to STATIONARY_HORIZONTAL! Take-off Test done!")
         return True
@@ -950,6 +955,8 @@ class MavrosOffboardSuctionMission():
         self.target_pitch_rate.value = -0.7 
         for i in xrange(period):
             try:
+                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
+
                 # check pitch angle from IMU
                 if self.is_high_attitude():
                     self.target_pitch_rate.value = 0.0
@@ -976,7 +983,7 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Drone is in high pitch! Ready to land on the wall vertically")
 
         # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
-        throttle_step = (0.0 - start_throttle) / (period/3.0) 
+        throttle_step = (start_throttle - 0.0) / (period/3.0) 
 
         # gradually reduce throttle to zero during throttle_timeout
         for i in xrange(period):
@@ -995,7 +1002,8 @@ class MavrosOffboardSuctionMission():
                     break
                     
                 rate.sleep()
-                rospy.loginfo("Set Throttle = 0 during vertical landing. Current throttle = {0}".format(self.current_throttle.value))
+                #rospy.loginfo("Set Throttle = 0 during vertical landing. Current throttle = {0}".format(self.current_throttle.value))
+                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             except (rospy.ROSException, rospy.ROSInterruptException) as e:
                 land_to_vertical = False
                 self.current_throttle.value = 0.0
