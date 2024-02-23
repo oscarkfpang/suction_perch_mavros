@@ -822,7 +822,7 @@ class MavrosOffboardSuctionMission():
 
     def vertical_takeoff_test(self, timeout=30, throttle_timeout=30, end_throttle=0.5):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
-        rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
+        rospy.loginfo("STATUS: Set to PITCH_TO_HORIZONTAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
         self.set_mode("OFFBOARD", 5)
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
@@ -939,11 +939,15 @@ class MavrosOffboardSuctionMission():
     def vertical_land_test(self, timeout=30, start_throttle=0.5):
         rospy.loginfo("========= This is a vertical landing test =========")
         rospy.loginfo("Throttle down from is about to start... Throttling down from {0}".format(start_throttle))
-        rospy.loginfo("Current throttle value {0}".format(self.current_throttle.value))
+        rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
+        self.target_pitch_rate.value = 0.0
+        self.current_state.value = self.PITCH_TO_VERTICAL
         self.set_mode("OFFBOARD", 5)
-        self.throttle_down_start_time = rospy.get_time()
         # TODO: check if armed -> must do arm whenever possible!
+        rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
+
+
 
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
@@ -953,7 +957,6 @@ class MavrosOffboardSuctionMission():
         pitch_to_vertical = False
 
         self.target_pitch_rate.value = -0.7 
-        self.current_state.value = self.PITCH_TO_VERTICAL
 
         for i in xrange(period):
             try:
@@ -981,7 +984,7 @@ class MavrosOffboardSuctionMission():
             self.target_pitch_rate.value = 0.0
             return False 
         
-        self.current_state.value = self.LAND_VERTICAL
+        #self.current_state.value = self.LAND_VERTICAL
         rospy.loginfo("STATUS: Drone is in high pitch! Ready to land on the wall vertically")
 
         # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
