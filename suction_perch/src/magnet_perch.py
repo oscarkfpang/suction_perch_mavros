@@ -7,7 +7,7 @@ import numpy as np
 import sys
 import argparse
 from std_msgs.msg import Header, Empty, Bool, Float64
-from geometry_msgs.msg import PoseStamped, Quaternion, Point, Vector3, Twist
+from geometry_msgs.msg import PoseStamped, Quaternion, Point, Vector3, TwistStamped
 from mavros_msgs.msg import Altitude, ExtendedState, HomePosition, ParamValue, State, \
                             WaypointList, PositionTarget, AttitudeTarget
 from mavros_msgs.srv import CommandBool, ParamGet, ParamSet, SetMode, SetModeRequest, WaypointClear, \
@@ -146,7 +146,7 @@ class MavrosOffboardSuctionMission():
         self.att_raw_setpoint_pub = rospy.Publisher(
             '/mavros/setpoint_raw/attitude', AttitudeTarget, queue_size=1)
         self.vel_setpoint_pub = rospy.Publisher(
-            '/mavros/setpoint_velocity/cmd_vel', Twist, queue_size=1)
+            '/mavros/setpoint_velocity/cmd_vel', TwistStamped, queue_size=1)
         
 
         # ROS subscribers
@@ -322,11 +322,14 @@ class MavrosOffboardSuctionMission():
         return pos_target
     
     def make_vel_sp_target(self):
-        vel_sp_target = Twist()
-        vel_sp_target.linear.x = self.joy_command[3] * self.vel_sp_factor
-        vel_sp_target.linear.y = self.joy_command[2] * self.vel_sp_factor
-        vel_sp_target.linear.z = self.joy_command[1] * self.vel_sp_factor
-        vel_sp_target.angular.z = self.joy_command[0] * self.vel_sp_factor
+        vel_sp_target = TwistStamped()
+        vel_sp_target.header = Header()        
+        vel_sp_target.header.frame_id = "velocity_setpoint"
+        vel_sp_target.header.stamp = rospy.Time.now()
+        vel_sp_target.twist.linear.x = self.joy_command[3] * self.vel_sp_factor
+        vel_sp_target.twist.linear.y = self.joy_command[2] * self.vel_sp_factor
+        vel_sp_target.twist.linear.z = self.joy_command[1] * self.vel_sp_factor
+        vel_sp_target.twist.angular.z = self.joy_command[0] * self.vel_sp_factor
         return vel_sp_target
 
     def make_stationary_pos_target(self):
