@@ -658,7 +658,7 @@ class MavrosOffboardSuctionMission():
             return False
         
         rospy.loginfo("STATUS: Set to Pilot's POSITION flight mode on PX4")
-        self.set_mode("ALTCTL", 5)  # POSCTL
+        self.set_mode("POSCTL", 5)  # POSCTL
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Wait for 10 sec in POSITION flight mode. Please set string tension for landing!")
         rospy.sleep(10)
@@ -674,7 +674,7 @@ class MavrosOffboardSuctionMission():
         #rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y < normal_pitch #0.15
 
-    def is_high_attitude(self, normal_pitch=0.4):
+    def is_high_attitude(self, normal_pitch=0.35):
         #rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y > normal_pitch
 
@@ -957,7 +957,10 @@ class MavrosOffboardSuctionMission():
         pitch_to_vertical = False
 
         self.target_pitch_rate.value = -0.7 
-
+        self.current_throttle.value = start_throttle
+        # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
+        throttle_step = (start_throttle - 0.0) / (period/3.0) 
+        
         for i in xrange(period):
             try:
                 rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
@@ -986,9 +989,6 @@ class MavrosOffboardSuctionMission():
         
         #self.current_state.value = self.LAND_VERTICAL
         rospy.loginfo("STATUS: Drone is in high pitch! Ready to land on the wall vertically")
-
-        # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
-        throttle_step = (start_throttle - 0.0) / (period/3.0) 
 
         # gradually reduce throttle to zero during throttle_timeout
         for i in xrange(period):
