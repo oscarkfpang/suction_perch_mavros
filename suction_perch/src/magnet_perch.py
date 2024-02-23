@@ -146,7 +146,7 @@ class MavrosOffboardSuctionMission():
         self.att_raw_setpoint_pub = rospy.Publisher(
             '/mavros/setpoint_raw/attitude', AttitudeTarget, queue_size=1)
         self.vel_setpoint_pub = rospy.Publisher(
-            '/mavros/setpoint_velocity/cmd_vel_unstamped', Twist, queue_size=1)
+            '/mavros/setpoint_velocity/cmd_vel', Twist, queue_size=1)
         
 
         # ROS subscribers
