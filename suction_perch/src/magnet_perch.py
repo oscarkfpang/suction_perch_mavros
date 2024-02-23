@@ -658,7 +658,7 @@ class MavrosOffboardSuctionMission():
             return False
         
         rospy.loginfo("STATUS: Set to Pilot's POSITION flight mode on PX4")
-        self.set_mode("POSCTL", 5)
+        self.set_mode("ALTCTL", 5)  # POSCTL
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Wait for 10 sec in POSITION flight mode. Please set string tension for landing!")
         rospy.sleep(10)
@@ -940,10 +940,10 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("========= This is a vertical landing test =========")
         rospy.loginfo("Throttle down from is about to start... Throttling down from {0}".format(start_throttle))
         rospy.loginfo("Current throttle value {0}".format(self.current_throttle.value))
-        self.current_state.value = self.PITCH_TO_VERTICAL
         self.set_mode("OFFBOARD", 5)
         self.throttle_down_start_time = rospy.get_time()
-        # TODO: check if armed
+        # TODO: check if armed -> must do arm whenever possible!
+        self.set_arm(True, 5)
 
         loop_freq = 5  # Hz
         rate = rospy.Rate(loop_freq)
@@ -953,6 +953,8 @@ class MavrosOffboardSuctionMission():
         pitch_to_vertical = False
 
         self.target_pitch_rate.value = -0.7 
+        self.current_state.value = self.PITCH_TO_VERTICAL
+
         for i in xrange(period):
             try:
                 rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
