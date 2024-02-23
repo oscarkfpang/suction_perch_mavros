@@ -331,7 +331,7 @@ class MavrosOffboardSuctionMission():
         vel_sp_target.linear.z = self.joy_command[1] * self.vel_sp_factor
         vel_sp_target.angular.z = self.joy_command[0] * self.vel_sp_factor
 
-        rospy.loginfo(vel_sp_target)
+        #rospy.loginfo(vel_sp_target)
         return vel_sp_target
 
     def make_stationary_pos_target(self):
@@ -712,7 +712,7 @@ class MavrosOffboardSuctionMission():
     def is_mav_state_standby(self):        
         return mavutil.mavlink.enums['MAV_STATE'][self.state.system_status].name == "MAV_STATE_STANDBY"
 
-    def pitch_test(self, timeout=30, throttle_timeout=30, end_throttle=0.4):
+    def pitch_test(self, timeout=30, throttle_timeout=30, end_throttle=0.5):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
@@ -774,7 +774,7 @@ class MavrosOffboardSuctionMission():
         # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
-        self.target_pitch_rate.value = self.sub_target_pitch_rate ##-0.1
+        self.target_pitch_rate.value = 0.7 ##self.sub_target_pitch_rate ##-0.1
         start_pitch = self.imu_data.orientation.y
 
         for i in xrange(period):
