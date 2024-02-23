@@ -7,12 +7,12 @@ import numpy as np
 import sys
 import argparse
 from std_msgs.msg import Header, Empty, Bool, Float64
-from geometry_msgs.msg import PoseStamped, Quaternion, Point, Vector3
+from geometry_msgs.msg import PoseStamped, Quaternion, Point, Vector3, Twist
 from mavros_msgs.msg import Altitude, ExtendedState, HomePosition, ParamValue, State, \
                             WaypointList, PositionTarget, AttitudeTarget
 from mavros_msgs.srv import CommandBool, ParamGet, ParamSet, SetMode, SetModeRequest, WaypointClear, \
                             WaypointPush, CommandTOL
-from sensor_msgs.msg import Imu
+from sensor_msgs.msg import Imu, Joy
 #from mavros_test_common import MavrosTestCommon
 from pymavlink import mavutil
 from six.moves import xrange
@@ -88,7 +88,9 @@ class MavrosOffboardSuctionMission():
         self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
 
         self.user_interrupted = Value(c_bool, False)
-        self.sub_target_pitch_rate = 0.0
+        self.sub_target_pitch_rate = 0.7 # for pitching downward for take off from vertical
+        self.joy_command = (0, 0, 0, 0)
+        self.vel_sp_factor = 2.0
         ## ========================== ##       
 
 
@@ -143,8 +145,8 @@ class MavrosOffboardSuctionMission():
             'mavros/setpoint_raw/local', PositionTarget, queue_size=1)
         self.att_raw_setpoint_pub = rospy.Publisher(
             '/mavros/setpoint_raw/attitude', AttitudeTarget, queue_size=1)
-        self.pub_pump = rospy.Publisher('pump_on', Empty, queue_size=1)
-        self.pub_solenoid = rospy.Publisher('solenoid_on', Empty, queue_size=1)
+        self.vel_setpoint_pub = rospy.Publisher(
+            '/mavros/setpoint_velocity/cmd_vel_unstamped', Twist, queue_size=1)
         
 
         # ROS subscribers
@@ -183,6 +185,9 @@ class MavrosOffboardSuctionMission():
         self.target_pitch_sub = rospy.Subscriber('target_pitch_rate', 
                                                 Float64,
                                                 self.pitch_rate_callback)
+        self.joystick_sub = rospy.Subscriber('joy',
+                                             Joy,
+                                             self.joystick_callback)
                                                
         # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
@@ -275,35 +280,26 @@ class MavrosOffboardSuctionMission():
         if self.tfmini_range.value < 0:
             self.tfmini_range.value = 0
 
-        
+    # Not to be used after getting the right pitch value from experiment
     def pitch_rate_callback(self, data):
-        if data.data is not None:
-            self.sub_target_pitch_rate = data.data
-        else:
-            self.sub_target_pitch_rate = 0.0
+        #if data is not None:
+        #    self.sub_target_pitch_rate = data.data
+        #else:
+        self.sub_target_pitch_rate = 0.7 # default setting by experiment
 
+    def joystick_callback(self, data):
+        if data is not None:
+            self.joy_command = (data.axes[0], data.axes[1], data.axes[3], data.axes[4])
+        else:
+            self.joy_command = (0, 0, 0, 0)
+
+        rospy.loginfo("Yaw: {0} | Throttle: {1} | Roll: {2} | Pitch: {3} ".format(self.joy_command[0]), \
+                                                                                self.joy_command[1], \
+                                                                                self.joy_command[2], \
+                                                                                self.joy_command[3])
     #
     # Helper methods
     #
-
-    # constantly publish waypoint (position / velocity) in a thread
-    def send_mission_pos(self):
-        rate = rospy.Rate(10)
-        while not rospy.is_shutdown() or not self.user_interrupted.value:
-            # by default publish zero velocity setpoint as flying is done by manual
-            if not self.publish_att_raw.value:
-                # publish velocity setpoint for slowly closing / retracting from the wall
-                self.pos_target_setpoint_pub.publish(self.make_pos_target()) 
-            else:
-                # publish attitude setpoint for high attitude movement and takeoff from wall
-                self.att_raw_setpoint_pub.publish(self.make_att_target())              
-               
-            try:  # prevent garbage in console output when thread is killed
-                rate.sleep()
-            except rospy.ROSInterruptException:
-                rospy.loginfo("ERROR: Thread interrupted!")
-                pass
-
 
     def make_pos_target(self):
         '''
@@ -325,6 +321,16 @@ class MavrosOffboardSuctionMission():
         pos_target.yaw = 0 # don't yaw, always point to the front
         return pos_target
     
+    def make_vel_sp_target(self):
+        vel_sp_target = Twist()
+        vel_sp_target.header = Header()
+        vel_sp_target.header.frame_id = "velocity setpoint from joystick"
+        vel_sp_target.header.stamp = rospy.Time.Now()
+        vel_sp_target.linear.x = self.joy_command[3] * self.vel_sp_factor
+        vel_sp_target.linear.y = self.joy_command[2] * self.vel_sp_factor
+        vel_sp_target.linear.z = self.joy_command[1] * self.vel_sp_factor
+        vel_sp_target.angular.z = self.joy_command[0] * self.vel_sp_factor
+        return vel_sp_target
 
     def make_stationary_pos_target(self):
         '''
@@ -631,8 +637,9 @@ class MavrosOffboardSuctionMission():
                 self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())      
                 #self.att_raw_setpoint_pub.publish(self.make_stationary_att_target())    
             elif self.current_state.value == self.PITCH_TO_HORIZONTAL:
-                self.att_raw_setpoint_pub.publish(self.make_pitch_att_target())              
-                pass
+                self.att_raw_setpoint_pub.publish(self.make_pitch_att_target())  
+            elif self.current_state.value == self.APPROACH:
+                self.vel_setpoint_pub.publish(self.make_vel_sp_target())
             else:
                 pass
 
@@ -702,26 +709,6 @@ class MavrosOffboardSuctionMission():
 
     def is_mav_state_standby(self):        
         return mavutil.mavlink.enums['MAV_STATE'][self.state.system_status].name == "MAV_STATE_STANDBY"
-
-
-    def make_vel_setpoint(self, vx=0.0, vy=0.0, vz=0.0):
-        '''
-        Create velocity setpoint for approaching the drone slowly to the wall under VICON
-        Return: PositionTarget() with vx, vy and vz
-        '''
-        pos_target = PositionTarget()
-        pos_target.header = Header()        
-        pos_target.header.frame_id = "zero_vel_sp"
-        pos_target.header.stamp = rospy.Time.now()
-        pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
-                               PositionTarget.FORCE + PositionTarget.IGNORE_YAW_RATE + PositionTarget.IGNORE_PX + \
-                               PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ
-        pos_target.coordinate_frame = PositionTarget.FRAME_LOCAL_NED
-        pos_target.velocity.x = vx
-        pos_target.velocity.y = vy
-        pos_target.velocity.z = vz
-        pos_target.yaw = 0.0 # don't yaw, always point to the front
-        return pos_target
 
     def pitch_test(self, timeout=30, throttle_timeout=30, end_throttle=0.4):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
@@ -910,6 +897,29 @@ class MavrosOffboardSuctionMission():
             self.current_throttle.value = 0.0
             #self.user_interrupted.value = True
             return False
+
+    def simple_vel_sp_test(self, timeout=30):
+        rospy.loginfo("=================== This is a velocity setpoint test ========================")
+        rospy.loginfo("STATUS: Fly with velocity setpoint in OFFBOARD mode.")
+        self.current_state.value = self.APPROACH
+        self.set_mode("OFFBOARD", 5)
+        rospy.loginfo("STATUS: Arm the drone in horizontal pose.")
+        self.set_arm(True, 5)
+
+        loop_freq = 20  # Hz
+        rate = rospy.Rate(loop_freq)
+        period = timeout * loop_freq 
+
+        for i in xrange(period):
+            try:
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Test is interrupted!")
+                break
+
+        self.set_arm(False, 5)
+        
 
 
     def land_test(self, timeout=60, throttle_timeout=5):
@@ -1236,7 +1246,7 @@ class MavrosOffboardSuctionMission():
         # turn off the pump
         if self.pump_on.value:
             rospy.loginfo("Turn OFF suction pump")
-            self.pub_pump.publish(Empty())
+            #self.pub_pump.publish(Empty())
             self.pump_on.value = False
 
         rospy.loginfo("======= STOP OFFBOARD & EXIT======= ")
@@ -1341,7 +1351,7 @@ if __name__ == '__main__':
     mode_group = parser.add_mutually_exclusive_group(required=True)
     mode_group.add_argument('-manual', '--manual-test', action='store_true', help="rearm the drone after landing to the wall")
     mode_group.add_argument('-magnet', '--magnet-test', action='store_true', help="rearm the drone after landing to the wall")
-
+    mode_group.add_argument('-velocity', '--velocity-test', action='store_true', help="simple velocity flying")
 
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
 
@@ -1364,7 +1374,11 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.pitch_test()
-
+    elif args.velocity_test:
+        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+                                                       mission_pos=mission_pos_manual,
+                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
+        suction_mission.simple_vel_sp_test()
 
     rospy.spin()
 
