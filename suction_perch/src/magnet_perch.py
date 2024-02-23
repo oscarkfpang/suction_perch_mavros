@@ -331,10 +331,7 @@ class MavrosOffboardSuctionMission():
         vel_sp_target.linear.z = self.joy_command[1] * self.vel_sp_factor
         vel_sp_target.angular.z = self.joy_command[0] * self.vel_sp_factor
 
-        rospy.loginfo("Yaw: {0} | Throttle: {1} | Roll: {2} | Pitch: {3} ".format(self.joy_command[0], \
-                                                                                self.joy_command[1], \
-                                                                                self.joy_command[2], \
-                                                                                self.joy_command[3]))
+        rospy.loginfo(vel_sp_target)
         return vel_sp_target
 
     def make_stationary_pos_target(self):
@@ -903,7 +900,7 @@ class MavrosOffboardSuctionMission():
             #self.user_interrupted.value = True
             return False
 
-    def simple_vel_sp_test(self, timeout=30):
+    def simple_vel_sp_test(self, timeout=60):
         rospy.loginfo("=================== This is a velocity setpoint test ========================")
         rospy.loginfo("STATUS: Fly with velocity setpoint in OFFBOARD mode.")
         self.current_state.value = self.APPROACH
