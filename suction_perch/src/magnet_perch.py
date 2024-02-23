@@ -326,10 +326,10 @@ class MavrosOffboardSuctionMission():
         #vel_sp_target.header = Header()        
         #vel_sp_target.header.frame_id = "velocity_setpoint"
         #vel_sp_target.header.stamp = rospy.Time.now()
-        vel_sp_target.twist.linear.x = self.joy_command[3] * self.vel_sp_factor
-        vel_sp_target.twist.linear.y = self.joy_command[2] * self.vel_sp_factor
-        vel_sp_target.twist.linear.z = self.joy_command[1] * self.vel_sp_factor
-        vel_sp_target.twist.angular.z = self.joy_command[0] * self.vel_sp_factor
+        vel_sp_target.linear.x = self.joy_command[3] * self.vel_sp_factor
+        vel_sp_target.linear.y = self.joy_command[2] * self.vel_sp_factor
+        vel_sp_target.linear.z = self.joy_command[1] * self.vel_sp_factor
+        vel_sp_target.angular.z = self.joy_command[0] * self.vel_sp_factor
 
         rospy.loginfo("Yaw: {0} | Throttle: {1} | Roll: {2} | Pitch: {3} ".format(self.joy_command[0], \
                                                                                 self.joy_command[1], \
