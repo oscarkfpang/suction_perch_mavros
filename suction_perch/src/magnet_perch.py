@@ -849,13 +849,14 @@ class MavrosOffboardSuctionMission():
         period = throttle_timeout * loop_freq 
 
         # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
-        throttle_step = (end_throttle - start_throttle) / (period/3.0) 
+        throttle_step = (end_throttle - start_throttle) / (period/3.0)   ## this is a throttle up step
 
         takeoff_from_vertical = False
         pitch_to_normal = False
 
         for i in xrange(period):
-            rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            #rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             try:
                 # throttling up gradually
                 self.current_throttle.value += throttle_step
@@ -874,11 +875,13 @@ class MavrosOffboardSuctionMission():
                 self.user_interrupted.value = True
                 break
 
+        throttle_down_step = (end_throttle - start_throttle) / (period/2.0) 
         for i in xrange(period):
-            rospy.loginfo("STATUS: Auto_throttling down from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            #rospy.loginfo("STATUS: Auto_throttling down from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             try:
                 # throttling down gradually
-                self.current_throttle.value -= throttle_step
+                self.current_throttle.value -= throttle_down_step
                 # clip max throttle value
                 if self.current_throttle.value <= 0:
                     self.current_throttle.value = 0
