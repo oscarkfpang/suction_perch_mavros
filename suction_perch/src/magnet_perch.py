@@ -1718,7 +1718,7 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         ##suction_mission.run_magnet_test()
-        suction_mission.new_vertical_takeoff_and_land_test
+        suction_mission.new_vertical_takeoff_and_land_test()
         #suction_mission.throttle_up_test()
     elif args.velocity_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
