@@ -37,7 +37,7 @@ class MavrosOffboardSuctionMission():
 
     def __init__(self, radius=0.1, vx=0.1, vy=0.1, vz=0.8, takeoff_alt=1.0,
                  mission_pos=((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0)),
-                 goto_pos_time=30, perch_time=60, land_on_wall_time=20, throttle_down_time=10):
+                 goto_pos_time=30, perch_time=60, land_on_wall_time=20, throttle_down_time=10, drone="px4vision"):
         self.radius = radius # consider using a smaller radius in real flight
         self.vx = vx
         self.vy = vy
@@ -88,7 +88,13 @@ class MavrosOffboardSuctionMission():
         self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
 
         self.user_interrupted = Value(c_bool, False)
-        self.sub_target_pitch_rate = 0.7 # for pitching downward for take off from vertical
+
+        if drone == "px4vision":
+            self.sub_target_pitch_rate = 0.7 # for pitching downward for take off from vertical
+            self.throttle_end_point = 0.5
+        else:
+            self.sub_target_pitch_rate = 0.5
+            self.throttle_end_point = 0.6
         self.joy_command = (0, 0, 0, 0)
         self.vel_sp_factor = 2.0
         ## ========================== ##       
@@ -182,9 +188,9 @@ class MavrosOffboardSuctionMission():
         
         # dynamic-reconfigure callback
         #self.srv = Server(simple_parameter, self.param_callback)
-        self.target_pitch_sub = rospy.Subscriber('target_pitch_rate', 
-                                                Float64,
-                                                self.pitch_rate_callback)
+        #self.target_pitch_sub = rospy.Subscriber('target_pitch_rate', 
+        #                                        Float64,
+        #                                        self.pitch_rate_callback)
         self.joystick_sub = rospy.Subscriber('joy',
                                              Joy,
                                              self.joystick_callback)
@@ -285,7 +291,8 @@ class MavrosOffboardSuctionMission():
         #if data is not None:
         #    self.sub_target_pitch_rate = data.data
         #else:
-        self.sub_target_pitch_rate = 0.7 # default setting by experiment
+        pass
+        #self.sub_target_pitch_rate = 0.7 # default setting by experiment
 
     def joystick_callback(self, data):
         if data is not None:
@@ -654,7 +661,7 @@ class MavrosOffboardSuctionMission():
 
     def run_magnet_test(self):               
         rospy.loginfo("STATUS: Start to takeoff from the wall.")
-        if not self.vertical_takeoff_test():
+        if not self.vertical_takeoff_test(end_throttle=self.throttle_end_point):
             return False
         
         rospy.loginfo("STATUS: Set to Pilot's POSITION flight mode on PX4")
@@ -664,7 +671,7 @@ class MavrosOffboardSuctionMission():
         rospy.sleep(10)
 
         rospy.loginfo("STATUS: Start to land on the wall.")
-        if not self.new_vertical_land_test():
+        if not self.new_vertical_land_test(start_throttle=self.throttle_end_point):
             return False
 
         self.set_arm(False, 5)
@@ -751,7 +758,7 @@ class MavrosOffboardSuctionMission():
         # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
-        self.target_pitch_rate.value = 0.7 ##self.sub_target_pitch_rate ##-0.1
+        self.target_pitch_rate.value = self.sub_target_pitch_rate ## was 0.7 ## -0.1
         start_pitch = self.imu_data.orientation.y
 
         for i in xrange(period):
@@ -956,7 +963,7 @@ class MavrosOffboardSuctionMission():
         land_to_vertical = False
         pitch_to_vertical = False
 
-        self.target_pitch_rate.value = -0.7 
+        self.target_pitch_rate.value = -self.sub_target_pitch_rate ##-0.7 
         #self.current_throttle.value = start_throttle
         # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
         throttle_step = (self.current_throttle.value - 0.0) / (period/3.0) 
@@ -1025,7 +1032,7 @@ class MavrosOffboardSuctionMission():
 
         return land_to_vertical
 
-
+    # playground function from vertical_land_test for testing some concepts... can be discarded
     def new_vertical_land_test(self, timeout=30, start_throttle=0.5):
         rospy.loginfo("========= This is a NEW vertical landing test =========")
         rospy.loginfo("Throttle down from is about to start... Throttling down from {0}".format(start_throttle))
@@ -1510,7 +1517,7 @@ if __name__ == '__main__':
     elif args.magnet_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
-                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
+                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.run_magnet_test()
     elif args.velocity_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
