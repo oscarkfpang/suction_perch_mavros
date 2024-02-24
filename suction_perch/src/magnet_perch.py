@@ -696,7 +696,7 @@ class MavrosOffboardSuctionMission():
     def is_mav_state_standby(self):        
         return mavutil.mavlink.enums['MAV_STATE'][self.state.system_status].name == "MAV_STATE_STANDBY"
 
-    def pitch_test(self, timeout=30, throttle_timeout=30, end_throttle=0.5):
+    def pitch_test(self, timeout=30, throttle_timeout=50, end_throttle=0.5):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
