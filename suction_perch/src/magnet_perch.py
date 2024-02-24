@@ -828,7 +828,7 @@ class MavrosOffboardSuctionMission():
 
 
 
-    def throttle_up_test(self, timeout=30, throttle_timeout=30, end_throttle=0.45):
+    def throttle_up_test(self, timeout=30, throttle_timeout=30, end_throttle=0.48):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
@@ -883,8 +883,9 @@ class MavrosOffboardSuctionMission():
 
         for i in xrange(period):
             try:
+                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
                 # check pitch angle from IMU
-                if self.is_normal_attitude(normal_pitch=0.2):
+                if self.is_normal_attitude(normal_pitch=0.1):
                     self.target_pitch_rate.value = 0.0
                     pitch_to_normal = True
                     break
