@@ -354,7 +354,7 @@ class MavrosOffboardSuctionMission():
                                PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
                                PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
         pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
-        pos_target.velocity.x = 0
+        pos_target.velocity.x = -0.5  ## give a back pull on the string away from the magnet head when stationary
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
         pos_target.yaw = 0 # don't yaw, always point to the front
@@ -898,8 +898,15 @@ class MavrosOffboardSuctionMission():
                 self.user_interrupted.value = True
                 break        
 
+        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL *********")
+        self.current_state.value = self.STATIONARY_HORIZONTAL
+
         rospy.loginfo("STATUS: Wait for 3 sec in current attitude before throttling down")
         rospy.sleep(3)
+        rospy.loginfo("="*30)
+
+        rospy.loginfo("***** Change to PITCH_TO_VERTICAL *********")
+        self.current_state.value = self.PITCH_TO_VERTICAL
 
         throttle_down_step = (end_throttle - start_throttle) / (period/2.0) 
         for i in xrange(period):
