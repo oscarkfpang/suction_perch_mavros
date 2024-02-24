@@ -922,8 +922,8 @@ class MavrosOffboardSuctionMission():
         #rospy.loginfo("***** Change to STATIONARY_HORIZONTAL *********")
         #self.current_state.value = self.STATIONARY_HORIZONTAL
 
-        rospy.loginfo("STATUS: Wait for 5 sec in current attitude before throttling down")
-        rospy.sleep(5)
+        rospy.loginfo("STATUS: Wait for 3 sec in current attitude before throttling down")
+        rospy.sleep(3)
         rospy.loginfo("="*30)
 
         rospy.loginfo("***** Change to PITCH_TO_VERTICAL *********")
@@ -936,7 +936,7 @@ class MavrosOffboardSuctionMission():
             try:
                 rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
                 # check pitch angle from IMU
-                if self.is_normal_attitude(normal_pitch=start_pitch):
+                if self.is_high_attitude(normal_pitch=start_pitch):
                     self.target_pitch_rate.value = 0.0
                     pitch_to_normal = True
                     break
