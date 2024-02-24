@@ -1206,7 +1206,7 @@ class MavrosOffboardSuctionMission():
             try:
                 rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
                 # check pitch angle from IMU
-                if self.is_high_attitude(normal_pitch=self.start_pitch):
+                if self.is_high_attitude(normal_pitch=0.26):  # 0.26 from previous experiment
                     self.target_pitch_rate.value = 0.0
                     pitch_to_normal = True
                     break
@@ -1248,6 +1248,8 @@ class MavrosOffboardSuctionMission():
             return False
 
         rospy.loginfo("STATUS: Test end!")
+        rospy.loginfo("STATUS: Disarm the drone in vertical pose.")
+        self.set_arm(False, 5)
         return True
 
 
