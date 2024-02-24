@@ -758,7 +758,7 @@ class MavrosOffboardSuctionMission():
         # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
-        self.target_pitch_rate.value = 0.8 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
+        self.target_pitch_rate.value = 0.7 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
         start_pitch = self.imu_data.orientation.y
 
         for i in xrange(period):
@@ -1519,7 +1519,7 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         ##suction_mission.run_magnet_test()
-        suction_mission.pitch_test(end_throttle=0.5)
+        suction_mission.pitch_test(end_throttle=0.35)
     elif args.velocity_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
