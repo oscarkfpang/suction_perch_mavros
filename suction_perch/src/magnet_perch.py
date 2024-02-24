@@ -641,8 +641,8 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Set to POSITION flight mode on PX4 for pilot control")
         self.set_mode("POSCTL", 5)  # POSCTL
         rospy.loginfo("="*20)
-        rospy.loginfo("STATUS: Wait for 20 sec in POSITION flight mode. Please set string tension for landing!")
-        rospy.sleep(20)
+        rospy.loginfo("STATUS: Wait for 10 sec in POSITION flight mode. Please set string tension for landing!")
+        rospy.sleep(10)
 
         rospy.loginfo("STATUS: Start to land on the wall.")
         if not self.vertical_land_test():
@@ -1262,10 +1262,10 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
         self.current_throttle.value = start_throttle
-        self.current_state.value = self.STATIONARY_VERTICAL
+        self.current_state.value = self.STATIONARY_HORIZONTAL
         self.set_mode("OFFBOARD", 5)
 
-        rospy.loginfo("***** Change to STATIONARY_VERTICAL and wait for 2 sec*********")
+        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 2 sec*********")
         rospy.sleep(2)
         rospy.loginfo("="*30)
 
@@ -1288,7 +1288,7 @@ class MavrosOffboardSuctionMission():
             try:
                 rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
                 # check pitch angle from IMU
-                if self.is_high_attitude(normal_pitch=self.start_pitch):
+                if self.is_high_attitude(normal_pitch=0.26):
                     self.target_pitch_rate.value = 0.0
                     pitch_to_normal = True
                     break
