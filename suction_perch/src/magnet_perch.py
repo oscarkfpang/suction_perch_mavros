@@ -696,7 +696,7 @@ class MavrosOffboardSuctionMission():
     def is_mav_state_standby(self):        
         return mavutil.mavlink.enums['MAV_STATE'][self.state.system_status].name == "MAV_STATE_STANDBY"
 
-    def pitch_test(self, timeout=30, throttle_timeout=50, end_throttle=0.5):
+    def pitch_test(self, timeout=30, throttle_timeout=60, end_throttle=0.5):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
@@ -825,6 +825,76 @@ class MavrosOffboardSuctionMission():
                 break
         '''
         rospy.loginfo("STATUS: Test end!")
+
+
+
+    def throttle_up_test(self, timeout=30, throttle_timeout=30, end_throttle=0.45):
+        rospy.loginfo("=================== This is a take-off from wall test ========================")
+        rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
+        self.current_state.value = self.PITCH_TO_HORIZONTAL
+        self.set_mode("OFFBOARD", 5)
+        rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
+        self.set_arm(True, 5)
+
+        self.target_pitch_rate.value = 0.00
+
+        start_throttle = 0.01
+        ##end_throttle = 0.3 ### 0.2 for empty loading # self.low_throttle_value         
+        
+        self.current_throttle.value = start_throttle
+        self.throttle_up_start_time = rospy.get_time()
+
+        loop_freq = 20  # Hz
+        rate = rospy.Rate(loop_freq)
+        period = throttle_timeout * loop_freq 
+
+        # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
+        throttle_step = (end_throttle - start_throttle) / (period/3.0) 
+
+        takeoff_from_vertical = False
+        pitch_to_normal = False
+
+        for i in xrange(period):
+            rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            try:
+                # throttling up gradually
+                self.current_throttle.value += throttle_step
+                # clip max throttle value
+                if self.current_throttle.value >= end_throttle:
+                    self.current_throttle.value = end_throttle
+                    takeoff_from_vertical = True
+                    break
+                    
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
+                self.publish_att_raw.value = True
+                self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
+                break
+
+        for i in xrange(period):
+            rospy.loginfo("STATUS: Auto_throttling down from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            try:
+                # throttling down gradually
+                self.current_throttle.value -= throttle_step
+                # clip max throttle value
+                if self.current_throttle.value <= 0:
+                    self.current_throttle.value = 0
+                    break
+                    
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
+                self.publish_att_raw.value = True
+                self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
+                break
+
+        rospy.loginfo("STATUS: Test end!")
+
 
 
     def vertical_takeoff_test(self, timeout=30, throttle_timeout=30, end_throttle=0.5):
