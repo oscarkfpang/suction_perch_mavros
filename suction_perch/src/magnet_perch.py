@@ -849,7 +849,7 @@ class MavrosOffboardSuctionMission():
         period = throttle_timeout * loop_freq 
 
         # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
-        throttle_step = (end_throttle - start_throttle) / (period/3.0)   ## this is a throttle up step
+        throttle_up_step = (end_throttle - start_throttle) / (period/3.0)   ## this is a throttle up step
 
         takeoff_from_vertical = False
         pitch_to_normal = False
@@ -859,7 +859,7 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             try:
                 # throttling up gradually
-                self.current_throttle.value += throttle_step
+                self.current_throttle.value += throttle_up_step
                 # clip max throttle value
                 if self.current_throttle.value >= end_throttle:
                     self.current_throttle.value = end_throttle
@@ -874,6 +874,31 @@ class MavrosOffboardSuctionMission():
                 self.current_throttle.value = 0.0
                 self.user_interrupted.value = True
                 break
+
+        # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
+        rospy.loginfo("="*20)
+        rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
+        self.target_pitch_rate.value = 0.5 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
+        start_pitch = self.imu_data.orientation.y
+
+        for i in xrange(period):
+            try:
+                # check pitch angle from IMU
+                if self.is_normal_attitude(normal_pitch=0.2):
+                    self.target_pitch_rate.value = 0.0
+                    pitch_to_normal = True
+                    break
+                    
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Pitching Down for take-off is interrupted!")
+                self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
+                break        
+
+        rospy.loginfo("STATUS: Wait for 3 sec in current attitude before throttling down")
+        rospy.sleep(3)
 
         throttle_down_step = (end_throttle - start_throttle) / (period/2.0) 
         for i in xrange(period):
