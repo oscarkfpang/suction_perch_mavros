@@ -377,7 +377,7 @@ class MavrosOffboardSuctionMission():
                                PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
                                PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
         pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
-        pos_target.velocity.x = -0.5  ## give a back pull on the string away from the magnet head when stationary
+        pos_target.velocity.x = -0.2  ## give a back pull on the string away from the magnet head when stationary
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
         pos_target.yaw = 0 # don't yaw, always point to the front
@@ -1269,6 +1269,15 @@ class MavrosOffboardSuctionMission():
         rospy.sleep(2)
         rospy.loginfo("="*30)
 
+        rospy.loginfo("***** Change to BACK_PULL and wait for 4 sec*********")
+        self.current_state.value = self.BACK_PULL
+        rospy.sleep(4)
+        rospy.loginfo("="*30)
+
+        self.current_state.value = self.STATIONARY_HORIZONTAL
+        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 2 sec*********")
+        rospy.sleep(2)
+        rospy.loginfo("="*30)
 
         # start pitch up attitude and bring the drone to start_pitch level
         rospy.loginfo("="*20)
