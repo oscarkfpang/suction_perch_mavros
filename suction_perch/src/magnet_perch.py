@@ -1265,6 +1265,7 @@ class MavrosOffboardSuctionMission():
         self.current_state.value = self.STATIONARY_HORIZONTAL
         self.set_mode("OFFBOARD", 5)
 
+
         rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 2 sec*********")
         rospy.sleep(2)
         rospy.loginfo("="*30)
