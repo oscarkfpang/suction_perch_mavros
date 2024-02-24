@@ -663,14 +663,14 @@ class MavrosOffboardSuctionMission():
             # by default publish zero velocity setpoint as flying is done by manual
             if self.current_state.value == self.STATIONARY_HORIZONTAL or \
                 self.current_state.value == self.LAND_VERTICAL:
-                self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())      
+                self.pos_target_setpoint_pub.publish(self.make_stationary_pos_target())     
+            elif self.current_state.value == self.BACK_PULL:
+                self.pos_target_setpoint_pub.publish(self.make_back_pull_pos_target()) 
             elif self.current_state.value == self.PITCH_TO_HORIZONTAL or \
                 self.current_state.value == self.PITCH_TO_VERTICAL:
                 self.att_raw_setpoint_pub.publish(self.make_pitch_att_target())  
             elif self.current_state.value == self.APPROACH:
                 self.vel_setpoint_pub.publish(self.make_vel_sp_target())
-            elif self.current_state.value == self.BACK_PULL:
-                self.vel_setpoint_pub.publish(self.make_back_pull_pos_target())
             else:
                 pass
 
