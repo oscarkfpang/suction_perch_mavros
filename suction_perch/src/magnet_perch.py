@@ -1263,25 +1263,11 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("="*30)
 
         rospy.loginfo("***** Change to BACK_PULL and wait for 10 sec*********")
-        self.current_state.value = self.BACK_PULL
-        self.pull_back_vx.value = 1.5
-        vx_delta = (self.pull_back_vx - 0.0) / period
+        self.pull_back_vx.value = 0.5
 
-        for i in xrange(10 * loop_freq):
-            try:
-                # throttling up gradually
-                self.pull_back_vx.value -= vx_delta
-                # clip max throttle value
-                if self.pull_back_vx.value <= 0:
-                    self.pull_back_vx.value = 0
-                    break
-                rate.sleep()
-            except (rospy.ROSException, rospy.ROSInterruptException) as e:
-                # TODO: handling of throttle value under failure
-                rospy.loginfo("STATUS: Pitching Down for take-off is interrupted!")
-                self.current_throttle.value = 0.0
-                self.user_interrupted.value = True
-                break  
+        self.current_state.value = self.BACK_PULL
+        rospy.sleep(10)
+        rospy.loginfo("="*30)
 
         rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 2 sec*********")
         self.current_state.value = self.STATIONARY_HORIZONTAL
