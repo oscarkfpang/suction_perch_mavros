@@ -84,6 +84,7 @@ class MavrosOffboardSuctionMission():
         self.TAKE_OFF_VERTICAL = 5
         self.PITCH_TO_HORIZONTAL = 6
         self.DETACH = 7
+        self.BACK_PULL = 8
         self.FAIL = -1
         self.current_state = Value(c_int, self.STATIONARY_HORIZONTAL)
 
@@ -354,12 +355,30 @@ class MavrosOffboardSuctionMission():
                                PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
                                PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
         pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
-        pos_target.velocity.x = -0.5  ## give a back pull on the string away from the magnet head when stationary
+        pos_target.velocity.x = 0  
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
         pos_target.yaw = 0 # don't yaw, always point to the front
         return pos_target
 
+    def make_back_pull_pos_target(self):
+        '''
+        Create stationary setpoint_raw for hovering stationary
+        Return: PositionTarget() with vy and vz = 0 and vx away from wall (-ve) under perching
+        '''
+        pos_target = PositionTarget()
+        pos_target.header = Header()        
+        pos_target.header.frame_id = "setpoint_raw/local_stationary"
+        pos_target.header.stamp = rospy.Time.now()
+        pos_target.type_mask = PositionTarget.IGNORE_AFX + PositionTarget.IGNORE_AFY + PositionTarget.IGNORE_AFZ + \
+                               PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
+                               PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
+        pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
+        pos_target.velocity.x = -0.2  ## give a back pull on the string away from the magnet head when stationary
+        pos_target.velocity.y = 0
+        pos_target.velocity.z = 0
+        pos_target.yaw = 0 # don't yaw, always point to the front
+        return pos_target
 
     def make_stationary_att_target(self):
         att_target = AttitudeTarget()
@@ -650,6 +669,8 @@ class MavrosOffboardSuctionMission():
                 self.att_raw_setpoint_pub.publish(self.make_pitch_att_target())  
             elif self.current_state.value == self.APPROACH:
                 self.vel_setpoint_pub.publish(self.make_vel_sp_target())
+            elif self.current_state.value == self.BACK_PULL:
+                self.vel_setpoint_pub.publish(self.make_back_pull_pos_target())
             else:
                 pass
 
@@ -898,15 +919,38 @@ class MavrosOffboardSuctionMission():
                 self.user_interrupted.value = True
                 break        
 
-        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL *********")
-        self.current_state.value = self.STATIONARY_HORIZONTAL
+        #rospy.loginfo("***** Change to STATIONARY_HORIZONTAL *********")
+        #self.current_state.value = self.STATIONARY_HORIZONTAL
 
-        rospy.loginfo("STATUS: Wait for 3 sec in current attitude before throttling down")
-        rospy.sleep(3)
+        rospy.loginfo("STATUS: Wait for 5 sec in current attitude before throttling down")
+        rospy.sleep(5)
         rospy.loginfo("="*30)
 
         rospy.loginfo("***** Change to PITCH_TO_VERTICAL *********")
         self.current_state.value = self.PITCH_TO_VERTICAL
+
+
+        rospy.loginfo("STATUS: Maintain same throttle and slowly pitch up to start_pitch before throttling down!")
+        self.target_pitch_rate.value = -0.5 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
+        for i in xrange(period):
+            try:
+                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
+                # check pitch angle from IMU
+                if self.is_normal_attitude(normal_pitch=start_pitch):
+                    self.target_pitch_rate.value = 0.0
+                    pitch_to_normal = True
+                    break
+                    
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Pitching Up for landing is interrupted!")
+                self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
+                break        
+
+        rospy.loginfo("STATUS: throttling down now!")
+
 
         throttle_down_step = (end_throttle - start_throttle) / (period/2.0) 
         for i in xrange(period):
@@ -930,7 +974,8 @@ class MavrosOffboardSuctionMission():
                 break
 
         rospy.loginfo("STATUS: Test end!")
-
+        rospy.loginfo("STATUS: Disarm the drone in vertical pose.")
+        self.set_arm(False, 5)
 
 
     def vertical_takeoff_test(self, timeout=30, throttle_timeout=30, end_throttle=0.5):
@@ -1139,92 +1184,138 @@ class MavrosOffboardSuctionMission():
         return land_to_vertical
 
     # playground function from vertical_land_test for testing some concepts... can be discarded
-    def new_vertical_land_test(self, timeout=30, start_throttle=0.5):
-        rospy.loginfo("========= This is a NEW vertical landing test =========")
-        rospy.loginfo("Throttle down from is about to start... Throttling down from {0}".format(start_throttle))
+    def new_vertical_takeoff_and_land_test(self, timeout=30, throttle_timeout=30, end_throttle=0.48):
+        rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
-        self.target_pitch_rate.value = 0.0
-        self.current_state.value = self.PITCH_TO_VERTICAL
+        self.current_state.value = self.PITCH_TO_HORIZONTAL
         self.set_mode("OFFBOARD", 5)
-        # TODO: check if armed -> must do arm whenever possible!
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
 
-        loop_freq = 5  # Hz
+        self.target_pitch_rate.value = 0.00
+
+        start_throttle = 0.01
+        ##end_throttle = 0.3 ### 0.2 for empty loading # self.low_throttle_value         
+        
+        self.current_throttle.value = start_throttle
+        self.throttle_up_start_time = rospy.get_time()
+
+        loop_freq = 20  # Hz
         rate = rospy.Rate(loop_freq)
-        period = timeout * loop_freq
+        period = throttle_timeout * loop_freq 
 
-        land_to_vertical = False
-        pitch_to_vertical = False
-
-        self.target_pitch_rate.value = -0.7 
         # TODO: parameterize the period of this throttle period (perioid/3.0) for safe margin
-        throttle_step = (self.current_throttle.value - 0.0) / (period/3.0) 
+        throttle_up_step = (end_throttle - start_throttle) / (period/3.0)   ## this is a throttle up step
+
+        takeoff_from_vertical = False
+        pitch_to_normal = False
 
         for i in xrange(period):
+            #rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             try:
-                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
-
-                self.current_throttle.value -= throttle_step
-                # check pitch angle from IMU
-                if self.is_high_attitude():
-                    self.target_pitch_rate.value = 0.0
-                    pitch_to_vertical = True
+                # throttling up gradually
+                self.current_throttle.value += throttle_up_step
+                # clip max throttle value
+                if self.current_throttle.value >= end_throttle:
+                    self.current_throttle.value = end_throttle
+                    takeoff_from_vertical = True
                     break
                     
                 rate.sleep()
             except (rospy.ROSException, rospy.ROSInterruptException) as e:
                 # TODO: handling of throttle value under failure
-                rospy.loginfo("STATUS: Pitching Up for landing is interrupted!")
+                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
+                self.publish_att_raw.value = True
                 self.current_throttle.value = 0.0
-                self.target_pitch_rate.value = 0.0
                 self.user_interrupted.value = True
-                break        
-        
-        if not pitch_to_vertical:
-            rospy.loginfo(
-                "took too long to land on wall | timeout(seconds): {0}".format(timeout))
-            self.current_throttle.value = 0.0
-            self.target_pitch_rate.value = 0.0
-            return False 
-        
-        #self.current_state.value = self.LAND_VERTICAL
-        rospy.loginfo("STATUS: Drone is in high pitch! Ready to land on the wall vertically")
+                break
 
-        # gradually reduce throttle to zero during throttle_timeout
+        # commencing pitch down from pitch-up attitude and bring the drone back to horizontal level
+        rospy.loginfo("="*20)
+        rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
+        self.target_pitch_rate.value = 0.5 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
+        start_pitch = self.imu_data.orientation.y
+
         for i in xrange(period):
-            try:            
-                self.current_throttle.value -= throttle_step
-                if self.current_throttle.value < 0:
-                    self.current_throttle.value = 0
-                    rospy.loginfo("STATUS: Throttle already zero!")
-                    
-                # detect SUCTION_IS_LAND param while throttling down
-                res = self.get_param_srv('VERTICAL_LAND')
-                if res.success and res.value.integer > 0:
-                    rospy.loginfo(
-                        "VERTICAL_LAND received {0}. drone's pose is vertical! ".format(res.value.integer))
-                    land_to_vertical = True
+            try:
+                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
+                # check pitch angle from IMU
+                if self.is_normal_attitude(normal_pitch=0.1):
+                    self.target_pitch_rate.value = 0.0
+                    pitch_to_normal = True
                     break
                     
                 rate.sleep()
-                #rospy.loginfo("Set Throttle = 0 during vertical landing. Current throttle = {0}".format(self.current_throttle.value))
-                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
             except (rospy.ROSException, rospy.ROSInterruptException) as e:
-                land_to_vertical = False
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Pitching Down for take-off is interrupted!")
                 self.current_throttle.value = 0.0
-                rospy.loginfo("STATUS: Auto-throttling in landing is interrupted by user!")
+                self.user_interrupted.value = True
+                break        
+
+        rospy.loginfo("STATUS: Wait for 3 sec in current attitude before changing to stationary")
+        rospy.sleep(3)
+        rospy.loginfo("="*30)
+
+        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 3 sec*********")
+        self.current_state.value = self.STATIONARY_HORIZONTAL
+        rospy.sleep(3)
+        rospy.loginfo("="*30)
+
+        rospy.loginfo("***** Change to BACK_PULL and wait for 3 sec*********")
+        self.current_state.value = self.BACK_PULL
+        rospy.sleep(3)
+        rospy.loginfo("="*30)
+
+        rospy.loginfo("***** Change to PITCH_TO_VERTICAL *********")
+        self.current_state.value = self.PITCH_TO_VERTICAL
+
+        # commencing pitch up from pitch-down attitude and bring the drone to start_pitch level
+        rospy.loginfo("="*20)
+        rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
+        self.target_pitch_rate.value = -0.6 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
+
+        for i in xrange(period):
+            try:
+                rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
+                # check pitch angle from IMU
+                if self.is_high_attitude(normal_pitch=start_pitch):
+                    self.target_pitch_rate.value = 0.0
+                    pitch_to_normal = True
+                    break
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Pitching Down for take-off is interrupted!")
+                self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
+                break        
+
+        throttle_down_step = (end_throttle - start_throttle) / (period/2.0) 
+        for i in xrange(period):
+            #rospy.loginfo("STATUS: Auto_throttling down from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
+            rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
+            try:
+                # throttling down gradually
+                self.current_throttle.value -= throttle_down_step
+                # clip max throttle value
+                if self.current_throttle.value <= 0:
+                    self.current_throttle.value = 0
+                    break
+                    
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
+                self.publish_att_raw.value = True
+                self.current_throttle.value = 0.0
                 self.user_interrupted.value = True
                 break
-        
-        self.current_throttle.value = 0.0
 
-        if not land_to_vertical:
-            self.assertTrue(land_to_vertical, (
-                "took too long to reach high attitude | timeout(seconds): {0}".format(timeout)))
-            return False
-
-        return land_to_vertical
+        rospy.loginfo("STATUS: Test end!")
+        rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
+        self.set_arm(False, 5)
 
                 
     def takeoff_from_wall(self, timeout=60, throttle_timeout=15):
