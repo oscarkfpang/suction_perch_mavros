@@ -99,7 +99,7 @@ class MavrosOffboardSuctionMission():
         self.joy_command = (0, 0, 0, 0)
         self.vel_sp_factor = 2.0
 
-        self.pull_back_vx = 1.5
+        self.pull_back_vx = Value(c_float, 1.5)
         ## ========================== ##       
 
 
@@ -376,7 +376,7 @@ class MavrosOffboardSuctionMission():
                                PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
                                PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
         pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
-        pos_target.velocity.x = -self.pull_back_vx  ## give a back pull on the string away from the magnet head when stationary
+        pos_target.velocity.x = -self.pull_back_vx.value  ## give a back pull on the string away from the magnet head when stationary
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
         pos_target.yaw = 0 # don't yaw, always point to the front
@@ -1264,7 +1264,7 @@ class MavrosOffboardSuctionMission():
 
         rospy.loginfo("***** Change to BACK_PULL and wait for 10 sec*********")
         self.current_state.value = self.BACK_PULL
-        self.pull_back_vx = 1.5
+        self.pull_back_vx.value = 1.5
         vx_delta = (self.pull_back_vx - 0.0) / period
 
         for i in xrange(10 * loop_freq):
@@ -1283,7 +1283,7 @@ class MavrosOffboardSuctionMission():
                 self.user_interrupted.value = True
                 break  
 
-        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 3 sec*********")
+        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 2 sec*********")
         self.current_state.value = self.STATIONARY_HORIZONTAL
         rospy.sleep(2)
         rospy.loginfo("="*30)
