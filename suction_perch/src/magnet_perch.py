@@ -389,9 +389,10 @@ class MavrosOffboardSuctionMission():
         att_target.header.stamp = rospy.Time.now()
         att_target.header.frame_id = "stationary_pitch_0.1"
                 
-        att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE + AttitudeTarget.IGNORE_THRUST
+        att_target.type_mask = AttitudeTarget.IGNORE_ROLL_RATE + AttitudeTarget.IGNORE_PITCH_RATE + AttitudeTarget.IGNORE_YAW_RATE
         quaternion = quaternion_from_euler(0, 0.1, 0)        # Pitch at 0.1
         att_target.orientation = Quaternion(*quaternion)
+        att_target.thrust = self.current_throttle.value
         return att_target
 
     def make_pitch_att_target(self):
@@ -1048,12 +1049,14 @@ class MavrosOffboardSuctionMission():
     def vertical_land_test(self, throttle_timeout=30, start_throttle=0.46):
         rospy.loginfo("=================== This is a landing on wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
+        rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(True, 5)
+        self.current_throttle.value = start_throttle
         self.current_state.value = self.STATIONARY_VERTICAL
         self.set_mode("OFFBOARD", 5)
 
-        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 2 sec*********")
+        rospy.loginfo("***** Change to STATIONARY_VERTICAL and wait for 2 sec*********")
         rospy.sleep(2)
         rospy.loginfo("="*30)
 
