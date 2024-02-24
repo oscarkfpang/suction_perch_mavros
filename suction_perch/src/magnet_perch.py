@@ -906,7 +906,7 @@ class MavrosOffboardSuctionMission():
             try:
                 rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
                 # check pitch angle from IMU
-                if self.is_normal_attitude(normal_pitch=0.05):
+                if self.is_normal_attitude(normal_pitch=0.1): ## cannot be smaller than 0.1 otherwise loses tension
                     self.target_pitch_rate.value = 0.0
                     pitch_to_normal = True
                     break
@@ -931,7 +931,7 @@ class MavrosOffboardSuctionMission():
 
 
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch up to start_pitch before throttling down!")
-        self.target_pitch_rate.value = -0.6 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
+        self.target_pitch_rate.value = -0.5 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
         for i in xrange(period):
             try:
                 rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
