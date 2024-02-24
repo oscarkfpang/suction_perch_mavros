@@ -98,6 +98,8 @@ class MavrosOffboardSuctionMission():
             self.throttle_end_point = 0.6
         self.joy_command = (0, 0, 0, 0)
         self.vel_sp_factor = 2.0
+
+        self.pull_back_vx = 1.5
         ## ========================== ##       
 
 
@@ -374,7 +376,7 @@ class MavrosOffboardSuctionMission():
                                PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
                                PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
         pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
-        pos_target.velocity.x = -0.1  ## give a back pull on the string away from the magnet head when stationary
+        pos_target.velocity.x = -self.pull_back_vx  ## give a back pull on the string away from the magnet head when stationary
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
         pos_target.yaw = 0 # don't yaw, always point to the front
@@ -1260,15 +1262,31 @@ class MavrosOffboardSuctionMission():
         rospy.sleep(3)
         rospy.loginfo("="*30)
 
-        rospy.loginfo("***** Change to BACK_PULL and wait for 5 sec*********")
+        rospy.loginfo("***** Change to BACK_PULL and wait for 10 sec*********")
         self.current_state.value = self.BACK_PULL
-        rospy.sleep(5)
-        rospy.loginfo("="*30)
+        self.pull_back_vx = 1.5
+        vx_delta = (self.pull_back_vx - 0.0) / period
 
-        #rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 3 sec*********")
-        #self.current_state.value = self.STATIONARY_HORIZONTAL
-        #rospy.sleep(3)
-        #rospy.loginfo("="*30)
+        for i in xrange(10 * loop_freq):
+            try:
+                # throttling up gradually
+                self.pull_back_vx.value -= vx_delta
+                # clip max throttle value
+                if self.pull_back_vx.value <= 0:
+                    self.pull_back_vx.value = 0
+                    break
+                rate.sleep()
+            except (rospy.ROSException, rospy.ROSInterruptException) as e:
+                # TODO: handling of throttle value under failure
+                rospy.loginfo("STATUS: Pitching Down for take-off is interrupted!")
+                self.current_throttle.value = 0.0
+                self.user_interrupted.value = True
+                break  
+
+        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 3 sec*********")
+        self.current_state.value = self.STATIONARY_HORIZONTAL
+        rospy.sleep(2)
+        rospy.loginfo("="*30)
 
 
         # commencing pitch up from pitch-down attitude and bring the drone to start_pitch level
