@@ -374,7 +374,7 @@ class MavrosOffboardSuctionMission():
                                PositionTarget.IGNORE_PX + PositionTarget.IGNORE_PY + PositionTarget.IGNORE_PZ + \
                                PositionTarget.IGNORE_YAW_RATE # + PositionTarget.IGNORE_YAW
         pos_target.coordinate_frame = PositionTarget.FRAME_BODY_NED
-        pos_target.velocity.x = -0.2  ## give a back pull on the string away from the magnet head when stationary
+        pos_target.velocity.x = -0.1  ## give a back pull on the string away from the magnet head when stationary
         pos_target.velocity.y = 0
         pos_target.velocity.z = 0
         pos_target.yaw = 0 # don't yaw, always point to the front
@@ -930,6 +930,8 @@ class MavrosOffboardSuctionMission():
         self.current_state.value = self.PITCH_TO_VERTICAL
 
 
+        # good landing experiment with these parameters
+
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch up to start_pitch before throttling down!")
         self.target_pitch_rate.value = -0.5 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
         for i in xrange(period):
@@ -1184,7 +1186,7 @@ class MavrosOffboardSuctionMission():
         return land_to_vertical
 
     # playground function from vertical_land_test for testing some concepts... can be discarded
-    def new_vertical_takeoff_and_land_test(self, timeout=30, throttle_timeout=30, end_throttle=0.48):
+    def new_vertical_takeoff_and_land_test(self, timeout=30, throttle_timeout=30, end_throttle=0.46):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
@@ -1258,23 +1260,23 @@ class MavrosOffboardSuctionMission():
         rospy.sleep(3)
         rospy.loginfo("="*30)
 
-        rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 3 sec*********")
-        self.current_state.value = self.STATIONARY_HORIZONTAL
-        rospy.sleep(3)
-        rospy.loginfo("="*30)
-
-        rospy.loginfo("***** Change to BACK_PULL and wait for 3 sec*********")
+        rospy.loginfo("***** Change to BACK_PULL and wait for 5 sec*********")
         self.current_state.value = self.BACK_PULL
-        rospy.sleep(3)
+        rospy.sleep(5)
         rospy.loginfo("="*30)
 
-        rospy.loginfo("***** Change to PITCH_TO_VERTICAL *********")
-        self.current_state.value = self.PITCH_TO_VERTICAL
+        #rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 3 sec*********")
+        #self.current_state.value = self.STATIONARY_HORIZONTAL
+        #rospy.sleep(3)
+        #rospy.loginfo("="*30)
+
 
         # commencing pitch up from pitch-down attitude and bring the drone to start_pitch level
         rospy.loginfo("="*20)
         rospy.loginfo("STATUS: Maintain same throttle and slowly pitch down to horizontal!")
-        self.target_pitch_rate.value = -0.6 ### self.sub_target_pitch_rate ## was 0.7 ## -0.1
+        self.target_pitch_rate.value = -0.5 
+        rospy.loginfo("***** Change to PITCH_TO_VERTICAL *********")
+        self.current_state.value = self.PITCH_TO_VERTICAL
 
         for i in xrange(period):
             try:
@@ -1716,8 +1718,8 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         ##suction_mission.run_magnet_test()
-        ##suction_mission.pitch_test(end_throttle=0.4)
-        suction_mission.throttle_up_test()
+        suction_mission.new_vertical_takeoff_and_land_test
+        #suction_mission.throttle_up_test()
     elif args.velocity_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
