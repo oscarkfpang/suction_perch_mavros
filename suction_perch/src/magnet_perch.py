@@ -1077,7 +1077,7 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Disarm the drone in vertical pose.")
         self.set_arm(False, 5)
 
-    def vertical_takeoff_test(self, timeout=30, throttle_timeout=30, end_throttle=0.46):
+    def vertical_takeoff_test(self, timeout=30, throttle_timeout=30, end_throttle=0.46, single=False):
         rospy.loginfo("=================== This is a take-off from wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         self.current_state.value = self.PITCH_TO_HORIZONTAL
@@ -1163,7 +1163,9 @@ class MavrosOffboardSuctionMission():
 
         # hand over of position flight mode will be done outside this function.
         rospy.loginfo("STATUS: Vertical takeoff is done!")
-        #self.set_mode("POSCTL", 5)  # Position flight mode
+        if single:
+            self.set_mode("POSCTL", 5)  # Position flight mode
+
         return True
 
     def simple_vel_sp_test(self, timeout=60):
@@ -1873,6 +1875,7 @@ if __name__ == '__main__':
     mode_group.add_argument('-magnet', '--magnet-test', action='store_true', help="rearm the drone after landing to the wall")
     mode_group.add_argument('-pitch', '--pitch-test', action='store_true', help="take off and land together")
     mode_group.add_argument('-land', '--single-land', action='store_true', help="single land test")
+    mode_group.add_argument('-take_off', '--single-take-off', action='store_true', help="single take off test")
     mode_group.add_argument('-velocity', '--velocity-test', action='store_true', help="simple velocity flying")
     mode_group.add_argument('-full', '--full-test', action='store_true', help="full flying, landing then take off")
 
@@ -1904,6 +1907,11 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.single_land_test()
+    elif args.single_take_off:
+        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+                                                       mission_pos=mission_pos_manual,
+                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
+        suction_mission.vertical_takeoff_test(single=True)
     elif args.velocity_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
