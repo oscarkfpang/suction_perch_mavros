@@ -651,6 +651,24 @@ class MavrosOffboardSuctionMission():
         self.set_arm(False, 5)
         rospy.loginfo("STATUS: Test is complete! Program stop!")    
 
+    def full_test(self):               
+        rospy.loginfo("STATUS: Start Full Test! Good Luck!")
+        rospy.loginfo("STATUS: Start to land on the wall.")
+        if not self.vertical_land_test():
+            return False
+        
+        rospy.loginfo("STATUS: Wait for 10 sec before take off from wall")
+        rospy.sleep(10)
+        rospy.loginfo("="*20)
+
+        if not self.vertical_takeoff_test():
+            return False
+        
+        rospy.loginfo("STATUS: Set to POSITION flight mode on PX4 for pilot control")
+        self.set_mode("POSCTL", 5)  # POSCTL        
+        rospy.loginfo("STATUS: Test is complete! Program stop!") 
+
+
     def is_normal_attitude(self, normal_pitch=0.07):
         #rospy.loginfo("IMU data.y = {0}".format(self.imu_data.orientation.y))
         return self.imu_data.orientation.y < normal_pitch #0.15
@@ -1144,7 +1162,7 @@ class MavrosOffboardSuctionMission():
         self.current_state.value = self.STATIONARY_HORIZONTAL
 
         # hand over of position flight mode will be done outside this function.
-        #rospy.loginfo("STATUS: Change to STATIONARY_HORIZONTAL! Take-off Test finish. Transit to POSITION flight mode for pilot")
+        rospy.loginfo("STATUS: Vertical takeoff is done!")
         #self.set_mode("POSCTL", 5)  # Position flight mode
         return True
 
@@ -1265,7 +1283,6 @@ class MavrosOffboardSuctionMission():
         self.current_state.value = self.STATIONARY_HORIZONTAL
         self.set_mode("OFFBOARD", 5)
 
-
         rospy.loginfo("***** Change to STATIONARY_HORIZONTAL and wait for 2 sec*********")
         rospy.sleep(2)
         rospy.loginfo("="*30)
@@ -1339,7 +1356,7 @@ class MavrosOffboardSuctionMission():
         if not land_to_vertical:
             return False
 
-        rospy.loginfo("STATUS: Test end!")
+        rospy.loginfo("STATUS: Vertical Landing is done end!")
         return True
 
 
@@ -1857,6 +1874,7 @@ if __name__ == '__main__':
     mode_group.add_argument('-pitch', '--pitch-test', action='store_true', help="take off and land together")
     mode_group.add_argument('-land', '--single-land', action='store_true', help="single land test")
     mode_group.add_argument('-velocity', '--velocity-test', action='store_true', help="simple velocity flying")
+    mode_group.add_argument('-full', '--full-test', action='store_true', help="full flying, landing then take off")
 
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
 
@@ -1891,7 +1909,11 @@ if __name__ == '__main__':
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.simple_vel_sp_test()
-
+    elif args.full_test:
+        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+                                                       mission_pos=mission_pos_manual,
+                                                       goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
+        suction_mission.full_test()
     rospy.spin()
 
 
