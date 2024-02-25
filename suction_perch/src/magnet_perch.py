@@ -656,9 +656,11 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Start to land on the wall.")
         if not self.vertical_land_test():
             return False
-        
-        rospy.loginfo("STATUS: Wait for 10 sec before take off from wall")
-        rospy.sleep(10)
+
+        rospy.loginfo("STATUS: Set to POSITION flight mode on PX4 for pilot control")
+        self.set_mode("POSCTL", 5)  # POSCTL        
+        rospy.loginfo("STATUS: Wait for 20 sec before take off from wall")
+        rospy.sleep(20)
         rospy.loginfo("="*20)
 
         if not self.vertical_takeoff_test():
@@ -666,7 +668,7 @@ class MavrosOffboardSuctionMission():
         
         rospy.loginfo("STATUS: Set to POSITION flight mode on PX4 for pilot control")
         self.set_mode("POSCTL", 5)  # POSCTL        
-        rospy.loginfo("STATUS: Test is complete! Program stop!") 
+        rospy.loginfo("STATUS: Full Test is complete! Program stop! Pilot is free to fly") 
 
 
     def is_normal_attitude(self, normal_pitch=0.07):
@@ -1275,7 +1277,7 @@ class MavrosOffboardSuctionMission():
 
 
     # this should be executed only after position flight mode by pilot
-    def vertical_land_test(self, throttle_timeout=30, start_throttle=0.46):
+    def vertical_land_test(self, throttle_timeout=30, start_throttle=0.46, single=False):
         rospy.loginfo("=================== This is a landing on wall test ========================")
         rospy.loginfo("STATUS: Set to PITCH_TO_VERTICAL state and OFFBOARD mode.")
         rospy.loginfo("STATUS: current throttle = {0}  |  IMU data.y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
@@ -1358,7 +1360,12 @@ class MavrosOffboardSuctionMission():
         if not land_to_vertical:
             return False
 
+        # hand over of position flight mode will be done outside this function.
         rospy.loginfo("STATUS: Vertical Landing is done end!")
+        if single:
+            self.set_mode("POSCTL", 5)  # Position flight mode
+            self.set_arm("False", 5)
+
         return True
 
 
@@ -1906,7 +1913,7 @@ if __name__ == '__main__':
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
-        suction_mission.single_land_test()
+        suction_mission.vertical_land_test(single=True)
     elif args.single_take_off:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
                                                        mission_pos=mission_pos_manual,
