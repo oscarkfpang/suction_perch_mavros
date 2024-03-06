@@ -268,7 +268,7 @@ class MavrosOffboardMagnetPerch():
         if not self.sub_topics_ready['local_pos']:
             self.sub_topics_ready['local_pos'] = True
 
-    # safety callback for getting the suction status
+    # safety callback for getting the perching status
     def perched_callback(self, data):
         self.is_perched.value = data
         if not self.sub_topics_ready['is_perched']:
@@ -649,8 +649,8 @@ class MavrosOffboardMagnetPerch():
                 if self.current_throttle.value >= end_throttle:
                     self.current_throttle.value = end_throttle
 
-                # detect SUCTION_IS_LAND param while throttling up
-                res = self.get_param_srv('SUCTION_IS_LAND')
+                # detect VERTICAL_IS_LAND param while throttling up
+                res = self.get_param_srv('VERTICAL_IS_LAND')
                 if res.success and res.value.integer <= 0:
                     rospy.loginfo(
                         "VERTICAL_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
