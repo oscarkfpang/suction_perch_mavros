@@ -36,7 +36,6 @@ class MavrosOffboardSuctionMission():
     """
 
     def __init__(self, radius=0.1, vx=0.1, vy=0.1, vz=0.8, takeoff_alt=1.0,
-                 #mission_pos=((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0)),
                  goto_pos_time=30, perch_time=60, land_on_wall_time=20, throttle_down_time=10, drone="px4vision"):
         self.radius = radius # consider using a smaller radius in real flight
         self.vx = vx
@@ -54,10 +53,8 @@ class MavrosOffboardSuctionMission():
         self.min_distance_from_wall = 0.15
 
         self.terminate = Value(c_bool, False)
-        self.mission_cnt = Value(c_int, 0)
+        #self.mission_cnt = Value(c_int, 0)
         self.mission_pos = ((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0))
-        self.pump_on = Value(c_bool, False)
-        self.solenoid_on = Value(c_bool, False)
         self.is_perched = Value(c_bool, False)
         self.publish_att_raw = Value(c_bool, False)   # ON: publish attitude_setpoint/raw for pitch up during vertical landing
         self.publish_thr_down = Value(c_bool, False)  # ON: toggle throttle down for vertical landing
@@ -183,9 +180,13 @@ class MavrosOffboardSuctionMission():
         self.pressure_sub = rospy.Subscriber('suction_pressure',
                                                Float64,
                                                self.pressure_callback)
+        
+        # obtain button state value when the magnetic head is coupled to the perch rod
         self.winch_done_sub = rospy.Subscriber('winch_done',
                                                Bool,
                                                self.winch_state_callback)
+        
+        # frontal range sensor for measuring distance between the vertical surface and the drone
         self.tfmini_sub = rospy.Subscriber('/mavros/distance_sensor/tfmini_pub',
                                                Float64,
                                                self.tfmini_callback)
@@ -201,7 +202,6 @@ class MavrosOffboardSuctionMission():
                                                
         # send mission pos setpoints in seperate thread to better prevent OFFBOARD failure
         # iterate list of pos setpoints
-        #self.pos_thread = Thread(target=self.send_mission_pos, args=())
         self.pos_thread = Thread(target=self.send_sp_by_state, args=())
         self.pos_thread.daemon = True
         self.pos_thread.start()
@@ -288,7 +288,7 @@ class MavrosOffboardSuctionMission():
     def tfmini_callback(self, data):
         self.tfmini_range.value = data.range
         if self.tfmini_range.value < 0:
-            self.tfmini_range.value = 0
+            self.tfmini_range.value = 0.0
 
     # Not to be used after getting the right pitch value from experiment
     def pitch_rate_callback(self, data):
@@ -308,6 +308,7 @@ class MavrosOffboardSuctionMission():
         #                                                                        self.joy_command[1], \
         #                                                                        self.joy_command[2], \
         #                                                                        self.joy_command[3]))
+
     #
     # Helper methods
     #
@@ -400,7 +401,6 @@ class MavrosOffboardSuctionMission():
         att_target.header = Header()
         att_target.header.stamp = rospy.Time.now()
         att_target.header.frame_id = "high_pitch"
-        #att_target.header.frame_id = "high_pitch_takeoff"
         # change these values by experiment
         roll_rate = 0.0
         yaw_rate = 0.0
@@ -481,6 +481,7 @@ class MavrosOffboardSuctionMission():
             "failed to set mode | new mode: {0}, old mode: {1} | timeout(seconds): {2}".
             format(mode, old_mode, timeout)))
 
+    # normal take off routine on horizontal surface
     def takeoff(self, timeout=10):
         """mode: PX4 mode string, timeout(int): seconds"""
         #rospy.loginfo("setting FCU mode: {0}".format(mode))
@@ -507,6 +508,7 @@ class MavrosOffboardSuctionMission():
             "failed to take off in {0} sec".format(timeout)))
         return can_take_off
 
+    # normal landing routing on horizontal surface
     def land(self, timeout=20):
         """mode: PX4 mode string, timeout(int): seconds"""
         loop_freq = 1  # Hz
@@ -535,77 +537,6 @@ class MavrosOffboardSuctionMission():
     def assertTrue(self, assertTrue, msg):
         if not assertTrue:
             rospy.logerr(msg)
-
-    def run_mission_manual(self):
-        loop_freq = 5  # Hz
-        rate = rospy.Rate(loop_freq)
-        
-        # start publishing of velocity setpoint for running of offboard flight mode 
-        self.publish_att_raw.value = False
-        
-        # wait for OFFBOARD mode
-        if not self.wait_for_offboard_cmd():
-            return False
-        
-        # check suction pressure and wall perching
-        if not self.perch_wall(self.perch_time):
-            return False
-            
-        # begin landing on wall
-        if not self.land_on_wall(self.land_on_wall_time, self.throttle_down_time):
-            return False
-        else:    
-            self.vtol.value = True
-            self.land()
-            rospy.loginfo("STATUS: Wait for 10 sec for landing to complete")
-            rospy.sleep(10) # wait for 10 sec here for landing
-            rospy.loginfo("STATUS: Checking landed state now....")
-            self.wait_for_landed_state(mavutil.mavlink.MAV_LANDED_STATE_ON_GROUND, 10, -1)
-            rospy.loginfo("STATUS: Landed on vertical surface successfully! Disarm now.")
-            # disarm the drone
-            self.set_arm(False, 5)
-            #rospy.loginfo("STATUS: Wait for 3 sec for disarm")
-            #rospy.sleep(3)
-            while not self.is_mav_state_standby():
-                rospy.loginfo("STATUS: Waiting for MAV_STATE_STANDBY...")
-                try: 
-                    rate.sleep()
-                except rospy.ROSInterruptException:
-                    rospy.loginfo("ERROR: User interrupt while waiting for MAV_STATE_STANDBY!")
-                    break
-            rospy.loginfo("STATUS: MAV_STATE_STANDBY now! ")
-            rospy.loginfo("STATUS: ============== Landed on wall. Ready to deploy sensor ================= ")
-            
-        
-        done_sensor = False
-        rate = rospy.Rate(1)
-        while not done_sensor:
-            rospy.loginfo("STATUS: You can deploy the sensor now..waiting for finish deployment.")
-            if self.winch_done.value:
-                done_sensor = True
-            try: 
-                rate.sleep()
-            except rospy.ROSInterruptException:
-                rospy.loginfo("ERROR: User interrupt while waiting for sensor deployment!")
-                break
-            
-        if not done_sensor:
-            return False    
-
-        rospy.loginfo("="*40)
-        rospy.loginfo("STATUS: Finish deployment with sensor. Start to takeoff from the wall.")
-        if not self.takeoff_from_wall():
-            return False
-
-        rospy.loginfo("STATUS: Re-takeoff is successful. Now detach from wall!")
-        
-        if not self.detach_from_wall():
-            rospy.loginfo("STAUTS: Detach is not successful! Stop here!")
-            return False
-            
-        self.publish_att_raw.value = False
-        rospy.loginfo("STATUS: Detach is successful. Fly back by Position mode manually! Program stop!")    
-
 
 
     # sending setpoint command for testing wall take-off in a thread
@@ -1675,91 +1606,6 @@ class MavrosOffboardSuctionMission():
             rospy.loginfo("Near vertical landing to the wall! Start AUTO.LAND now.")
 
         return vertical_landing
-    
-    def detach_from_wall(self, timeout=20):
-        '''
-        Detach the drone from the wall. Precondition: the drone returns to normal attitude after re-takeoff
-        return successful detachment or not
-        '''
-        
-        rospy.loginfo("STATUS: Begin detaching from wall")
-
-        # check suction pressure in a loop until suction cup is detached from the wall
-        # does it perch to the wall in 'timeout' seconds?
-        rospy.loginfo("========= waiting for SUCTION_IS_PERCH for detach =========")
-        loop_freq = 5  # Hz
-        rate = rospy.Rate(loop_freq)
-        detach = False
-        
-        stationary_period = 6 # sec
-        self.publish_att_raw.value = True
-        self.stationary.value = True
-        
-        start_time = rospy.get_time()
-        
-        while not detach:
-            rospy.loginfo(
-                        "waiting for SUCTION_IS_PERCH to 0. Current Pressure = {0}".format(self.suction_pressure))            
-            try:
-                res = self.get_param_srv('SUCTION_IS_PERCH')
-                if res.success and res.value.integer <= 0:
-                    rospy.loginfo(
-                        "SUCTION_IS_PERCH received {0}. drone detaches from the wall! ".format(res.value.integer))
-                    detach = True
-                    break
-            except rospy.ServiceException as e:
-                rospy.logerr(e)
-                break
-            try:
-                rate.sleep()
-            except (rospy.ROSException, rospy.InterruptException) as e:
-                self.fail(e)
-                rospy.loginfo("ERROR: User Interruption / Exception occurs")
-                break
-                            
-        if detach:
-            self.publish_att_raw.value = False
-            self.stationary.value = False
-            rospy.loginfo("STATUS: Successfully detach from wall manually!")
-        else:
-            self.publish_att_raw.value = True
-            self.stationary.value = True
-            self.current_throttle.value = 0.0
-            
-        return detach
-
-    def perch_wall(self, timeout=60,):
-        # check suction pressure in a loop until suction cup is attaced to the wall
-        # does it perch to the wall in 'timeout' seconds?
-        rospy.loginfo("========= waiting for SUCTION_IS_PERCH for perching =========")
-        loop_freq = 5  # Hz
-        rate = rospy.Rate(loop_freq)
-        suction = False
-        for i in xrange(timeout * loop_freq, 0, -1):
-            rospy.loginfo(
-                        "waiting for SUCTION_IS_PERCH to 1. Current Pressure = {0} | Time left {1} sec".format(self.suction_pressure, i))
-            # TODO: give a short period of time for detecting the continuous reception of value 1
-            try:
-                res = self.get_param_srv('SUCTION_IS_PERCH')
-                if res.success and res.value.integer > 0:
-                    ##self.suction_is_perch_param = res.integer
-                    rospy.loginfo(
-                        "SUCTION_IS_PERCH received {0}. drone is perched to the wall! ".format(res.value.integer))
-                    suction = True
-                    break
-            except rospy.ServiceException as e:
-                rospy.logerr(e)
-            try:
-                rate.sleep()
-            except rospy.ROSException as e:
-                self.fail(e)
-            except rospy.ROSInterruptException:
-                rospy.loginfo("User interruption")
-                pass
-        
-        self.assertTrue(suction, (
-            "took too long to get suction! | timeout(seconds): {0}".format(timeout)))
-        return suction
 
 
     def fail(self, e=None):
@@ -1773,11 +1619,7 @@ class MavrosOffboardSuctionMission():
         if hasattr(self, 'pos_thread') and self.pos_thread is not None:
             rospy.loginfo("Setpoint Publishing Thread terminates!")
             self.pos_thread.join()
-        # turn off the pump
-        if self.pump_on.value:
-            rospy.loginfo("Turn OFF suction pump")
-            #self.pub_pump.publish(Empty())
-            self.pump_on.value = False
+
 
         rospy.loginfo("======= STOP OFFBOARD & EXIT======= ")
         sys.exit(0)
@@ -1892,41 +1734,33 @@ if __name__ == '__main__':
     #signal.signal(signal.SIGINT, sigint_handler)
     #signal.signal(signal.SIGTERM, sigint_handler)
 
-
-    #mission_pos_manual = ( (0, 0, 0, 1) )
     
     global suction_mission
 
     if args.magnet_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.run_magnet_test()
         ##suction_mission.vertical_takeoff_test()
         #suction_mission.pitch_up_down_test()
     elif args.pitch_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.pitch_up_down_test()
     elif args.single_land:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.vertical_land_test(single=True)
     elif args.single_take_off:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.vertical_takeoff_test(single=True)
     elif args.velocity_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.simple_vel_sp_test()
     elif args.full_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.full_test()
     rospy.spin()
