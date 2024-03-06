@@ -62,7 +62,6 @@ class MavrosOffboardSuctionMission():
         self.vtol = Value(c_bool, False)
         self.debug_mode = Value(c_bool, False)
         self.current_throttle = Value(c_float, 0.0)
-        self.suction_pressure = 0.0
         self.winch_done = Value(c_bool, False)
         self.tfmini_range = Value(c_float, 0.0)
         
@@ -176,10 +175,6 @@ class MavrosOffboardSuctionMission():
         self.perched_sub = rospy.Subscriber('is_perched',
                                               Bool,
                                               self.perched_callback)
-
-        self.pressure_sub = rospy.Subscriber('suction_pressure',
-                                               Float64,
-                                               self.pressure_callback)
         
         # obtain button state value when the magnetic head is coupled to the perch rod
         self.winch_done_sub = rospy.Subscriber('winch_done',
@@ -279,8 +274,6 @@ class MavrosOffboardSuctionMission():
         if not self.sub_topics_ready['is_perched']:
             self.sub_topics_ready['is_perched'] = True
             
-    def pressure_callback(self, data):
-        self.suction_pressure = data.data
     
     def winch_state_callback(self, data):
         self.winch_done.value = data.data
