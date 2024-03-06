@@ -36,7 +36,7 @@ class MavrosOffboardSuctionMission():
     """
 
     def __init__(self, radius=0.1, vx=0.1, vy=0.1, vz=0.8, takeoff_alt=1.0,
-                 mission_pos=((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0)),
+                 #mission_pos=((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0)),
                  goto_pos_time=30, perch_time=60, land_on_wall_time=20, throttle_down_time=10, drone="px4vision"):
         self.radius = radius # consider using a smaller radius in real flight
         self.vx = vx
@@ -55,7 +55,7 @@ class MavrosOffboardSuctionMission():
 
         self.terminate = Value(c_bool, False)
         self.mission_cnt = Value(c_int, 0)
-        self.mission_pos = mission_pos
+        self.mission_pos = ((0, 0, 0, 0) , (0, 0, 5, 0), (5, 0, 2, 0), (2, 0, 3, 0), (0, 0, 3, 0))
         self.pump_on = Value(c_bool, False)
         self.solenoid_on = Value(c_bool, False)
         self.is_perched = Value(c_bool, False)
@@ -1893,40 +1893,40 @@ if __name__ == '__main__':
     #signal.signal(signal.SIGTERM, sigint_handler)
 
 
-    mission_pos_manual = ( (0, 0, 0, 1) )
+    #mission_pos_manual = ( (0, 0, 0, 1) )
     
     global suction_mission
 
     if args.magnet_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       mission_pos=mission_pos_manual,
+                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.run_magnet_test()
         ##suction_mission.vertical_takeoff_test()
         #suction_mission.pitch_up_down_test()
     elif args.pitch_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       mission_pos=mission_pos_manual,
+                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.pitch_up_down_test()
     elif args.single_land:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       mission_pos=mission_pos_manual,
+                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.vertical_land_test(single=True)
     elif args.single_take_off:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       mission_pos=mission_pos_manual,
+                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
         suction_mission.vertical_takeoff_test(single=True)
     elif args.velocity_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       mission_pos=mission_pos_manual,
+                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.simple_vel_sp_test()
     elif args.full_test:
         suction_mission = MavrosOffboardSuctionMission(radius=0.4,
-                                                       mission_pos=mission_pos_manual,
+                                                       #mission_pos=mission_pos_manual,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
         suction_mission.full_test()
     rospy.spin()
