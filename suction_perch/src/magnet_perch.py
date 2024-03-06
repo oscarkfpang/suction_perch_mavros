@@ -25,7 +25,7 @@ from collections import deque
 from dynamic_reconfigure.server import Server
 #from simple_parameter_server.cfg import simple_parameter
 
-class MavrosOffboardSuctionMission():
+class MavrosOffboardMagnetPerch():
     """
     Tests flying a path in offboard control by sending position setpoints
     via MAVROS.
@@ -1429,177 +1429,8 @@ class MavrosOffboardSuctionMission():
         rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
         self.set_arm(False, 5)
 
+
                 
-    def takeoff_from_wall(self, timeout=60, throttle_timeout=15):
-        rospy.loginfo("================================================================")
-        rospy.loginfo("STATUS: Set OFFBOARD mode.")
-        self.set_mode("OFFBOARD", 5)
-        rospy.loginfo("STATUS: Rearm the drone in vertical pose.")
-        self.set_arm(True, 5)
-        self.publish_att_raw.value = True
-        self.publish_thr_up.value = True
-
-        start_throttle = 0.01
-        end_throttle = 0.2 ### 0.2 for empty loading # self.low_throttle_value         
-        rospy.loginfo("STATUS: Throttle set from {0} to {1}".format(start_throttle, end_throttle))
-        
-        self.current_throttle.value = start_throttle
-        self.throttle_up_start_time = rospy.get_time()
-
-        loop_freq = 5  # Hz
-        rate = rospy.Rate(loop_freq)
-        period = throttle_timeout * loop_freq 
-        takeoff_from_vertical = False
-
-        for i in xrange(period):
-            rospy.loginfo("STATUS: Auto_throttling up from {0}. current throttle = {1}".format(start_throttle, self.current_throttle.value))
-            try:
-                # throttling up gradually
-                self.current_throttle.value += 0.01 
-                if self.current_throttle.value >= end_throttle:
-                    self.current_throttle.value = end_throttle
-
-                # detect SUCTION_IS_LAND param while throttling up
-                res = self.get_param_srv('VERTICAL_LAND')
-                if res.success and res.value.integer <= 0:
-                    rospy.loginfo(
-                        "VERTICAL_LAND received {0}. drone takes off vertically from the wall! ".format(res.value.integer))
-                    takeoff_from_vertical = True
-                    break
-
-                # break out if end_throttle value is reached (for autonomous takeoff with distance measurement sensor)
-                #if self.current_throttle.value >= end_throttle:
-                #    rospy.loginfo("End Throttle 0.3 is reached!")
-                #    break
-                    
-                rate.sleep()
-            except (rospy.ROSException, rospy.ROSInterruptException) as e:
-                # TODO: handling of throttle value under failure
-                rospy.loginfo("STATUS: Auto_throttling is interrupted!")
-                self.publish_att_raw.value = True
-                self.current_throttle.value = 0.0
-                break
-
-        if not takeoff_from_vertical:
-            self.assertTrue(takeoff_from_vertical, (
-                "took too long to take off from wall | timeout(seconds): {0}".format(timeout)))
-            self.publish_att_raw.value = True
-            self.current_throttle.value = 0.0
-            return False
-
-        start_throttle = self.current_throttle.value
-        end_throttle = self.holding_throttle #0.85 for sensor ###0.55 # 0.55 for without loading at the end
-        period = timeout * loop_freq // 2
-        normal_attitude = False
-        rospy.loginfo("Gradually throttling up to normal attitude.")
-
-        while not normal_attitude:
-            rospy.loginfo("STATUS: waiting for normal attitude. Current throttle: {0} | IMU-Y = {1}".format(self.current_throttle.value, self.imu_data.orientation.y))
-            self.current_throttle.value +=  0.01
-            normal_attitude = self.is_normal_attitude()
-            rate.sleep()
-            
-            # handle exception when throttle is too high but normal attitude is not reached, i.e. drone too heavy
-            if self.current_throttle.value >= end_throttle:
-                rospy.loginfo("STATUS: End throttle value of {0} is reached. Stop throttle there".format(end_throttle))
-                break
-        
-        if normal_attitude:  
-            rospy.loginfo("STATUS: normal attitude is reached! ready to detach from wall!")
-            rospy.loginfo("STATUS: publish stationary_att_throttle for stabilization during detach")
-            self.publish_att_raw.value = True
-            self.publish_thr_up.value = False
-        else:
-            rospy.loginfo("STATUS: Drone too heavy / cannot reach the normal attitude!")
-            self.publish_att_raw.value = True
-            self.publish_thr_up.value = False
-            self.current_throttle.value = 0
-            return False
-
-        return normal_attitude
-                
-
-    #TODO: publish attitude_raw setpoint for perching and landing on the wall
-    def land_on_wall(self, timeout=10, throttle_timeout=5):
-        rospy.loginfo(
-             "========= waiting for SUCTION_IS_LAND =========")
-        rospy.loginfo(
-             "High Attitude Movement is about to start... ")
-        self.publish_att_raw.value = True
-        self.publish_thr_down.value = False # keep throttle > 0 throughout high-attitude movement
-
-        loop_freq = 5  # Hz
-        rate = rospy.Rate(loop_freq)
-        vertical_landing = False
-        pitch_up = False
-
-        for i in xrange(timeout * loop_freq, 0, -1):
-            rospy.loginfo(
-                        "** High Attitude Movement. Count-down to end: {0}. Current throttle: {1}".format(i, self.current_throttle.value))
-            try:                    
-                if self.is_high_attitude():
-                    pitch_up = True
-                    break
-                rate.sleep()
-            except rospy.ROSException as e:
-                pass
-
-        if not pitch_up:
-            self.assertTrue(pitch_up, (
-                "took too long to reach high attitude | timeout(seconds): {0}".format(timeout)))
-            self.publish_att_raw.value = False
-            return False
-
-        # throttle down at high pitch angle vertical landing phase
-        rospy.loginfo(
-            "Throttle down from high attitude is about to start... Throttling down from {0}".format(self.low_throttle_value))
-        self.publish_thr_down.value = True
-        self.throttle_down_start_time = rospy.get_time()
-        self.current_throttle.value = self.low_throttle_value
-        
-        # gradually reduce throttle to zero during throttle_timeout
-        for i in xrange(throttle_timeout * loop_freq):
-            try:
-                # check distance from wall by tfmini range sensor:
-                rospy.loginfo("STATUS: Current distance to wall (m): {0}".format(self.tfmini_range.value))
-                if self.tfmini_range.value < self.min_distance_from_wall:
-                    rospy.loginfo("Drone is close enough to the wall!")
-            
-                self.current_throttle.value -= 0.005
-                if self.current_throttle.value < 0:
-                    self.current_throttle.value = 0
-                    rospy.loginfo("STATUS: Throttle already zero!")
-                    
-                # detect SUCTION_IS_LAND param while throttling down
-                res = self.get_param_srv('SUCTION_IS_LAND')
-                if res.success and res.value.integer > 0:
-                    rospy.loginfo(
-                        "SUCTION_IS_LAND received {0}. drone's pose is vertical! ".format(res.value.integer))
-                    vertical_landing = True
-                    # break and set throttle = 0 all the way
-                    self.throttle_down_start_time = -1
-                    break
-                    
-                rate.sleep()
-                rospy.loginfo("Set Throttle = 0 during vetical landing. Current throttle = {0}".format(self.current_throttle.value))
-            except rospy.ROSException as e:
-                pass
-            except rospy.ROSInterruptException:
-                vertical_landing = False
-                self.current_throttle.value = 0.0
-                rospy.loginfo("ERROR: User interrupt!")
-                break
-
-        if not vertical_landing:
-            self.assertTrue(vertical_landing, (
-                "took too long to reach high attitude | timeout(seconds): {0}".format(timeout)))
-            self.publish_thr_down.value = False
-            self.publish_att_raw.value = False
-        else:
-            rospy.loginfo("Near vertical landing to the wall! Start AUTO.LAND now.")
-
-        return vertical_landing
-
 
     def fail(self, e=None):
         if e is not None:
@@ -1711,7 +1542,7 @@ def sigint_handler(signum, data):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Mission Script for Suction Perch Drone")
+    parser = argparse.ArgumentParser(description="Mission Script for Magnetic Perch Drone")
     parser.add_argument('-d', '--debug', action='store_true', help="debug output")
     mode_group = parser.add_mutually_exclusive_group(required=True)
     mode_group.add_argument('-magnet', '--magnet-test', action='store_true', help="rearm the drone after landing to the wall")
@@ -1723,39 +1554,37 @@ if __name__ == '__main__':
 
     args = parser.parse_args(rospy.myargv(argv=sys.argv)[1:])
 
-    rospy.init_node('suction_mission_node')
+    rospy.init_node('magnetic_perch_node')
     #signal.signal(signal.SIGINT, sigint_handler)
     #signal.signal(signal.SIGTERM, sigint_handler)
 
     
-    global suction_mission
+    global magnet_mission
 
     if args.magnet_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+        magnet_mission = MavrosOffboardMagnetPerch(radius=0.4,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
-        suction_mission.run_magnet_test()
-        ##suction_mission.vertical_takeoff_test()
-        #suction_mission.pitch_up_down_test()
+        magnet_mission.run_magnet_test()
     elif args.pitch_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+        magnet_mission = MavrosOffboardMagnetPerch(radius=0.4,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
-        suction_mission.pitch_up_down_test()
+        magnet_mission.pitch_up_down_test()
     elif args.single_land:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+        magnet_mission = MavrosOffboardMagnetPerch(radius=0.4,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
-        suction_mission.vertical_land_test(single=True)
+        magnet_mission.vertical_land_test(single=True)
     elif args.single_take_off:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+        magnet_mission = MavrosOffboardMagnetPerch(radius=0.4,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40, drone="px4vision")
-        suction_mission.vertical_takeoff_test(single=True)
+        magnet_mission.vertical_takeoff_test(single=True)
     elif args.velocity_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+        magnet_mission = MavrosOffboardMagnetPerch(radius=0.4,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.simple_vel_sp_test()
+        magnet_mission.simple_vel_sp_test()
     elif args.full_test:
-        suction_mission = MavrosOffboardSuctionMission(radius=0.4,
+        magnet_mission = MavrosOffboardMagnetPerch(radius=0.4,
                                                        goto_pos_time=60, perch_time=80, land_on_wall_time=60, throttle_down_time=40)
-        suction_mission.full_test()
+        magnet_mission.full_test()
     rospy.spin()
 
 
